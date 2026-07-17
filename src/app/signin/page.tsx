@@ -49,7 +49,7 @@ const SigninPage = () => {
             if (error) {
                 toast.error(
                     error.message ||
-                    "Login failed."
+                    "Signin failed."
                 );
                 return;
             }
@@ -192,7 +192,7 @@ const SigninPage = () => {
                 <p className="mt-6 text-center text-sm text-[#EDEFF5]/60">
                     Don't have an account?{" "}
                     <Link
-                        href="/register"
+                        href="/signup"
                         className="font-semibold text-[#A78BFA] hover:text-[#A78BFA]/80 hover:underline"
                     >
                         Create an Account

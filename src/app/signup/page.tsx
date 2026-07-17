@@ -284,10 +284,10 @@ const SignUpPage = () => {
                 <p className="mt-1 text-center text-sm text-[#EDEFF5]/60">
                     Already have an account?{" "}
                     <Link
-                        href="/login"
+                        href="/signin"
                         className="font-semibold text-[#A78BFA] hover:text-[#A78BFA]/80"
                     >
-                        Login
+                        Signin
                     </Link>
                 </p>
             </Card>
