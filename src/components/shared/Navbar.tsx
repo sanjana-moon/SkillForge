@@ -95,12 +95,12 @@ const Navbar = () => {
             {
                 key: "users",
                 label: "Manage Users",
-                href: "/dashboard/admin/users",
+                href: "/dashboard/admin/manage-users",
             },
             {
                 key: "courses",
                 label: "Manage Courses",
-                href: "/dashboard/admin/courses",
+                href: "/dashboard/admin/manage-courses",
             },
             {
                 key: "profile",

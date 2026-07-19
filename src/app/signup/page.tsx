@@ -19,7 +19,7 @@ type RegisterForm = {
     name: string;
     email: string;
     password: string;
-    role: "learner" | "instructor";
+    role: "student" | "instructor";
     image: FileList;
 };
 
@@ -208,7 +208,7 @@ const SignUpPage = () => {
                             <label className="flex cursor-pointer items-center gap-3 rounded-md border border-[#A78BFA]/30 p-4 transition hover:border-[#A78BFA] hover:bg-[#10182B]/30">
                                 <input
                                     type="radio"
-                                    value="learner"
+                                    value="student"
                                     defaultChecked
                                     {...register("role", {
                                         required: "Please select a role",
