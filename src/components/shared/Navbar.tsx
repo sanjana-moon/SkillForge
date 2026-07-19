@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-// import { motion, AnimatePresence } from "motion/react";
 import { Button } from "@heroui/react";
 import { usePathname, useRouter } from "next/navigation";
 import { TfiAlignLeft } from "react-icons/tfi";
@@ -9,6 +8,7 @@ import { RxCross2, RxAvatar } from "react-icons/rx";
 import { MdLogin, MdLogout } from "react-icons/md";
 import { LuUserRoundPlus } from "react-icons/lu";
 import { IoMdSpeedometer } from "react-icons/io";
+import { FaRobot } from "react-icons/fa";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -55,24 +55,8 @@ const Navbar = () => {
             label: "Courses",
         },
         {
-            href: "/about",
-            label: "About",
-        },
-    ];
-
-    // Private routes (visible when logged in)
-    const privateNavLinks = [
-        {
-            href: "/",
-            label: "Home",
-        },
-        {
-            href: "/courses",
-            label: "Courses",
-        },
-        {
-            href: "/ai-mentor",
-            label: "AI Mentor",
+            href: "/contact",
+            label: "Contact",
         },
     ];
 
@@ -131,17 +115,12 @@ const Navbar = () => {
                 href: "/dashboard/profile",
             },
         ];
-    } else {
+    } else if (role === "student") {
         dashboardLinks = [
             {
                 key: "overview",
                 label: "Overview",
                 href: "/dashboard/student",
-            },
-            {
-                key: "mentor",
-                label: "AI Mentor",
-                href: "/ai-mentor",
             },
             {
                 key: "myCourses",
@@ -154,6 +133,8 @@ const Navbar = () => {
                 href: "/dashboard/profile",
             },
         ];
+    } else {
+        dashboardLinks = [];
     }
 
     return (
@@ -183,10 +164,23 @@ const Navbar = () => {
                         </li>
                     ))}
 
+                    {/* ✅ AI Mentor - Shows when ANY user is logged in */}
+                    {user && (
+                        <li>
+                            <Link
+                                href="/ai-mentor"
+                                className={navLinkClass("/ai-mentor")}
+                            >
+                                <div className="flex items-center gap-1.5">
+                                    AI Mentor
+                                </div>
+                            </Link>
+                        </li>
+                    )}
+
                     {user && (
                         <li className="relative group">
                             <button className="text-[#EDEFF5]/70 hover:text-[#EDEFF5] transition-colors flex items-center gap-2">
-                                <IoMdSpeedometer className="text-[#A78BFA]" />
                                 Dashboard
                             </button>
 
@@ -219,9 +213,9 @@ const Navbar = () => {
                                 <Image
                                     src={user.image ?? "/default-avatar.png"}
                                     alt={user.name ?? "User"}
-                                    width={60}
-                                    height={60}
-                                    className="border-2 border-[#A78BFA] rounded-full"
+                                    width={40}
+                                    height={40}
+                                    className="border-2 border-[#A78BFA] rounded-full object-cover"
                                 />
 
                                 <MotionButton
@@ -324,9 +318,9 @@ const Navbar = () => {
                             <Image
                                 src={user.image ?? "/default-avatar.png"}
                                 alt={user.name ?? "User"}
-                                height={60}
-                                width={60}
-                                className="border-2 border-[#A78BFA] rounded-full"
+                                width={40}
+                                height={40}
+                                className="border-2 border-[#A78BFA] rounded-full object-cover"
                             />
                         ) : (
                             <RxAvatar className="text-3xl text-[#A78BFA]" />
@@ -368,6 +362,20 @@ const Navbar = () => {
                                     </Link>
                                 </li>
                             ))}
+
+                            {user && (
+                                <li>
+                                    <Link
+                                        href="/ai-mentor"
+                                        className={navLinkClass("/ai-mentor")}
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
+                                        <div className="flex items-center gap-1.5">
+                                            AI Mentor
+                                        </div>
+                                    </Link>
+                                </li>
+                            )}
 
                             {user && (
                                 <>
@@ -428,7 +436,7 @@ const Navbar = () => {
                                             alt={user.name ?? "User"}
                                             width={60}
                                             height={60}
-                                            className="mb-3 border-2 border-[#A78BFA] rounded"
+                                            className="mb-3 border-2 border-[#A78BFA] rounded-full object-cover"
                                         />
 
                                         <h2 className="text-lg font-semibold text-[#EDEFF5]">

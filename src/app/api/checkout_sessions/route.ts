@@ -4,7 +4,10 @@ import Stripe from "stripe";
 
 import { getUser } from "@/lib/api/session";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+// ✅ Use the latest API version
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: "2026-06-24.dahlia", // Updated to latest
+});
 
 export async function POST(req: Request) {
     try {
@@ -64,10 +67,6 @@ export async function POST(req: Request) {
                         product_data: {
                             name: courseTitle,
                             description: `Enrollment in ${courseTitle}`,
-                            metadata: {
-                                courseId,
-                                transactionId,
-                            },
                         },
                     },
                 },
@@ -76,6 +75,7 @@ export async function POST(req: Request) {
                 paymentType: type || "course_enrollment",
                 courseId,
                 courseTitle,
+                amount: String(amount),
                 transactionId: transactionId || "",
                 studentEmail: studentEmail || user.email,
                 studentName: studentName || user.name || "",
@@ -83,13 +83,12 @@ export async function POST(req: Request) {
                 note: note || "",
                 userId: user.id || "",
             },
-            success_url: `${origin}/payment/success?session_id={CHECKOUT_SESSION_ID}`,
+            success_url: `${origin}/payment/success?session_id={CHECKOUT_SESSION_ID}&courseId=${courseId}`,
             cancel_url: `${origin}/courses/${courseId}`,
         });
 
         return NextResponse.json({
             url: session.url,
-            sessionId: session.id,
         });
     } catch (error) {
         console.error("Stripe Error:", error);

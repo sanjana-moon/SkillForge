@@ -90,10 +90,10 @@ export default function CourseEnrollmentWidget({
         setSubmitting(true);
 
         try {
-            // ✅ Generate a unique transaction ID (like DreamVenue)
+            // ✅ Generate a unique transaction ID
             const transactionId = `txn_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
 
-            // ✅ Create checkout session (exactly like DreamVenue pattern)
+            // ✅ Create checkout session with all required data
             const bookingData = {
                 type: "course_enrollment",
                 courseId,
@@ -104,6 +104,8 @@ export default function CourseEnrollmentWidget({
                 studentName: user.name,
                 startDate,
                 note,
+                // ✅ Added userId for metadata
+                userId: user.id,
             };
 
             const res = await fetch("/api/checkout_sessions", {
@@ -124,7 +126,7 @@ export default function CourseEnrollmentWidget({
             const data = await res.json();
 
             if (data?.url) {
-                // ✅ Redirect to Stripe Checkout (like DreamVenue)
+                // ✅ Redirect to Stripe Checkout
                 window.location.href = data.url;
             } else {
                 toast.error("Failed to create checkout session");
@@ -187,7 +189,7 @@ export default function CourseEnrollmentWidget({
             <Modal isOpen={isModalOpen} onOpenChange={setIsModalOpen}>
                 <Modal.Backdrop>
                     <Modal.Container>
-                        <Modal.Dialog className="sm:max-w-[500px] bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl">
+                        <Modal.Dialog className="sm:max-w-125 bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl">
                             <Modal.CloseTrigger />
 
                             <Modal.Header>
