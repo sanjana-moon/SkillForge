@@ -28,7 +28,6 @@ export interface Course {
     reviewCount: number;
     enrollmentCount?: number;
     createdAt: Date;
-    // ✅ Add these fields
     whatYouWillLearn?: string[];
     requirements?: string[];
     targetAudience?: string[];
@@ -42,6 +41,17 @@ export interface Enrollment {
     progress: number;
     completedAt?: Date;
     createdAt: Date;
+}
+
+export interface Payment {
+    _id?: string;
+    studentEmail: string;
+    courseId: string;
+    courseTitle: string;
+    amount: number;
+    transactionId: string;
+    paymentStatus: string;
+    paidAt: Date;
 }
 
 export interface AppUser {
@@ -104,6 +114,7 @@ export interface AdminDashboard {
     totalUsers: number;
     totalCourses: number;
     totalEnrollments: number;
+    totalRevenue: number;
     coursesByCategory: { category: string; value: number }[];
 }
 
@@ -115,7 +126,7 @@ export interface AdminDashboard {
 export const getCourses = async (filters?: CourseFilters): Promise<CourseListResponse> => {
     try {
         const params = new URLSearchParams();
-        
+
         if (filters) {
             Object.entries(filters).forEach(([key, value]) => {
                 if (value !== undefined && value !== null && value !== "") {
@@ -323,6 +334,52 @@ export const getMentorSession = async (sessionId: string): Promise<MentorSession
         return response;
     } catch (error) {
         console.error("Error fetching mentor session:", error);
+        throw error;
+    }
+};
+
+// ============================
+// ENROLLMENT CHECK ROUTES (Protected)
+// ============================
+
+// CHECK if user is enrolled in a course (protected)
+export const checkEnrollment = async (courseId: string): Promise<{ enrolled: boolean }> => {
+    try {
+        const response = await serverFetch<{ enrolled: boolean }>(
+            `/api/enrollments/check/${courseId}`,
+            true
+        );
+        return response;
+    } catch (error) {
+        console.error("Error checking enrollment:", error);
+        return { enrolled: false };
+    }
+};
+
+// GET user's enrolled courses (protected)
+export const getUserEnrollments = async (): Promise<Enrollment[]> => {
+    try {
+        const response = await serverFetch<Enrollment[]>(
+            "/api/enrollments/my",
+            true
+        );
+        return response;
+    } catch (error) {
+        console.error("Error fetching user enrollments:", error);
+        throw error;
+    }
+};
+
+// GET student payments (protected)
+export const getStudentPayments = async (email: string): Promise<Payment[]> => {
+    try {
+        const response = await serverFetch<Payment[]>(
+            `/api/payments/student/${email}`,
+            true
+        );
+        return response;
+    } catch (error) {
+        console.error("Error fetching student payments:", error);
         throw error;
     }
 };

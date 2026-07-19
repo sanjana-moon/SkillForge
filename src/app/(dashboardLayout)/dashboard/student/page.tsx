@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import { redirect } from "next/navigation";
+import { roleValidator, getUser } from "@/lib/api/session";
+import { getStudentStats } from "@/lib/api/courses/data";
+import StudentClient from "./StudentClient";
+
+export const metadata: Metadata = {
+    title: "Student Dashboard | SkillForge",
+    description: "Manage your courses, track progress, and continue learning on SkillForge.",
+};
+
+export default async function StudentDashboardPage() {
+    await roleValidator("student");
+    const user = await getUser();
+    
+    if (!user) {
+        redirect("/signin");
+    }
+
+    const dashboardData = await getStudentStats(user.email);
+
+    return (
+        <StudentClient
+            user={user}
+            dashboardData={dashboardData}
+        />
+    );
+}

@@ -71,7 +71,7 @@ const Navbar = () => {
             label: "Courses",
         },
         {
-            href: "/dashboard/ai-mentor",
+            href: "/ai-mentor",
             label: "AI Mentor",
         },
     ];
@@ -136,17 +136,17 @@ const Navbar = () => {
             {
                 key: "overview",
                 label: "Overview",
-                href: "/dashboard/learner",
+                href: "/dashboard/student",
             },
             {
                 key: "mentor",
                 label: "AI Mentor",
-                href: "/dashboard/ai-mentor",
+                href: "/ai-mentor",
             },
             {
                 key: "myCourses",
                 label: "My Courses",
-                href: "/dashboard/learner/my-courses",
+                href: "/dashboard/student/my-courses",
             },
             {
                 key: "profile",

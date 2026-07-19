@@ -49,7 +49,7 @@ const getLinksForRole = (role?: string): DashboardLink[] => {
     if (role === "student") {
         return [
             { key: "overview", label: "Overview", href: "/dashboard/student", icon: IoMdSpeedometer },
-            { key: "mentor", label: "AI Mentor", href: "/dashboard/ai-mentor", icon: FaRobot },
+            { key: "mentor", label: "AI Mentor", href: "/ai-mentor", icon: FaRobot },
             { key: "myCourses", label: "My Courses", href: "/dashboard/student/my-courses", icon: IoMdBook },
             { key: "profile", label: "Profile", href: "/dashboard/profile", icon: IoMdPerson },
         ];

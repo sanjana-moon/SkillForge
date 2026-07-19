@@ -28,6 +28,12 @@ export interface CourseCreateData {
     instructorId?: string;
 }
 
+export interface CheckoutData {
+    courseId: string;
+    transactionId: string;
+    paymentStatus: string;
+}
+
 // ============================
 // COURSE ACTIONS (Protected - Instructor)
 // ============================
@@ -183,10 +189,37 @@ export const updateEnrollmentProgress = async (
 };
 
 // ============================
+// CHECKOUT ACTIONS (Protected - Student)
+// ============================
+
+// PROCESS checkout (creates pending payment and enrollment)
+export const processCheckout = async (data: CheckoutData): Promise<CourseResponse> => {
+    try {
+        const result = await serverMutation<any, CheckoutData>(
+            "/api/checkout",
+            "POST",
+            data
+        );
+        
+        return {
+            success: true,
+            data: result,
+            message: "Checkout processed successfully",
+        };
+    } catch (error) {
+        console.error("Checkout error:", error);
+        return {
+            success: false,
+            error: error instanceof Error ? error.message : "Failed to process checkout",
+        };
+    }
+};
+
+// ============================
 // ADMIN COURSE ACTIONS (Protected - Admin ONLY)
 // ============================
 
-// UPDATE course approval status (admin only) - ✅ FIXED
+// UPDATE course approval status (admin only)
 export const updateCourseApproval = async (
     courseId: string,
     approvalStatus: ApprovalStatus
@@ -212,7 +245,7 @@ export const updateCourseApproval = async (
     }
 };
 
-// DELETE course (admin only) - ✅ FIXED - use admin endpoint
+// DELETE course (admin only)
 export const deleteCourseAdmin = async (courseId: string): Promise<CourseResponse> => {
     try {
         const result = await deleteMutation<any>(`/api/admin/courses/${courseId}`);
