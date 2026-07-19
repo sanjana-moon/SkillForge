@@ -22,11 +22,9 @@ import {
     FaTimesCircle,
     FaArrowLeft,
 } from "react-icons/fa";
-import { FaUser } from "react-icons/fa6";
 import { toast } from "react-toastify";
 import type { Course } from "@/lib/api/courses/data";
 import { useSession } from "@/lib/auth-client";
-import { enrollInCourse } from "@/lib/api/courses/actions";
 import CourseEnrollmentWidget from "@/components/courses/CourseEnrollmentWidget";
 
 interface CourseDetailsClientProps {
@@ -188,7 +186,6 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                         <FaShare />
                                         Share
                                     </Button>
-                                    {/* ✅ Use the Enrollment Widget */}
                                     <CourseEnrollmentWidget
                                         courseId={course._id!}
                                         courseTitle={course.title}
