@@ -1,36 +1,247 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 SkillForge AI
 
-## Getting Started
+> **SkillForge AI** is a modern AI-powered online learning platform where students can discover, purchase, and complete technology courses while receiving guidance from an intelligent AI mentor. The platform supports role-based access for Students, Instructors, and Admins, providing a complete e-learning experience.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🌐 Live Demo
+
+* **Client:** *Coming Soon*
+* **Server:** *Coming Soon*
+
+---
+
+## ✨ Features
+
+### 👨‍🎓 Student
+
+* 🔍 Browse and search courses
+* 🎯 Filter courses by category, level, and price
+* 💳 Purchase courses securely
+* 📚 Enroll in courses
+* 📈 Track learning progress
+* 🤖 Chat with an AI Mentor
+* 👤 Update profile information
+* 📊 Student dashboard with learning statistics
+
+### 👨‍🏫 Instructor
+
+* ➕ Create new courses
+* ✏️ Update course information
+* 🗑️ Delete courses
+* 📤 Publish or unpublish courses
+* 📈 Instructor analytics dashboard
+* 👨‍🎓 View enrolled students
+
+### 👨‍💼 Admin
+
+* ✅ Approve or reject submitted courses
+* 👥 Manage users
+* 🚫 Block or unblock accounts
+* 🎓 Manage all courses
+* 📊 Platform analytics dashboard
+
+### 🤖 AI Mentor
+
+* AI-powered learning assistant
+* Persistent conversation history
+* Programming and technology guidance
+* Career advice
+* Personalized learning support
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+
+* Next.js
+* React
+* TypeScript
+* Tailwind CSS
+* HeroUI
+* TanStack Query
+* React Hook Form
+* React Icons
+* Framer Motion
+* Axios
+
+## Backend
+
+* Node.js
+* Express.js
+* TypeScript
+* MongoDB
+* JOSE (JWT Verification)
+* Google Gemini AI API
+
+## Authentication
+
+* Better Auth
+* JWT Authentication
+* Role-Based Authorization
+
+---
+
+# 📂 Project Structure
+
+```text
+SkillForge/
+│
+├── SkillForge-Client/
+│
+└── SkillForge-Server/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# 👥 User Roles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Student
 
-## Learn More
+* Browse Courses
+* Purchase Courses
+* Enroll
+* Track Progress
+* AI Mentor
+* Profile Management
 
-To learn more about Next.js, take a look at the following resources:
+## Instructor
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Add Courses
+* Edit Courses
+* Delete Courses
+* Publish Courses
+* Instructor Dashboard
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Admin
 
-## Deploy on Vercel
+* Course Approval
+* User Management
+* Dashboard Analytics
+* Block Users
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# 📦 Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/your-username/skillforge-ai.git
+```
+
+---
+
+## Client
+
+```bash
+cd SkillForge-Client
+
+npm install
+
+npm run dev
+```
+
+---
+
+## Server
+
+```bash
+cd SkillForge-Server
+
+npm install
+
+npm run dev
+```
+
+
+
+# 📡 API Overview
+
+### Users
+
+* Create User
+* Update Profile
+* Get Profile
+
+### Courses
+
+* Get All Courses
+* Featured Courses
+* Categories
+* Course Details
+* Instructor CRUD
+* Publish/Unpublish
+
+### Enrollments
+
+* Create Enrollment
+* Update Progress
+* Check Enrollment
+* Student Enrollments
+
+### Checkout
+
+* Store Payment
+* Create Enrollment
+
+### AI Mentor
+
+* Create Session
+* Fetch Sessions
+* Send Messages
+* Delete Session
+
+### Admin
+
+* Dashboard
+* Manage Users
+* Manage Courses
+* Course Approval
+
+---
+
+# 📈 Future Improvements
+
+* Course reviews & ratings
+* Video lessons
+* Certificates
+* Wishlist
+* Instructor earnings
+* Notifications
+* Live classes
+* Quizzes & assignments
+* Stripe payment integration
+* Discussion forum
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Push the branch.
+5. Open a Pull Request.
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 👩‍💻 Author
+
+**Sanjana Moon**
+
+* GitHub: https://github.com/your-username
+* LinkedIn: https://linkedin.com/in/your-linkedin
+
+---
+
+⭐ If you like this project, don't forget to give it a **Star** on GitHub!
