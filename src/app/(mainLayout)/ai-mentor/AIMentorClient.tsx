@@ -349,10 +349,10 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                         >
                                                             <div className="flex items-start gap-2">
                                                                 {message.role === "assistant" && (
-                                                                    <FaRobot className="text-[#A78BFA] text-sm mt-0.5 flex-shrink-0" />
+                                                                    <FaRobot className="text-[#A78BFA] text-sm mt-0.5 shrink-0" />
                                                                 )}
                                                                 {message.role === "user" && (
-                                                                    <FaUser className="text-[#10182B]/60 text-sm mt-0.5 flex-shrink-0" />
+                                                                    <FaUser className="text-[#10182B]/60 text-sm mt-0.5 shrink-0" />
                                                                 )}
                                                                 <div className="whitespace-pre-wrap text-sm leading-relaxed">
                                                                     {message.content}
