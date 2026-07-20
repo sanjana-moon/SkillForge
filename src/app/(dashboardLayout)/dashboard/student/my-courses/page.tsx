@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getUser } from "@/lib/api/session";
-import { getStudentEnrollments } from "@/lib/api/courses/data";
 import MyCoursesClient from "./MyCourseClient";
 
 export const metadata: Metadata = {
@@ -16,7 +15,5 @@ export default async function MyCoursesPage() {
         redirect("/signin");
     }
 
-    const enrollments = await getStudentEnrollments(user.email);
-
-    return <MyCoursesClient enrollments={enrollments} />;
+    return <MyCoursesClient userEmail={user.email} />;
 }

@@ -82,7 +82,7 @@ const DashboardSidebar = () => {
 
     if (!mounted) {
         return (
-            <div className="fixed left-0 top-0 z-40 h-full w-[280px] bg-[#0B0F19] border-r border-[#1E293B] flex flex-col p-4 animate-pulse">
+            <div className="fixed left-0 top-0 z-40 h-full w-70 bg-[#0B0F19] border-r border-[#1E293B] flex flex-col p-4 animate-pulse">
                 <div className="h-10 bg-[#1E293B] rounded-lg mb-8 w-1/2" />
                 <div className="flex items-center gap-3 mb-8">
                     <div className="h-10 w-10 rounded-full bg-[#1E293B]" />
@@ -145,7 +145,7 @@ const DashboardSidebar = () => {
                 className="fixed left-0 top-0 z-40 h-full bg-[#0B0F19] border-r border-[#1E293B] shadow-2xl flex flex-col overflow-hidden"
             >
                 {/* Header Section (Logo Only) */}
-                <div className="flex items-center justify-between px-5 py-4 border-b border-[#1E293B] min-h-[73px]">
+                <div className="flex items-center justify-between px-5 py-4 border-b border-[#1E293B] min-h-18">
                     <Link href="/" className="flex items-center shrink-0">
                         <Image
                             src={logo}
@@ -167,12 +167,14 @@ const DashboardSidebar = () => {
                 </div>
 
                 {/* User Profile Area */}
-                <div className="p-4 border-b border-[#1E293B] bg-gradient-to-b from-transparent to-slate-900/20">
+                <div className="p-4 border-b border-[#1E293B] bg-linear-to-b from-transparent to-slate-900/20">
                     <div className={`flex items-center gap-3 ${isCollapsed ? "justify-center" : ""}`}>
                         <div className="relative shrink-0">
-                            <Avatar
+                            <Image
                                 src={user?.image ?? "/default-avatar.png"}
                                 alt={user?.name ?? "User"}
+                                height={40}
+                                width={40}
                                 className="w-10 h-10 border border-violet-500/30 ring-4 ring-violet-500/5 transition-transform duration-200"
                             />
                             <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-[#0B0F19] rounded-full" />
@@ -215,7 +217,7 @@ const DashboardSidebar = () => {
                                 className={`
                                     relative flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 group
                                     ${active 
-                                        ? "bg-gradient-to-r from-violet-600/15 to-violet-600/5 text-violet-400 font-medium border border-violet-500/20" 
+                                        ? "bg-linear-to-r from-violet-600/15 to-violet-600/5 text-violet-400 font-medium border border-violet-500/20" 
                                         : "text-slate-400 hover:text-slate-200 hover:bg-slate-900/60 border border-transparent"
                                     }
                                     ${isCollapsed ? "justify-center px-0" : ""}

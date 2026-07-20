@@ -84,7 +84,7 @@ export default async function PaymentSuccess({
             <Card className="w-full max-w-2xl overflow-hidden rounded-3xl border border-[#A78BFA]/20 shadow-2xl bg-[#1C2740]">
 
                 {/* Header */}
-                <CardHeader className="flex flex-col items-center justify-center gap-5 bg-gradient-to-br from-[#10182B] to-[#1C2740] py-12 border-b border-[#A78BFA]/20">
+                <CardHeader className="flex flex-col items-center justify-center gap-5 bg-linear-to-br from-[#10182B] to-[#1C2740] py-12 border-b border-[#A78BFA]/20">
 
                     <div className="flex h-24 w-24 items-center justify-center rounded-full bg-green-500/20 border-4 border-green-500/30">
                         <FaCheckCircle

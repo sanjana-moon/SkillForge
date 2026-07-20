@@ -356,7 +356,6 @@ const EditCourseModal = ({
                             </Button>
                             <Button
                                 type="submit"
-                                isLoading={loading}
                                 className="flex-1 bg-[#A78BFA] text-[#10182B] font-semibold py-5 sm:py-6 rounded-2xl hover:bg-[#A78BFA]/80 transition-all text-sm sm:text-base"
                             >
                                 Save Changes

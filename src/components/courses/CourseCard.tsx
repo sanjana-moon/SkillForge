@@ -42,7 +42,7 @@ export default function CourseCard({ course }: CourseCardProps) {
     return (
         <div className="group bg-[#1C2740] border border-[#A78BFA]/10 hover:border-[#A78BFA]/30 rounded-md overflow-hidden shadow-lg hover:shadow-[#A78BFA]/5 flex flex-col transition-all duration-300 hover:-translate-y-1">
             {/* Thumbnail - 2/3 of the card */}
-            <div className="relative aspect-[4/3] overflow-hidden bg-[#10182B]">
+            <div className="relative aspect-4/3 overflow-hidden bg-[#10182B]">
                 {imageUrl ? (
                     <Image
                         src={imageUrl}
@@ -56,7 +56,7 @@ export default function CourseCard({ course }: CourseCardProps) {
                         <span className="text-4xl">📚</span>
                     </div>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#10182B]/60 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#10182B]/60 to-transparent" />
                 
                 {/* Category tag - Bottom Left */}
                 <span className="absolute bottom-3 left-3 inline-block px-2.5 py-0.5 bg-[#10182B]/80 backdrop-blur-sm border border-[#A78BFA]/20 rounded-full text-[10px] font-mono font-bold text-[#A78BFA]">
@@ -76,7 +76,7 @@ export default function CourseCard({ course }: CourseCardProps) {
             </div>
 
             {/* Content - 1/3 of the card */}
-            <div className="p-4 flex-grow flex flex-col justify-between">
+            <div className="p-4 grow flex flex-col justify-between">
                 {/* Rating & Title */}
                 <div>
                     <div className="flex items-center gap-1.5 text-xs text-[#EDEFF5]/60 font-semibold mb-1.5">
@@ -112,18 +112,6 @@ export default function CourseCard({ course }: CourseCardProps) {
                             </p>
                         </div>
                     </div>
-
-                    {/* Instructor */}
-                    {/* <div className="flex items-center gap-2 mt-2">
-                        <div className="h-5 w-5 rounded-full bg-[#A78BFA]/10 flex items-center justify-center text-[#A78BFA] font-bold text-[10px]">
-                            {course.instructorName?.charAt(0) || "U"}
-                        </div>
-                        <p className="text-[10px] font-medium text-[#EDEFF5]/60 truncate">
-                            {course.instructorName}
-                        </p>
-                    </div> */}
-
-                    {/* Action Button */}
                     <Link
                         href={`/courses/${course._id}`}
                         className="w-full inline-flex items-center justify-center rounded-sm hover:bg-[#10182B]/10 bg-[#A78BFA] text-[#10182B] border border-[#A78BFA]/20 py-1.5 text-[10px] font-semibold hover:text-[#EDEFF5] transition-all duration-300 mt-2"

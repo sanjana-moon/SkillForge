@@ -7,15 +7,10 @@ import { useRouter } from "next/navigation";
 import {
     Card,
     Button,
-    Chip,
-    Spinner,
 } from "@heroui/react";
 import {
     FaStar,
-    FaRegClock,
-    FaSignal,
     FaUserGraduate,
-    FaPlay,
     FaShare,
     FaBookmark,
     FaCheckCircle,
@@ -93,8 +88,8 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
 
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-6">
-                <div className="relative overflow-hidden bg-gradient-to-r from-[#1C2740] via-[#10182B] to-[#1C2740] border border-[#A78BFA]/20 rounded-3xl shadow-xl">
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#A78BFA] via-[#7C3AED] to-[#A78BFA]" />
+                <div className="relative overflow-hidden bg-linear-to-r from-[#1C2740] via-[#10182B] to-[#1C2740] border border-[#A78BFA]/20 rounded-3xl shadow-xl">
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-[#A78BFA] via-[#7C3AED] to-[#A78BFA]" />
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-6 md:p-10">
                         {/* Thumbnail */}
@@ -112,7 +107,7 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                         <FaBookmark className="text-6xl" />
                                     </div>
                                 )}
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#10182B]/60 to-transparent" />
+                                <div className="absolute inset-0 bg-linear-to-t from-[#10182B]/60 to-transparent" />
 
                                 {/* Status Badge */}
                                 {course.approvalStatus === "approved" && course.publishStatus === "published" ? (

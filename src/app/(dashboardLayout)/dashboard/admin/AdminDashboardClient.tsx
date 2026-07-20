@@ -62,16 +62,19 @@ const AdminDashboardClient = ({
 
             {/* Stats Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {statCards.map((item, index) => (
+                {statCards.map((item) => (
                     <Card
-                        key={index}
+                        key={item.title}
                         className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#A78BFA]/10"
                     >
                         <div className="p-6">
                             <p className="text-[#EDEFF5]/60 text-sm">
                                 {item.title}
                             </p>
-                            <h2 className={`text-4xl font-bold mt-2 ${item.color}`}>
+
+                            <h2
+                                className={`text-4xl font-bold mt-2 ${item.color}`}
+                            >
                                 {item.value}
                             </h2>
                         </div>
@@ -79,49 +82,87 @@ const AdminDashboardClient = ({
                 ))}
             </div>
 
-            {/* Chart - Courses by Category */}
+            {/* Courses by Category */}
             <Card className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl shadow-xl p-6">
                 <h2 className="text-2xl font-bold mb-6 text-[#EDEFF5]">
                     Courses by Category
                 </h2>
 
-                <div className="w-full h-[420px]">
+                <div className="w-full h-105">
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                             <Pie
                                 data={dashboard.coursesByCategory}
                                 dataKey="value"
                                 nameKey="category"
-                                outerRadius={140}
-                                label={({ name, percent }) => 
-                                    `${name} ${(percent * 100).toFixed(0)}%`
-                                }
-                                labelLine={true}
+                                outerRadius={130}
+                                labelLine={{
+                                    stroke: "#A78BFA",
+                                    strokeWidth: 2,
+                                }}
+                                label={({ cx, cy, midAngle, outerRadius, percent, name }) => {
+                                    const RADIAN = Math.PI / 180;
+                                    const radius = (outerRadius ?? 130) + 35;
+
+                                    const angle = midAngle ?? 0;
+
+                                    const x = (cx ?? 0) + radius * Math.cos(-angle * RADIAN);
+                                    const y = (cy ?? 0) + radius * Math.sin(-angle * RADIAN);
+
+                                    return (
+                                        <text
+                                            x={x}
+                                            y={y}
+                                            fill="#FFFFFF"
+                                            textAnchor={x > (cx ?? 0) ? "start" : "end"}
+                                            dominantBaseline="central"
+                                            fontSize={14}
+                                            fontWeight={600}
+                                        >
+                                            {`${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
+                                        </text>
+                                    );
+                                }}
                             >
-                                {dashboard.coursesByCategory.map(
-                                    (_, index) => (
-                                        <Cell
-                                            key={index}
-                                            fill={
-                                                COLORS[
-                                                    index % COLORS.length
-                                                ]
-                                            }
-                                        />
-                                    )
-                                )}
+                                {dashboard.coursesByCategory.map((_, index) => (
+                                    <Cell
+                                        key={index}
+                                        fill={COLORS[index % COLORS.length]}
+                                    />
+                                ))}
                             </Pie>
-                            <Tooltip 
+
+                            <Tooltip
+                                formatter={(value) => [
+                                    `${Number(value ?? 0)} Courses`,
+                                    "Count",
+                                ]}
                                 contentStyle={{
                                     backgroundColor: "#1C2740",
-                                    borderColor: "#A78BFA/30",
+                                    border: "1px solid rgba(167,139,250,.3)",
+                                    borderRadius: "12px",
                                     color: "#EDEFF5",
                                 }}
-                                formatter={(value: number) => [`${value} courses`, "Total"]}
+                                labelStyle={{
+                                    color: "#EDEFF5",
+                                }}
+                                itemStyle={{
+                                    color: "#EDEFF5",
+                                }}
                             />
-                            <Legend 
+
+                            <Legend
+                                verticalAlign="bottom"
+                                align="center"
                                 formatter={(value) => (
-                                    <span style={{ color: "#EDEFF5" }}>{value}</span>
+                                    <span
+                                        style={{
+                                            color: "#EDEFF5",
+                                            fontWeight: 600,
+                                        }}
+                                    >
+                                        {value}
+                                    </span>
                                 )}
                             />
                         </PieChart>

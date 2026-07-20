@@ -25,7 +25,7 @@ export default function Hero() {
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-[#EDEFF5] leading-tight tracking-tight">
               Forge Your Path to{" "}
-              <span className="bg-gradient-to-r from-[#A78BFA] via-[#C084FC] to-[#4FD1C5] bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-[#A78BFA] via-[#C084FC] to-[#4FD1C5] bg-clip-text text-transparent">
                 Tech Mastery
               </span>
             </h1>
@@ -39,7 +39,7 @@ export default function Hero() {
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <Link
                 href="/courses"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#A78BFA] to-[#8B5CF6] px-8 py-4 text-base font-bold text-[#10182B] shadow-lg shadow-[#A78BFA]/25 hover:opacity-95 hover:shadow-[#A78BFA]/40 transition duration-300 group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-[#A78BFA] to-[#8B5CF6] px-8 py-4 text-base font-bold text-[#10182B] shadow-lg shadow-[#A78BFA]/25 hover:opacity-95 hover:shadow-[#A78BFA]/40 transition duration-300 group"
               >
                 <FaCompass className="text-lg group-hover:rotate-45 transition duration-300" />
                 Explore Courses
@@ -73,7 +73,7 @@ export default function Hero() {
           {/* Right Column: Visual Graphic */}
           <div className="relative flex justify-center lg:justify-end">
             <div className="relative w-full max-w-lg aspect-square rounded-3xl overflow-hidden border border-[#A78BFA]/20 shadow-2xl bg-[#1C2740]/40 p-4 backdrop-blur-sm group">
-              <div className="absolute inset-0 bg-gradient-to-t from-[#10182B] via-transparent to-transparent opacity-60 z-10" />
+              <div className="absolute inset-0 bg-linear-to-t from-[#10182B] via-transparent to-transparent opacity-60 z-10" />
               <img
                 src="/hero_visual.png"
                 alt="SkillForge AI Interactive Visual"

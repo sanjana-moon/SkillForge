@@ -12,18 +12,7 @@ import {
     togglePublishCourse,
 } from "@/lib/api/courses/actions";
 
-interface Course {
-    _id: string;
-    title: string;
-    category: string;
-    level: string;
-    price: number;
-    instructorName: string;
-    instructorEmail: string;
-    approvalStatus: "pending" | "approved" | "rejected";
-    publishStatus: "published" | "unpublished";
-    createdAt: string;
-}
+import type { Course } from "@/lib/api/courses/data";
 
 interface ManageCoursesClientProps {
     courses: Course[];
@@ -87,16 +76,22 @@ const ManageCoursesClient = ({
     const [loading, setLoading] = useState<string | null>(null);
 
     const handleToggleApproval = async (course: Course) => {
+        const courseId = course._id;
+        if (!courseId) {
+            toast.error("Invalid course ID");
+            return;
+        }
+
         try {
-            setLoading(course._id);
+            setLoading(courseId);
             const newStatus = getNextApprovalStatus(course.approvalStatus);
 
-            const result = await updateCourseApproval(course._id, newStatus);
+            const result = await updateCourseApproval(courseId, newStatus);
 
             if (result.success) {
                 setCourses((prev) =>
                     prev.map((item) =>
-                        item._id === course._id
+                        item._id === courseId
                             ? {
                                 ...item,
                                 approvalStatus: newStatus,
@@ -117,16 +112,22 @@ const ManageCoursesClient = ({
     };
 
     const handleTogglePublish = async (course: Course) => {
+        const courseId = course._id;
+        if (!courseId) {
+            toast.error("Invalid course ID");
+            return;
+        }
+
         try {
-            setLoading(course._id);
+            setLoading(courseId);
             const newStatus = course.publishStatus === "published" ? "unpublished" : "published";
 
-            const result = await togglePublishCourse(course._id, newStatus);
+            const result = await togglePublishCourse(courseId, newStatus);
 
             if (result.success) {
                 setCourses((prev) =>
                     prev.map((item) =>
-                        item._id === course._id
+                        item._id === courseId
                             ? {
                                 ...item,
                                 publishStatus: newStatus,
@@ -147,6 +148,11 @@ const ManageCoursesClient = ({
     };
 
     const handleDelete = async (id: string) => {
+        if (!id) {
+            toast.error("Invalid course ID");
+            return;
+        }
+
         if (!confirm("Are you sure you want to delete this course?")) return;
 
         try {
@@ -170,6 +176,7 @@ const ManageCoursesClient = ({
     };
 
     const handleViewCourse = (id: string) => {
+        if (!id) return;
         router.push(`/courses/${id}`);
     };
 
@@ -244,118 +251,118 @@ const ManageCoursesClient = ({
                             </tr>
                         </thead>
                         <tbody>
-                            {courses.map((course) => (
-                                <tr
-                                    key={course._id}
-                                    className="border-b border-[#A78BFA]/10 hover:bg-[#10182B]/50 transition-colors duration-200"
-                                >
-                                    <td className="px-6 py-4">
-                                        <div>
-                                            <h3 className="font-semibold text-[#EDEFF5]">
-                                                {course.title}
-                                            </h3>
-                                            <p className="text-xs text-[#EDEFF5]/40 mt-1">
-                                                {new Date(course.createdAt).toLocaleDateString()}
-                                            </p>
-                                        </div>
-                                    </td>
+                            {courses.map((course) => {
+                                const courseId = course._id || "";
+                                return (
+                                    <tr
+                                        key={courseId || Math.random().toString()}
+                                        className="border-b border-[#A78BFA]/10 hover:bg-[#10182B]/50 transition-colors duration-200"
+                                    >
+                                        <td className="px-6 py-4">
+                                            <div>
+                                                <h3 className="font-semibold text-[#EDEFF5]">
+                                                    {course.title}
+                                                </h3>
+                                                <p className="text-xs text-[#EDEFF5]/40 mt-1">
+                                                    {new Date(course.createdAt).toLocaleDateString()}
+                                                </p>
+                                            </div>
+                                        </td>
 
-                                    <td className="px-6 py-4 text-[#EDEFF5]/70">
-                                        {course.category}
-                                    </td>
+                                        <td className="px-6 py-4 text-[#EDEFF5]/70">
+                                            {course.category}
+                                        </td>
 
-                                    <td className="px-6 py-4">
-                                        <span className="capitalize text-[#EDEFF5]/70">
-                                            {course.level}
-                                        </span>
-                                    </td>
+                                        <td className="px-6 py-4">
+                                            <span className="capitalize text-[#EDEFF5]/70">
+                                                {course.level}
+                                            </span>
+                                        </td>
 
-                                    <td className="px-6 py-4 font-bold text-[#A78BFA]">
-                                        ${course.price.toLocaleString()}
-                                    </td>
+                                        <td className="px-6 py-4 font-bold text-[#A78BFA]">
+                                            ${course.price.toLocaleString()}
+                                        </td>
 
-                                    <td className="px-6 py-4">
-                                        <div>
-                                            <p className="text-[#EDEFF5] text-sm">
-                                                {course.instructorName}
-                                            </p>
-                                            <p className="text-xs text-[#EDEFF5]/40">
-                                                {course.instructorEmail}
-                                            </p>
-                                        </div>
-                                    </td>
+                                        <td className="px-6 py-4">
+                                            <div>
+                                                <p className="text-[#EDEFF5] text-sm">
+                                                    {course.instructorName}
+                                                </p>
+                                                <p className="text-xs text-[#EDEFF5]/40">
+                                                    {course.instructorEmail}
+                                                </p>
+                                            </div>
+                                        </td>
 
-                                    {/* Approval Status - Click to cycle */}
-                                    <td className="px-6 py-4">
-                                        <button
-                                            onClick={() => handleToggleApproval(course)}
-                                            disabled={loading === course._id}
-                                            className={`px-3 py-1 rounded-full text-xs font-medium border flex items-center gap-2 ${getStatusColor(course.approvalStatus)} hover:opacity-80 transition-opacity cursor-pointer`}
-                                        >
-                                            {loading === course._id ? (
-                                                <Spinner size="sm" color="secondary" />
-                                            ) : (
-                                                <>
-                                                    {getStatusIcon(course.approvalStatus)}
-                                                    {course.approvalStatus}
-                                                </>
-                                            )}
-                                        </button>
-                                    </td>
-
-                                    {/* Publish Status - Click to toggle */}
-                                    <td className="px-6 py-4">
-                                        <button
-                                            onClick={() => handleTogglePublish(course)}
-                                            disabled={loading === course._id || course.approvalStatus !== "approved"}
-                                            className={`px-3 py-1 rounded-full text-xs font-medium border flex items-center gap-2 ${getPublishStatusColor(course.publishStatus)} hover:opacity-80 transition-opacity cursor-pointer ${course.approvalStatus !== "approved" ? "opacity-50 cursor-not-allowed" : ""}`}
-                                            title={course.approvalStatus !== "approved" ? "Course must be approved first" : "Click to toggle publish status"}
-                                        >
-                                            {loading === course._id ? (
-                                                <Spinner size="sm" color="secondary" />
-                                            ) : (
-                                                <>
-                                                    {course.publishStatus === "published" ? (
-                                                        <FaCheck className="text-blue-400" />
-                                                    ) : (
-                                                        <FaTimes className="text-gray-400" />
-                                                    )}
-                                                    {course.publishStatus}
-                                                </>
-                                            )}
-                                        </button>
-                                        {course.approvalStatus !== "approved" && (
-                                            <p className="text-[10px] text-[#EDEFF5]/30 mt-1">
-                                                Approve first
-                                            </p>
-                                        )}
-                                    </td>
-
-                                    {/* Actions */}
-                                    <td className="px-6 py-4">
-                                        <div className="flex justify-center gap-2">
-                                            <Button
-                                                size="sm"
-                                                onPress={() => handleViewCourse(course._id)}
-                                                className="bg-[#A78BFA]/10 hover:bg-[#A78BFA]/20 text-[#A78BFA] min-w-0 w-9 h-9 rounded-lg"
-                                                title="View Course"
+                                        {/* Approval Status - Click to cycle */}
+                                        <td className="px-6 py-4">
+                                            <button
+                                                onClick={() => handleToggleApproval(course)}
+                                                disabled={loading === courseId}
+                                                className={`px-3 py-1 rounded-full text-xs font-medium border flex items-center gap-2 ${getStatusColor(course.approvalStatus)} hover:opacity-80 transition-opacity cursor-pointer`}
                                             >
-                                                <FaEye className="text-xs" />
-                                            </Button>
-                                            <Button
-                                                isIconOnly
-                                                size="sm"
-                                                onPress={() => handleDelete(course._id)}
-                                                isLoading={loading === course._id}
-                                                className="bg-red-500/10 hover:bg-red-500/20 text-red-400 min-w-0 w-9 h-9 rounded-lg"
-                                                title="Delete Course"
+                                                {loading === courseId ? (
+                                                    <Spinner size="sm" />
+                                                ) : (
+                                                    <>
+                                                        {getStatusIcon(course.approvalStatus)}
+                                                        {course.approvalStatus}
+                                                    </>
+                                                )}
+                                            </button>
+                                        </td>
+
+                                        {/* Publish Status - Click to toggle */}
+                                        <td className="px-6 py-4">
+                                            <button
+                                                onClick={() => handleTogglePublish(course)}
+                                                disabled={loading === courseId || course.approvalStatus !== "approved"}
+                                                className={`px-3 py-1 rounded-full text-xs font-medium border flex items-center gap-2 ${getPublishStatusColor(course.publishStatus)} hover:opacity-80 transition-opacity cursor-pointer ${course.approvalStatus !== "approved" ? "opacity-50 cursor-not-allowed" : ""}`}
+                                                title={course.approvalStatus !== "approved" ? "Course must be approved first" : "Click to toggle publish status"}
                                             >
-                                                <FaTrash className="text-sm" />
-                                            </Button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
+                                                {loading === courseId ? (
+                                                    <Spinner size="sm" />
+                                                ) : (
+                                                    <>
+                                                        {course.publishStatus === "published" ? (
+                                                            <FaCheck className="text-blue-400" />
+                                                        ) : (
+                                                            <FaTimes className="text-gray-400" />
+                                                        )}
+                                                        {course.publishStatus}
+                                                    </>
+                                                )}
+                                            </button>
+                                            {course.approvalStatus !== "approved" && (
+                                                <p className="text-[10px] text-[#EDEFF5]/30 mt-1">
+                                                    Approve first
+                                                </p>
+                                            )}
+                                        </td>
+
+                                        {/* Actions */}
+                                        <td className="px-6 py-4">
+                                            <div className="flex justify-center gap-2">
+                                                <Button
+                                                    size="sm"
+                                                    onPress={() => handleViewCourse(courseId)}
+                                                    className="bg-[#A78BFA]/10 hover:bg-[#A78BFA]/20 text-[#A78BFA] min-w-0 w-9 h-9 rounded-lg"
+                                                >
+                                                    <FaEye className="text-xs" />
+                                                </Button>
+                                                <Button
+                                                    isIconOnly
+                                                    size="sm"
+                                                    onPress={() => handleDelete(courseId)}
+                                                    className="bg-red-500/10 hover:bg-red-500/20 text-red-400 min-w-0 w-9 h-9 rounded-lg"
+                                                >
+                                                    <FaTrash className="text-sm" />
+                                                </Button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
                             {courses.length === 0 && (
                                 <tr>
                                     <td colSpan={8} className="text-center py-12 text-[#EDEFF5]/40">

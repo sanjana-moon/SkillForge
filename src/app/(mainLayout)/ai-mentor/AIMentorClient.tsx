@@ -228,7 +228,6 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                         </div>
                         <Button
                             onPress={handleCreateSession}
-                            isLoading={isCreating}
                             className="bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80"
                         >
                             <FaPlus />
@@ -248,7 +247,6 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                     </p>
                                     <Button
                                         onPress={handleCreateSession}
-                                        isLoading={isCreating}
                                         size="sm"
                                         className="mt-3 bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80"
                                     >
@@ -260,11 +258,10 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                     {sessions.map((session) => (
                                         <div
                                             key={session._id}
-                                            className={`group flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all ${
-                                                currentSession?._id === session._id
+                                            className={`group flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all ${currentSession?._id === session._id
                                                     ? "bg-[#A78BFA]/15 border border-[#A78BFA]/30"
                                                     : "hover:bg-[#10182B] border border-transparent"
-                                            }`}
+                                                }`}
                                             onClick={() => handleSelectSession(session)}
                                         >
                                             <div className="flex-1 min-w-0">
@@ -310,7 +307,6 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                     </p>
                                     <Button
                                         onPress={handleCreateSession}
-                                        isLoading={isCreating}
                                         className="mt-6 bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80"
                                     >
                                         <FaPlus />
@@ -319,7 +315,7 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                 </div>
                             ) : isLoadingSession ? (
                                 <div className="flex-1 flex items-center justify-center">
-                                    <Spinner size="lg" color="secondary" />
+                                    <Spinner size="lg" />
                                 </div>
                             ) : (
                                 <>
@@ -340,18 +336,16 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                         initial={{ opacity: 0, y: 20 }}
                                                         animate={{ opacity: 1, y: 0 }}
                                                         transition={{ duration: 0.3 }}
-                                                        className={`flex ${
-                                                            message.role === "user"
+                                                        className={`flex ${message.role === "user"
                                                                 ? "justify-end"
                                                                 : "justify-start"
-                                                        }`}
+                                                            }`}
                                                     >
                                                         <div
-                                                            className={`max-w-[80%] rounded-2xl px-4 py-3 ${
-                                                                message.role === "user"
+                                                            className={`max-w-[80%] rounded-2xl px-4 py-3 ${message.role === "user"
                                                                     ? "bg-[#A78BFA] text-[#10182B]"
                                                                     : "bg-[#10182B] text-[#EDEFF5] border border-[#A78BFA]/10"
-                                                            }`}
+                                                                }`}
                                                         >
                                                             <div className="flex items-start gap-2">
                                                                 {message.role === "assistant" && (
@@ -364,11 +358,10 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                                     {message.content}
                                                                 </div>
                                                             </div>
-                                                            <p className={`text-[10px] mt-1 ${
-                                                                message.role === "user"
+                                                            <p className={`text-[10px] mt-1 ${message.role === "user"
                                                                     ? "text-[#10182B]/60"
                                                                     : "text-[#EDEFF5]/30"
-                                                            }`}>
+                                                                }`}>
                                                                 {formatDate(message.createdAt)}
                                                             </p>
                                                         </div>

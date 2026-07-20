@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Card, Button } from "@heroui/react";
+import { Card, Button, Spinner } from "@heroui/react";
 import {
     FaBook,
     FaPlay,
@@ -13,9 +13,10 @@ import {
     FaSearch,
 } from "react-icons/fa";
 import type { Enrollment } from "@/lib/api/courses/data";
+import { useStudentEnrollments } from "@/lib/hooks/useCourses";
 
 interface MyCoursesClientProps {
-    enrollments: Enrollment[];
+    userEmail: string;
 }
 
 const getStatusText = (progress: number) => {
@@ -37,12 +38,36 @@ const getProgressColor = (progress: number) => {
 };
 
 export default function MyCoursesClient({
-    enrollments,
+    userEmail,
 }: MyCoursesClientProps) {
     const [searchTerm, setSearchTerm] = useState("");
     const [filterStatus, setFilterStatus] = useState<"all" | "completed" | "in-progress" | "not-started">("all");
 
-    const filteredEnrollments = enrollments.filter((enrollment) => {
+    // ✅ Use React Query for student enrollments
+    const { data: enrollments, isLoading, isError } = useStudentEnrollments(userEmail);
+
+    if (isLoading) {
+        return (
+            <div className="min-h-screen bg-[#10182B] flex items-center justify-center">
+                <Spinner size="lg"/>
+            </div>
+        );
+    }
+
+    if (isError) {
+        return (
+            <div className="min-h-screen bg-[#10182B] flex items-center justify-center p-4">
+                <Card className="bg-[#1C2740] border border-red-500/20 rounded-2xl p-8 text-center">
+                    <p className="text-red-400">Failed to load your courses.</p>
+                    <Button className="mt-4 bg-[#A78BFA] text-[#10182B]" onPress={() => window.location.reload()}>
+                        Retry
+                    </Button>
+                </Card>
+            </div>
+        );
+    }
+
+    const filteredEnrollments = (enrollments || []).filter((enrollment: Enrollment) => {
         const matchesSearch = enrollment.courseTitle
             .toLowerCase()
             .includes(searchTerm.toLowerCase());
@@ -56,10 +81,10 @@ export default function MyCoursesClient({
         return matchesSearch && matchesStatus;
     });
 
-    const totalCourses = enrollments.length;
-    const completedCourses = enrollments.filter((e) => e.progress === 100).length;
-    const inProgressCourses = enrollments.filter((e) => e.progress > 0 && e.progress < 100).length;
-    const notStartedCourses = enrollments.filter((e) => e.progress === 0).length;
+    const totalCourses = enrollments?.length || 0;
+    const completedCourses = (enrollments || []).filter((e: Enrollment) => e.progress === 100).length;
+    const inProgressCourses = (enrollments || []).filter((e: Enrollment) => e.progress > 0 && e.progress < 100).length;
+    const notStartedCourses = (enrollments || []).filter((e: Enrollment) => e.progress === 0).length;
 
     const stats = [
         {
@@ -127,7 +152,6 @@ export default function MyCoursesClient({
 
                 {/* Filters */}
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                    {/* Search */}
                     <div className="flex-1">
                         <div className="relative">
                             <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#EDEFF5]/40" />
@@ -141,7 +165,6 @@ export default function MyCoursesClient({
                         </div>
                     </div>
 
-                    {/* Filter Tabs */}
                     <div className="flex gap-2 overflow-x-auto pb-1">
                         <Button
                             onPress={() => setFilterStatus("all")}
@@ -191,14 +214,14 @@ export default function MyCoursesClient({
                     <Card className="bg-[#1C2740] border border-[#A78BFA]/10 rounded-2xl p-12 text-center">
                         <FaBook className="text-5xl text-[#EDEFF5]/20 mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-[#EDEFF5] mb-2">
-                            {enrollments.length === 0 ? "No Courses Enrolled" : "No Courses Found"}
+                            {totalCourses === 0 ? "No Courses Enrolled" : "No Courses Found"}
                         </h3>
                         <p className="text-[#EDEFF5]/60 text-sm mb-4">
-                            {enrollments.length === 0
+                            {totalCourses === 0
                                 ? "Start your learning journey by enrolling in your first course."
                                 : "Try adjusting your search or filters to find your courses."}
                         </p>
-                        {enrollments.length === 0 && (
+                        {totalCourses === 0 && (
                             <Link href="/courses">
                                 <Button className="bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80">
                                     Browse Courses
@@ -209,13 +232,12 @@ export default function MyCoursesClient({
                     </Card>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                        {filteredEnrollments.map((enrollment) => (
+                        {filteredEnrollments.map((enrollment: Enrollment) => (
                             <Card
                                 key={enrollment._id}
                                 className="bg-[#1C2740] border border-[#A78BFA]/10 hover:border-[#A78BFA]/30 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-[#A78BFA]/5 hover:-translate-y-1"
                             >
                                 <div className="p-5">
-                                    {/* Status Badge */}
                                     <div className="flex items-center justify-between mb-3">
                                         <span
                                             className={`px-2.5 py-1 rounded-full text-xs font-medium border ${getStatusBadgeColor(
@@ -229,12 +251,10 @@ export default function MyCoursesClient({
                                         )}
                                     </div>
 
-                                    {/* Course Title */}
                                     <h3 className="font-semibold text-[#EDEFF5] text-lg line-clamp-2 mb-2">
                                         {enrollment.courseTitle}
                                     </h3>
 
-                                    {/* Custom Progress Bar */}
                                     <div className="mt-4">
                                         <div className="flex items-center justify-between text-sm mb-1.5">
                                             <span className="text-[#EDEFF5]/50">Progress</span>
@@ -252,7 +272,6 @@ export default function MyCoursesClient({
                                         </div>
                                     </div>
 
-                                    {/* Enrolled Date */}
                                     <div className="mt-4 pt-4 border-t border-[#A78BFA]/10">
                                         <p className="text-[#EDEFF5]/40 text-xs">
                                             Enrolled on{" "}
@@ -264,7 +283,6 @@ export default function MyCoursesClient({
                                         </p>
                                     </div>
 
-                                    {/* Action Button */}
                                     <Link href={`/courses/${enrollment.courseId}`}>
                                         <Button
                                             fullWidth

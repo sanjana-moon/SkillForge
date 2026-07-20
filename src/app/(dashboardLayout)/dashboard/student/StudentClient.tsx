@@ -5,17 +5,18 @@ import Link from "next/link";
 import {
     Card,
     Button,
+    Spinner,
 } from "@heroui/react";
 import {
     FaBook,
     FaGraduationCap,
     FaClock,
-    FaChartLine,
     FaArrowRight,
     FaCheckCircle,
     FaPlay,
 } from "react-icons/fa";
 import type { StudentStats } from "@/lib/api/courses/data";
+import { useStudentStats } from "@/lib/hooks/useCourses";
 
 interface StudentClientProps {
     user: {
@@ -24,14 +25,52 @@ interface StudentClientProps {
         image?: string | null;
         role?: string;
     };
-    dashboardData: StudentStats;
 }
 
 export default function StudentClient({
     user,
-    dashboardData,
 }: StudentClientProps) {
-    const { enrolledCourses, completedCourses, inProgress, recentCourses } = dashboardData;
+    const { data: dashboardData, isLoading, isError } = useStudentStats(user.email);
+
+    const getProgressColor = (progress: number) => {
+        if (progress >= 80) return "text-green-400";
+        if (progress >= 50) return "text-yellow-400";
+        return "text-[#A78BFA]";
+    };
+
+    const getProgressBarColor = (progress: number) => {
+        if (progress >= 80) return "bg-green-400";
+        if (progress >= 50) return "bg-yellow-400";
+        return "bg-[#A78BFA]";
+    };
+
+    if (isLoading) {
+        return (
+            <div className="min-h-screen bg-[#10182B] flex items-center justify-center">
+                <Spinner size="lg" />
+            </div>
+        );
+    }
+
+    if (isError) {
+        return (
+            <div className="min-h-screen bg-[#10182B] flex items-center justify-center p-4">
+                <Card className="bg-[#1C2740] border border-red-500/20 rounded-2xl p-8 text-center">
+                    <p className="text-red-400">Failed to load dashboard data.</p>
+                    <Button className="mt-4 bg-[#A78BFA] text-[#10182B]" onPress={() => window.location.reload()}>
+                        Retry
+                    </Button>
+                </Card>
+            </div>
+        );
+    }
+
+    const { enrolledCourses, completedCourses, inProgress, recentCourses } = dashboardData || {
+        enrolledCourses: 0,
+        completedCourses: 0,
+        inProgress: 0,
+        recentCourses: [],
+    };
 
     const stats = [
         {
@@ -53,18 +92,6 @@ export default function StudentClient({
             color: "bg-green-500/10 border-green-500/20",
         },
     ];
-
-    const getProgressColor = (progress: number) => {
-        if (progress >= 80) return "text-green-400";
-        if (progress >= 50) return "text-yellow-400";
-        return "text-[#A78BFA]";
-    };
-
-    const getProgressBarColor = (progress: number) => {
-        if (progress >= 80) return "bg-green-400";
-        if (progress >= 50) return "bg-yellow-400";
-        return "bg-[#A78BFA]";
-    };
 
     return (
         <section className="min-h-screen bg-[#10182B] p-4 md:p-6">
@@ -211,7 +238,6 @@ export default function StudentClient({
                                                 </Button>
                                             </Link>
                                         </div>
-                                        {/* Custom Progress Bar - ✅ Replaced HeroUI Progress */}
                                         <div className="mt-3">
                                             <div className="w-full h-2 bg-[#10182B] rounded-full overflow-hidden">
                                                 <div 

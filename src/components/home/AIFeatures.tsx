@@ -8,7 +8,7 @@ export default function AIFeatures() {
   return (
     <section className="py-20 bg-[#10182B] relative border-t border-[#A78BFA]/10 overflow-hidden">
       {/* Background glow effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-r from-[#A78BFA]/10 to-[#4FD1C5]/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-75 bg-linear-to-r from-[#A78BFA]/10 to-[#4FD1C5]/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -19,7 +19,7 @@ export default function AIFeatures() {
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#EDEFF5]">
             Custom Built{" "}
-            <span className="bg-gradient-to-r from-[#A78BFA] to-[#4FD1C5] bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-[#A78BFA] to-[#4FD1C5] bg-clip-text text-transparent">
               AI Tools
             </span>
           </h2>
@@ -31,7 +31,7 @@ export default function AIFeatures() {
         {/* AI Features Container */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* Card 1: AI Recommendation Engine */}
-          <div className="relative group bg-gradient-to-b from-[#1C2740] to-[#10182B] border border-[#A78BFA]/10 hover:border-[#A78BFA]/30 rounded-3xl p-8 transition duration-300 shadow-xl flex flex-col justify-between overflow-hidden">
+          <div className="relative group bg-linear-to-b from-[#1C2740] to-[#10182B] border border-[#A78BFA]/10 hover:border-[#A78BFA]/30 rounded-3xl p-8 transition duration-300 shadow-xl flex flex-col justify-between overflow-hidden">
             {/* Visual glow background inside card */}
             <div className="absolute -top-12 -right-12 h-40 w-40 bg-[#A78BFA]/10 blur-3xl rounded-full opacity-60 group-hover:scale-125 transition duration-500 pointer-events-none" />
 
@@ -75,7 +75,7 @@ export default function AIFeatures() {
           </div>
 
           {/* Card 2: 24/7 AI Mentor Assist */}
-          <div className="relative group bg-gradient-to-b from-[#1C2740] to-[#10182B] border border-[#A78BFA]/10 hover:border-[#4FD1C5]/30 rounded-3xl p-8 transition duration-300 shadow-xl flex flex-col justify-between overflow-hidden">
+          <div className="relative group bg-linear-to-b from-[#1C2740] to-[#10182B] border border-[#A78BFA]/10 hover:border-[#4FD1C5]/30 rounded-3xl p-8 transition duration-300 shadow-xl flex flex-col justify-between overflow-hidden">
             {/* Visual glow background inside card */}
             <div className="absolute -top-12 -right-12 h-40 w-40 bg-[#4FD1C5]/10 blur-3xl rounded-full opacity-60 group-hover:scale-125 transition duration-500 pointer-events-none" />
 

@@ -233,9 +233,7 @@ export default function ManageUsersClient({
                                                     isIconOnly
                                                     size="sm"
                                                     onPress={() => handleDelete(user._id)}
-                                                    isLoading={loading === user._id}
                                                     className="bg-red-500/10 hover:bg-red-500/20 text-red-400 min-w-0 w-9 h-9 rounded-lg"
-                                                    title="Delete User"
                                                 >
                                                     <FaTrash className="text-sm" />
                                                 </Button>

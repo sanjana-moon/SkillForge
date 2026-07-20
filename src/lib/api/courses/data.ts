@@ -114,9 +114,11 @@ export interface AdminDashboard {
     totalUsers: number;
     totalCourses: number;
     totalEnrollments: number;
-    totalRevenue: number;
+    totalRevenue?: number;
     coursesByCategory: { category: string; value: number }[];
 }
+
+
 
 // ============================
 // PUBLIC COURSE ROUTES
@@ -280,6 +282,7 @@ export const fetchUsers = async (): Promise<AppUser[]> => {
     }
 };
 
+// GET admin dashboard stats (admin only)
 // GET admin dashboard stats (admin only)
 export const fetchAdminDashboard = async (): Promise<AdminDashboard> => {
     try {

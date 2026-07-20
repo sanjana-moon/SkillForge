@@ -267,7 +267,7 @@ const ContactClient = () => {
                                             placeholder="Enter your full name"
                                             value={formData.name}
                                             onChange={handleChange}
-                                            className="bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                                            className="bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40 w-full"
                                         />
                                     </div>
 
@@ -281,7 +281,7 @@ const ContactClient = () => {
                                             placeholder="Enter your email"
                                             value={formData.email}
                                             onChange={handleChange}
-                                            className="bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                                            className="bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40 w-full"
                                         />
                                     </div>
                                 </div>
@@ -296,7 +296,7 @@ const ContactClient = () => {
                                         placeholder="What is this about?"
                                         value={formData.subject}
                                         onChange={handleChange}
-                                        className="bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                                        className="bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40 w-full"
                                     />
                                 </div>
 
@@ -311,7 +311,7 @@ const ContactClient = () => {
                                         value={formData.message}
                                         onChange={handleChange}
                                         rows={6}
-                                        className="bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                                        className="bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40 w-full"
                                     />
                                     <p className="text-[#EDEFF5]/40 text-xs mt-1">
                                         Minimum 10 characters

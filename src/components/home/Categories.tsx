@@ -57,7 +57,7 @@ export default function Categories() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#EDEFF5]">
             Browse by{" "}
-            <span className="bg-gradient-to-r from-[#A78BFA] to-[#4FD1C5] bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-[#A78BFA] to-[#4FD1C5] bg-clip-text text-transparent">
               Technology Category
             </span>
           </h2>
@@ -76,7 +76,7 @@ export default function Categories() {
                 className="group relative bg-[#1C2740] border border-[#A78BFA]/10 hover:border-[#A78BFA]/30 rounded-3xl p-6 transition duration-300 hover:-translate-y-1 shadow-lg hover:shadow-[#A78BFA]/5"
               >
                 {/* Icon Wrapper */}
-                <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr ${cat.color} text-[#10182B] shadow-lg mb-6`}>
+                <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-tr ${cat.color} text-[#10182B] shadow-lg mb-6`}>
                   <IconComponent className="text-2xl" />
                 </div>
 
