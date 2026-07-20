@@ -10,6 +10,7 @@ import {
     FaEye,
     FaBook,
     FaEdit,
+    FaPlus,
 } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
@@ -154,6 +155,10 @@ const ManageCoursesClient = ({
             prev.filter((course) => course._id !== id)
         );
         onCourseUpdate?.();
+    };
+
+    const handleAddContent = (courseId: string) => {
+        router.push(`/dashboard/instructor/add-course-content/${courseId}`);
     };
 
     // Stats
@@ -308,6 +313,7 @@ const ManageCoursesClient = ({
                                                 {/* Actions */}
                                                 <td className="px-6 py-4">
                                                     <div className="flex justify-center gap-2">
+                                                        {/* View Course */}
                                                         <Button
                                                             size="sm"
                                                             onPress={() => handleViewCourse(courseId)}
@@ -315,6 +321,8 @@ const ManageCoursesClient = ({
                                                         >
                                                             <FaEye className="text-xs" />
                                                         </Button>
+                                                        
+                                                        {/* Edit Course */}
                                                         <Button
                                                             size="sm"
                                                             onPress={() => handleEditCourse(course)}
@@ -322,6 +330,17 @@ const ManageCoursesClient = ({
                                                         >
                                                             <FaEdit className="text-xs" />
                                                         </Button>
+
+                                                        {/* ✅ Add Content - NEW */}
+                                                        <Button
+                                                            size="sm"
+                                                            onPress={() => handleAddContent(courseId)}
+                                                            className="bg-green-500/10 hover:bg-green-500/20 text-green-400 min-w-0 w-9 h-9 rounded-lg"
+                                                        >
+                                                            <FaPlus className="text-xs" />
+                                                        </Button>
+
+                                                        {/* Delete Course */}
                                                         <Button
                                                             isIconOnly
                                                             size="sm"

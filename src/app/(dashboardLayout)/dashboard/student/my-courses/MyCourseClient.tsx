@@ -283,7 +283,8 @@ export default function MyCoursesClient({
                                         </p>
                                     </div>
 
-                                    <Link href={`/courses/${enrollment.courseId}`}>
+                                    {/* ✅ Updated Link to go to content page */}
+                                    <Link href={`/courses/${enrollment.courseId}/content`}>
                                         <Button
                                             fullWidth
                                             className={`mt-4 font-semibold rounded-xl transition-all ${

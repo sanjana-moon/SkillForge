@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -16,11 +16,13 @@ import {
     FaCheckCircle,
     FaTimesCircle,
     FaArrowLeft,
+    FaPlay,
 } from "react-icons/fa";
 import { toast } from "react-toastify";
 import type { Course } from "@/lib/api/courses/data";
 import { useSession } from "@/lib/auth-client";
 import CourseEnrollmentWidget from "@/components/courses/CourseEnrollmentWidget";
+import { checkEnrollment } from "@/lib/api/courses/data";
 
 interface CourseDetailsClientProps {
     course: Course;
@@ -56,6 +58,28 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
     const router = useRouter();
     const { data: session } = useSession();
     const [isEnrolled, setIsEnrolled] = useState(false);
+    const [loading, setLoading] = useState(true);
+
+    // Check if user is enrolled
+    useEffect(() => {
+        const checkEnrollmentStatus = async () => {
+            if (!session?.user) {
+                setLoading(false);
+                return;
+            }
+
+            try {
+                const result = await checkEnrollment(course._id!);
+                setIsEnrolled(result.enrolled);
+            } catch (error) {
+                console.error("Error checking enrollment:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        checkEnrollmentStatus();
+    }, [course._id, session?.user]);
 
     const handleShare = () => {
         if (navigator.share) {
@@ -63,15 +87,16 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                 title: course.title,
                 text: course.description,
                 url: window.location.href,
-            }).catch(() => { });
+            }).catch(() => {});
         } else {
             navigator.clipboard.writeText(window.location.href);
             toast.success("Link copied to clipboard!");
         }
     };
 
-    // Check if user is enrolled (you can add logic here)
-    // For now, we'll use a simple state
+    const handleViewContent = () => {
+        router.push(`/courses/${course._id}/content`);
+    };
 
     return (
         <div className="min-h-screen bg-[#10182B]">
@@ -88,8 +113,8 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
 
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-6">
-                <div className="relative overflow-hidden bg-linear-to-r from-[#1C2740] via-[#10182B] to-[#1C2740] border border-[#A78BFA]/20 rounded-3xl shadow-xl">
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-[#A78BFA] via-[#7C3AED] to-[#A78BFA]" />
+                <div className="relative overflow-hidden bg-gradient-to-r from-[#1C2740] via-[#10182B] to-[#1C2740] border border-[#A78BFA]/20 rounded-3xl shadow-xl">
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#A78BFA] via-[#7C3AED] to-[#A78BFA]" />
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-6 md:p-10">
                         {/* Thumbnail */}
@@ -107,7 +132,7 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                         <FaBookmark className="text-6xl" />
                                     </div>
                                 )}
-                                <div className="absolute inset-0 bg-linear-to-t from-[#10182B]/60 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#10182B]/60 to-transparent" />
 
                                 {/* Status Badge */}
                                 {course.approvalStatus === "approved" && course.publishStatus === "published" ? (
@@ -174,6 +199,17 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                 </div>
 
                                 <div className="flex flex-wrap gap-3 ml-auto">
+                                    {/* ✅ View Content Button - Shows when enrolled */}
+                                    {isEnrolled && (
+                                        <Button
+                                            onPress={handleViewContent}
+                                            className="bg-[#4FD1C5] text-[#10182B] font-semibold hover:bg-[#4FD1C5]/80"
+                                        >
+                                            <FaPlay />
+                                            View Content
+                                        </Button>
+                                    )}
+
                                     <Button
                                         onPress={handleShare}
                                         className="bg-[#1C2740] border border-[#A78BFA]/20 text-[#EDEFF5] hover:bg-[#A78BFA]/10"
@@ -181,6 +217,7 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                         <FaShare />
                                         Share
                                     </Button>
+
                                     <CourseEnrollmentWidget
                                         courseId={course._id!}
                                         courseTitle={course.title}
@@ -314,15 +351,31 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                 <div className="border-t border-[#A78BFA]/10 my-2" />
                                 <div className="flex justify-between text-sm">
                                     <span className="text-[#EDEFF5]/50">Status</span>
-                                    <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${course.approvalStatus === "approved" && course.publishStatus === "published"
+                                    <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                                        course.approvalStatus === "approved" && course.publishStatus === "published"
                                             ? "text-green-400 bg-green-500/10"
                                             : "text-yellow-400 bg-yellow-500/10"
-                                        }`}>
+                                    }`}>
                                         {course.approvalStatus === "approved" && course.publishStatus === "published"
                                             ? "Published"
                                             : "Draft"}
                                     </span>
                                 </div>
+
+                                {/* ✅ View Content Button in Sidebar - Shows when enrolled */}
+                                {isEnrolled && (
+                                    <>
+                                        <div className="border-t border-[#A78BFA]/10 my-2" />
+                                        <Button
+                                            onPress={handleViewContent}
+                                            fullWidth
+                                            className="bg-[#4FD1C5] text-[#10182B] font-semibold hover:bg-[#4FD1C5]/80"
+                                        >
+                                            <FaPlay />
+                                            View Course Content
+                                        </Button>
+                                    </>
+                                )}
                             </div>
 
                             <div className="border-t border-[#A78BFA]/10 my-4" />

@@ -11,6 +11,37 @@ export type PublishStatus = "published" | "unpublished";
 export type UserRole = "student" | "instructor" | "admin";
 export type CourseLevel = "beginner" | "intermediate" | "advanced";
 
+// ✅ Add Content Types
+export interface CodeExample {
+    id: string;
+    title: string;
+    code: string;
+    language: string;
+    explanation: string;
+}
+
+export interface PracticeQuestion {
+    id: string;
+    question: string;
+    answer: string;
+    hint: string;
+}
+
+export interface Lesson {
+    id: string;
+    title: string;
+    description: string;
+    content: string;
+    codeExamples: CodeExample[];
+    practiceQuestions: PracticeQuestion[];
+    youtubeLinks: string[];
+    quickTips: string[];
+}
+
+export interface CourseContent {
+    lessons: Lesson[];
+}
+
 export interface Course {
     _id?: string;
     title: string;
@@ -31,6 +62,7 @@ export interface Course {
     whatYouWillLearn?: string[];
     requirements?: string[];
     targetAudience?: string[];
+    content?: CourseContent;
 }
 
 export interface Enrollment {
@@ -118,8 +150,6 @@ export interface AdminDashboard {
     coursesByCategory: { category: string; value: number }[];
 }
 
-
-
 // ============================
 // PUBLIC COURSE ROUTES
 // ============================
@@ -178,6 +208,38 @@ export const getCategories = async (): Promise<string[]> => {
     } catch (error) {
         console.error("Error fetching categories:", error);
         throw error;
+    }
+};
+
+// ============================
+// COURSE CONTENT ROUTES (Public)
+// ============================
+
+// ✅ GET course content (public)
+export const getCourseContent = async (courseId: string): Promise<CourseContent> => {
+    try {
+        const response = await serverFetch<{ content: CourseContent }>(
+            `/api/courses/${courseId}/content`,
+            false
+        );
+        return response.content || { lessons: [] };
+    } catch (error) {
+        console.error("Error fetching course content:", error);
+        return { lessons: [] };
+    }
+};
+
+// ✅ GET a specific lesson (public)
+export const getLessonById = async (courseId: string, lessonId: string): Promise<Lesson | null> => {
+    try {
+        const response = await serverFetch<Lesson>(
+            `/api/courses/${courseId}/lessons/${lessonId}`,
+            false
+        );
+        return response;
+    } catch (error) {
+        console.error("Error fetching lesson:", error);
+        return null;
     }
 };
 
@@ -282,7 +344,6 @@ export const fetchUsers = async (): Promise<AppUser[]> => {
     }
 };
 
-// GET admin dashboard stats (admin only)
 // GET admin dashboard stats (admin only)
 export const fetchAdminDashboard = async (): Promise<AdminDashboard> => {
     try {

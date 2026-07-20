@@ -46,7 +46,7 @@ export const createCourse = async (data: CourseCreateData): Promise<CourseRespon
             "POST",
             data
         );
-        
+
         return {
             success: true,
             data: result,
@@ -72,7 +72,7 @@ export const updateCourse = async (
             "PATCH",
             data
         );
-        
+
         return {
             success: true,
             data: result,
@@ -98,7 +98,7 @@ export const togglePublishCourse = async (
             "PATCH",
             { publishStatus }
         );
-        
+
         return {
             success: true,
             data: result,
@@ -117,7 +117,7 @@ export const togglePublishCourse = async (
 export const deleteCourse = async (courseId: string): Promise<CourseResponse> => {
     try {
         const result = await deleteMutation<any>(`/api/courses/${courseId}`);
-        
+
         return {
             success: true,
             data: result,
@@ -128,6 +128,38 @@ export const deleteCourse = async (courseId: string): Promise<CourseResponse> =>
         return {
             success: false,
             error: error instanceof Error ? error.message : "Failed to delete course",
+        };
+    }
+};
+
+// Add this function to actions.ts
+
+// ============================
+// COURSE CONTENT ACTIONS (Protected - Instructor)
+// ============================
+
+// SAVE course content (instructor only)
+export const saveCourseContent = async (
+    courseId: string,
+    content: any
+): Promise<CourseResponse> => {
+    try {
+        const result = await serverMutation<any, { content: any }>(
+            `/api/courses/${courseId}/content`,
+            "POST",
+            { content }
+        );
+
+        return {
+            success: true,
+            data: result,
+            message: "Course content saved successfully",
+        };
+    } catch (error) {
+        console.error("Save course content error:", error);
+        return {
+            success: false,
+            error: error instanceof Error ? error.message : "Failed to save course content",
         };
     }
 };
@@ -147,7 +179,7 @@ export const enrollInCourse = async (
             "POST",
             { courseId, courseTitle }
         );
-        
+
         return {
             success: true,
             data: result,
@@ -173,7 +205,7 @@ export const updateEnrollmentProgress = async (
             "PATCH",
             { progress }
         );
-        
+
         return {
             success: true,
             data: result,
@@ -200,7 +232,7 @@ export const processCheckout = async (data: CheckoutData): Promise<CourseRespons
             "POST",
             data
         );
-        
+
         return {
             success: true,
             data: result,
@@ -230,7 +262,7 @@ export const updateCourseApproval = async (
             "PATCH",
             { approvalStatus }
         );
-        
+
         return {
             success: true,
             data: result,
@@ -249,7 +281,7 @@ export const updateCourseApproval = async (
 export const deleteCourseAdmin = async (courseId: string): Promise<CourseResponse> => {
     try {
         const result = await deleteMutation<any>(`/api/admin/courses/${courseId}`);
-        
+
         return {
             success: true,
             data: result,
@@ -279,7 +311,7 @@ export const changeUserRole = async (
             "PATCH",
             { role }
         );
-        
+
         return {
             success: true,
             data: result,
@@ -305,7 +337,7 @@ export const toggleUserBlock = async (
             "PATCH",
             { isBlocked }
         );
-        
+
         return {
             success: true,
             data: result,
@@ -324,7 +356,7 @@ export const toggleUserBlock = async (
 export const deleteUser = async (userId: string): Promise<CourseResponse> => {
     try {
         const result = await deleteMutation<any>(`/api/admin/users/${userId}`);
-        
+
         return {
             success: true,
             data: result,
@@ -359,7 +391,7 @@ export const updateProfile = async (
             "PUT",
             data
         );
-        
+
         return {
             success: true,
             data: result,
@@ -385,7 +417,7 @@ export const createMentorSession = async (): Promise<CourseResponse> => {
             "/api/ai-mentor/sessions",
             "POST"
         );
-        
+
         return {
             success: true,
             data: result,
@@ -411,7 +443,7 @@ export const sendMentorMessage = async (
             "POST",
             { message }
         );
-        
+
         return {
             success: true,
             data: result,
@@ -430,7 +462,7 @@ export const sendMentorMessage = async (
 export const deleteMentorSession = async (sessionId: string): Promise<CourseResponse> => {
     try {
         const result = await deleteMutation<any>(`/api/ai-mentor/sessions/${sessionId}`);
-        
+
         return {
             success: true,
             data: result,
