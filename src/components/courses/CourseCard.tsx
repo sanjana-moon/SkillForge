@@ -49,7 +49,7 @@ export default function CourseCard({ course }: CourseCardProps) {
                         alt={course.title}
                         width={400}
                         height={1000}
-                        className="object-cover h-70 w-auto transition-transform duration-500 group-hover:scale-105"
+                        className="object-cover h-70 w-auto transition-transform duration-500 group-hover:scale-105 mx-auto"
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-[#EDEFF5]/10">
