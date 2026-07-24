@@ -33,8 +33,8 @@ const getLinksForRole = (role?: string): DashboardLink[] => {
     if (role === "admin") {
         return [
             { key: "overview", label: "Overview", href: "/dashboard/admin", icon: IoMdSpeedometer },
-            { key: "users", label: "Manage Users", href: "/dashboard/admin/users", icon: IoMdPeople },
-            { key: "courses", label: "Manage Courses", href: "/dashboard/admin/courses", icon: IoMdBook },
+            { key: "users", label: "Manage Users", href: "/dashboard/admin/manage-users", icon: IoMdPeople },
+            { key: "courses", label: "Manage Courses", href: "/dashboard/admin/manage-courses", icon: IoMdBook },
             { key: "profile", label: "Profile", href: "/dashboard/profile", icon: IoMdPerson },
         ];
     }
