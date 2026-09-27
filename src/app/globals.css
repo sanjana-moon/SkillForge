@@ -3,12 +3,12 @@
 
 :root {
   /* Colors */
-  --background: #10182b;
-  --surface: #1c2740;
-  --primary: #a78bfa;
-  --secondary: #4fd1c5;
-  --foreground: #edeff5;
-  --muted: #8b6f9e;
+  --background: #f5f8f5;
+  --surface: #dcebe4;
+  --primary: #7bae9b;
+  --secondary: #5f927e;
+  --foreground: #263a33;
+  --muted: #5f927e;
 
   /* Fonts */
   --font-heading: var(--font-heading);

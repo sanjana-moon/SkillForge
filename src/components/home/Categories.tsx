@@ -9,14 +9,14 @@ const categories = [
     title: "AI & Machine Learning",
     description: "Deep Learning, LLMs, Neural Networks, and NLP.",
     icon: RiBrainLine,
-    color: "from-[#A78BFA] to-[#8B5CF6]",
+    color: "from-[#7BAE9B] to-[#5F927E]",
     count: "28 Courses",
   },
   {
     title: "Web Development",
     description: "Modern JavaScript, React, Next.js, and Backend APIs.",
     icon: FaCode,
-    color: "from-[#4FD1C5] to-[#20B2AA]",
+    color: "from-[#5F927E] to-[#7BAE9B]",
     count: "35 Courses",
   },
   {
@@ -51,17 +51,17 @@ const categories = [
 
 export default function Categories() {
   return (
-    <section className="py-20 bg-[#10182B] relative">
+    <section className="py-20 bg-[#F5F8F5] relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#EDEFF5]">
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#263A33]">
             Browse by{" "}
-            <span className="bg-linear-to-r from-[#A78BFA] to-[#4FD1C5] bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-[#7BAE9B] to-[#5F927E] bg-clip-text text-transparent">
               Technology Category
             </span>
           </h2>
-          <p className="mt-4 text-[#EDEFF5]/70 font-body">
+          <p className="mt-4 text-[#263A33]/70 font-body">
             Acquire specialized skills in critical tech domains structured from introductory concepts to master levels.
           </p>
         </div>
@@ -73,23 +73,23 @@ export default function Categories() {
             return (
               <div
                 key={idx}
-                className="group relative bg-[#1C2740] border border-[#A78BFA]/10 hover:border-[#A78BFA]/30 rounded-3xl p-6 transition duration-300 hover:-translate-y-1 shadow-lg hover:shadow-[#A78BFA]/5"
+                className="group relative bg-[#DCEBE4] border border-[#7BAE9B]/10 hover:border-[#7BAE9B]/30 rounded-3xl p-6 transition duration-300 hover:-translate-y-1 shadow-lg hover:shadow-[#7BAE9B]/5"
               >
                 {/* Icon Wrapper */}
-                <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-tr ${cat.color} text-[#10182B] shadow-lg mb-6`}>
+                <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-tr ${cat.color} text-[#F5F8F5] shadow-lg mb-6`}>
                   <IconComponent className="text-2xl" />
                 </div>
 
                 {/* Title & Description */}
-                <h3 className="text-xl font-bold font-heading text-[#EDEFF5] group-hover:text-[#A78BFA] transition">
+                <h3 className="text-xl font-bold font-heading text-[#263A33] group-hover:text-[#7BAE9B] transition">
                   {cat.title}
                 </h3>
-                <p className="mt-2 text-sm text-[#EDEFF5]/60 font-body leading-relaxed">
+                <p className="mt-2 text-sm text-[#263A33]/60 font-body leading-relaxed">
                   {cat.description}
                 </p>
 
                 {/* Course Count tag */}
-                <div className="mt-6 flex justify-between items-center text-xs font-semibold font-mono text-[#4FD1C5]">
+                <div className="mt-6 flex justify-between items-center text-xs font-semibold font-mono text-[#5F927E]">
                   <span>{cat.count}</span>
                   <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
                     Explore &rarr;

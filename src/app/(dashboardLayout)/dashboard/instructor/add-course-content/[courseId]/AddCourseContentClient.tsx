@@ -278,36 +278,36 @@ const AddCourseContentClient = ({
     console.log("courseId:", courseId);
 
     return (
-        <div className="min-h-screen bg-[#10182B] p-4 md:p-6">
+        <div className="min-h-screen bg-[#F5F8F5] p-4 md:p-6">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                     <div>
                         <button
                             onClick={() => router.back()}
-                            className="flex items-center gap-2 text-[#EDEFF5]/60 hover:text-[#EDEFF5] transition-colors mb-2"
+                            className="flex items-center gap-2 text-[#263A33]/60 hover:text-[#263A33] transition-colors mb-2"
                         >
                             <FaArrowLeft className="text-sm" />
                             <span>Back</span>
                         </button>
-                        <h1 className="text-2xl md:text-3xl font-bold text-[#EDEFF5]">
+                        <h1 className="text-2xl md:text-3xl font-bold text-[#263A33]">
                             Add Course Content
                         </h1>
-                        <p className="text-[#EDEFF5]/60 text-sm mt-1">
+                        <p className="text-[#263A33]/60 text-sm mt-1">
                             {courseTitle} - Add lessons, code examples, practice questions, and more
                         </p>
                     </div>
                     <div className="flex gap-3">
                         <Button
                             onPress={handleAddLesson}
-                            className="bg-[#A78BFA]/10 text-[#A78BFA] border border-[#A78BFA]/30 hover:bg-[#A78BFA]/20"
+                            className="bg-[#7BAE9B]/10 text-[#7BAE9B] border border-[#7BAE9B]/30 hover:bg-[#7BAE9B]/20"
                         >
                             <FaPlus />
                             Add Lesson
                         </Button>
                         <Button
                             onPress={handleSave}
-                            className="bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80"
+                            className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80"
                         >
                             <FaSave />
                             Save Content
@@ -322,8 +322,8 @@ const AddCourseContentClient = ({
                             key={lesson.id}
                             onPress={() => setActiveLessonIndex(index)}
                             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${activeLessonIndex === index
-                                ? "bg-[#A78BFA] text-[#10182B]"
-                                : "bg-[#1C2740] text-[#EDEFF5]/60 hover:text-[#EDEFF5] border border-[#A78BFA]/20"
+                                ? "bg-[#7BAE9B] text-[#F5F8F5]"
+                                : "bg-[#DCEBE4] text-[#263A33]/60 hover:text-[#263A33] border border-[#7BAE9B]/20"
                                 }`}
                         >
                             Lesson {index + 1}
@@ -340,10 +340,10 @@ const AddCourseContentClient = ({
                         key={lesson.id}
                         className={activeLessonIndex === index ? "block" : "hidden"}
                     >
-                        <Card className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl p-6 shadow-xl">
+                        <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-6 shadow-xl">
                             {/* Lesson Header */}
-                            <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#A78BFA]/10">
-                                <h2 className="text-xl font-bold text-[#EDEFF5]">
+                            <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#7BAE9B]/10">
+                                <h2 className="text-xl font-bold text-[#263A33]">
                                     Lesson {index + 1}
                                 </h2>
                                 <Button
@@ -357,7 +357,7 @@ const AddCourseContentClient = ({
 
                             {/* Lesson Title */}
                             <div className="mb-4">
-                                <label className="block text-[#EDEFF5] text-sm font-medium mb-2">
+                                <label className="block text-[#263A33] text-sm font-medium mb-2">
                                     Lesson Title *
                                 </label>
                                 <Input
@@ -366,13 +366,13 @@ const AddCourseContentClient = ({
                                     onChange={(e) =>
                                         handleLessonChange(index, "title", e.target.value)
                                     }
-                                    className="bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40 w-full"
+                                    className="bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40 w-full"
                                 />
                             </div>
 
                             {/* Lesson Description */}
                             <div className="mb-4">
-                                <label className="block text-[#EDEFF5] text-sm font-medium mb-2">
+                                <label className="block text-[#263A33] text-sm font-medium mb-2">
                                     Lesson Description *
                                 </label>
                                 <TextArea
@@ -382,19 +382,19 @@ const AddCourseContentClient = ({
                                         handleLessonChange(index, "description", e.target.value)
                                     }
                                     rows={2}
-                                    className="bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40 w-full"
+                                    className="bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40 w-full"
                                 />
                             </div>
 
                             {/* Lesson Content */}
                             <div className="mb-4">
                                 <div className="flex items-center justify-between mb-2">
-                                    <label className="block text-[#EDEFF5] text-sm font-medium">
+                                    <label className="block text-[#263A33] text-sm font-medium">
                                         Lesson Content *
                                     </label>
                                     <Button
                                         onPress={() => handleAskAI(lesson.content)}
-                                        className="bg-[#A78BFA]/10 text-[#A78BFA] border border-[#A78BFA]/30 hover:bg-[#A78BFA]/20 text-sm"
+                                        className="bg-[#7BAE9B]/10 text-[#7BAE9B] border border-[#7BAE9B]/30 hover:bg-[#7BAE9B]/20 text-sm"
                                     >
                                         <FaRobot />
                                         Ask AI Mentor
@@ -407,21 +407,21 @@ const AddCourseContentClient = ({
                                         handleLessonChange(index, "content", e.target.value)
                                     }
                                     rows={8}
-                                    className="bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40 font-mono w-full"
+                                    className="bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40 font-mono w-full"
                                 />
                             </div>
 
                             {/* Code Examples */}
                             <div className="mb-6">
                                 <div className="flex items-center justify-between mb-4">
-                                    <h3 className="text-base font-semibold text-slate-200 flex items-center gap-2">
-                                        <FaCode className="text-indigo-400 text-lg" />
+                                    <h3 className="text-base font-semibold text-[#263A33] flex items-center gap-2">
+                                        <FaCode className="text-[#5F927E] text-lg" />
                                         Code Examples
                                     </h3>
                                     <Button
                                         onPress={() => handleAddCodeExample(index)}
                                         size="sm"
-                                        className="bg-[#A78BFA]/10 text-[#A78BFA] border border-[#A78BFA]/30 hover:bg-[#A78BFA]/20"
+                                        className="bg-[#7BAE9B]/10 text-[#7BAE9B] border border-[#7BAE9B]/30 hover:bg-[#7BAE9B]/20"
                                     >
                                         <FaPlus className="text-xs" />
                                         Add Example
@@ -429,8 +429,8 @@ const AddCourseContentClient = ({
                                 </div>
 
                                 {lesson.codeExamples.length === 0 ? (
-                                    <div className="text-center py-6 border-2 border-dashed border-slate-800 rounded-xl bg-slate-900/20">
-                                        <p className="text-slate-500 text-sm">
+                                    <div className="text-center py-6 border-2 border-dashed border-[#7BAE9B] rounded-xl bg-[#DCEBE4]/20">
+                                        <p className="text-[#5F927E] text-sm">
                                             No code examples added yet
                                         </p>
                                     </div>
@@ -439,10 +439,10 @@ const AddCourseContentClient = ({
                                         {lesson.codeExamples.map((example, exIndex) => (
                                             <Card
                                                 key={example.id}
-                                                className="bg-slate-900/60 border border-slate-800 shadow-xl rounded-xl p-5 backdrop-blur-sm"
+                                                className="bg-[#DCEBE4]/60 border border-[#7BAE9B] shadow-xl rounded-xl p-5 backdrop-blur-sm"
                                             >
-                                                <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-800">
-                                                    <h4 className="text-sm font-semibold text-indigo-400 tracking-wide uppercase">
+                                                <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#7BAE9B]">
+                                                    <h4 className="text-sm font-semibold text-[#5F927E] tracking-wide uppercase">
                                                         Example {exIndex + 1}
                                                     </h4>
                                                     <Button
@@ -459,7 +459,7 @@ const AddCourseContentClient = ({
 
                                                 <div className="space-y-4">
                                                     <div>
-                                                        <label className="block text-slate-400 text-xs font-semibold mb-1.5 uppercase tracking-wider">
+                                                        <label className="block text-[#263A33] text-xs font-semibold mb-1.5 uppercase tracking-wider">
                                                             Example Title
                                                         </label>
                                                         <Input
@@ -473,13 +473,13 @@ const AddCourseContentClient = ({
                                                                     e.target.value
                                                                 )
                                                             }
-                                                            className="w-full bg-slate-950 border border-slate-800 rounded-lg text-slate-200 placeholder:text-slate-600 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200"
+                                                            className="w-full bg-[#F5F8F5] border border-[#7BAE9B] rounded-lg text-[#263A33] placeholder:text-[#5F927E] text-sm focus:border-[#5F927E] focus:ring-1 focus:ring-[#5F927E] transition-all duration-200"
                                                         />
                                                     </div>
 
                                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                         <div>
-                                                            <label className="block text-slate-400 text-xs font-semibold mb-1.5 uppercase tracking-wider">
+                                                            <label className="block text-[#263A33] text-xs font-semibold mb-1.5 uppercase tracking-wider">
                                                                 Language
                                                             </label>
                                                             <select
@@ -492,10 +492,10 @@ const AddCourseContentClient = ({
                                                                         e.target.value
                                                                     )
                                                                 }
-                                                                className="w-full px-3 py-2 rounded-lg border border-slate-800 bg-slate-950 text-slate-200 text-sm outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200"
+                                                                className="w-full px-3 py-2 rounded-lg border border-[#7BAE9B] bg-[#F5F8F5] text-[#263A33] text-sm outline-none focus:border-[#5F927E] focus:ring-1 focus:ring-[#5F927E] transition-all duration-200"
                                                             >
                                                                 {languages.map((lang) => (
-                                                                    <option key={lang} value={lang} className="bg-slate-950 text-slate-200">
+                                                                    <option key={lang} value={lang} className="bg-[#F5F8F5] text-[#263A33]">
                                                                         {lang.charAt(0).toUpperCase() + lang.slice(1)}
                                                                     </option>
                                                                 ))}
@@ -504,7 +504,7 @@ const AddCourseContentClient = ({
                                                     </div>
 
                                                     <div>
-                                                        <label className="block text-slate-400 text-xs font-semibold mb-1.5 uppercase tracking-wider">
+                                                        <label className="block text-[#263A33] text-xs font-semibold mb-1.5 uppercase tracking-wider">
                                                             Code
                                                         </label>
                                                         <TextArea
@@ -519,12 +519,12 @@ const AddCourseContentClient = ({
                                                                 )
                                                             }
                                                             rows={4}
-                                                            className="w-full bg-slate-950 border border-slate-800 rounded-lg text-emerald-400 placeholder:text-slate-600 font-mono text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200"
+                                                            className="w-full bg-[#F5F8F5] border border-[#7BAE9B] rounded-lg text-emerald-400 placeholder:text-[#5F927E] font-mono text-sm focus:border-[#5F927E] focus:ring-1 focus:ring-[#5F927E] transition-all duration-200"
                                                         />
                                                     </div>
 
                                                     <div>
-                                                        <label className="block text-slate-400 text-xs font-semibold mb-1.5 uppercase tracking-wider">
+                                                        <label className="block text-[#263A33] text-xs font-semibold mb-1.5 uppercase tracking-wider">
                                                             Explanation
                                                         </label>
                                                         <TextArea
@@ -539,7 +539,7 @@ const AddCourseContentClient = ({
                                                                 )
                                                             }
                                                             rows={2}
-                                                            className="w-full bg-slate-950 border border-slate-800 rounded-lg text-slate-200 placeholder:text-slate-600 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200"
+                                                            className="w-full bg-[#F5F8F5] border border-[#7BAE9B] rounded-lg text-[#263A33] placeholder:text-[#5F927E] text-sm focus:border-[#5F927E] focus:ring-1 focus:ring-[#5F927E] transition-all duration-200"
                                                         />
                                                     </div>
                                                 </div>
@@ -552,14 +552,14 @@ const AddCourseContentClient = ({
                             {/* Practice Questions */}
                             <div className="mb-6">
                                 <div className="flex items-center justify-between mb-4">
-                                    <h3 className="text-base font-semibold text-slate-200 flex items-center gap-2">
-                                        <FaQuestionCircle className="text-indigo-400 text-lg" />
+                                    <h3 className="text-base font-semibold text-[#263A33] flex items-center gap-2">
+                                        <FaQuestionCircle className="text-[#5F927E] text-lg" />
                                         Practice Questions
                                     </h3>
                                     <Button
                                         onPress={() => handleAddPracticeQuestion(index)}
                                         size="sm"
-                                        className="bg-[#A78BFA]/10 text-[#A78BFA] border border-[#A78BFA]/30 hover:bg-[#A78BFA]/20"
+                                        className="bg-[#7BAE9B]/10 text-[#7BAE9B] border border-[#7BAE9B]/30 hover:bg-[#7BAE9B]/20"
                                     >
                                         <FaPlus className="text-xs" />
                                         Add Question
@@ -567,8 +567,8 @@ const AddCourseContentClient = ({
                                 </div>
 
                                 {lesson.practiceQuestions.length === 0 ? (
-                                    <div className="text-center py-6 border-2 border-dashed border-slate-800 rounded-xl bg-slate-900/20">
-                                        <p className="text-slate-500 text-sm">
+                                    <div className="text-center py-6 border-2 border-dashed border-[#7BAE9B] rounded-xl bg-[#DCEBE4]/20">
+                                        <p className="text-[#5F927E] text-sm">
                                             No practice questions added yet
                                         </p>
                                     </div>
@@ -577,10 +577,10 @@ const AddCourseContentClient = ({
                                         {lesson.practiceQuestions.map((question, qIndex) => (
                                             <Card
                                                 key={question.id}
-                                                className="bg-slate-900/60 border border-slate-800 shadow-xl rounded-xl p-5 backdrop-blur-sm"
+                                                className="bg-[#DCEBE4]/60 border border-[#7BAE9B] shadow-xl rounded-xl p-5 backdrop-blur-sm"
                                             >
-                                                <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-800">
-                                                    <h4 className="text-sm font-semibold text-indigo-400 tracking-wide uppercase">
+                                                <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#7BAE9B]">
+                                                    <h4 className="text-sm font-semibold text-[#5F927E] tracking-wide uppercase">
                                                         Question {qIndex + 1}
                                                     </h4>
                                                     <Button
@@ -597,7 +597,7 @@ const AddCourseContentClient = ({
 
                                                 <div className="space-y-4">
                                                     <div>
-                                                        <label className="block text-slate-400 text-xs font-semibold mb-1.5 uppercase tracking-wider">
+                                                        <label className="block text-[#263A33] text-xs font-semibold mb-1.5 uppercase tracking-wider">
                                                             Question
                                                         </label>
                                                         <TextArea
@@ -612,12 +612,12 @@ const AddCourseContentClient = ({
                                                                 )
                                                             }
                                                             rows={2}
-                                                            className="w-full bg-slate-950 border border-slate-800 rounded-lg text-slate-200 placeholder:text-slate-600 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200"
+                                                            className="w-full bg-[#F5F8F5] border border-[#7BAE9B] rounded-lg text-[#263A33] placeholder:text-[#5F927E] text-sm focus:border-[#5F927E] focus:ring-1 focus:ring-[#5F927E] transition-all duration-200"
                                                         />
                                                     </div>
 
                                                     <div>
-                                                        <label className="block text-slate-400 text-xs font-semibold mb-1.5 uppercase tracking-wider">
+                                                        <label className="block text-[#263A33] text-xs font-semibold mb-1.5 uppercase tracking-wider">
                                                             Answer
                                                         </label>
                                                         <TextArea
@@ -632,12 +632,12 @@ const AddCourseContentClient = ({
                                                                 )
                                                             }
                                                             rows={2}
-                                                            className="w-full bg-slate-950 border border-slate-800 rounded-lg text-slate-200 placeholder:text-slate-600 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200"
+                                                            className="w-full bg-[#F5F8F5] border border-[#7BAE9B] rounded-lg text-[#263A33] placeholder:text-[#5F927E] text-sm focus:border-[#5F927E] focus:ring-1 focus:ring-[#5F927E] transition-all duration-200"
                                                         />
                                                     </div>
 
                                                     <div>
-                                                        <label className="block text-slate-400 text-xs font-semibold mb-1.5 uppercase tracking-wider">
+                                                        <label className="block text-[#263A33] text-xs font-semibold mb-1.5 uppercase tracking-wider">
                                                             Hint (Optional)
                                                         </label>
                                                         <Input
@@ -651,7 +651,7 @@ const AddCourseContentClient = ({
                                                                     e.target.value
                                                                 )
                                                             }
-                                                            className="w-full bg-slate-950 border border-slate-800 rounded-lg text-slate-200 placeholder:text-slate-600 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200"
+                                                            className="w-full bg-[#F5F8F5] border border-[#7BAE9B] rounded-lg text-[#263A33] placeholder:text-[#5F927E] text-sm focus:border-[#5F927E] focus:ring-1 focus:ring-[#5F927E] transition-all duration-200"
                                                         />
                                                     </div>
                                                 </div>
@@ -664,14 +664,14 @@ const AddCourseContentClient = ({
                             {/* YouTube Links */}
                             <div className="mb-6">
                                 <div className="flex items-center justify-between mb-3">
-                                    <h3 className="text-lg font-semibold text-[#EDEFF5] flex items-center gap-2">
+                                    <h3 className="text-lg font-semibold text-[#263A33] flex items-center gap-2">
                                         <FaYoutube className="text-red-400" />
                                         YouTube Links
                                     </h3>
                                     <Button
                                         onPress={() => handleAddYoutubeLink(index)}
                                         size="sm"
-                                        className="bg-[#A78BFA]/10 text-[#A78BFA] border border-[#A78BFA]/30 hover:bg-[#A78BFA]/20"
+                                        className="bg-[#7BAE9B]/10 text-[#7BAE9B] border border-[#7BAE9B]/30 hover:bg-[#7BAE9B]/20"
                                     >
                                         <FaPlus />
                                         Add Link
@@ -679,7 +679,7 @@ const AddCourseContentClient = ({
                                 </div>
 
                                 {lesson.youtubeLinks.length === 0 ? (
-                                    <p className="text-[#EDEFF5]/40 text-sm text-center py-4">
+                                    <p className="text-[#263A33]/40 text-sm text-center py-4">
                                         No YouTube links added yet
                                     </p>
                                 ) : (
@@ -691,7 +691,7 @@ const AddCourseContentClient = ({
                                                 onChange={(e) =>
                                                     handleYoutubeLinkChange(index, linkIndex, e.target.value)
                                                 }
-                                                className="flex-1 bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                                                className="flex-1 bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40"
                                             />
                                             <Button
                                                 onPress={() => handleRemoveYoutubeLink(index, linkIndex)}
@@ -708,14 +708,14 @@ const AddCourseContentClient = ({
                             {/* Quick Tips */}
                             <div>
                                 <div className="flex items-center justify-between mb-3">
-                                    <h3 className="text-lg font-semibold text-[#EDEFF5] flex items-center gap-2">
+                                    <h3 className="text-lg font-semibold text-[#263A33] flex items-center gap-2">
                                         <FaLightbulb className="text-yellow-400" />
                                         Quick Tips
                                     </h3>
                                     <Button
                                         onPress={() => handleAddQuickTip(index)}
                                         size="sm"
-                                        className="bg-[#A78BFA]/10 text-[#A78BFA] border border-[#A78BFA]/30 hover:bg-[#A78BFA]/20"
+                                        className="bg-[#7BAE9B]/10 text-[#7BAE9B] border border-[#7BAE9B]/30 hover:bg-[#7BAE9B]/20"
                                     >
                                         <FaPlus />
                                         Add Tip
@@ -723,7 +723,7 @@ const AddCourseContentClient = ({
                                 </div>
 
                                 {lesson.quickTips.length === 0 ? (
-                                    <p className="text-[#EDEFF5]/40 text-sm text-center py-4">
+                                    <p className="text-[#263A33]/40 text-sm text-center py-4">
                                         No quick tips added yet
                                     </p>
                                 ) : (
@@ -735,7 +735,7 @@ const AddCourseContentClient = ({
                                                 onChange={(e) =>
                                                     handleQuickTipChange(index, tipIndex, e.target.value)
                                                 }
-                                                className="flex-1 bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                                                className="flex-1 bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40"
                                             />
                                             <Button
                                                 onPress={() => handleRemoveQuickTip(index, tipIndex)}
@@ -756,14 +756,14 @@ const AddCourseContentClient = ({
                 <div className="flex justify-between mt-6">
                     <Button
                         onPress={handleAddLesson}
-                        className="bg-[#A78BFA]/10 text-[#A78BFA] border border-[#A78BFA]/30 hover:bg-[#A78BFA]/20"
+                        className="bg-[#7BAE9B]/10 text-[#7BAE9B] border border-[#7BAE9B]/30 hover:bg-[#7BAE9B]/20"
                     >
                         <FaPlus />
                         Add Lesson
                     </Button>
                     <Button
                         onPress={handleSave}
-                        className="bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80 px-8"
+                        className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80 px-8"
                     >
                         <FaSave />
                         Save All Content

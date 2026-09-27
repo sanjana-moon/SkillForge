@@ -35,18 +35,18 @@ export default function StudentClient({
     const getProgressColor = (progress: number) => {
         if (progress >= 80) return "text-green-400";
         if (progress >= 50) return "text-yellow-400";
-        return "text-[#A78BFA]";
+        return "text-[#7BAE9B]";
     };
 
     const getProgressBarColor = (progress: number) => {
         if (progress >= 80) return "bg-green-400";
         if (progress >= 50) return "bg-yellow-400";
-        return "bg-[#A78BFA]";
+        return "bg-[#7BAE9B]";
     };
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-[#10182B] flex items-center justify-center">
+            <div className="min-h-screen bg-[#F5F8F5] flex items-center justify-center">
                 <Spinner size="lg" />
             </div>
         );
@@ -54,10 +54,10 @@ export default function StudentClient({
 
     if (isError) {
         return (
-            <div className="min-h-screen bg-[#10182B] flex items-center justify-center p-4">
-                <Card className="bg-[#1C2740] border border-red-500/20 rounded-2xl p-8 text-center">
+            <div className="min-h-screen bg-[#F5F8F5] flex items-center justify-center p-4">
+                <Card className="bg-[#DCEBE4] border border-red-500/20 rounded-2xl p-8 text-center">
                     <p className="text-red-400">Failed to load dashboard data.</p>
-                    <Button className="mt-4 bg-[#A78BFA] text-[#10182B]" onPress={() => window.location.reload()}>
+                    <Button className="mt-4 bg-[#7BAE9B] text-[#F5F8F5]" onPress={() => window.location.reload()}>
                         Retry
                     </Button>
                 </Card>
@@ -76,8 +76,8 @@ export default function StudentClient({
         {
             title: "Enrolled Courses",
             value: enrolledCourses,
-            icon: <FaBook className="text-[#A78BFA]" />,
-            color: "bg-[#A78BFA]/10 border-[#A78BFA]/20",
+            icon: <FaBook className="text-[#7BAE9B]" />,
+            color: "bg-[#7BAE9B]/10 border-[#7BAE9B]/20",
         },
         {
             title: "In Progress",
@@ -94,7 +94,7 @@ export default function StudentClient({
     ];
 
     return (
-        <section className="min-h-screen bg-[#10182B] p-4 md:p-6">
+        <section className="min-h-screen bg-[#F5F8F5] p-4 md:p-6">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -103,10 +103,10 @@ export default function StudentClient({
             >
                 {/* Welcome Header */}
                 <div>
-                    <h1 className="text-3xl md:text-4xl font-bold text-[#EDEFF5]">
-                        Welcome back, {user.name} 👋
+                    <h1 className="text-3xl md:text-4xl font-bold text-[#263A33]">
+                        Welcome back, {user.name} ðŸ‘‹
                     </h1>
-                    <p className="text-[#EDEFF5]/60 mt-2">
+                    <p className="text-[#263A33]/60 mt-2">
                         Continue your learning journey. Track your progress and pick up where you left off.
                     </p>
                 </div>
@@ -122,17 +122,17 @@ export default function StudentClient({
                             whileHover={{ y: -4 }}
                             className="transition-all duration-300"
                         >
-                            <Card className={`bg-[#1C2740] border ${stat.color} rounded-2xl p-6 shadow-xl hover:shadow-[#A78BFA]/5 transition-all`}>
+                            <Card className={`bg-[#DCEBE4] border ${stat.color} rounded-2xl p-6 shadow-xl hover:shadow-[#7BAE9B]/5 transition-all`}>
                                 <div className="flex items-center justify-between">
                                     <div>
-                                        <p className="text-[#EDEFF5]/60 text-sm font-medium">
+                                        <p className="text-[#263A33]/60 text-sm font-medium">
                                             {stat.title}
                                         </p>
-                                        <p className="text-3xl md:text-4xl font-bold text-[#EDEFF5] mt-2">
+                                        <p className="text-3xl md:text-4xl font-bold text-[#263A33] mt-2">
                                             {stat.value}
                                         </p>
                                     </div>
-                                    <div className="w-12 h-12 rounded-full bg-[#10182B] flex items-center justify-center">
+                                    <div className="w-12 h-12 rounded-full bg-[#F5F8F5] flex items-center justify-center">
                                         {stat.icon}
                                     </div>
                                 </div>
@@ -148,30 +148,30 @@ export default function StudentClient({
                     transition={{ delay: 0.3 }}
                 >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                        <Card className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl p-6 hover:shadow-[#A78BFA]/5 transition-all">
-                            <h3 className="text-lg font-semibold text-[#EDEFF5] mb-2">
+                        <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-6 hover:shadow-[#7BAE9B]/5 transition-all">
+                            <h3 className="text-lg font-semibold text-[#263A33] mb-2">
                                 Browse New Courses
                             </h3>
-                            <p className="text-[#EDEFF5]/60 text-sm mb-4">
+                            <p className="text-[#263A33]/60 text-sm mb-4">
                                 Discover new courses and expand your skills.
                             </p>
                             <Link href="/courses">
-                                <Button className="bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80">
+                                <Button className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80">
                                     Explore Courses
                                     <FaArrowRight className="ml-2" />
                                 </Button>
                             </Link>
                         </Card>
 
-                        <Card className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl p-6 hover:shadow-[#A78BFA]/5 transition-all">
-                            <h3 className="text-lg font-semibold text-[#EDEFF5] mb-2">
+                        <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-6 hover:shadow-[#7BAE9B]/5 transition-all">
+                            <h3 className="text-lg font-semibold text-[#263A33] mb-2">
                                 AI Mentor
                             </h3>
-                            <p className="text-[#EDEFF5]/60 text-sm mb-4">
+                            <p className="text-[#263A33]/60 text-sm mb-4">
                                 Get personalized learning guidance from our AI Mentor.
                             </p>
                             <Link href="/ai-mentor">
-                                <Button className="bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80">
+                                <Button className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80">
                                     Chat with AI Mentor
                                     <FaArrowRight className="ml-2" />
                                 </Button>
@@ -187,12 +187,12 @@ export default function StudentClient({
                     transition={{ delay: 0.4 }}
                 >
                     <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-xl font-bold text-[#EDEFF5]">
+                        <h2 className="text-xl font-bold text-[#263A33]">
                             My Recent Courses
                         </h2>
                         {enrolledCourses > 0 && (
                             <Link href="/dashboard/student/my-courses">
-                                <Button className="bg-transparent text-[#A78BFA] hover:bg-[#A78BFA]/10 font-medium">
+                                <Button className="bg-transparent text-[#7BAE9B] hover:bg-[#7BAE9B]/10 font-medium">
                                     View All
                                     <FaArrowRight className="ml-2 text-sm" />
                                 </Button>
@@ -209,15 +209,15 @@ export default function StudentClient({
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.5 + index * 0.1 }}
                                 >
-                                    <Card className="bg-[#1C2740] border border-[#A78BFA]/10 hover:border-[#A78BFA]/30 rounded-2xl p-5 transition-all duration-300 hover:shadow-[#A78BFA]/5">
+                                    <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/10 hover:border-[#7BAE9B]/30 rounded-2xl p-5 transition-all duration-300 hover:shadow-[#7BAE9B]/5">
                                         <div className="flex items-start justify-between">
                                             <div className="flex-1 min-w-0">
-                                                <h3 className="font-semibold text-[#EDEFF5] truncate">
+                                                <h3 className="font-semibold text-[#263A33] truncate">
                                                     {course.courseTitle}
                                                 </h3>
                                                 <div className="flex items-center gap-3 mt-2">
-                                                    <div className="flex items-center gap-1.5 text-sm text-[#EDEFF5]/60">
-                                                        <FaClock className="text-[#A78BFA] text-xs" />
+                                                    <div className="flex items-center gap-1.5 text-sm text-[#263A33]/60">
+                                                        <FaClock className="text-[#7BAE9B] text-xs" />
                                                         <span>{course.progress}% Complete</span>
                                                     </div>
                                                     {course.progress === 100 && (
@@ -232,14 +232,14 @@ export default function StudentClient({
                                                 <Button
                                                     isIconOnly
                                                     size="sm"
-                                                    className="bg-[#A78BFA]/10 hover:bg-[#A78BFA]/20 text-[#A78BFA] min-w-0 w-9 h-9 rounded-lg"
+                                                    className="bg-[#7BAE9B]/10 hover:bg-[#7BAE9B]/20 text-[#7BAE9B] min-w-0 w-9 h-9 rounded-lg"
                                                 >
                                                     <FaPlay className="text-xs" />
                                                 </Button>
                                             </Link>
                                         </div>
                                         <div className="mt-3">
-                                            <div className="w-full h-2 bg-[#10182B] rounded-full overflow-hidden">
+                                            <div className="w-full h-2 bg-[#F5F8F5] rounded-full overflow-hidden">
                                                 <div 
                                                     className={`h-full rounded-full transition-all duration-500 ${getProgressBarColor(course.progress)}`}
                                                     style={{ width: `${course.progress}%` }}
@@ -254,16 +254,16 @@ export default function StudentClient({
                             ))}
                         </div>
                     ) : (
-                        <Card className="bg-[#1C2740] border border-[#A78BFA]/10 rounded-2xl p-12 text-center">
-                            <FaBook className="text-4xl text-[#EDEFF5]/20 mx-auto mb-4" />
-                            <h3 className="text-lg font-semibold text-[#EDEFF5] mb-2">
+                        <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/10 rounded-2xl p-12 text-center">
+                            <FaBook className="text-4xl text-[#263A33]/20 mx-auto mb-4" />
+                            <h3 className="text-lg font-semibold text-[#263A33] mb-2">
                                 No Courses Yet
                             </h3>
-                            <p className="text-[#EDEFF5]/60 text-sm mb-4">
+                            <p className="text-[#263A33]/60 text-sm mb-4">
                                 Start your learning journey by enrolling in your first course.
                             </p>
                             <Link href="/courses">
-                                <Button className="bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80">
+                                <Button className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80">
                                     Browse Courses
                                     <FaArrowRight className="ml-2" />
                                 </Button>
@@ -279,28 +279,28 @@ export default function StudentClient({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.6 }}
                     >
-                        <Card className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl p-6">
-                            <h3 className="text-lg font-semibold text-[#EDEFF5] mb-4">
+                        <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-6">
+                            <h3 className="text-lg font-semibold text-[#263A33] mb-4">
                                 Learning Progress
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div className="text-center">
-                                    <p className="text-3xl font-bold text-[#A78BFA]">
+                                    <p className="text-3xl font-bold text-[#7BAE9B]">
                                         {completedCourses}
                                     </p>
-                                    <p className="text-[#EDEFF5]/60 text-sm mt-1">Courses Completed</p>
+                                    <p className="text-[#263A33]/60 text-sm mt-1">Courses Completed</p>
                                 </div>
                                 <div className="text-center">
                                     <p className="text-3xl font-bold text-yellow-400">
                                         {inProgress}
                                     </p>
-                                    <p className="text-[#EDEFF5]/60 text-sm mt-1">In Progress</p>
+                                    <p className="text-[#263A33]/60 text-sm mt-1">In Progress</p>
                                 </div>
                                 <div className="text-center">
-                                    <p className="text-3xl font-bold text-[#EDEFF5]">
+                                    <p className="text-3xl font-bold text-[#263A33]">
                                         {enrolledCourses}
                                     </p>
-                                    <p className="text-[#EDEFF5]/60 text-sm mt-1">Total Enrolled</p>
+                                    <p className="text-[#263A33]/60 text-sm mt-1">Total Enrolled</p>
                                 </div>
                             </div>
                         </Card>

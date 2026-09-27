@@ -79,28 +79,28 @@ const CourseContentClient = ({
 
     if (totalLessons === 0) {
         return (
-            <div className="min-h-screen bg-[#10182B] p-4 md:p-6">
+            <div className="min-h-screen bg-[#F5F8F5] p-4 md:p-6">
                 <div className="max-w-4xl mx-auto">
                     <div className="flex items-center gap-3 mb-6">
                         <button
                             onClick={() => router.back()}
-                            className="flex items-center gap-2 text-[#EDEFF5]/60 hover:text-[#EDEFF5] transition-colors"
+                            className="flex items-center gap-2 text-[#263A33]/60 hover:text-[#263A33] transition-colors"
                         >
                             <FaArrowLeft className="text-sm" />
                             <span>Back</span>
                         </button>
                     </div>
-                    <Card className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl p-12 text-center">
-                        <FaBook className="text-5xl text-[#EDEFF5]/10 mx-auto mb-4" />
-                        <h2 className="text-2xl font-bold text-[#EDEFF5] mb-2">
+                    <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-12 text-center">
+                        <FaBook className="text-5xl text-[#263A33]/10 mx-auto mb-4" />
+                        <h2 className="text-2xl font-bold text-[#263A33] mb-2">
                             No Content Available Yet
                         </h2>
-                        <p className="text-[#EDEFF5]/60">
+                        <p className="text-[#263A33]/60">
                             The instructor is still preparing the course content.
                             Please check back later.
                         </p>
                         <Link href={`/courses/${course._id}`}>
-                            <Button className="mt-6 bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80">
+                            <Button className="mt-6 bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80">
                                 Back to Course Details
                             </Button>
                         </Link>
@@ -111,27 +111,27 @@ const CourseContentClient = ({
     }
 
     return (
-        <div className="min-h-screen bg-[#10182B] p-4 md:p-6">
+        <div className="min-h-screen bg-[#F5F8F5] p-4 md:p-6">
             <div className="max-w-6xl mx-auto">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                     <div>
                         <button
                             onClick={() => router.back()}
-                            className="flex items-center gap-2 text-[#EDEFF5]/60 hover:text-[#EDEFF5] transition-colors mb-2"
+                            className="flex items-center gap-2 text-[#263A33]/60 hover:text-[#263A33] transition-colors mb-2"
                         >
                             <FaArrowLeft className="text-sm" />
                             <span>Back to Course</span>
                         </button>
-                        <h1 className="text-2xl md:text-3xl font-bold text-[#EDEFF5]">
+                        <h1 className="text-2xl md:text-3xl font-bold text-[#263A33]">
                             {course.title}
                         </h1>
-                        <p className="text-[#EDEFF5]/50 text-sm mt-1">
-                            {totalLessons} lessons • {completedLessons} completed
+                        <p className="text-[#263A33]/50 text-sm mt-1">
+                            {totalLessons} lessons â€¢ {completedLessons} completed
                         </p>
                     </div>
                     <div className="flex items-center gap-3">
-                        <Chip className="bg-[#A78BFA]/10 text-[#A78BFA] border border-[#A78BFA]/20">
+                        <Chip className="bg-[#7BAE9B]/10 text-[#7BAE9B] border border-[#7BAE9B]/20">
                             {course.level}
                         </Chip>
                         <Chip className="bg-blue-500/10 text-blue-400 border border-blue-500/20">
@@ -143,8 +143,8 @@ const CourseContentClient = ({
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
                     {/* Sidebar - Lesson List */}
                     <div className="lg:col-span-1">
-                        <Card className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl p-4 sticky top-24 max-h-[calc(100vh-180px)] overflow-y-auto">
-                            <h3 className="text-sm font-semibold text-[#EDEFF5] mb-3 px-2">
+                        <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-4 sticky top-24 max-h-[calc(100vh-180px)] overflow-y-auto">
+                            <h3 className="text-sm font-semibold text-[#263A33] mb-3 px-2">
                                 Course Content
                             </h3>
                             <div className="space-y-1">
@@ -154,19 +154,19 @@ const CourseContentClient = ({
                                         onClick={() => setCurrentLessonIndex(index)}
                                         className={`w-full text-left px-3 py-2.5 rounded-xl transition-all ${
                                             index === currentLessonIndex
-                                                ? "bg-[#A78BFA]/15 text-[#A78BFA] border border-[#A78BFA]/30"
-                                                : "text-[#EDEFF5]/60 hover:text-[#EDEFF5] hover:bg-[#10182B]"
+                                                ? "bg-[#7BAE9B]/15 text-[#7BAE9B] border border-[#7BAE9B]/30"
+                                                : "text-[#263A33]/60 hover:text-[#263A33] hover:bg-[#F5F8F5]"
                                         }`}
                                     >
                                         <div className="flex items-center gap-2">
-                                            <span className="text-xs font-medium text-[#EDEFF5]/40">
+                                            <span className="text-xs font-medium text-[#263A33]/40">
                                                 {String(index + 1).padStart(2, "0")}
                                             </span>
                                             <span className="text-sm truncate flex-1">
                                                 {lesson.title || `Lesson ${index + 1}`}
                                             </span>
                                             {lesson.codeExamples?.length > 0 && (
-                                                <FaCode className="text-[#A78BFA] text-[10px]" />
+                                                <FaCode className="text-[#7BAE9B] text-[10px]" />
                                             )}
                                         </div>
                                     </button>
@@ -178,25 +178,25 @@ const CourseContentClient = ({
                     {/* Main Content */}
                     <div className="lg:col-span-3">
                         {currentLesson && (
-                            <Card className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl p-6">
+                            <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-6">
                                 {/* Lesson Header */}
-                                <div className="mb-6 pb-4 border-b border-[#A78BFA]/10">
+                                <div className="mb-6 pb-4 border-b border-[#7BAE9B]/10">
                                     <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-sm text-[#EDEFF5]/40">
+                                        <span className="text-sm text-[#263A33]/40">
                                             Lesson {currentLessonIndex + 1} of {totalLessons}
                                         </span>
                                     </div>
-                                    <h2 className="text-2xl font-bold text-[#EDEFF5]">
+                                    <h2 className="text-2xl font-bold text-[#263A33]">
                                         {currentLesson.title}
                                     </h2>
-                                    <p className="text-[#EDEFF5]/60 mt-1">
+                                    <p className="text-[#263A33]/60 mt-1">
                                         {currentLesson.description}
                                     </p>
                                 </div>
 
                                 {/* Lesson Content */}
                                 <div className="prose prose-invert max-w-none">
-                                    <div className="text-[#EDEFF5]/80 leading-relaxed whitespace-pre-wrap">
+                                    <div className="text-[#263A33]/80 leading-relaxed whitespace-pre-wrap">
                                         {currentLesson.content || "No content available for this lesson."}
                                     </div>
                                 </div>
@@ -206,13 +206,13 @@ const CourseContentClient = ({
                                     <div className="mt-6">
                                         <button
                                             onClick={() => toggleSection("code")}
-                                            className="flex items-center justify-between w-full text-left text-[#EDEFF5] font-semibold p-3 bg-[#10182B] rounded-xl hover:bg-[#10182B]/80 transition-colors"
+                                            className="flex items-center justify-between w-full text-left text-[#263A33] font-semibold p-3 bg-[#F5F8F5] rounded-xl hover:bg-[#F5F8F5]/80 transition-colors"
                                         >
                                             <span className="flex items-center gap-2">
-                                                <FaCode className="text-[#A78BFA]" />
+                                                <FaCode className="text-[#7BAE9B]" />
                                                 Code Examples ({currentLesson.codeExamples.length})
                                             </span>
-                                            <span className="text-[#EDEFF5]/40">
+                                            <span className="text-[#263A33]/40">
                                                 {expandedSections.code ? <FaChevronLeft /> : <FaChevronRight />}
                                             </span>
                                         </button>
@@ -221,23 +221,23 @@ const CourseContentClient = ({
                                                 {currentLesson.codeExamples.map((example, idx) => (
                                                     <div
                                                         key={example.id}
-                                                        className="bg-[#10182B] border border-[#A78BFA]/10 rounded-xl p-4"
+                                                        className="bg-[#F5F8F5] border border-[#7BAE9B]/10 rounded-xl p-4"
                                                     >
                                                         <div className="flex items-center justify-between mb-2">
-                                                            <span className="text-sm font-medium text-[#EDEFF5]">
+                                                            <span className="text-sm font-medium text-[#263A33]">
                                                                 Example {idx + 1}: {example.title || "Untitled"}
                                                             </span>
-                                                            <Chip size="sm" className="bg-[#A78BFA]/10 text-[#A78BFA] border-0">
+                                                            <Chip size="sm" className="bg-[#7BAE9B]/10 text-[#7BAE9B] border-0">
                                                                 {example.language}
                                                             </Chip>
                                                         </div>
-                                                        <pre className="bg-[#0B0F19] rounded-lg p-4 overflow-x-auto">
-                                                            <code className="text-sm text-[#EDEFF5]/80 font-mono whitespace-pre">
+                                                        <pre className="bg-[#F5F8F5] rounded-lg p-4 overflow-x-auto">
+                                                            <code className="text-sm text-[#263A33]/80 font-mono whitespace-pre">
                                                                 {example.code || "// No code provided"}
                                                             </code>
                                                         </pre>
                                                         {example.explanation && (
-                                                            <p className="text-[#EDEFF5]/60 text-sm mt-3">
+                                                            <p className="text-[#263A33]/60 text-sm mt-3">
                                                                 {example.explanation}
                                                             </p>
                                                         )}
@@ -253,13 +253,13 @@ const CourseContentClient = ({
                                     <div className="mt-6">
                                         <button
                                             onClick={() => toggleSection("questions")}
-                                            className="flex items-center justify-between w-full text-left text-[#EDEFF5] font-semibold p-3 bg-[#10182B] rounded-xl hover:bg-[#10182B]/80 transition-colors"
+                                            className="flex items-center justify-between w-full text-left text-[#263A33] font-semibold p-3 bg-[#F5F8F5] rounded-xl hover:bg-[#F5F8F5]/80 transition-colors"
                                         >
                                             <span className="flex items-center gap-2">
-                                                <FaQuestionCircle className="text-[#A78BFA]" />
+                                                <FaQuestionCircle className="text-[#7BAE9B]" />
                                                 Practice Questions ({currentLesson.practiceQuestions.length})
                                             </span>
-                                            <span className="text-[#EDEFF5]/40">
+                                            <span className="text-[#263A33]/40">
                                                 {expandedSections.questions ? <FaChevronLeft /> : <FaChevronRight />}
                                             </span>
                                         </button>
@@ -268,17 +268,17 @@ const CourseContentClient = ({
                                                 {currentLesson.practiceQuestions.map((q, idx) => (
                                                     <div
                                                         key={q.id}
-                                                        className="bg-[#10182B] border border-[#A78BFA]/10 rounded-xl p-4"
+                                                        className="bg-[#F5F8F5] border border-[#7BAE9B]/10 rounded-xl p-4"
                                                     >
-                                                        <p className="text-[#EDEFF5] font-medium mb-2">
+                                                        <p className="text-[#263A33] font-medium mb-2">
                                                             {idx + 1}. {q.question}
                                                         </p>
-                                                        <div className="bg-[#0B0F19] rounded-lg p-3">
-                                                            <p className="text-[#EDEFF5]/70 text-sm">
-                                                                <span className="text-[#A78BFA]">Answer:</span> {q.answer}
+                                                        <div className="bg-[#F5F8F5] rounded-lg p-3">
+                                                            <p className="text-[#263A33]/70 text-sm">
+                                                                <span className="text-[#7BAE9B]">Answer:</span> {q.answer}
                                                             </p>
                                                             {q.hint && (
-                                                                <p className="text-[#EDEFF5]/40 text-sm mt-1">
+                                                                <p className="text-[#263A33]/40 text-sm mt-1">
                                                                     <span className="text-yellow-400">Hint:</span> {q.hint}
                                                                 </p>
                                                             )}
@@ -295,13 +295,13 @@ const CourseContentClient = ({
                                     <div className="mt-6">
                                         <button
                                             onClick={() => toggleSection("youtube")}
-                                            className="flex items-center justify-between w-full text-left text-[#EDEFF5] font-semibold p-3 bg-[#10182B] rounded-xl hover:bg-[#10182B]/80 transition-colors"
+                                            className="flex items-center justify-between w-full text-left text-[#263A33] font-semibold p-3 bg-[#F5F8F5] rounded-xl hover:bg-[#F5F8F5]/80 transition-colors"
                                         >
                                             <span className="flex items-center gap-2">
                                                 <FaYoutube className="text-red-400" />
                                                 YouTube Resources ({currentLesson.youtubeLinks.length})
                                             </span>
-                                            <span className="text-[#EDEFF5]/40">
+                                            <span className="text-[#263A33]/40">
                                                 {expandedSections.youtube ? <FaChevronLeft /> : <FaChevronRight />}
                                             </span>
                                         </button>
@@ -313,7 +313,7 @@ const CourseContentClient = ({
                                                         href={link}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="flex items-center gap-3 text-[#EDEFF5]/60 hover:text-[#A78BFA] transition-colors p-2 rounded-lg hover:bg-[#A78BFA]/5"
+                                                        className="flex items-center gap-3 text-[#263A33]/60 hover:text-[#7BAE9B] transition-colors p-2 rounded-lg hover:bg-[#7BAE9B]/5"
                                                     >
                                                         <FaYoutube className="text-red-400" />
                                                         <span className="text-sm truncate">{link}</span>
@@ -329,13 +329,13 @@ const CourseContentClient = ({
                                     <div className="mt-6">
                                         <button
                                             onClick={() => toggleSection("tips")}
-                                            className="flex items-center justify-between w-full text-left text-[#EDEFF5] font-semibold p-3 bg-[#10182B] rounded-xl hover:bg-[#10182B]/80 transition-colors"
+                                            className="flex items-center justify-between w-full text-left text-[#263A33] font-semibold p-3 bg-[#F5F8F5] rounded-xl hover:bg-[#F5F8F5]/80 transition-colors"
                                         >
                                             <span className="flex items-center gap-2">
                                                 <FaLightbulb className="text-yellow-400" />
                                                 Quick Tips ({currentLesson.quickTips.length})
                                             </span>
-                                            <span className="text-[#EDEFF5]/40">
+                                            <span className="text-[#263A33]/40">
                                                 {expandedSections.tips ? <FaChevronLeft /> : <FaChevronRight />}
                                             </span>
                                         </button>
@@ -344,10 +344,10 @@ const CourseContentClient = ({
                                                 {currentLesson.quickTips.map((tip, idx) => (
                                                     <div
                                                         key={idx}
-                                                        className="flex items-start gap-3 p-3 bg-[#10182B] rounded-lg border border-[#A78BFA]/10"
+                                                        className="flex items-start gap-3 p-3 bg-[#F5F8F5] rounded-lg border border-[#7BAE9B]/10"
                                                     >
                                                         <FaLightbulb className="text-yellow-400 text-sm mt-0.5" />
-                                                        <span className="text-[#EDEFF5]/70 text-sm">{tip}</span>
+                                                        <span className="text-[#263A33]/70 text-sm">{tip}</span>
                                                     </div>
                                                 ))}
                                             </div>
@@ -356,22 +356,22 @@ const CourseContentClient = ({
                                 )}
 
                                 {/* Navigation Buttons */}
-                                <div className="flex items-center justify-between mt-8 pt-6 border-t border-[#A78BFA]/10">
+                                <div className="flex items-center justify-between mt-8 pt-6 border-t border-[#7BAE9B]/10">
                                     <Button
                                         onPress={handlePrevLesson}
                                         isDisabled={currentLessonIndex === 0}
-                                        className="bg-[#10182B] border border-[#A78BFA]/20 text-[#EDEFF5] hover:bg-[#A78BFA]/10"
+                                        className="bg-[#F5F8F5] border border-[#7BAE9B]/20 text-[#263A33] hover:bg-[#7BAE9B]/10"
                                     >
                                         <FaChevronLeft />
                                         Previous
                                     </Button>
-                                    <div className="text-sm text-[#EDEFF5]/40">
+                                    <div className="text-sm text-[#263A33]/40">
                                         {currentLessonIndex + 1} / {totalLessons}
                                     </div>
                                     <Button
                                         onPress={handleNextLesson}
                                         isDisabled={currentLessonIndex === totalLessons - 1}
-                                        className="bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80"
+                                        className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80"
                                     >
                                         Next
                                         <FaChevronRight />

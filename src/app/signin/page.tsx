@@ -87,15 +87,15 @@ const SigninPage = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[#10182B] px-4 py-12">
-            <Card className="w-full container md:max-w-3xl rounded-3xl border border-[#A78BFA]/30 bg-[#1C2740] p-8 shadow-xl">
+        <div className="min-h-screen flex items-center justify-center bg-[#F5F8F5] px-4 py-12">
+            <Card className="w-full container md:max-w-3xl rounded-3xl border border-[#7BAE9B]/30 bg-[#DCEBE4] p-8 shadow-xl">
                 {/* Header */}
                 <div className="mb-8 text-center">
-                    <h1 className="text-4xl font-bold text-[#EDEFF5]">
+                    <h1 className="text-4xl font-bold text-[#263A33]">
                         Welcome Back
                     </h1>
 
-                    <p className="mt-2 text-[#EDEFF5]/70">
+                    <p className="mt-2 text-[#263A33]/70">
                         Sign in to your SkillForge account and <br />
                         continue crafting and elevating your ideas.
                     </p>
@@ -111,7 +111,7 @@ const SigninPage = () => {
                         isRequired
                         isInvalid={!!errors.email}
                     >
-                        <Label className="font-medium text-[#EDEFF5]">
+                        <Label className="font-medium text-[#263A33]">
                             Email Address
                         </Label>
 
@@ -121,7 +121,7 @@ const SigninPage = () => {
                             {...register("email", {
                                 required: "Email is required",
                             })}
-                            className="mt-2 bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                            className="mt-2 bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40"
                         />
 
                         <FieldError>
@@ -134,7 +134,7 @@ const SigninPage = () => {
                         isRequired
                         isInvalid={!!errors.password}
                     >
-                        <Label className="font-medium text-[#EDEFF5]">
+                        <Label className="font-medium text-[#263A33]">
                             Password
                         </Label>
 
@@ -149,10 +149,10 @@ const SigninPage = () => {
                                         "Password must be at least 8 characters.",
                                 },
                             })}
-                            className="mt-2 bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                            className="mt-2 bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40"
                         />
 
-                        <Description className="text-[#EDEFF5]/60">
+                        <Description className="text-[#263A33]/60">
                             Password must contain at least 8 characters.
                         </Description>
 
@@ -164,7 +164,7 @@ const SigninPage = () => {
                     {/* Login Button */}
                     <Button
                         type="submit"
-                        className="mt-2 w-full rounded-md bg-[#A78BFA] py-6 text-base font-semibold text-[#10182B] transition hover:bg-[#A78BFA]/80"
+                        className="mt-2 w-full rounded-md bg-[#7BAE9B] py-6 text-base font-semibold text-[#F5F8F5] transition hover:bg-[#7BAE9B]/80"
                     >
                         <IoLogInOutline className="mr-2 text-xl" />
                         Sign In
@@ -172,28 +172,28 @@ const SigninPage = () => {
                 </Form>
                 {/* Divider */}
                 <div className="my-6 flex items-center gap-3">
-                    <div className="h-px flex-1 bg-[#A78BFA]/20" />
-                    <span className="text-sm font-medium text-[#EDEFF5]/40">
+                    <div className="h-px flex-1 bg-[#7BAE9B]/20" />
+                    <span className="text-sm font-medium text-[#263A33]/40">
                         OR
                     </span>
-                    <div className="h-px flex-1 bg-[#A78BFA]/20" />
+                    <div className="h-px flex-1 bg-[#7BAE9B]/20" />
                 </div>
 
                 {/* Google Sign In */}
                 <Button
                     onClick={handleGoogleLogin}
-                    className="w-full rounded-md border border-[#A78BFA]/30 py-6 text-[#EDEFF5] hover:bg-[#10182B]/50"
+                    className="w-full rounded-md border border-[#7BAE9B]/30 py-6 text-[#263A33] hover:bg-[#F5F8F5]/50"
                 >
-                    <FaGoogle className="mr-2 text-lg text-[#A78BFA]" />
+                    <FaGoogle className="mr-2 text-lg text-[#7BAE9B]" />
                     Continue with Google
                 </Button>
 
                 {/* Register Link */}
-                <p className="mt-6 text-center text-sm text-[#EDEFF5]/60">
-                    Don't have an account?{" "}
+                <p className="mt-6 text-center text-sm text-[#263A33]/60">
+                    Don't have an account yet?{" "}
                     <Link
                         href="/signup"
-                        className="font-semibold text-[#A78BFA] hover:text-[#A78BFA]/80 hover:underline"
+                        className="font-semibold text-[#7BAE9B] hover:text-[#7BAE9B]/80 hover:underline"
                     >
                         Create an Account
                     </Link>

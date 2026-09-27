@@ -22,18 +22,18 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="py-20 bg-[#10182B] relative border-t border-[#A78BFA]/10">
+    <section className="py-20 bg-[#F5F8F5] relative border-t border-[#7BAE9B]/10">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-[#1C2740] border border-[#A78BFA]/20 px-8 py-12 sm:px-16 sm:py-16 shadow-2xl text-center flex flex-col items-center">
+        <div className="relative overflow-hidden rounded-3xl bg-[#DCEBE4] border border-[#7BAE9B]/20 px-8 py-12 sm:px-16 sm:py-16 shadow-2xl text-center flex flex-col items-center">
           {/* Subtle backgrounds inside the callout */}
-          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-80 h-80 bg-[#A78BFA]/10 blur-[100px] rounded-full pointer-events-none" />
-          <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-[#4FD1C5]/10 blur-[100px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-80 h-80 bg-[#7BAE9B]/10 blur-[100px] rounded-full pointer-events-none" />
+          <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-[#5F927E]/10 blur-[100px] rounded-full pointer-events-none" />
 
           {/* Heading */}
-          <h2 className="text-3xl font-bold font-heading text-[#EDEFF5] tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-bold font-heading text-[#263A33] tracking-tight sm:text-4xl">
             Stay Updated on Tech & AI
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-[#EDEFF5]/70 font-body leading-relaxed">
+          <p className="mx-auto mt-4 max-w-xl text-base text-[#263A33]/70 font-body leading-relaxed">
             Subscribe to our newsletter to receive the latest roadmap templates, new course announcements, and expert AI tutorial links directly in your inbox.
           </p>
 
@@ -53,7 +53,7 @@ export default function Newsletter() {
                     message: "Please enter a valid email address",
                   },
                 })}
-                className="w-full rounded-xl bg-[#10182B]/60 border border-[#A78BFA]/20 focus:border-[#A78BFA] px-4 py-3 text-sm text-[#EDEFF5] placeholder-[#EDEFF5]/40 outline-none transition duration-200"
+                className="w-full rounded-xl bg-[#F5F8F5]/60 border border-[#7BAE9B]/20 focus:border-[#7BAE9B] px-4 py-3 text-sm text-[#263A33] placeholder-[#263A33]/40 outline-none transition duration-200"
               />
               {errors.email && (
                 <span className="mt-1 text-xs text-red-400 pl-1">{errors.email.message}</span>
@@ -61,7 +61,7 @@ export default function Newsletter() {
             </div>
             <button
               type="submit"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#A78BFA] to-[#8B5CF6] hover:opacity-95 text-[#10182B] text-sm font-bold px-6 py-3.5 sm:py-3 transition duration-200 shadow-md shadow-[#A78BFA]/20 self-stretch sm:self-start whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#7BAE9B] to-[#5F927E] hover:opacity-95 text-[#F5F8F5] text-sm font-bold px-6 py-3.5 sm:py-3 transition duration-200 shadow-md shadow-[#7BAE9B]/20 self-stretch sm:self-start whitespace-nowrap"
             >
               <FaPaperPlane className="text-xs" />
               Subscribe

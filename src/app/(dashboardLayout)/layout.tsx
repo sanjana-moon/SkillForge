@@ -7,7 +7,7 @@ interface DashboardLayoutProps {
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     return (
-        <div className="min-h-screen bg-[#10182B]">
+        <div className="min-h-screen bg-[#F5F8F5]">
             <DashboardSidebar />
 
             <main className="min-h-screen lg:ml-[280px] p-4 md:p-6 lg:p-8 transition-all duration-300">

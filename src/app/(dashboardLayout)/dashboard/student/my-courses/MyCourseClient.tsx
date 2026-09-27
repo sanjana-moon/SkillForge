@@ -28,13 +28,13 @@ const getStatusText = (progress: number) => {
 const getStatusBadgeColor = (progress: number) => {
     if (progress === 100) return "bg-green-500/20 text-green-400 border-green-500/30";
     if (progress >= 50) return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
-    return "bg-[#A78BFA]/20 text-[#A78BFA] border-[#A78BFA]/30";
+    return "bg-[#7BAE9B]/20 text-[#7BAE9B] border-[#7BAE9B]/30";
 };
 
 const getProgressColor = (progress: number) => {
     if (progress === 100) return "bg-green-400";
     if (progress >= 50) return "bg-yellow-400";
-    return "bg-[#A78BFA]";
+    return "bg-[#7BAE9B]";
 };
 
 export default function MyCoursesClient({
@@ -43,12 +43,12 @@ export default function MyCoursesClient({
     const [searchTerm, setSearchTerm] = useState("");
     const [filterStatus, setFilterStatus] = useState<"all" | "completed" | "in-progress" | "not-started">("all");
 
-    // ✅ Use React Query for student enrollments
+    // âœ… Use React Query for student enrollments
     const { data: enrollments, isLoading, isError } = useStudentEnrollments(userEmail);
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-[#10182B] flex items-center justify-center">
+            <div className="min-h-screen bg-[#F5F8F5] flex items-center justify-center">
                 <Spinner size="lg"/>
             </div>
         );
@@ -56,10 +56,10 @@ export default function MyCoursesClient({
 
     if (isError) {
         return (
-            <div className="min-h-screen bg-[#10182B] flex items-center justify-center p-4">
-                <Card className="bg-[#1C2740] border border-red-500/20 rounded-2xl p-8 text-center">
+            <div className="min-h-screen bg-[#F5F8F5] flex items-center justify-center p-4">
+                <Card className="bg-[#DCEBE4] border border-red-500/20 rounded-2xl p-8 text-center">
                     <p className="text-red-400">Failed to load your courses.</p>
-                    <Button className="mt-4 bg-[#A78BFA] text-[#10182B]" onPress={() => window.location.reload()}>
+                    <Button className="mt-4 bg-[#7BAE9B] text-[#F5F8F5]" onPress={() => window.location.reload()}>
                         Retry
                     </Button>
                 </Card>
@@ -90,8 +90,8 @@ export default function MyCoursesClient({
         {
             label: "Total Enrolled",
             value: totalCourses,
-            icon: <FaBook className="text-[#A78BFA]" />,
-            color: "bg-[#A78BFA]/10 border-[#A78BFA]/20",
+            icon: <FaBook className="text-[#7BAE9B]" />,
+            color: "bg-[#7BAE9B]/10 border-[#7BAE9B]/20",
         },
         {
             label: "In Progress",
@@ -108,20 +108,20 @@ export default function MyCoursesClient({
         {
             label: "Not Started",
             value: notStartedCourses,
-            icon: <FaSearch className="text-[#EDEFF5]/40" />,
-            color: "bg-[#EDEFF5]/10 border-[#EDEFF5]/20",
+            icon: <FaSearch className="text-[#263A33]/40" />,
+            color: "bg-[#263A33]/10 border-[#263A33]/20",
         },
     ];
 
     return (
-        <div className="min-h-screen bg-[#10182B] p-4 md:p-6">
+        <div className="min-h-screen bg-[#F5F8F5] p-4 md:p-6">
             <div className="mx-auto max-w-7xl">
                 {/* Header */}
                 <div className="mb-8">
-                    <h1 className="text-3xl md:text-4xl font-bold text-[#EDEFF5]">
+                    <h1 className="text-3xl md:text-4xl font-bold text-[#263A33]">
                         My Courses
                     </h1>
-                    <p className="text-[#EDEFF5]/60 mt-2">
+                    <p className="text-[#263A33]/60 mt-2">
                         Track your learning progress across all enrolled courses.
                     </p>
                 </div>
@@ -131,18 +131,18 @@ export default function MyCoursesClient({
                     {stats.map((stat, index) => (
                         <Card
                             key={index}
-                            className={`bg-[#1C2740] border ${stat.color} rounded-2xl p-4 shadow-xl transition-all hover:shadow-[#A78BFA]/5`}
+                            className={`bg-[#DCEBE4] border ${stat.color} rounded-2xl p-4 shadow-xl transition-all hover:shadow-[#7BAE9B]/5`}
                         >
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-[#EDEFF5]/60 text-xs font-medium uppercase tracking-wider">
+                                    <p className="text-[#263A33]/60 text-xs font-medium uppercase tracking-wider">
                                         {stat.label}
                                     </p>
-                                    <p className="text-2xl md:text-3xl font-bold text-[#EDEFF5] mt-1">
+                                    <p className="text-2xl md:text-3xl font-bold text-[#263A33] mt-1">
                                         {stat.value}
                                     </p>
                                 </div>
-                                <div className="w-10 h-10 rounded-full bg-[#10182B] flex items-center justify-center">
+                                <div className="w-10 h-10 rounded-full bg-[#F5F8F5] flex items-center justify-center">
                                     {stat.icon}
                                 </div>
                             </div>
@@ -154,13 +154,13 @@ export default function MyCoursesClient({
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
                     <div className="flex-1">
                         <div className="relative">
-                            <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#EDEFF5]/40" />
+                            <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#263A33]/40" />
                             <input
                                 type="text"
                                 placeholder="Search courses..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-3 bg-[#1C2740] border border-[#A78BFA]/20 rounded-xl text-[#EDEFF5] placeholder:text-[#EDEFF5]/40 focus:outline-none focus:border-[#A78BFA] transition-colors"
+                                className="w-full pl-10 pr-4 py-3 bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-xl text-[#263A33] placeholder:text-[#263A33]/40 focus:outline-none focus:border-[#7BAE9B] transition-colors"
                             />
                         </div>
                     </div>
@@ -170,8 +170,8 @@ export default function MyCoursesClient({
                             onPress={() => setFilterStatus("all")}
                             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                                 filterStatus === "all"
-                                    ? "bg-[#A78BFA] text-[#10182B]"
-                                    : "bg-[#1C2740] text-[#EDEFF5]/60 hover:text-[#EDEFF5] border border-[#A78BFA]/20"
+                                    ? "bg-[#7BAE9B] text-[#F5F8F5]"
+                                    : "bg-[#DCEBE4] text-[#263A33]/60 hover:text-[#263A33] border border-[#7BAE9B]/20"
                             }`}
                         >
                             All
@@ -180,8 +180,8 @@ export default function MyCoursesClient({
                             onPress={() => setFilterStatus("in-progress")}
                             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                                 filterStatus === "in-progress"
-                                    ? "bg-yellow-500 text-[#10182B]"
-                                    : "bg-[#1C2740] text-[#EDEFF5]/60 hover:text-[#EDEFF5] border border-[#A78BFA]/20"
+                                    ? "bg-yellow-500 text-[#F5F8F5]"
+                                    : "bg-[#DCEBE4] text-[#263A33]/60 hover:text-[#263A33] border border-[#7BAE9B]/20"
                             }`}
                         >
                             In Progress
@@ -190,8 +190,8 @@ export default function MyCoursesClient({
                             onPress={() => setFilterStatus("completed")}
                             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                                 filterStatus === "completed"
-                                    ? "bg-green-500 text-[#10182B]"
-                                    : "bg-[#1C2740] text-[#EDEFF5]/60 hover:text-[#EDEFF5] border border-[#A78BFA]/20"
+                                    ? "bg-green-500 text-[#F5F8F5]"
+                                    : "bg-[#DCEBE4] text-[#263A33]/60 hover:text-[#263A33] border border-[#7BAE9B]/20"
                             }`}
                         >
                             Completed
@@ -200,8 +200,8 @@ export default function MyCoursesClient({
                             onPress={() => setFilterStatus("not-started")}
                             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                                 filterStatus === "not-started"
-                                    ? "bg-[#EDEFF5]/20 text-[#EDEFF5]"
-                                    : "bg-[#1C2740] text-[#EDEFF5]/60 hover:text-[#EDEFF5] border border-[#A78BFA]/20"
+                                    ? "bg-[#263A33]/20 text-[#263A33]"
+                                    : "bg-[#DCEBE4] text-[#263A33]/60 hover:text-[#263A33] border border-[#7BAE9B]/20"
                             }`}
                         >
                             Not Started
@@ -211,19 +211,19 @@ export default function MyCoursesClient({
 
                 {/* Courses Grid */}
                 {filteredEnrollments.length === 0 ? (
-                    <Card className="bg-[#1C2740] border border-[#A78BFA]/10 rounded-2xl p-12 text-center">
-                        <FaBook className="text-5xl text-[#EDEFF5]/20 mx-auto mb-4" />
-                        <h3 className="text-xl font-semibold text-[#EDEFF5] mb-2">
+                    <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/10 rounded-2xl p-12 text-center">
+                        <FaBook className="text-5xl text-[#263A33]/20 mx-auto mb-4" />
+                        <h3 className="text-xl font-semibold text-[#263A33] mb-2">
                             {totalCourses === 0 ? "No Courses Enrolled" : "No Courses Found"}
                         </h3>
-                        <p className="text-[#EDEFF5]/60 text-sm mb-4">
+                        <p className="text-[#263A33]/60 text-sm mb-4">
                             {totalCourses === 0
                                 ? "Start your learning journey by enrolling in your first course."
                                 : "Try adjusting your search or filters to find your courses."}
                         </p>
                         {totalCourses === 0 && (
                             <Link href="/courses">
-                                <Button className="bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80">
+                                <Button className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80">
                                     Browse Courses
                                     <FaArrowRight className="ml-2" />
                                 </Button>
@@ -235,7 +235,7 @@ export default function MyCoursesClient({
                         {filteredEnrollments.map((enrollment: Enrollment) => (
                             <Card
                                 key={enrollment._id}
-                                className="bg-[#1C2740] border border-[#A78BFA]/10 hover:border-[#A78BFA]/30 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-[#A78BFA]/5 hover:-translate-y-1"
+                                className="bg-[#DCEBE4] border border-[#7BAE9B]/10 hover:border-[#7BAE9B]/30 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-[#7BAE9B]/5 hover:-translate-y-1"
                             >
                                 <div className="p-5">
                                     <div className="flex items-center justify-between mb-3">
@@ -251,18 +251,18 @@ export default function MyCoursesClient({
                                         )}
                                     </div>
 
-                                    <h3 className="font-semibold text-[#EDEFF5] text-lg line-clamp-2 mb-2">
+                                    <h3 className="font-semibold text-[#263A33] text-lg line-clamp-2 mb-2">
                                         {enrollment.courseTitle}
                                     </h3>
 
                                     <div className="mt-4">
                                         <div className="flex items-center justify-between text-sm mb-1.5">
-                                            <span className="text-[#EDEFF5]/50">Progress</span>
+                                            <span className="text-[#263A33]/50">Progress</span>
                                             <span className={`font-medium ${getStatusBadgeColor(enrollment.progress)}`}>
                                                 {enrollment.progress}%
                                             </span>
                                         </div>
-                                        <div className="w-full h-2 bg-[#10182B] rounded-full overflow-hidden">
+                                        <div className="w-full h-2 bg-[#F5F8F5] rounded-full overflow-hidden">
                                             <div
                                                 className={`h-full rounded-full transition-all duration-500 ${getProgressColor(
                                                     enrollment.progress
@@ -272,8 +272,8 @@ export default function MyCoursesClient({
                                         </div>
                                     </div>
 
-                                    <div className="mt-4 pt-4 border-t border-[#A78BFA]/10">
-                                        <p className="text-[#EDEFF5]/40 text-xs">
+                                    <div className="mt-4 pt-4 border-t border-[#7BAE9B]/10">
+                                        <p className="text-[#263A33]/40 text-xs">
                                             Enrolled on{" "}
                                             {new Date(enrollment.createdAt).toLocaleDateString("en-US", {
                                                 year: "numeric",
@@ -283,14 +283,14 @@ export default function MyCoursesClient({
                                         </p>
                                     </div>
 
-                                    {/* ✅ Updated Link to go to content page */}
+                                    {/* âœ… Updated Link to go to content page */}
                                     <Link href={`/courses/${enrollment.courseId}/content`}>
                                         <Button
                                             fullWidth
                                             className={`mt-4 font-semibold rounded-xl transition-all ${
                                                 enrollment.progress === 100
                                                     ? "bg-green-500/20 text-green-400 hover:bg-green-500/30 border border-green-500/30"
-                                                    : "bg-[#A78BFA] text-[#10182B] hover:bg-[#A78BFA]/80"
+                                                    : "bg-[#7BAE9B] text-[#F5F8F5] hover:bg-[#7BAE9B]/80"
                                             }`}
                                         >
                                             {enrollment.progress === 100 ? (

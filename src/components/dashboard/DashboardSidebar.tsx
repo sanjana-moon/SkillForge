@@ -82,18 +82,18 @@ const DashboardSidebar = () => {
 
     if (!mounted) {
         return (
-            <div className="fixed left-0 top-0 z-40 h-full w-70 bg-[#0B0F19] border-r border-[#1E293B] flex flex-col p-4 animate-pulse">
-                <div className="h-10 bg-[#1E293B] rounded-lg mb-8 w-1/2" />
+            <div className="fixed left-0 top-0 z-40 h-full w-70 bg-[#F5F8F5] border-r border-[#DCEBE4] flex flex-col p-4 animate-pulse">
+                <div className="h-10 bg-[#DCEBE4] rounded-lg mb-8 w-1/2" />
                 <div className="flex items-center gap-3 mb-8">
-                    <div className="h-10 w-10 rounded-full bg-[#1E293B]" />
+                    <div className="h-10 w-10 rounded-full bg-[#DCEBE4]" />
                     <div className="flex-1 space-y-2">
-                        <div className="h-3 bg-[#1E293B] rounded w-1/2" />
-                        <div className="h-3 bg-[#1E293B] rounded w-3/4" />
+                        <div className="h-3 bg-[#DCEBE4] rounded w-1/2" />
+                        <div className="h-3 bg-[#DCEBE4] rounded w-3/4" />
                     </div>
                 </div>
                 <div className="space-y-3 flex-1">
                     {[1, 2, 3, 4].map((n) => (
-                        <div key={n} className="h-12 bg-[#1E293B] rounded-xl" />
+                        <div key={n} className="h-12 bg-[#DCEBE4] rounded-xl" />
                     ))}
                 </div>
             </div>
@@ -116,7 +116,7 @@ const DashboardSidebar = () => {
             {/* Mobile Toggle Button (Positioned cleanly out of text flow paths) */}
             <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
-                className="lg:hidden fixed top-4 left-4 z-50 p-2.5 rounded-xl bg-[#111827]/90 backdrop-blur-md border border-slate-800 text-slate-200 hover:text-white transition-all shadow-lg active:scale-95"
+                className="lg:hidden fixed top-4 left-4 z-50 p-2.5 rounded-xl bg-[#F5F8F5]/90 backdrop-blur-md border border-[#7BAE9B] text-[#263A33] hover:text-white transition-all shadow-lg active:scale-95"
             >
                 {isMobileOpen ? <IoMdClose className="text-xl" /> : <IoMdMenu className="text-xl" />}
             </button>
@@ -142,10 +142,10 @@ const DashboardSidebar = () => {
                     x: typeof window !== "undefined" && window.innerWidth < 1024 ? (isMobileOpen ? 0 : -280) : 0,
                 }}
                 transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
-                className="fixed left-0 top-0 z-40 h-full bg-[#0B0F19] border-r border-[#1E293B] shadow-2xl flex flex-col overflow-hidden"
+                className="fixed left-0 top-0 z-40 h-full bg-[#F5F8F5] border-r border-[#DCEBE4] shadow-2xl flex flex-col overflow-hidden"
             >
                 {/* Header Section (Logo Only) */}
-                <div className="flex items-center justify-between px-5 py-4 border-b border-[#1E293B] min-h-18">
+                <div className="flex items-center justify-between px-5 py-4 border-b border-[#DCEBE4] min-h-18">
                     <Link href="/" className="flex items-center shrink-0">
                         <Image
                             src={logo}
@@ -159,15 +159,15 @@ const DashboardSidebar = () => {
                     {!isMobileOpen && (
                         <button
                             onClick={() => setIsCollapsed(!isCollapsed)}
-                            className="hidden lg:flex items-center justify-center w-7 h-7 rounded-lg border border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-900 transition-colors"
+                            className="hidden lg:flex items-center justify-center w-7 h-7 rounded-lg border border-[#7BAE9B] text-[#263A33] hover:text-[#263A33] hover:bg-[#DCEBE4] transition-colors"
                         >
-                            {isCollapsed ? "→" : "←"}
+                            {isCollapsed ? "Ã¢â€ â€™" : "Ã¢â€ Â"}
                         </button>
                     )}
                 </div>
 
                 {/* User Profile Area */}
-                <div className="p-4 border-b border-[#1E293B] bg-linear-to-b from-transparent to-slate-900/20">
+                <div className="p-4 border-b border-[#DCEBE4] bg-linear-to-b from-transparent to-[#DCEBE4]/20">
                     <div className={`flex items-center gap-3 ${isCollapsed ? "justify-center" : ""}`}>
                         <div className="relative shrink-0">
                             <Image
@@ -175,9 +175,9 @@ const DashboardSidebar = () => {
                                 alt={user?.name ?? "User"}
                                 height={40}
                                 width={40}
-                                className="w-10 h-10 border border-violet-500/30 ring-4 ring-violet-500/5 transition-transform duration-200"
+                                className="w-10 h-10 border border-[#7BAE9B]/30 ring-4 ring-[#7BAE9B]/5 transition-transform duration-200"
                             />
-                            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-[#0B0F19] rounded-full" />
+                            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-[#F5F8F5] rounded-full" />
                         </div>
 
                         <AnimatePresence mode="popLayout">
@@ -188,13 +188,13 @@ const DashboardSidebar = () => {
                                     exit={{ opacity: 0 }}
                                     className="flex-1 min-w-0"
                                 >
-                                    <p className="text-slate-200 text-sm font-semibold truncate leading-tight">
+                                    <p className="text-[#263A33] text-sm font-semibold truncate leading-tight">
                                         {user?.name}
                                     </p>
-                                    <p className="text-slate-400 text-xs truncate mt-0.5">
+                                    <p className="text-[#263A33] text-xs truncate mt-0.5">
                                         {user?.email}
                                     </p>
-                                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-medium bg-violet-500/10 text-violet-400 border border-violet-500/20 capitalize mt-1.5 tracking-wider">
+                                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-medium bg-[#7BAE9B]/10 text-[#5F927E] border border-[#7BAE9B]/20 capitalize mt-1.5 tracking-wider">
                                         {role}
                                     </span>
                                 </motion.div>
@@ -217,8 +217,8 @@ const DashboardSidebar = () => {
                                 className={`
                                     relative flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 group
                                     ${active 
-                                        ? "bg-linear-to-r from-violet-600/15 to-violet-600/5 text-violet-400 font-medium border border-violet-500/20" 
-                                        : "text-slate-400 hover:text-slate-200 hover:bg-slate-900/60 border border-transparent"
+                                        ? "bg-linear-to-r from-[#5F927E]/15 to-[#5F927E]/5 text-[#5F927E] font-medium border border-[#7BAE9B]/20" 
+                                        : "text-[#263A33] hover:text-[#263A33] hover:bg-[#DCEBE4]/60 border border-transparent"
                                     }
                                     ${isCollapsed ? "justify-center px-0" : ""}
                                 `}
@@ -226,12 +226,12 @@ const DashboardSidebar = () => {
                                 {active && (
                                     <motion.div 
                                         layoutId="activeIndicator"
-                                        className="absolute left-0 top-3.5 bottom-3.5 w-1 bg-violet-500 rounded-r-md"
+                                        className="absolute left-0 top-3.5 bottom-3.5 w-1 bg-[#7BAE9B] rounded-r-md"
                                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                     />
                                 )}
                                 
-                                <Icon className={`text-xl shrink-0 transition-transform group-hover:scale-105 duration-200 ${active ? "text-violet-400" : "text-slate-400 group-hover:text-slate-300"}`} />
+                                <Icon className={`text-xl shrink-0 transition-transform group-hover:scale-105 duration-200 ${active ? "text-[#5F927E]" : "text-[#263A33] group-hover:text-[#263A33]"}`} />
                                 
                                 <AnimatePresence mode="popLayout">
                                     {!isCollapsed && (
@@ -251,17 +251,17 @@ const DashboardSidebar = () => {
                 </nav>
 
                 {/* Footer Utilities Area */}
-                <div className="p-3 border-t border-[#1E293B] space-y-1.5">
+                <div className="p-3 border-t border-[#DCEBE4] space-y-1.5">
                     {/* Back to Home Action Button */}
                     <Link
                         href="/"
                         className={`
                             flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 group
-                            text-slate-400 hover:text-slate-200 hover:bg-slate-900/60 border border-transparent
+                            text-[#263A33] hover:text-[#263A33] hover:bg-[#DCEBE4]/60 border border-transparent
                             ${isCollapsed ? "justify-center px-0" : ""}
                         `}
                     >
-                        <IoMdHome className="text-xl text-slate-400 group-hover:text-slate-300 shrink-0 transition-transform group-hover:scale-105" />
+                        <IoMdHome className="text-xl text-[#263A33] group-hover:text-[#263A33] shrink-0 transition-transform group-hover:scale-105" />
                         <AnimatePresence mode="popLayout">
                             {!isCollapsed && (
                                 <motion.span
@@ -281,11 +281,11 @@ const DashboardSidebar = () => {
                         onClick={handleSignOut}
                         className={`
                             w-full flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200
-                            text-slate-400 hover:text-red-400 hover:bg-red-500/5 border border-transparent hover:border-red-500/10 group
+                            text-[#263A33] hover:text-red-400 hover:bg-red-500/5 border border-transparent hover:border-red-500/10 group
                             ${isCollapsed ? "justify-center px-0" : ""}
                         `}
                     >
-                        <MdLogout className="text-xl text-slate-400 group-hover:text-red-400 shrink-0 transition-transform group-hover:-translate-x-0.5" />
+                        <MdLogout className="text-xl text-[#263A33] group-hover:text-red-400 shrink-0 transition-transform group-hover:-translate-x-0.5" />
                         <AnimatePresence mode="popLayout">
                             {!isCollapsed && (
                                 <motion.span

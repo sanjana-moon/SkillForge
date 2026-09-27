@@ -37,7 +37,7 @@ const getLevelColor = (level: string) => {
         case "advanced":
             return "text-red-400 bg-red-500/10 border-red-500/30";
         default:
-            return "text-[#A78BFA] bg-[#A78BFA]/10 border-[#A78BFA]/30";
+            return "text-[#7BAE9B] bg-[#7BAE9B]/10 border-[#7BAE9B]/30";
     }
 };
 
@@ -99,12 +99,12 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
     };
 
     return (
-        <div className="min-h-screen bg-[#10182B]">
+        <div className="min-h-screen bg-[#F5F8F5]">
             {/* Back Button */}
             <div className="container mx-auto px-4 pt-6">
                 <button
                     onClick={() => router.back()}
-                    className="flex items-center gap-2 text-[#EDEFF5]/60 hover:text-[#EDEFF5] transition-colors"
+                    className="flex items-center gap-2 text-[#263A33]/60 hover:text-[#263A33] transition-colors"
                 >
                     <FaArrowLeft className="text-sm" />
                     <span>Back to Courses</span>
@@ -113,13 +113,13 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
 
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-6">
-                <div className="relative overflow-hidden bg-gradient-to-r from-[#1C2740] via-[#10182B] to-[#1C2740] border border-[#A78BFA]/20 rounded-3xl shadow-xl">
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#A78BFA] via-[#7C3AED] to-[#A78BFA]" />
+                <div className="relative overflow-hidden bg-gradient-to-r from-[#DCEBE4] via-[#F5F8F5] to-[#DCEBE4] border border-[#7BAE9B]/20 rounded-3xl shadow-xl">
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#7BAE9B] via-[#5F927E] to-[#7BAE9B]" />
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-6 md:p-10">
                         {/* Thumbnail */}
                         <div className="lg:col-span-1">
-                            <div className="relative aspect-video rounded-2xl overflow-hidden bg-[#10182B] border border-[#A78BFA]/20">
+                            <div className="relative aspect-video rounded-2xl overflow-hidden bg-[#F5F8F5] border border-[#7BAE9B]/20">
                                 {course.thumbnail ? (
                                     <Image
                                         src={course.thumbnail}
@@ -128,11 +128,11 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                         className="object-cover"
                                     />
                                 ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-[#EDEFF5]/10">
+                                    <div className="w-full h-full flex items-center justify-center text-[#263A33]/10">
                                         <FaBookmark className="text-6xl" />
                                     </div>
                                 )}
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#10182B]/60 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#F5F8F5]/60 to-transparent" />
 
                                 {/* Status Badge */}
                                 {course.approvalStatus === "approved" && course.publishStatus === "published" ? (
@@ -153,57 +153,57 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                         <div className="lg:col-span-2 flex flex-col justify-between">
                             <div>
                                 <div className="flex items-center gap-3 flex-wrap mb-3">
-                                    <span className="px-3 py-1 bg-[#A78BFA]/10 border border-[#A78BFA]/20 rounded-full text-xs font-medium text-[#A78BFA] uppercase">
+                                    <span className="px-3 py-1 bg-[#7BAE9B]/10 border border-[#7BAE9B]/20 rounded-full text-xs font-medium text-[#7BAE9B] uppercase">
                                         {course.category}
                                     </span>
                                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getLevelColor(course.level)}`}>
                                         {getLevelLabel(course.level)}
                                     </span>
-                                    <span className="px-3 py-1 bg-[#1C2740] border border-[#A78BFA]/10 rounded-full text-xs font-medium text-[#EDEFF5]/60">
+                                    <span className="px-3 py-1 bg-[#DCEBE4] border border-[#7BAE9B]/10 rounded-full text-xs font-medium text-[#263A33]/60">
                                         {course.duration}
                                     </span>
                                 </div>
 
-                                <h1 className="text-2xl md:text-4xl font-bold text-[#EDEFF5] leading-tight">
+                                <h1 className="text-2xl md:text-4xl font-bold text-[#263A33] leading-tight">
                                     {course.title}
                                 </h1>
 
                                 <div className="flex items-center gap-4 mt-3">
-                                    <div className="flex items-center gap-1.5 text-sm text-[#EDEFF5]/60">
+                                    <div className="flex items-center gap-1.5 text-sm text-[#263A33]/60">
                                         <FaStar className="text-yellow-400" />
-                                        <span className="text-[#EDEFF5] font-medium">
+                                        <span className="text-[#263A33] font-medium">
                                             {course.avgRating?.toFixed(1) || "0.0"}
                                         </span>
                                         <span>({course.reviewCount || 0} reviews)</span>
                                     </div>
-                                    <div className="flex items-center gap-1.5 text-sm text-[#EDEFF5]/60">
-                                        <FaUserGraduate className="text-[#A78BFA]" />
+                                    <div className="flex items-center gap-1.5 text-sm text-[#263A33]/60">
+                                        <FaUserGraduate className="text-[#7BAE9B]" />
                                         <span>{course.enrollmentCount || 0} students</span>
                                     </div>
                                 </div>
 
-                                <p className="text-[#EDEFF5]/70 mt-4 text-base leading-relaxed">
+                                <p className="text-[#263A33]/70 mt-4 text-base leading-relaxed">
                                     {course.description}
                                 </p>
                             </div>
 
                             {/* Price & Actions */}
-                            <div className="flex flex-wrap items-center gap-4 mt-6 pt-6 border-t border-[#A78BFA]/10">
+                            <div className="flex flex-wrap items-center gap-4 mt-6 pt-6 border-t border-[#7BAE9B]/10">
                                 <div className="flex items-baseline gap-3">
-                                    <span className="text-3xl font-bold text-[#A78BFA]">
+                                    <span className="text-3xl font-bold text-[#7BAE9B]">
                                         ${course.price.toFixed(2)}
                                     </span>
-                                    <span className="text-sm text-[#EDEFF5]/40 line-through">
+                                    <span className="text-sm text-[#263A33]/40 line-through">
                                         ${(course.price * 1.5).toFixed(2)}
                                     </span>
                                 </div>
 
                                 <div className="flex flex-wrap gap-3 ml-auto">
-                                    {/* ✅ View Content Button - Shows when enrolled */}
+                                    {/* âœ… View Content Button - Shows when enrolled */}
                                     {isEnrolled && (
                                         <Button
                                             onPress={handleViewContent}
-                                            className="bg-[#4FD1C5] text-[#10182B] font-semibold hover:bg-[#4FD1C5]/80"
+                                            className="bg-[#5F927E] text-[#F5F8F5] font-semibold hover:bg-[#5F927E]/80"
                                         >
                                             <FaPlay />
                                             View Content
@@ -212,7 +212,7 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
 
                                     <Button
                                         onPress={handleShare}
-                                        className="bg-[#1C2740] border border-[#A78BFA]/20 text-[#EDEFF5] hover:bg-[#A78BFA]/10"
+                                        className="bg-[#DCEBE4] border border-[#7BAE9B]/20 text-[#263A33] hover:bg-[#7BAE9B]/10"
                                     >
                                         <FaShare />
                                         Share
@@ -240,17 +240,17 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                     <div className="lg:col-span-2 space-y-8">
                         {/* What You Will Learn */}
                         {course.whatYouWillLearn && course.whatYouWillLearn.length > 0 && (
-                            <Card className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl p-6">
-                                <h2 className="text-xl font-bold text-[#EDEFF5] mb-4">
+                            <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-6">
+                                <h2 className="text-xl font-bold text-[#263A33] mb-4">
                                     What You Will Learn
                                 </h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                     {course.whatYouWillLearn.map((item, index) => (
                                         <div
                                             key={index}
-                                            className="flex items-start gap-3 text-[#EDEFF5]/70"
+                                            className="flex items-start gap-3 text-[#263A33]/70"
                                         >
-                                            <FaCheckCircle className="text-[#A78BFA] text-sm mt-0.5 flex-shrink-0" />
+                                            <FaCheckCircle className="text-[#7BAE9B] text-sm mt-0.5 flex-shrink-0" />
                                             <span className="text-sm">{item}</span>
                                         </div>
                                     ))}
@@ -260,14 +260,14 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
 
                         {/* Requirements */}
                         {course.requirements && course.requirements.length > 0 && (
-                            <Card className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl p-6">
-                                <h2 className="text-xl font-bold text-[#EDEFF5] mb-4">
+                            <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-6">
+                                <h2 className="text-xl font-bold text-[#263A33] mb-4">
                                     Requirements
                                 </h2>
-                                <ul className="space-y-2 text-[#EDEFF5]/70">
+                                <ul className="space-y-2 text-[#263A33]/70">
                                     {course.requirements.map((item, index) => (
                                         <li key={index} className="flex items-start gap-3">
-                                            <span className="text-[#A78BFA] mt-0.5">•</span>
+                                            <span className="text-[#7BAE9B] mt-0.5">â€¢</span>
                                             <span className="text-sm">{item}</span>
                                         </li>
                                     ))}
@@ -277,14 +277,14 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
 
                         {/* Target Audience */}
                         {course.targetAudience && course.targetAudience.length > 0 && (
-                            <Card className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl p-6">
-                                <h2 className="text-xl font-bold text-[#EDEFF5] mb-4">
+                            <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-6">
+                                <h2 className="text-xl font-bold text-[#263A33] mb-4">
                                     Who This Course Is For
                                 </h2>
-                                <ul className="space-y-2 text-[#EDEFF5]/70">
+                                <ul className="space-y-2 text-[#263A33]/70">
                                     {course.targetAudience.map((item, index) => (
                                         <li key={index} className="flex items-start gap-3">
-                                            <span className="text-[#A78BFA] mt-0.5">•</span>
+                                            <span className="text-[#7BAE9B] mt-0.5">â€¢</span>
                                             <span className="text-sm">{item}</span>
                                         </li>
                                     ))}
@@ -293,20 +293,20 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                         )}
 
                         {/* Instructor Info */}
-                        <Card className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl p-6">
-                            <h2 className="text-xl font-bold text-[#EDEFF5] mb-4">
+                        <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-6">
+                            <h2 className="text-xl font-bold text-[#263A33] mb-4">
                                 Instructor
                             </h2>
                             <div className="flex items-center gap-4">
-                                <div className="h-16 w-16 rounded-full bg-[#A78BFA]/10 flex items-center justify-center text-[#A78BFA] font-bold text-2xl">
+                                <div className="h-16 w-16 rounded-full bg-[#7BAE9B]/10 flex items-center justify-center text-[#7BAE9B] font-bold text-2xl">
                                     {course.instructorName?.charAt(0) || "U"}
                                 </div>
                                 <div>
-                                    <p className="text-lg font-semibold text-[#EDEFF5]">
+                                    <p className="text-lg font-semibold text-[#263A33]">
                                         {course.instructorName}
                                     </p>
-                                    <p className="text-sm text-[#EDEFF5]/50">
-                                        Instructor • {course.category} Expert
+                                    <p className="text-sm text-[#263A33]/50">
+                                        Instructor â€¢ {course.category} Expert
                                     </p>
                                 </div>
                             </div>
@@ -316,41 +316,41 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                     {/* Sidebar */}
                     <div className="space-y-6">
                         {/* Quick Info */}
-                        <Card className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl p-6 sticky top-24">
-                            <h3 className="text-lg font-bold text-[#EDEFF5] mb-4">
+                        <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-6 sticky top-24">
+                            <h3 className="text-lg font-bold text-[#263A33] mb-4">
                                 Course Overview
                             </h3>
                             <div className="space-y-3">
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-[#EDEFF5]/50">Category</span>
-                                    <span className="text-[#EDEFF5]">{course.category}</span>
+                                    <span className="text-[#263A33]/50">Category</span>
+                                    <span className="text-[#263A33]">{course.category}</span>
                                 </div>
-                                <div className="border-t border-[#A78BFA]/10 my-2" />
+                                <div className="border-t border-[#7BAE9B]/10 my-2" />
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-[#EDEFF5]/50">Level</span>
-                                    <span className="text-[#EDEFF5]">{getLevelLabel(course.level)}</span>
+                                    <span className="text-[#263A33]/50">Level</span>
+                                    <span className="text-[#263A33]">{getLevelLabel(course.level)}</span>
                                 </div>
-                                <div className="border-t border-[#A78BFA]/10 my-2" />
+                                <div className="border-t border-[#7BAE9B]/10 my-2" />
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-[#EDEFF5]/50">Duration</span>
-                                    <span className="text-[#EDEFF5]">{course.duration}</span>
+                                    <span className="text-[#263A33]/50">Duration</span>
+                                    <span className="text-[#263A33]">{course.duration}</span>
                                 </div>
-                                <div className="border-t border-[#A78BFA]/10 my-2" />
+                                <div className="border-t border-[#7BAE9B]/10 my-2" />
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-[#EDEFF5]/50">Students</span>
-                                    <span className="text-[#EDEFF5]">{course.enrollmentCount || 0}</span>
+                                    <span className="text-[#263A33]/50">Students</span>
+                                    <span className="text-[#263A33]">{course.enrollmentCount || 0}</span>
                                 </div>
-                                <div className="border-t border-[#A78BFA]/10 my-2" />
+                                <div className="border-t border-[#7BAE9B]/10 my-2" />
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-[#EDEFF5]/50">Rating</span>
-                                    <span className="text-[#EDEFF5] flex items-center gap-1">
+                                    <span className="text-[#263A33]/50">Rating</span>
+                                    <span className="text-[#263A33] flex items-center gap-1">
                                         <FaStar className="text-yellow-400 text-xs" />
                                         {course.avgRating?.toFixed(1) || "0.0"}
                                     </span>
                                 </div>
-                                <div className="border-t border-[#A78BFA]/10 my-2" />
+                                <div className="border-t border-[#7BAE9B]/10 my-2" />
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-[#EDEFF5]/50">Status</span>
+                                    <span className="text-[#263A33]/50">Status</span>
                                     <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
                                         course.approvalStatus === "approved" && course.publishStatus === "published"
                                             ? "text-green-400 bg-green-500/10"
@@ -362,14 +362,14 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                     </span>
                                 </div>
 
-                                {/* ✅ View Content Button in Sidebar - Shows when enrolled */}
+                                {/* âœ… View Content Button in Sidebar - Shows when enrolled */}
                                 {isEnrolled && (
                                     <>
-                                        <div className="border-t border-[#A78BFA]/10 my-2" />
+                                        <div className="border-t border-[#7BAE9B]/10 my-2" />
                                         <Button
                                             onPress={handleViewContent}
                                             fullWidth
-                                            className="bg-[#4FD1C5] text-[#10182B] font-semibold hover:bg-[#4FD1C5]/80"
+                                            className="bg-[#5F927E] text-[#F5F8F5] font-semibold hover:bg-[#5F927E]/80"
                                         >
                                             <FaPlay />
                                             View Course Content
@@ -378,7 +378,7 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                 )}
                             </div>
 
-                            <div className="border-t border-[#A78BFA]/10 my-4" />
+                            <div className="border-t border-[#7BAE9B]/10 my-4" />
 
                             <CourseEnrollmentWidget
                                 courseId={course._id!}
@@ -390,8 +390,8 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                             />
 
                             {!session && (
-                                <p className="text-[#EDEFF5]/40 text-xs text-center mt-3">
-                                    Please <Link href="/signin" className="text-[#A78BFA] hover:underline">sign in</Link> to enroll
+                                <p className="text-[#263A33]/40 text-xs text-center mt-3">
+                                    Please <Link href="/signin" className="text-[#7BAE9B] hover:underline">sign in</Link> to enroll
                                 </p>
                             )}
                         </Card>

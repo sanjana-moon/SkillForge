@@ -88,28 +88,28 @@ const AddCourseForm = () => {
     };
 
     return (
-        <div className="min-h-screen p-1 sm:p-6 md:p-8 w-full bg-[#10182B]">
+        <div className="min-h-screen p-1 sm:p-6 md:p-8 w-full bg-[#F5F8F5]">
             <div className="container mx-auto max-w-3xl">
 
                 {/* Header */}
                 <div className="mb-6 sm:mb-8 text-center">
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#EDEFF5]">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#263A33]">
                         Create New Course
                     </h1>
-                    <p className="text-sm sm:text-base text-[#EDEFF5]/70 mt-2">
+                    <p className="text-sm sm:text-base text-[#263A33]/70 mt-2">
                         Share your knowledge with the world. Fill in the details below to create your course.
                     </p>
                 </div>
 
                 {/* Card */}
-                <Card className="bg-[#1C2740] border border-[#A78BFA]/20 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 md:p-8">
+                <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 md:p-8">
 
                     {/* Info Box */}
-                    <div className="bg-[#10182B] border border-[#A78BFA]/30 rounded-2xl p-4 mb-6 sm:mb-8 text-center">
-                        <h3 className="font-semibold text-[#EDEFF5] text-sm sm:text-base">
+                    <div className="bg-[#F5F8F5] border border-[#7BAE9B]/30 rounded-2xl p-4 mb-6 sm:mb-8 text-center">
+                        <h3 className="font-semibold text-[#263A33] text-sm sm:text-base">
                             Course Creation
                         </h3>
-                        <p className="text-xs sm:text-sm text-[#EDEFF5]/70 mt-1">
+                        <p className="text-xs sm:text-sm text-[#263A33]/70 mt-1">
                             All courses will be submitted for approval. You can publish them once approved.
                         </p>
                     </div>
@@ -118,7 +118,7 @@ const AddCourseForm = () => {
 
                         {/* Thumbnail */}
                         <div>
-                            <label className="block mb-2 font-semibold text-[#EDEFF5] text-sm sm:text-base">
+                            <label className="block mb-2 font-semibold text-[#263A33] text-sm sm:text-base">
                                 Course Thumbnail *
                             </label>
 
@@ -128,7 +128,7 @@ const AddCourseForm = () => {
                                 {...register("thumbnail", {
                                     required: "Course thumbnail is required",
                                 })}
-                                className="w-full rounded-xl border-2 border-dashed border-[#A78BFA]/50 bg-[#10182B]/50 p-4 text-[#EDEFF5] file:mr-4 file:rounded-lg file:border-0 file:bg-[#A78BFA] file:px-4 file:py-2 file:text-[#10182B] hover:file:bg-[#A78BFA]/80"
+                                className="w-full rounded-xl border-2 border-dashed border-[#7BAE9B]/50 bg-[#F5F8F5]/50 p-4 text-[#263A33] file:mr-4 file:rounded-lg file:border-0 file:bg-[#7BAE9B] file:px-4 file:py-2 file:text-[#F5F8F5] hover:file:bg-[#7BAE9B]/80"
                             />
 
                             {errors.thumbnail && (
@@ -141,12 +141,12 @@ const AddCourseForm = () => {
                         {/* Title + Duration */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
                             <div>
-                                <label className="block mb-2 font-semibold text-[#EDEFF5] text-sm sm:text-base">
+                                <label className="block mb-2 font-semibold text-[#263A33] text-sm sm:text-base">
                                     Course Title *
                                 </label>
                                 <Input
                                     placeholder="Enter the course title"
-                                    className="w-full bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                                    className="w-full bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40"
                                     {...register("title", {
                                         required: "Course title is required",
                                         minLength: {
@@ -161,12 +161,12 @@ const AddCourseForm = () => {
                             </div>
 
                             <div>
-                                <label className="block mb-2 font-semibold text-[#EDEFF5] text-sm sm:text-base">
+                                <label className="block mb-2 font-semibold text-[#263A33] text-sm sm:text-base">
                                     Duration *
                                 </label>
                                 <Input
                                     placeholder="e.g., 10 hours, 6 weeks"
-                                    className="w-full bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                                    className="w-full bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40"
                                     {...register("duration", {
                                         required: "Duration is required",
                                     })}
@@ -180,24 +180,24 @@ const AddCourseForm = () => {
                         {/* Category + Level */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
                             <div>
-                                <label className="block mb-2 font-semibold text-[#EDEFF5] text-sm sm:text-base">
+                                <label className="block mb-2 font-semibold text-[#263A33] text-sm sm:text-base">
                                     Category *
                                 </label>
                                 <select
                                     {...register("category", {
                                         required: "Category is required",
                                     })}
-                                    className="w-full px-4 py-3 rounded-xl border border-[#A78BFA]/30 bg-[#10182B]/50 focus:ring-2 focus:ring-[#A78BFA] outline-none text-sm sm:text-base text-[#EDEFF5]"
+                                    className="w-full px-4 py-3 rounded-xl border border-[#7BAE9B]/30 bg-[#F5F8F5]/50 focus:ring-2 focus:ring-[#7BAE9B] outline-none text-sm sm:text-base text-[#263A33]"
                                 >
-                                    <option value="" className="bg-[#1C2740]">Select Category</option>
-                                    <option value="programming" className="bg-[#1C2740]">Programming</option>
-                                    <option value="design" className="bg-[#1C2740]">Design</option>
-                                    <option value="business" className="bg-[#1C2740]">Business</option>
-                                    <option value="marketing" className="bg-[#1C2740]">Marketing</option>
-                                    <option value="photography" className="bg-[#1C2740]">Photography</option>
-                                    <option value="music" className="bg-[#1C2740]">Music</option>
-                                    <option value="health" className="bg-[#1C2740]">Health & Fitness</option>
-                                    <option value="language" className="bg-[#1C2740]">Language</option>
+                                    <option value="" className="bg-[#DCEBE4]">Select Category</option>
+                                    <option value="programming" className="bg-[#DCEBE4]">Programming</option>
+                                    <option value="design" className="bg-[#DCEBE4]">Design</option>
+                                    <option value="business" className="bg-[#DCEBE4]">Business</option>
+                                    <option value="marketing" className="bg-[#DCEBE4]">Marketing</option>
+                                    <option value="photography" className="bg-[#DCEBE4]">Photography</option>
+                                    <option value="music" className="bg-[#DCEBE4]">Music</option>
+                                    <option value="health" className="bg-[#DCEBE4]">Health & Fitness</option>
+                                    <option value="language" className="bg-[#DCEBE4]">Language</option>
                                 </select>
                                 {errors.category && (
                                     <p className="text-red-500 text-sm mt-1">
@@ -207,19 +207,19 @@ const AddCourseForm = () => {
                             </div>
 
                             <div>
-                                <label className="block mb-2 font-semibold text-[#EDEFF5] text-sm sm:text-base">
+                                <label className="block mb-2 font-semibold text-[#263A33] text-sm sm:text-base">
                                     Level *
                                 </label>
                                 <select
                                     {...register("level", {
                                         required: "Level is required",
                                     })}
-                                    className="w-full px-4 py-3 rounded-xl border border-[#A78BFA]/30 bg-[#10182B]/50 focus:ring-2 focus:ring-[#A78BFA] outline-none text-sm sm:text-base text-[#EDEFF5]"
+                                    className="w-full px-4 py-3 rounded-xl border border-[#7BAE9B]/30 bg-[#F5F8F5]/50 focus:ring-2 focus:ring-[#7BAE9B] outline-none text-sm sm:text-base text-[#263A33]"
                                 >
-                                    <option value="" className="bg-[#1C2740]">Select Level</option>
-                                    <option value="beginner" className="bg-[#1C2740]">Beginner</option>
-                                    <option value="intermediate" className="bg-[#1C2740]">Intermediate</option>
-                                    <option value="advanced" className="bg-[#1C2740]">Advanced</option>
+                                    <option value="" className="bg-[#DCEBE4]">Select Level</option>
+                                    <option value="beginner" className="bg-[#DCEBE4]">Beginner</option>
+                                    <option value="intermediate" className="bg-[#DCEBE4]">Intermediate</option>
+                                    <option value="advanced" className="bg-[#DCEBE4]">Advanced</option>
                                 </select>
                                 {errors.level && (
                                     <p className="text-red-500 text-sm mt-1">
@@ -232,13 +232,13 @@ const AddCourseForm = () => {
                         {/* Price */}
                         <div className="grid grid-cols-1 md:grid-cols-1 gap-4 sm:gap-5">
                             <div className="flex flex-col gap-2">
-                                <label className="block mb-2 font-semibold text-[#EDEFF5] text-sm sm:text-base">
+                                <label className="block mb-2 font-semibold text-[#263A33] text-sm sm:text-base">
                                     Price (USD) *
                                 </label>
                                 <Input
                                     type="number"
                                     placeholder="Enter the price"
-                                    className="w-full bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                                    className="w-full bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40"
                                     {...register("price", {
                                         required: "Price is required",
                                         min: {
@@ -257,12 +257,12 @@ const AddCourseForm = () => {
 
                         {/* Description */}
                         <div>
-                            <label className="block mb-2 font-semibold text-[#EDEFF5] text-sm sm:text-base">
+                            <label className="block mb-2 font-semibold text-[#263A33] text-sm sm:text-base">
                                 Course Description *
                             </label>
                             <TextArea
                                 placeholder="Describe what students will learn in this course..."
-                                className="w-full bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                                className="w-full bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40"
                                 rows={4}
                                 {...register("description", {
                                     required: "Description is required",
@@ -281,18 +281,18 @@ const AddCourseForm = () => {
 
                         {/* What You Will Learn */}
                         <div>
-                            <label className="block mb-2 font-semibold text-[#EDEFF5] text-sm sm:text-base">
+                            <label className="block mb-2 font-semibold text-[#263A33] text-sm sm:text-base">
                                 What You Will Learn *
                             </label>
                             <TextArea
                                 placeholder="Enter each learning outcome on a new line..."
-                                className="w-full bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                                className="w-full bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40"
                                 rows={3}
                                 {...register("whatYouWillLearn", {
                                     required: "Learning outcomes are required",
                                 })}
                             />
-                            <p className="text-[#EDEFF5]/40 text-xs mt-1">
+                            <p className="text-[#263A33]/40 text-xs mt-1">
                                 Separate each point with a new line
                             </p>
                             {errors.whatYouWillLearn && (
@@ -304,32 +304,32 @@ const AddCourseForm = () => {
 
                         {/* Requirements */}
                         <div>
-                            <label className="block mb-2 font-semibold text-[#EDEFF5] text-sm sm:text-base">
+                            <label className="block mb-2 font-semibold text-[#263A33] text-sm sm:text-base">
                                 Requirements
                             </label>
                             <TextArea
                                 placeholder="Enter each requirement on a new line..."
-                                className="w-full bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                                className="w-full bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40"
                                 rows={3}
                                 {...register("requirements")}
                             />
-                            <p className="text-[#EDEFF5]/40 text-xs mt-1">
+                            <p className="text-[#263A33]/40 text-xs mt-1">
                                 Separate each requirement with a new line (optional)
                             </p>
                         </div>
 
                         {/* Target Audience */}
                         <div>
-                            <label className="block mb-2 font-semibold text-[#EDEFF5] text-sm sm:text-base">
+                            <label className="block mb-2 font-semibold text-[#263A33] text-sm sm:text-base">
                                 Target Audience
                             </label>
                             <TextArea
                                 placeholder="Who is this course for?"
-                                className="w-full bg-[#10182B]/50 border-[#A78BFA]/30 text-[#EDEFF5] placeholder:text-[#EDEFF5]/40"
+                                className="w-full bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40"
                                 rows={3}
                                 {...register("targetAudience")}
                             />
-                            <p className="text-[#EDEFF5]/40 text-xs mt-1">
+                            <p className="text-[#263A33]/40 text-xs mt-1">
                                 Describe who should take this course (optional)
                             </p>
                         </div>
@@ -337,7 +337,7 @@ const AddCourseForm = () => {
                         {/* Submit Button */}
                         <Button
                             type="submit"
-                            className="w-full bg-[#A78BFA] text-[#10182B] font-semibold py-5 sm:py-6 md:py-7 rounded-2xl hover:bg-[#A78BFA]/80 transition-all text-sm sm:text-base"
+                            className="w-full bg-[#7BAE9B] text-[#F5F8F5] font-semibold py-5 sm:py-6 md:py-7 rounded-2xl hover:bg-[#7BAE9B]/80 transition-all text-sm sm:text-base"
                         >
                             <IoMdCheckmarkCircleOutline className="mr-2 text-xl" />
                             {loading ? "Creating Course..." : "Create Course"}

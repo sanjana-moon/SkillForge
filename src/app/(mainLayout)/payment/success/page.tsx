@@ -55,7 +55,7 @@ export default async function PaymentSuccess({
             ? stripeSession.payment_intent
             : stripeSession.payment_intent?.id ?? "";
 
-    // ✅ Call processCheckout from actions.ts
+    // âœ… Call processCheckout from actions.ts
     const result = await processCheckout({
         courseId: courseId || stripeSession.metadata?.courseId || "",
         transactionId: transactionId,
@@ -65,7 +65,7 @@ export default async function PaymentSuccess({
     if (!result.success) {
         console.error("Checkout failed:", result.error);
     } else {
-        console.log("✅ Enrollment and payment saved successfully");
+        console.log("âœ… Enrollment and payment saved successfully");
     }
 
     const paymentData = {
@@ -79,12 +79,12 @@ export default async function PaymentSuccess({
     };
 
     return (
-        <div className="min-h-screen bg-[#10182B] flex items-center justify-center px-6 py-16">
+        <div className="min-h-screen bg-[#F5F8F5] flex items-center justify-center px-6 py-16">
 
-            <Card className="w-full max-w-2xl overflow-hidden rounded-3xl border border-[#A78BFA]/20 shadow-2xl bg-[#1C2740]">
+            <Card className="w-full max-w-2xl overflow-hidden rounded-3xl border border-[#7BAE9B]/20 shadow-2xl bg-[#DCEBE4]">
 
                 {/* Header */}
-                <CardHeader className="flex flex-col items-center justify-center gap-5 bg-linear-to-br from-[#10182B] to-[#1C2740] py-12 border-b border-[#A78BFA]/20">
+                <CardHeader className="flex flex-col items-center justify-center gap-5 bg-linear-to-br from-[#F5F8F5] to-[#DCEBE4] py-12 border-b border-[#7BAE9B]/20">
 
                     <div className="flex h-24 w-24 items-center justify-center rounded-full bg-green-500/20 border-4 border-green-500/30">
                         <FaCheckCircle
@@ -94,11 +94,11 @@ export default async function PaymentSuccess({
                     </div>
 
                     <div className="text-center">
-                        <h1 className="text-4xl font-black text-[#EDEFF5]">
-                            Enrollment Confirmed! 🎉
+                        <h1 className="text-4xl font-black text-[#263A33]">
+                            Enrollment Confirmed! ðŸŽ‰
                         </h1>
 
-                        <p className="mt-2 text-[#EDEFF5]/60">
+                        <p className="mt-2 text-[#263A33]/60">
                             You are now enrolled in the course.
                         </p>
                     </div>
@@ -106,49 +106,49 @@ export default async function PaymentSuccess({
                 </CardHeader>
 
                 <div className="p-8">
-                    <div className="rounded-3xl border border-[#A78BFA]/20 bg-[#10182B] p-8">
-                        <h2 className="mb-8 text-2xl font-bold text-[#EDEFF5]">
+                    <div className="rounded-3xl border border-[#7BAE9B]/20 bg-[#F5F8F5] p-8">
+                        <h2 className="mb-8 text-2xl font-bold text-[#263A33]">
                             Enrollment Details
                         </h2>
 
                         <div className="space-y-6">
 
                             {/* Course Name */}
-                            <div className="flex items-center justify-between border-b border-[#A78BFA]/10 pb-4">
+                            <div className="flex items-center justify-between border-b border-[#7BAE9B]/10 pb-4">
                                 <div className="flex items-center gap-3">
-                                    <FaBook className="text-[#A78BFA]" />
-                                    <span className="text-[#EDEFF5]/60">
+                                    <FaBook className="text-[#7BAE9B]" />
+                                    <span className="text-[#263A33]/60">
                                         Course
                                     </span>
                                 </div>
-                                <span className="font-semibold text-[#EDEFF5]">
+                                <span className="font-semibold text-[#263A33]">
                                     {paymentData.courseTitle}
                                 </span>
                             </div>
 
                             {/* Amount Paid */}
-                            <div className="flex items-center justify-between border-b border-[#A78BFA]/10 pb-4">
+                            <div className="flex items-center justify-between border-b border-[#7BAE9B]/10 pb-4">
                                 <div className="flex items-center gap-3">
-                                    <FaGraduationCap className="text-[#A78BFA]" />
-                                    <span className="text-[#EDEFF5]/60">
+                                    <FaGraduationCap className="text-[#7BAE9B]" />
+                                    <span className="text-[#263A33]/60">
                                         Amount Paid
                                     </span>
                                 </div>
-                                <span className="font-semibold text-[#A78BFA] text-xl">
+                                <span className="font-semibold text-[#7BAE9B] text-xl">
                                     ${paymentData.amount.toFixed(2)}
                                 </span>
                             </div>
 
                             {/* Start Date */}
                             {paymentData.startDate && (
-                                <div className="flex items-center justify-between border-b border-[#A78BFA]/10 pb-4">
+                                <div className="flex items-center justify-between border-b border-[#7BAE9B]/10 pb-4">
                                     <div className="flex items-center gap-3">
-                                        <FaClock className="text-[#A78BFA]" />
-                                        <span className="text-[#EDEFF5]/60">
+                                        <FaClock className="text-[#7BAE9B]" />
+                                        <span className="text-[#263A33]/60">
                                             Start Date
                                         </span>
                                     </div>
-                                    <span className="font-semibold text-[#EDEFF5]">
+                                    <span className="font-semibold text-[#263A33]">
                                         {new Date(paymentData.startDate).toLocaleDateString("en-US", {
                                             year: "numeric",
                                             month: "long",
@@ -159,31 +159,31 @@ export default async function PaymentSuccess({
                             )}
 
                             {/* Student Email */}
-                            <div className="flex items-center justify-between border-b border-[#A78BFA]/10 pb-4">
+                            <div className="flex items-center justify-between border-b border-[#7BAE9B]/10 pb-4">
                                 <div className="flex items-center gap-3">
-                                    <FaUser className="text-[#A78BFA]" />
-                                    <span className="text-[#EDEFF5]/60">
+                                    <FaUser className="text-[#7BAE9B]" />
+                                    <span className="text-[#263A33]/60">
                                         Student Email
                                     </span>
                                 </div>
-                                <span className="font-semibold text-[#EDEFF5] break-all">
+                                <span className="font-semibold text-[#263A33] break-all">
                                     {paymentData.studentEmail}
                                 </span>
                             </div>
 
                             {/* Transaction ID */}
-                            <div className="flex items-center justify-between border-b border-[#A78BFA]/10 pb-4">
-                                <span className="text-[#EDEFF5]/60">
+                            <div className="flex items-center justify-between border-b border-[#7BAE9B]/10 pb-4">
+                                <span className="text-[#263A33]/60">
                                     Transaction ID
                                 </span>
-                                <span className="max-w-60 truncate font-semibold text-[#A78BFA]">
+                                <span className="max-w-60 truncate font-semibold text-[#7BAE9B]">
                                     {transactionId}
                                 </span>
                             </div>
 
                             {/* Payment Status */}
-                            <div className="flex items-center justify-between border-b border-[#A78BFA]/10 pb-4">
-                                <span className="text-[#EDEFF5]/60">
+                            <div className="flex items-center justify-between border-b border-[#7BAE9B]/10 pb-4">
+                                <span className="text-[#263A33]/60">
                                     Payment Status
                                 </span>
                                 <span className="rounded-full bg-green-500/20 px-4 py-1 text-sm font-semibold capitalize text-green-400 border border-green-500/30">
@@ -193,19 +193,19 @@ export default async function PaymentSuccess({
 
                             {/* Total Paid */}
                             <div className="flex items-center justify-between pt-2">
-                                <span className="text-lg font-semibold text-[#EDEFF5]">
+                                <span className="text-lg font-semibold text-[#263A33]">
                                     Total Paid
                                 </span>
-                                <span className="text-3xl font-black text-[#A78BFA]">
+                                <span className="text-3xl font-black text-[#7BAE9B]">
                                     ${paymentData.amount.toFixed(2)}
                                 </span>
                             </div>
 
                             {/* Note */}
                             {paymentData.note && (
-                                <div className="border-t border-[#A78BFA]/10 pt-4 mt-4">
-                                    <p className="text-sm text-[#EDEFF5]/40">
-                                        <span className="font-medium text-[#EDEFF5]/60">Note:</span> {paymentData.note}
+                                <div className="border-t border-[#7BAE9B]/10 pt-4 mt-4">
+                                    <p className="text-sm text-[#263A33]/40">
+                                        <span className="font-medium text-[#263A33]/60">Note:</span> {paymentData.note}
                                     </p>
                                 </div>
                             )}
@@ -221,7 +221,7 @@ export default async function PaymentSuccess({
                             className="w-full sm:w-auto"
                         >
                             <Button
-                                className="w-full rounded-xl bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80"
+                                className="w-full rounded-xl bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80"
                             >
                                 <FaArrowRight className="mr-2" />
                                 Go to Course
@@ -233,7 +233,7 @@ export default async function PaymentSuccess({
                             className="w-full sm:w-auto"
                         >
                             <Button
-                                className="w-full rounded-xl border border-[#A78BFA]/30 text-[#EDEFF5] hover:bg-[#A78BFA]/10"
+                                className="w-full rounded-xl border border-[#7BAE9B]/30 text-[#263A33] hover:bg-[#7BAE9B]/10"
                             >
                                 <FaGraduationCap className="mr-2" />
                                 My Dashboard

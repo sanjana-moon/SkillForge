@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function BrowseCoursesPage() {
     return (
         <Suspense fallback={
-            <div className="min-h-screen bg-[#10182B] flex items-center justify-center">
+            <div className="min-h-screen bg-[#F5F8F5] flex items-center justify-center">
                 <Spinner size="lg" />
             </div>
         }>

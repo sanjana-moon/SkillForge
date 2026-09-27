@@ -41,8 +41,8 @@ const Navbar = () => {
 
     const navLinkClass = (href: string) =>
         pathname === href
-            ? "text-[#A78BFA] border-b-2 border-[#A78BFA] font-semibold pb-1"
-            : "text-[#EDEFF5]/70 hover:text-[#EDEFF5] transition-colors";
+            ? "text-[#7BAE9B] border-b-2 border-[#7BAE9B] font-semibold pb-1"
+            : "text-[#263A33]/70 hover:text-[#263A33] transition-colors";
 
     // Public routes (visible to everyone)
     const publicNavLinks = [
@@ -138,7 +138,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="sticky top-0 z-50 w-full bg-[#10182B]/95 backdrop-blur-md border-b border-[#A78BFA]/20 shadow-lg">
+        <nav className="sticky top-0 z-50 w-full bg-[#F5F8F5]/95 backdrop-blur-md border-b border-[#7BAE9B]/20 shadow-lg">
             <div className="mx-auto flex container items-center justify-between px-4 py-2">
                 {/* LOGO */}
                 <Link href="/" className="no-underline shrink-0">
@@ -164,7 +164,6 @@ const Navbar = () => {
                         </li>
                     ))}
 
-                    {/* ✅ AI Mentor - Shows when ANY user is logged in */}
                     {user && (
                         <li>
                             <Link
@@ -180,18 +179,18 @@ const Navbar = () => {
 
                     {user && (
                         <li className="relative group">
-                            <button className="text-[#EDEFF5]/70 hover:text-[#EDEFF5] transition-colors flex items-center gap-2">
+                            <button className="text-[#263A33]/70 hover:text-[#263A33] transition-colors flex items-center gap-2">
                                 Dashboard
                             </button>
 
-                            <div className="absolute left-0 top-full hidden min-w-56 rounded-xl border border-[#A78BFA]/20 bg-[#1C2740] shadow-2xl group-hover:block overflow-hidden">
+                            <div className="absolute left-0 top-full hidden min-w-56 rounded-xl border border-[#7BAE9B]/20 bg-[#DCEBE4] shadow-2xl group-hover:block overflow-hidden">
                                 {dashboardLinks.map((item) => (
                                     <Link
                                         key={item.key}
                                         href={item.href}
-                                        className="flex items-center gap-3 px-5 py-3 text-[#EDEFF5]/70 hover:bg-[#A78BFA]/10 hover:text-[#EDEFF5] transition-colors"
+                                        className="flex items-center gap-3 px-5 py-3 text-[#263A33]/70 hover:bg-[#7BAE9B]/10 hover:text-[#263A33] transition-colors"
                                     >
-                                        {item.icon && <item.icon className="text-[#A78BFA]" />}
+                                        {item.icon && <item.icon className="text-[#7BAE9B]" />}
                                         {item.label}
                                     </Link>
                                 ))}
@@ -206,7 +205,7 @@ const Navbar = () => {
                     <div className="hidden lg:flex items-center gap-3">
                         {isMounted && user ? (
                             <>
-                                <span className="font-medium text-[#EDEFF5]">
+                                <span className="font-medium text-[#263A33]">
                                     Hi, {user.name}
                                 </span>
 
@@ -215,7 +214,7 @@ const Navbar = () => {
                                     alt={user.name ?? "User"}
                                     width={40}
                                     height={40}
-                                    className="border-2 border-[#A78BFA] rounded-full object-cover"
+                                    className="border-2 border-[#7BAE9B] rounded-full object-cover"
                                 />
 
                                 <MotionButton
@@ -232,7 +231,7 @@ const Navbar = () => {
                                         damping: 15,
                                     }}
                                     onClick={handleSignOut}
-                                    className="bg-[#A78BFA] text-[#10182B] font-semibold rounded-md hover:bg-[#A78BFA]/80"
+                                    className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold rounded-md hover:bg-[#7BAE9B]/80"
                                 >
                                     <MdLogout />
                                     Logout
@@ -254,7 +253,7 @@ const Navbar = () => {
                                             stiffness: 400,
                                             damping: 15,
                                         }}
-                                        className="bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80"
+                                        className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80"
                                     >
                                         <MdLogin />
                                         Sign In
@@ -275,7 +274,7 @@ const Navbar = () => {
                                             stiffness: 400,
                                             damping: 15,
                                         }}
-                                        className="border border-[#A78BFA] text-[#EDEFF5] bg-transparent hover:bg-[#A78BFA]/10"
+                                        className="border border-[#7BAE9B] text-[#263A33] bg-transparent hover:bg-[#7BAE9B]/10"
                                     >
                                         <LuUserRoundPlus />
                                         Sign Up
@@ -293,13 +292,13 @@ const Navbar = () => {
                         whileTap={{
                             scale: 0.9,
                         }}
-                        className="lg:hidden text-[#EDEFF5]"
+                        className="lg:hidden text-[#263A33]"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
                         {isMenuOpen ? (
-                            <RxCross2 className="text-2xl text-[#A78BFA]" />
+                            <RxCross2 className="text-2xl text-[#7BAE9B]" />
                         ) : (
-                            <TfiAlignLeft className="text-2xl text-[#A78BFA]" />
+                            <TfiAlignLeft className="text-2xl text-[#7BAE9B]" />
                         )}
                     </motion.button>
 
@@ -320,10 +319,10 @@ const Navbar = () => {
                                 alt={user.name ?? "User"}
                                 width={40}
                                 height={40}
-                                className="border-2 border-[#A78BFA] rounded-full object-cover"
+                                className="border-2 border-[#7BAE9B] rounded-full object-cover"
                             />
                         ) : (
-                            <RxAvatar className="text-3xl text-[#A78BFA]" />
+                            <RxAvatar className="text-3xl text-[#7BAE9B]" />
                         )}
                     </motion.button>
                 </div>
@@ -348,7 +347,7 @@ const Navbar = () => {
                         transition={{
                             duration: 0.25,
                         }}
-                        className="overflow-hidden border-t border-[#A78BFA]/20 bg-[#10182B] lg:hidden"
+                        className="overflow-hidden border-t border-[#7BAE9B]/20 bg-[#F5F8F5] lg:hidden"
                     >
                         <ul className="flex flex-col gap-4 p-5">
                             {publicNavLinks.map((link) => (
@@ -379,8 +378,8 @@ const Navbar = () => {
 
                             {user && (
                                 <>
-                                    <li className="border-t border-[#A78BFA]/20 pt-4">
-                                        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#A78BFA]/60">
+                                    <li className="border-t border-[#7BAE9B]/20 pt-4">
+                                        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#7BAE9B]/60">
                                             Dashboard
                                         </p>
                                     </li>
@@ -427,23 +426,23 @@ const Navbar = () => {
                         }}
                         className="absolute right-4 top-20 z-50 lg:hidden"
                     >
-                        <div className="min-w-64 rounded-2xl border border-[#A78BFA]/20 bg-[#1C2740] p-5 shadow-2xl">
+                        <div className="min-w-64 rounded-2xl border border-[#7BAE9B]/20 bg-[#DCEBE4] p-5 shadow-2xl">
                             {user ? (
                                 <>
-                                    <div className="mb-5 flex flex-col items-center border-b border-[#A78BFA]/20 pb-4">
+                                    <div className="mb-5 flex flex-col items-center border-b border-[#7BAE9B]/20 pb-4">
                                         <Image
                                             src={user.image ?? "/default-avatar.png"}
                                             alt={user.name ?? "User"}
-                                            width={60}
-                                            height={60}
-                                            className="mb-3 border-2 border-[#A78BFA] rounded-full object-cover"
+                                            width={50}
+                                            height={50}
+                                            className="mb-3 border-2 border-[#7BAE9B] rounded-full object-cover"
                                         />
 
-                                        <h2 className="text-lg font-semibold text-[#EDEFF5]">
+                                        <h2 className="text-lg font-semibold text-[#263A33]">
                                             {user.name}
                                         </h2>
 
-                                        <p className="text-sm text-[#EDEFF5]/60">
+                                        <p className="text-sm text-[#263A33]/60">
                                             {user.email}
                                         </p>
                                     </div>
@@ -456,7 +455,7 @@ const Navbar = () => {
                                             scale: 0.95,
                                         }}
                                         onClick={handleSignOut}
-                                        className="w-full bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80"
+                                        className="w-full bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80"
                                     >
                                         <MdLogout />
                                         Logout
@@ -466,7 +465,7 @@ const Navbar = () => {
                                 <div className="flex flex-col gap-3">
                                     <Link href="/signin">
                                         <Button
-                                            className="w-full bg-[#A78BFA] text-[#10182B] font-semibold hover:bg-[#A78BFA]/80"
+                                            className="w-full bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80"
                                         >
                                             <MdLogin />
                                             Sign In
@@ -475,7 +474,7 @@ const Navbar = () => {
 
                                     <Link href="/signup">
                                         <Button
-                                            className="w-full border border-[#A78BFA] text-[#EDEFF5] bg-transparent hover:bg-[#A78BFA]/10"
+                                            className="w-full border border-[#7BAE9B] text-[#263A33] bg-transparent hover:bg-[#7BAE9B]/10"
                                         >
                                             <LuUserRoundPlus />
                                             Sign Up
