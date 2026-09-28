@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
-import { Fraunces, Manrope } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import ReactQueryProvider from "@/lib/providers/ReactQueryProviders";
 // import ReactQueryProvider from "@/lib/providers/ReactQueryProvider";
 
-const fraunces = Fraunces({
+const cormorant = Cormorant_Garamond({
     variable: "--font-heading",
     subsets: ["latin"],
+    weight: ["400", "600", "700"],
+    style: ["normal", "italic"],
     display: "swap",
 });
 
-const manrope = Manrope({
+const inter = Inter({
     variable: "--font-body",
     subsets: ["latin"],
+    weight: ["300", "400", "500", "600", "700"],
     display: "swap",
 });
 
@@ -46,7 +49,7 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`${fraunces.variable} ${manrope.variable} h-full scroll-smooth`}
+            className={`${cormorant.variable} ${inter.variable} h-full scroll-smooth`}
         >
             <body className="min-h-screen bg-background text-foreground font-body antialiased">
                 {/* ✅ React Query Provider must wrap everything that uses React Query */}

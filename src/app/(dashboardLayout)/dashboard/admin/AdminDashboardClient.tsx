@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Card } from "@heroui/react";
 import {
@@ -17,9 +17,9 @@ interface AdminDashboardClientProps {
 }
 
 const COLORS = [
-    "#7BAE9B",
-    "#5F927E",
-    "#5F927E",
+    "#C5A059",
+    "#5C3A21",
+    "#5C3A21",
     "#6D28D9",
     "#5B21B6",
     "#4C1D95",
@@ -34,17 +34,17 @@ const AdminDashboardClient = ({
         {
             title: "Total Users",
             value: dashboard.totalUsers,
-            color: "text-[#7BAE9B]",
+            color: "text-[#C5A059]",
         },
         {
             title: "Total Courses",
             value: dashboard.totalCourses,
-            color: "text-[#5F927E]",
+            color: "text-[#5C3A21]",
         },
         {
             title: "Total Enrollments",
             value: dashboard.totalEnrollments,
-            color: "text-[#5F927E]",
+            color: "text-[#5C3A21]",
         },
     ];
 
@@ -52,10 +52,10 @@ const AdminDashboardClient = ({
         <div className="space-y-8">
             {/* Header */}
             <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-[#263A33]">
+                <h1 className="text-3xl md:text-4xl font-bold text-[#EBE3D5]">
                     Admin Dashboard
                 </h1>
-                <p className="text-[#263A33]/60 mt-2">
+                <p className="text-[#EBE3D5]/60 mt-2">
                     Overview of the SkillForge platform.
                 </p>
             </div>
@@ -65,10 +65,10 @@ const AdminDashboardClient = ({
                 {statCards.map((item) => (
                     <Card
                         key={item.title}
-                        className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#7BAE9B]/10"
+                        className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#C5A059]/10"
                     >
                         <div className="p-6">
-                            <p className="text-[#263A33]/60 text-sm">
+                            <p className="text-[#EBE3D5]/60 text-sm">
                                 {item.title}
                             </p>
 
@@ -83,8 +83,8 @@ const AdminDashboardClient = ({
             </div>
 
             {/* Courses by Category */}
-            <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl shadow-xl p-6">
-                <h2 className="text-2xl font-bold mb-6 text-[#263A33]">
+            <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl shadow-xl p-6">
+                <h2 className="text-2xl font-bold mb-6 text-[#EBE3D5]">
                     Courses by Category
                 </h2>
 
@@ -97,7 +97,7 @@ const AdminDashboardClient = ({
                                 nameKey="category"
                                 outerRadius={130}
                                 labelLine={{
-                                    stroke: "#7BAE9B",
+                                    stroke: "#C5A059",
                                     strokeWidth: 2,
                                 }}
                                 label={({ cx, cy, midAngle, outerRadius, percent, name }) => {
@@ -138,16 +138,16 @@ const AdminDashboardClient = ({
                                     "Count",
                                 ]}
                                 contentStyle={{
-                                    backgroundColor: "#DCEBE4",
+                                    backgroundColor: "#3E5C4B",
                                     border: "1px solid rgba(167,139,250,.3)",
                                     borderRadius: "12px",
-                                    color: "#263A33",
+                                    color: "#EBE3D5",
                                 }}
                                 labelStyle={{
-                                    color: "#263A33",
+                                    color: "#EBE3D5",
                                 }}
                                 itemStyle={{
-                                    color: "#263A33",
+                                    color: "#EBE3D5",
                                 }}
                             />
 
@@ -157,7 +157,7 @@ const AdminDashboardClient = ({
                                 formatter={(value) => (
                                     <span
                                         style={{
-                                            color: "#263A33",
+                                            color: "#EBE3D5",
                                             fontWeight: 600,
                                         }}
                                     >

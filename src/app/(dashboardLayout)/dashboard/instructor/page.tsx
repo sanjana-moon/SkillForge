@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { useSession } from "@/lib/auth-client";
@@ -53,7 +53,7 @@ const InstructorPage = () => {
                 setLoading(true);
                 setError(null);
 
-                // âœ… Use the data.ts function instead of direct fetch
+                // Ã¢Å“â€¦ Use the data.ts function instead of direct fetch
                 const data = await getInstructorStats(session.user.email);
                 setStats(data);
             } catch (error) {
@@ -69,7 +69,7 @@ const InstructorPage = () => {
 
     if (isPending || loading) {
         return (
-            <div className="flex justify-center items-center h-[60vh] bg-[#F5F8F5]">
+            <div className="flex justify-center items-center h-[60vh] bg-[#1C2E24]">
                 <Spinner size="lg" />
             </div>
         );
@@ -77,11 +77,11 @@ const InstructorPage = () => {
 
     if (error) {
         return (
-            <div className="flex flex-col justify-center items-center h-[60vh] bg-[#F5F8F5]">
+            <div className="flex flex-col justify-center items-center h-[60vh] bg-[#1C2E24]">
                 <p className="text-red-400 text-lg mb-4">{error}</p>
                 <button
                     onClick={() => window.location.reload()}
-                    className="bg-[#7BAE9B] text-[#F5F8F5] px-6 py-2 rounded-xl hover:bg-[#7BAE9B]/80 transition-all"
+                    className="bg-[#C5A059] text-[#1C2E24] px-6 py-2 rounded-xl hover:bg-[#C5A059]/80 transition-all"
                 >
                     Retry
                 </button>
@@ -111,10 +111,10 @@ const InstructorPage = () => {
         <div className="space-y-8">
             {/* Header */}
             <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-[#263A33]">
+                <h1 className="text-3xl md:text-4xl font-bold text-[#EBE3D5]">
                     Instructor Dashboard
                 </h1>
-                <p className="text-[#263A33]/60 mt-2">
+                <p className="text-[#EBE3D5]/60 mt-2">
                     Track your courses, students, and performance metrics.
                 </p>
             </div>
@@ -124,19 +124,19 @@ const InstructorPage = () => {
                 {statCards.map((item, index) => (
                     <Card
                         key={index}
-                        className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#7BAE9B]/10"
+                        className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#C5A059]/10"
                     >
                         <div className="p-6">
                             <div className="flex justify-between items-center">
                                 <div>
-                                    <p className="text-[#263A33]/60 text-sm">
+                                    <p className="text-[#EBE3D5]/60 text-sm">
                                         {item.title}
                                     </p>
-                                    <h2 className="text-3xl font-bold text-[#263A33] mt-2">
+                                    <h2 className="text-3xl font-bold text-[#EBE3D5] mt-2">
                                         {item.value}
                                     </h2>
                                 </div>
-                                <div className="bg-[#7BAE9B]/15 p-4 rounded-2xl text-[#7BAE9B]">
+                                <div className="bg-[#C5A059]/15 p-4 rounded-2xl text-[#C5A059]">
                                     {item.icon}
                                 </div>
                             </div>
@@ -148,9 +148,9 @@ const InstructorPage = () => {
             {/* Chart + Popular Courses */}
             <div className="grid lg:grid-cols-3 gap-6">
                 {/* Enrollment Chart */}
-                <Card className="lg:col-span-2 bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl shadow-xl">
+                <Card className="lg:col-span-2 bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl shadow-xl">
                     <div className="p-4 md:p-6">
-                        <h2 className="text-xl font-bold text-[#263A33] mb-6">
+                        <h2 className="text-xl font-bold text-[#EBE3D5] mb-6">
                             Enrollment Overview
                         </h2>
                         <div className="h-64 md:h-80">
@@ -158,29 +158,29 @@ const InstructorPage = () => {
                                 <LineChart data={stats?.enrollmentChart ?? []}>
                                     <XAxis
                                         dataKey="month"
-                                        tick={{ fill: "#263A33" }}
+                                        tick={{ fill: "#EBE3D5" }}
                                         tickLine={false}
                                         axisLine={false}
                                     />
                                     <YAxis
-                                        tick={{ fill: "#263A33" }}
+                                        tick={{ fill: "#EBE3D5" }}
                                         tickLine={false}
                                         axisLine={false}
                                     />
                                     <Tooltip
-                                        cursor={{ stroke: "#7BAE9B" }}
+                                        cursor={{ stroke: "#C5A059" }}
                                         contentStyle={{
-                                            backgroundColor: "#DCEBE4",
-                                            borderColor: "#7BAE9B/30",
-                                            color: "#263A33",
+                                            backgroundColor: "#3E5C4B",
+                                            borderColor: "#C5A059/30",
+                                            color: "#EBE3D5",
                                         }}
                                     />
                                     <Line
                                         type="monotone"
                                         dataKey="enrollments"
-                                        stroke="#7BAE9B"
+                                        stroke="#C5A059"
                                         strokeWidth={3}
-                                        dot={{ fill: "#7BAE9B", r: 4 }}
+                                        dot={{ fill: "#C5A059", r: 4 }}
                                     />
                                 </LineChart>
                             </ResponsiveContainer>
@@ -189,14 +189,14 @@ const InstructorPage = () => {
                 </Card>
 
                 {/* Popular Courses */}
-                <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl shadow-xl">
+                <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl shadow-xl">
                     <div className="p-6">
-                        <h2 className="text-xl font-bold text-[#263A33] mb-6">
+                        <h2 className="text-xl font-bold text-[#EBE3D5] mb-6">
                             Most Popular Courses
                         </h2>
 
                         {!stats?.popularCourses?.length ? (
-                            <p className="text-[#263A33]/40 text-sm">
+                            <p className="text-[#EBE3D5]/40 text-sm">
                                 No enrollments yet.
                             </p>
                         ) : (
@@ -204,17 +204,17 @@ const InstructorPage = () => {
                                 {stats.popularCourses.map((course, index) => (
                                     <div
                                         key={index}
-                                        className="flex justify-between items-center border-b border-[#7BAE9B]/20 pb-3 last:border-0"
+                                        className="flex justify-between items-center border-b border-[#C5A059]/20 pb-3 last:border-0"
                                     >
                                         <div>
-                                            <h3 className="font-semibold text-[#263A33] text-sm">
+                                            <h3 className="font-semibold text-[#EBE3D5] text-sm">
                                                 {course.title}
                                             </h3>
-                                            <p className="text-xs text-[#263A33]/50">
+                                            <p className="text-xs text-[#EBE3D5]/50">
                                                 Popular course
                                             </p>
                                         </div>
-                                        <div className="bg-[#7BAE9B]/10 text-[#7BAE9B] font-bold px-3 py-1 rounded-xl text-sm">
+                                        <div className="bg-[#C5A059]/10 text-[#C5A059] font-bold px-3 py-1 rounded-xl text-sm">
                                             {course.enrollments}
                                         </div>
                                     </div>
@@ -227,34 +227,34 @@ const InstructorPage = () => {
 
             {/* Quick Actions */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl shadow-xl hover:shadow-[#7BAE9B]/10 transition-all duration-300">
+                <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl shadow-xl hover:shadow-[#C5A059]/10 transition-all duration-300">
                     <div className="p-6">
-                        <h3 className="text-lg font-semibold text-[#263A33] mb-2">
+                        <h3 className="text-lg font-semibold text-[#EBE3D5] mb-2">
                             Create New Course
                         </h3>
-                        <p className="text-[#263A33]/60 text-sm mb-4">
+                        <p className="text-[#EBE3D5]/60 text-sm mb-4">
                             Share your knowledge with the world. Create a new course today.
                         </p>
                         <a
                             href="/dashboard/instructor/add-course"
-                            className="inline-block bg-[#7BAE9B] text-[#F5F8F5] font-semibold px-6 py-2 rounded-xl hover:bg-[#7BAE9B]/80 transition-all"
+                            className="inline-block bg-[#C5A059] text-[#1C2E24] font-semibold px-6 py-2 rounded-xl hover:bg-[#C5A059]/80 transition-all"
                         >
                             Create Course
                         </a>
                     </div>
                 </Card>
 
-                <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl shadow-xl hover:shadow-[#7BAE9B]/10 transition-all duration-300">
+                <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl shadow-xl hover:shadow-[#C5A059]/10 transition-all duration-300">
                     <div className="p-6">
-                        <h3 className="text-lg font-semibold text-[#263A33] mb-2">
+                        <h3 className="text-lg font-semibold text-[#EBE3D5] mb-2">
                             Manage Your Courses
                         </h3>
-                        <p className="text-[#263A33]/60 text-sm mb-4">
+                        <p className="text-[#EBE3D5]/60 text-sm mb-4">
                             View, edit, and manage all your published and draft courses.
                         </p>
                         <a
                             href="/dashboard/instructor/manage-courses"
-                            className="inline-block bg-[#7BAE9B] text-[#F5F8F5] font-semibold px-6 py-2 rounded-xl hover:bg-[#7BAE9B]/80 transition-all"
+                            className="inline-block bg-[#C5A059] text-[#1C2E24] font-semibold px-6 py-2 rounded-xl hover:bg-[#C5A059]/80 transition-all"
                         >
                             Manage Courses
                         </a>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -128,30 +128,30 @@ const ContactClient = () => {
             icon: <FaGithub className="text-xl" />,
             label: "GitHub",
             href: "https://github.com/skillforge",
-            color: "hover:text-[#263A33]",
+            color: "hover:text-[#EBE3D5]",
         },
         {
             icon: <FaTwitter className="text-xl" />,
             label: "Twitter",
             href: "https://twitter.com/skillforge",
-            color: "hover:text-[#1DA1F2]",
+            color: "hover:text-[#C5A059]",
         },
         {
             icon: <FaLinkedin className="text-xl" />,
             label: "LinkedIn",
             href: "https://linkedin.com/company/skillforge",
-            color: "hover:text-[#0A66C2]",
+            color: "hover:text-[#5C3A21]",
         },
         {
             icon: <FaYoutube className="text-xl" />,
             label: "YouTube",
             href: "https://youtube.com/@skillforge",
-            color: "hover:text-[#FF0000]",
+            color: "hover:text-[#D46A2B]",
         },
     ];
 
     return (
-        <div className="min-h-screen bg-[#F5F8F5]">
+        <div className="min-h-screen bg-[#1C2E24]">
             <div className="container mx-auto px-4 py-10 md:py-16">
                 {/* Header */}
                 <motion.div
@@ -159,10 +159,10 @@ const ContactClient = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-12"
                 >
-                    <h1 className="text-3xl md:text-5xl font-bold text-[#263A33]">
+                    <h1 className="text-3xl md:text-5xl font-bold text-[#EBE3D5]">
                         Get in Touch
                     </h1>
-                    <p className="text-[#263A33]/60 mt-4 max-w-2xl mx-auto text-base md:text-lg">
+                    <p className="text-[#EBE3D5]/60 mt-4 max-w-2xl mx-auto text-base md:text-lg">
                         Have questions, feedback, or need support? We'd love to hear from you.
                         Fill out the form below and we'll get back to you as soon as possible.
                     </p>
@@ -176,8 +176,8 @@ const ContactClient = () => {
                         transition={{ delay: 0.2 }}
                         className="lg:col-span-1"
                     >
-                        <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-6 sticky top-24">
-                            <h2 className="text-xl font-bold text-[#263A33] mb-6">
+                        <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-6 sticky top-24">
+                            <h2 className="text-xl font-bold text-[#EBE3D5] mb-6">
                                 Contact Information
                             </h2>
 
@@ -190,22 +190,22 @@ const ContactClient = () => {
                                         transition={{ delay: 0.3 + index * 0.1 }}
                                         className="flex items-start gap-4"
                                     >
-                                        <div className="w-12 h-12 rounded-full bg-[#7BAE9B]/10 flex items-center justify-center text-[#7BAE9B] flex-shrink-0">
+                                        <div className="w-12 h-12 rounded-full bg-[#C5A059]/10 flex items-center justify-center text-[#C5A059] flex-shrink-0">
                                             {info.icon}
                                         </div>
                                         <div>
-                                            <p className="text-[#263A33]/50 text-sm">
+                                            <p className="text-[#EBE3D5]/50 text-sm">
                                                 {info.label}
                                             </p>
                                             {info.href && info.href !== "#" ? (
                                                 <a
                                                     href={info.href}
-                                                    className="text-[#263A33] hover:text-[#7BAE9B] transition-colors font-medium"
+                                                    className="text-[#EBE3D5] hover:text-[#C5A059] transition-colors font-medium"
                                                 >
                                                     {info.value}
                                                 </a>
                                             ) : (
-                                                <p className="text-[#263A33] font-medium">
+                                                <p className="text-[#EBE3D5] font-medium">
                                                     {info.value}
                                                 </p>
                                             )}
@@ -215,8 +215,8 @@ const ContactClient = () => {
                             </div>
 
                             {/* Social Links */}
-                            <div className="mt-8 pt-8 border-t border-[#7BAE9B]/10">
-                                <h3 className="text-sm font-medium text-[#263A33]/50 mb-4">
+                            <div className="mt-8 pt-8 border-t border-[#C5A059]/10">
+                                <h3 className="text-sm font-medium text-[#EBE3D5]/50 mb-4">
                                     Connect With Us
                                 </h3>
                                 <div className="flex gap-3">
@@ -226,7 +226,7 @@ const ContactClient = () => {
                                             href={social.href}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className={`w-12 h-12 rounded-xl bg-[#F5F8F5] flex items-center justify-center text-[#263A33]/40 ${social.color} transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#7BAE9B]/5 border border-[#7BAE9B]/10 hover:border-[#7BAE9B]/30`}
+                                            className={`w-12 h-12 rounded-xl bg-[#1C2E24] flex items-center justify-center text-[#EBE3D5]/40 ${social.color} transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#C5A059]/5 border border-[#C5A059]/10 hover:border-[#C5A059]/30`}
                                             aria-label={social.label}
                                         >
                                             {social.icon}
@@ -236,10 +236,10 @@ const ContactClient = () => {
                             </div>
 
                             {/* Trust Badge */}
-                            <div className="mt-6 p-4 bg-[#F5F8F5] rounded-xl border border-[#7BAE9B]/10">
+                            <div className="mt-6 p-4 bg-[#1C2E24] rounded-xl border border-[#C5A059]/10">
                                 <div className="flex items-center gap-3">
                                     <FaCheckCircle className="text-green-400 text-lg" />
-                                    <p className="text-sm text-[#263A33]/60">
+                                    <p className="text-sm text-[#EBE3D5]/60">
                                         We typically respond within 24 hours
                                     </p>
                                 </div>
@@ -254,12 +254,12 @@ const ContactClient = () => {
                         transition={{ delay: 0.3 }}
                         className="lg:col-span-2"
                     >
-                        <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-6 md:p-8">
+                        <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-6 md:p-8">
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 {/* Name & Email */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-[#263A33] text-sm font-medium mb-2">
+                                        <label className="block text-[#EBE3D5] text-sm font-medium mb-2">
                                             Full Name *
                                         </label>
                                         <Input
@@ -267,12 +267,12 @@ const ContactClient = () => {
                                             placeholder="Enter your full name"
                                             value={formData.name}
                                             onChange={handleChange}
-                                            className="bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40 w-full"
+                                            className="bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 w-full"
                                         />
                                     </div>
 
                                     <div>
-                                        <label className="block text-[#263A33] text-sm font-medium mb-2">
+                                        <label className="block text-[#EBE3D5] text-sm font-medium mb-2">
                                             Email Address *
                                         </label>
                                         <Input
@@ -281,14 +281,14 @@ const ContactClient = () => {
                                             placeholder="Enter your email"
                                             value={formData.email}
                                             onChange={handleChange}
-                                            className="bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40 w-full"
+                                            className="bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 w-full"
                                         />
                                     </div>
                                 </div>
 
                                 {/* Subject */}
                                 <div>
-                                    <label className="block text-[#263A33] text-sm font-medium mb-2">
+                                    <label className="block text-[#EBE3D5] text-sm font-medium mb-2">
                                         Subject *
                                     </label>
                                     <Input
@@ -296,13 +296,13 @@ const ContactClient = () => {
                                         placeholder="What is this about?"
                                         value={formData.subject}
                                         onChange={handleChange}
-                                        className="bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40 w-full"
+                                        className="bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 w-full"
                                     />
                                 </div>
 
                                 {/* Message */}
                                 <div>
-                                    <label className="block text-[#263A33] text-sm font-medium mb-2">
+                                    <label className="block text-[#EBE3D5] text-sm font-medium mb-2">
                                         Message *
                                     </label>
                                     <TextArea
@@ -311,9 +311,9 @@ const ContactClient = () => {
                                         value={formData.message}
                                         onChange={handleChange}
                                         rows={6}
-                                        className="bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33] placeholder:text-[#263A33]/40 w-full"
+                                        className="bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 w-full"
                                     />
-                                    <p className="text-[#263A33]/40 text-xs mt-1">
+                                    <p className="text-[#EBE3D5]/40 text-xs mt-1">
                                         Minimum 10 characters
                                     </p>
                                 </div>
@@ -321,14 +321,14 @@ const ContactClient = () => {
                                 {/* Submit Button */}
                                 <Button
                                     type="submit"
-                                    className="w-full bg-[#7BAE9B] text-[#F5F8F5] font-semibold py-6 rounded-xl hover:bg-[#7BAE9B]/80 transition-all text-base"
+                                    className="w-full bg-[#C5A059] text-[#1C2E24] font-semibold py-6 rounded-xl hover:bg-[#C5A059]/80 transition-all text-base"
                                 >
                                     <FaPaperPlane className="mr-2" />
                                     {loading ? "Sending..." : "Send Message"}
                                 </Button>
 
                                 {/* Form footer */}
-                                <p className="text-[#263A33]/30 text-xs text-center">
+                                <p className="text-[#EBE3D5]/30 text-xs text-center">
                                     By submitting this form, you agree to our Privacy Policy.
                                     We'll never share your information with third parties.
                                 </p>
@@ -344,7 +344,7 @@ const ContactClient = () => {
                     transition={{ delay: 0.5 }}
                     className="mt-16"
                 >
-                    <h2 className="text-2xl md:text-3xl font-bold text-[#263A33] text-center mb-8">
+                    <h2 className="text-2xl md:text-3xl font-bold text-[#EBE3D5] text-center mb-8">
                         Frequently Asked Questions
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -372,11 +372,11 @@ const ContactClient = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.6 + index * 0.1 }}
                             >
-                                <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/10 hover:border-[#7BAE9B]/30 rounded-2xl p-6 transition-all duration-300">
-                                    <h3 className="text-[#263A33] font-semibold mb-2">
+                                <Card className="bg-[#3E5C4B] border border-[#C5A059]/10 hover:border-[#C5A059]/30 rounded-2xl p-6 transition-all duration-300">
+                                    <h3 className="text-[#EBE3D5] font-semibold mb-2">
                                         {faq.question}
                                     </h3>
-                                    <p className="text-[#263A33]/60 text-sm leading-relaxed">
+                                    <p className="text-[#EBE3D5]/60 text-sm leading-relaxed">
                                         {faq.answer}
                                     </p>
                                 </Card>

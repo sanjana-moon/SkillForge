@@ -1,14 +1,23 @@
 @import "tailwindcss";
-@import "@heroui/styles"; 
+@import "@heroui/styles";
 
 :root {
-  /* Colors */
-  --background: #f5f8f5;
-  --surface: #dcebe4;
-  --primary: #7bae9b;
-  --secondary: #5f927e;
-  --foreground: #263a33;
-  --muted: #5f927e;
+  /* Requested palette */
+  --primary-bg: #1c2e24;
+  --secondary-card: #3e5c4b;
+  --primary-accent: #c5a059;
+  --secondary-accent: #5c3a21;
+  --highlight-alert: #d46a2b;
+  --primary-text: #ebe3d5;
+  --structural-footer: #1a1511;
+  --muted-border: #8c9683;
+
+  --background: var(--primary-bg);
+  --surface: var(--secondary-card);
+  --primary: var(--primary-accent);
+  --secondary: var(--secondary-accent);
+  --foreground: var(--primary-text);
+  --muted: var(--muted-border);
 
   /* Fonts */
   --font-heading: var(--font-heading);
@@ -26,6 +35,14 @@
   --color-secondary: var(--secondary);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-primary-bg: var(--primary-bg);
+  --color-secondary-card: var(--secondary-card);
+  --color-primary-accent: var(--primary-accent);
+  --color-secondary-accent: var(--secondary-accent);
+  --color-highlight-alert: var(--highlight-alert);
+  --color-primary-text: var(--primary-text);
+  --color-structural-footer: var(--structural-footer);
+  --color-muted-border: var(--muted-border);
 
   /* Fonts */
   --font-heading: var(--font-heading);
@@ -45,6 +62,8 @@ html {
 
 body {
   @apply bg-background text-foreground;
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
   font-family: var(--font-body);
 }
 
@@ -55,8 +74,25 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
+  color: var(--primary-text);
+}
+
+p,
+span,
+li,
+button,
+input,
+textarea,
+select,
+a {
+  color: inherit;
 }
 
 button {
   cursor: pointer;
+}
+
+::selection {
+  background: rgba(197, 160, 89, 0.35);
+  color: var(--primary-text);
 }

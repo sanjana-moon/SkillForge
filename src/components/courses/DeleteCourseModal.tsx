@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Button } from "@heroui/react";
 import { FaTrash } from "react-icons/fa";
@@ -39,7 +39,7 @@ export default function DeleteCourseModal({
         }
     };
 
-    // âœ… If not open, return null (don't render anything)
+    // Ã¢Å“â€¦ If not open, return null (don't render anything)
     if (!isDeleteOpen) {
         return null;
     }
@@ -55,7 +55,7 @@ export default function DeleteCourseModal({
                 }
             }}
         >
-            <div className="w-full max-w-md bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl shadow-xl p-6 sm:p-8 text-center">
+            <div className="w-full max-w-md bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl shadow-xl p-6 sm:p-8 text-center">
                 {/* Header */}
                 <div className="flex justify-center mb-4">
                     <div className="bg-red-500/10 p-4 rounded-full">
@@ -64,17 +64,17 @@ export default function DeleteCourseModal({
                 </div>
 
                 {/* Body */}
-                <h2 className="text-xl font-bold text-[#263A33] mb-2">
+                <h2 className="text-xl font-bold text-[#EBE3D5] mb-2">
                     Delete Course?
                 </h2>
-                <p className="text-sm text-[#263A33]/60 mb-6">
+                <p className="text-sm text-[#EBE3D5]/60 mb-6">
                     Are you sure you want to delete this course? This action will permanently remove this course and all its data.
                 </p>
 
                 {/* Footer */}
                 <div className="flex gap-3">
                     <Button
-                        className="flex-1 border border-[#7BAE9B]/30 text-[#263A33] font-semibold rounded-2xl hover:bg-[#7BAE9B]/10 transition-all"
+                        className="flex-1 border border-[#C5A059]/30 text-[#EBE3D5] font-semibold rounded-2xl hover:bg-[#C5A059]/10 transition-all"
                         onPress={() => {
                             setDeletedId(null);
                             setIsDeleteOpen(false);

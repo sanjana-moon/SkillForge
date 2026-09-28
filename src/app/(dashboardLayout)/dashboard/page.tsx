@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -32,15 +32,15 @@ const DashboardPage = () => {
     }, [session, isPending, router]);
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-[#F5F8F5]">
-            <div className="rounded-3xl border border-[#7BAE9B]/20 bg-[#DCEBE4] px-10 py-8 shadow-2xl">
+        <div className="flex min-h-screen items-center justify-center bg-[#1C2E24]">
+            <div className="rounded-3xl border border-[#C5A059]/20 bg-[#3E5C4B] px-10 py-8 shadow-2xl">
                 <div className="flex flex-col items-center gap-4">
                     {/* Loading Spinner */}
-                    <div className="h-12 w-12 animate-spin rounded-full border-4 border-[#7BAE9B]/30 border-t-[#7BAE9B]" />
-                    <h2 className="text-2xl font-bold text-[#263A33]">
+                    <div className="h-12 w-12 animate-spin rounded-full border-4 border-[#C5A059]/30 border-t-[#C5A059]" />
+                    <h2 className="text-2xl font-bold text-[#EBE3D5]">
                         Welcome to SkillForge
                     </h2>
-                    <p className="text-sm text-[#263A33]/60">
+                    <p className="text-sm text-[#EBE3D5]/60">
                         Preparing your dashboard...
                     </p>
                 </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -84,15 +84,15 @@ const SignUpPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#F5F8F5] flex items-center justify-center px-4 py-10">
-            <Card className="w-full container md:max-w-4xl rounded-3xl shadow-xl p-8 border border-[#7BAE9B]/30 bg-[#DCEBE4]">
+        <div className="min-h-screen bg-[#1C2E24] flex items-center justify-center px-4 py-10">
+            <Card className="w-full container md:max-w-4xl rounded-3xl shadow-xl p-8 border border-[#C5A059]/30 bg-[#3E5C4B]">
                 {/* Header */}
                 <div className="mb-8 text-center">
-                    <h1 className="text-4xl font-bold text-[#263A33]">
+                    <h1 className="text-4xl font-bold text-[#EBE3D5]">
                         Create Your Account
                     </h1>
 
-                    <p className="mt-2 text-[#263A33]/70">
+                    <p className="mt-2 text-[#EBE3D5]/70">
                         AI-assisted workspace to craft and elevate your ideas.
                     </p>
                 </div>
@@ -104,7 +104,7 @@ const SignUpPage = () => {
                 >
                     {/* Full Name */}
                     <TextField>
-                        <Label className="text-[#263A33] font-medium">
+                        <Label className="text-[#EBE3D5] font-medium">
                             Full Name
                         </Label>
 
@@ -113,7 +113,7 @@ const SignUpPage = () => {
                             {...register("name", {
                                 required: "Full name is required",
                             })}
-                            className="mt-2 bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33]"
+                            className="mt-2 bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5]"
                         />
 
                         {errors.name && (
@@ -125,7 +125,7 @@ const SignUpPage = () => {
 
                     {/* Profile Image */}
                     <TextField>
-                        <Label className="text-[#263A33] font-medium">
+                        <Label className="text-[#EBE3D5] font-medium">
                             Profile Photo
                         </Label>
 
@@ -135,7 +135,7 @@ const SignUpPage = () => {
                             {...register("image", {
                                 required: "Please upload a profile image",
                             })}
-                            className="mt-2 w-full rounded-md border-2 border-dashed border-[#7BAE9B]/50 bg-[#F5F8F5]/50 p-3 text-[#263A33] file:mr-4 file:rounded-lg file:border-0 file:bg-[#7BAE9B] file:px-4 file:py-2 file:text-[#F5F8F5] hover:file:bg-[#7BAE9B]/80"
+                            className="mt-2 w-full rounded-md border-2 border-dashed border-[#C5A059]/50 bg-[#1C2E24]/50 p-3 text-[#EBE3D5] file:mr-4 file:rounded-lg file:border-0 file:bg-[#C5A059] file:px-4 file:py-2 file:text-[#1C2E24] hover:file:bg-[#C5A059]/80"
                         />
 
                         {errors.image && (
@@ -147,7 +147,7 @@ const SignUpPage = () => {
 
                     {/* Email */}
                     <TextField>
-                        <Label className="text-[#263A33] font-medium">
+                        <Label className="text-[#EBE3D5] font-medium">
                             Email Address
                         </Label>
 
@@ -157,7 +157,7 @@ const SignUpPage = () => {
                             {...register("email", {
                                 required: "Email is required",
                             })}
-                            className="mt-2 bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33]"
+                            className="mt-2 bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5]"
                         />
 
                         {errors.email && (
@@ -169,7 +169,7 @@ const SignUpPage = () => {
 
                     {/* Password */}
                     <TextField>
-                        <Label className="text-[#263A33] font-medium">
+                        <Label className="text-[#EBE3D5] font-medium">
                             Password
                         </Label>
 
@@ -184,10 +184,10 @@ const SignUpPage = () => {
                                         "Password must be at least 8 characters",
                                 },
                             })}
-                            className="mt-2 bg-[#F5F8F5]/50 border-[#7BAE9B]/30 text-[#263A33]"
+                            className="mt-2 bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5]"
                         />
 
-                        <Description className="text-[#263A33]/60">
+                        <Description className="text-[#EBE3D5]/60">
                             Password must contain at least 8 characters.
                         </Description>
 
@@ -200,12 +200,12 @@ const SignUpPage = () => {
 
                     {/* Role Selection */}
                     <TextField>
-                        <Label className="text-[#263A33] font-medium">
+                        <Label className="text-[#EBE3D5] font-medium">
                             Select Your Role
                         </Label>
 
                         <div className="mt-3 grid grid-cols-2 gap-4">
-                            <label className="flex cursor-pointer items-center gap-3 rounded-md border border-[#7BAE9B]/30 p-4 transition hover:border-[#7BAE9B] hover:bg-[#F5F8F5]/30">
+                            <label className="flex cursor-pointer items-center gap-3 rounded-md border border-[#C5A059]/30 p-4 transition hover:border-[#C5A059] hover:bg-[#1C2E24]/30">
                                 <input
                                     type="radio"
                                     value="student"
@@ -213,34 +213,34 @@ const SignUpPage = () => {
                                     {...register("role", {
                                         required: "Please select a role",
                                     })}
-                                    className="accent-[#7BAE9B]"
+                                    className="accent-[#C5A059]"
                                 />
 
                                 <div>
-                                    <p className="font-semibold text-[#263A33]">
+                                    <p className="font-semibold text-[#EBE3D5]">
                                         Learner
                                     </p>
-                                    <p className="text-sm text-[#263A33]/60">
+                                    <p className="text-sm text-[#EBE3D5]/60">
                                         Explore courses, learn new skills, and get AI-powered recommendations.
                                     </p>
                                 </div>
                             </label>
 
-                            <label className="flex cursor-pointer items-center gap-3 rounded-md border border-[#7BAE9B]/30 p-4 transition hover:border-[#7BAE9B] hover:bg-[#F5F8F5]/30">
+                            <label className="flex cursor-pointer items-center gap-3 rounded-md border border-[#C5A059]/30 p-4 transition hover:border-[#C5A059] hover:bg-[#1C2E24]/30">
                                 <input
                                     type="radio"
                                     value="instructor"
                                     {...register("role", {
                                         required: "Please select a role",
                                     })}
-                                    className="accent-[#7BAE9B]"
+                                    className="accent-[#C5A059]"
                                 />
 
                                 <div>
-                                    <p className="font-semibold text-[#263A33]">
+                                    <p className="font-semibold text-[#EBE3D5]">
                                         Instructor
                                     </p>
-                                    <p className="text-sm text-[#263A33]/60">
+                                    <p className="text-sm text-[#EBE3D5]/60">
                                         Create, publish, and manage your technology courses.
                                     </p>
                                 </div>
@@ -257,7 +257,7 @@ const SignUpPage = () => {
                     {/* Create Account Button */}
                     <Button
                         type="submit"
-                        className="mt-4 w-full rounded-md bg-[#7BAE9B] py-6 text-base font-semibold text-[#F5F8F5] transition hover:bg-[#7BAE9B]/80"
+                        className="mt-4 w-full rounded-md bg-[#C5A059] py-6 text-base font-semibold text-[#1C2E24] transition hover:bg-[#C5A059]/80"
                     >
                         <IoMdCheckmarkCircleOutline className="mr-2 text-xl" />
                         Create Account
@@ -266,26 +266,26 @@ const SignUpPage = () => {
 
                 {/* Divider */}
                 <div className="my-4 flex items-center gap-2">
-                    <div className="h-px flex-1 bg-[#7BAE9B]/20" />
-                    <span className="text-sm text-[#263A33]/40">OR</span>
-                    <div className="h-px flex-1 bg-[#7BAE9B]/20" />
+                    <div className="h-px flex-1 bg-[#C5A059]/20" />
+                    <span className="text-sm text-[#EBE3D5]/40">OR</span>
+                    <div className="h-px flex-1 bg-[#C5A059]/20" />
                 </div>
 
                 {/* Google Sign In */}
                 <Button
                     onClick={handleGoogleSignin}
-                    className="w-full rounded-md border border-[#7BAE9B]/30 py-6 text-[#263A33] hover:bg-[#F5F8F5]/50"
+                    className="w-full rounded-md border border-[#C5A059]/30 py-6 text-[#EBE3D5] hover:bg-[#1C2E24]/50"
                 >
-                    <FaGoogle className="mr-2 text-lg bg-[#7BAE9B]" />
+                    <FaGoogle className="mr-2 text-lg bg-[#C5A059]" />
                     Continue with Google
                 </Button>
 
                 {/* Login Link */}
-                <p className="mt-1 text-center text-sm text-[#263A33]/60">
+                <p className="mt-1 text-center text-sm text-[#EBE3D5]/60">
                     Already have an account?{" "}
                     <Link
                         href="/signin"
-                        className="font-semibold text-[#7BAE9B] hover:text-[#7BAE9B]/80"
+                        className="font-semibold text-[#C5A059] hover:text-[#C5A059]/80"
                     >
                         Signin
                     </Link>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -74,7 +74,7 @@ export default function ProfilePage() {
         setSuccessMessage(null);
     };
 
-    // âœ… Fix: Use a regular async function without event parameter
+    // Ã¢Å“â€¦ Fix: Use a regular async function without event parameter
     const handleUpdateProfile = async () => {
         try {
             setSaving(true);
@@ -114,7 +114,7 @@ export default function ProfilePage() {
         return (
             <div className="flex flex-col items-center justify-center min-h-[60vh]">
                 <Spinner size="lg"/>
-                <p className="mt-4 text-[#263A33]/60">Loading profile...</p>
+                <p className="mt-4 text-[#EBE3D5]/60">Loading profile...</p>
             </div>
         );
     }
@@ -122,15 +122,15 @@ export default function ProfilePage() {
     if (error && !profile) {
         return (
             <div className="max-w-4xl mx-auto p-8">
-                <Card className="bg-[#DCEBE4] border border-red-500/20 rounded-2xl p-8 text-center">
-                    <div className="text-5xl mb-4">âš ï¸</div>
+                <Card className="bg-[#3E5C4B] border border-red-500/20 rounded-2xl p-8 text-center">
+                    <div className="text-5xl mb-4">Ã¢Å¡Â Ã¯Â¸Â</div>
                     <h3 className="text-xl font-semibold text-red-400 mb-2">
                         Unable to Load Profile
                     </h3>
-                    <p className="text-[#263A33]/60 mb-4">{error}</p>
+                    <p className="text-[#EBE3D5]/60 mb-4">{error}</p>
                     <Button
                         onPress={loadProfile}
-                        className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80"
+                        className="bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
                     >
                         Try Again
                     </Button>
@@ -142,17 +142,17 @@ export default function ProfilePage() {
     if (!profile) {
         return (
             <div className="max-w-4xl mx-auto p-8">
-                <Card className="bg-[#DCEBE4] border border-yellow-500/20 rounded-2xl p-8 text-center">
-                    <div className="text-5xl mb-4">ðŸ‘¤</div>
+                <Card className="bg-[#3E5C4B] border border-yellow-500/20 rounded-2xl p-8 text-center">
+                    <div className="text-5xl mb-4">Ã°Å¸â€˜Â¤</div>
                     <h3 className="text-xl font-semibold text-yellow-400 mb-2">
                         Profile Not Found
                     </h3>
-                    <p className="text-[#263A33]/60 mb-4">
+                    <p className="text-[#EBE3D5]/60 mb-4">
                         We couldn't find your profile information.
                     </p>
                     <Button
                         onPress={loadProfile}
-                        className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80"
+                        className="bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
                     >
                         Try Again
                     </Button>
@@ -170,14 +170,14 @@ export default function ProfilePage() {
 
     return (
         <div className="max-w-4xl mx-auto">
-            <Card className="bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl shadow-xl overflow-hidden">
+            <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl shadow-xl overflow-hidden">
                 {/* Header */}
-                <div className="bg-linear-to-r from-[#F5F8F5] to-[#DCEBE4] p-10 text-center relative border-b border-[#7BAE9B]/20">
-                    <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-[#7BAE9B] to-[#5F927E]" />
+                <div className="bg-linear-to-r from-[#1C2E24] to-[#3E5C4B] p-10 text-center relative border-b border-[#C5A059]/20">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-[#C5A059] to-[#5C3A21]" />
 
                     {/* Avatar */}
                     <div className="relative inline-">
-                        <div className="w-28 h-28 rounded-full mx-auto shadow-lg relative overflow-hidden border-4 border-[#7BAE9B]">
+                        <div className="w-28 h-28 rounded-full mx-auto shadow-lg relative overflow-hidden border-4 border-[#C5A059]">
                             {profile.profileImage && !imageError ? (
                                 <Image
                                     src={profile.profileImage}
@@ -188,35 +188,35 @@ export default function ProfilePage() {
                                     priority
                                 />
                             ) : (
-                                <div className="w-full h-full flex items-center justify-center text-4xl font-bold text-[#F5F8F5] bg-linear-to-br from-[#7BAE9B] to-[#5F927E]">
+                                <div className="w-full h-full flex items-center justify-center text-4xl font-bold text-[#1C2E24] bg-linear-to-br from-[#C5A059] to-[#5C3A21]">
                                     {initials}
                                 </div>
                             )}
                         </div>
 
                         <button
-                            className="absolute bottom-0 right-0 bg-[#7BAE9B] p-2 rounded-full shadow-lg hover:bg-[#7BAE9B]/80 transition-colors border-2 border-[#F5F8F5]"
+                            className="absolute bottom-0 right-0 bg-[#C5A059] p-2 rounded-full shadow-lg hover:bg-[#C5A059]/80 transition-colors border-2 border-[#1C2E24]"
                             onClick={startEditing}
                             title="Change profile picture"
                             disabled={isEditing}
                         >
-                            <FaCamera className="text-[#F5F8F5] text-sm" />
+                            <FaCamera className="text-[#1C2E24] text-sm" />
                         </button>
                     </div>
 
                     {!isEditing ? (
                         <>
-                            <h1 className="text-3xl font-bold text-[#263A33] mt-5">
+                            <h1 className="text-3xl font-bold text-[#EBE3D5] mt-5">
                                 {profile.name}
                             </h1>
-                            <p className="text-[#263A33]/60 mt-2 flex items-center justify-center gap-2 capitalize">
-                                <FaUserTag className="text-[#7BAE9B]" />
+                            <p className="text-[#EBE3D5]/60 mt-2 flex items-center justify-center gap-2 capitalize">
+                                <FaUserTag className="text-[#C5A059]" />
                                 SkillForge {profile.role}
                             </p>
 
                             <Button
                                 onPress={startEditing}
-                                className="mt-4 bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80"
+                                className="mt-4 bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
                             >
                                 <FaEdit className="mr-2" />
                                 Edit Profile
@@ -228,14 +228,14 @@ export default function ProfilePage() {
                                 <Button
                                     onPress={handleUpdateProfile}
 
-                                    className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80"
+                                    className="bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
                                 >
                                     <FaSave className="mr-2" />
                                     Save Changes
                                 </Button>
                                 <Button
                                     onPress={cancelEditing}
-                                    className="bg-[#F5F8F5] border border-[#7BAE9B]/30 text-[#263A33] hover:bg-[#F5F8F5]/80 font-semibold"
+                                    className="bg-[#1C2E24] border border-[#C5A059]/30 text-[#EBE3D5] hover:bg-[#1C2E24]/80 font-semibold"
                                 >
                                     <FaTimes className="mr-2" />
                                     Cancel
@@ -266,53 +266,53 @@ export default function ProfilePage() {
                         // View Mode
                         <>
                             <div className="space-y-2">
-                                <label className=" font-semibold text-[#263A33] text-sm flex items-center gap-2">
-                                    <FaUser className="text-[#7BAE9B]" />
+                                <label className=" font-semibold text-[#EBE3D5] text-sm flex items-center gap-2">
+                                    <FaUser className="text-[#C5A059]" />
                                     Full Name
                                 </label>
-                                <div className="w-full border border-[#7BAE9B]/20 rounded-xl px-4 py-3 bg-[#F5F8F5]/50 text-[#263A33]">
+                                <div className="w-full border border-[#C5A059]/20 rounded-xl px-4 py-3 bg-[#1C2E24]/50 text-[#EBE3D5]">
                                     {profile.name}
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <label className=" font-semibold text-[#263A33] text-sm flex items-center gap-2">
-                                    <FaEnvelope className="text-[#7BAE9B]" />
+                                <label className=" font-semibold text-[#EBE3D5] text-sm flex items-center gap-2">
+                                    <FaEnvelope className="text-[#C5A059]" />
                                     Email
                                 </label>
-                                <div className="w-full border border-[#7BAE9B]/20 rounded-xl px-4 py-3 bg-[#F5F8F5]/50 text-[#263A33]">
+                                <div className="w-full border border-[#C5A059]/20 rounded-xl px-4 py-3 bg-[#1C2E24]/50 text-[#EBE3D5]">
                                     {profile.email}
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <label className=" font-semibold text-[#263A33] text-sm flex items-center gap-2">
-                                    <FaUserTag className="text-[#7BAE9B]" />
+                                <label className=" font-semibold text-[#EBE3D5] text-sm flex items-center gap-2">
+                                    <FaUserTag className="text-[#C5A059]" />
                                     Role
                                 </label>
-                                <div className="w-full border border-[#7BAE9B]/20 rounded-xl px-4 py-3 bg-[#F5F8F5]/50 text-[#263A33] capitalize">
+                                <div className="w-full border border-[#C5A059]/20 rounded-xl px-4 py-3 bg-[#1C2E24]/50 text-[#EBE3D5] capitalize">
                                     {profile.role}
                                 </div>
                             </div>
 
                             {profile.profileImage && (
                                 <div className="space-y-2">
-                                    <label className=" font-semibold text-[#263A33] text-sm flex items-center gap-2">
-                                        <FaCamera className="text-[#7BAE9B]" />
+                                    <label className=" font-semibold text-[#EBE3D5] text-sm flex items-center gap-2">
+                                        <FaCamera className="text-[#C5A059]" />
                                         Profile Image
                                     </label>
-                                    <div className="w-full border border-[#7BAE9B]/20 rounded-xl px-4 py-3 bg-[#F5F8F5]/50 text-[#263A33]/60 text-sm break-all">
+                                    <div className="w-full border border-[#C5A059]/20 rounded-xl px-4 py-3 bg-[#1C2E24]/50 text-[#EBE3D5]/60 text-sm break-all">
                                         {profile.profileImage}
                                     </div>
                                 </div>
                             )}
                         </>
                     ) : (
-                        // Edit Mode - âœ… Removed form, using div instead
+                        // Edit Mode - Ã¢Å“â€¦ Removed form, using div instead
                         <div className="space-y-6">
                             <div className="space-y-2">
-                                <label className=" font-semibold text-[#263A33] text-sm flex items-center gap-2">
-                                    <FaUser className="text-[#7BAE9B]" />
+                                <label className=" font-semibold text-[#EBE3D5] text-sm flex items-center gap-2">
+                                    <FaUser className="text-[#C5A059]" />
                                     Full Name *
                                 </label>
                                 <input
@@ -320,50 +320,50 @@ export default function ProfilePage() {
                                     value={editData.name}
                                     onChange={(e) => setEditData({ ...editData, name: e.target.value })}
                                     required
-                                    className="w-full border border-[#7BAE9B]/30 rounded-xl px-4 py-3 bg-[#F5F8F5]/50 text-[#263A33] focus:outline-none focus:ring-2 focus:ring-[#7BAE9B] placeholder:text-[#263A33]/40"
+                                    className="w-full border border-[#C5A059]/30 rounded-xl px-4 py-3 bg-[#1C2E24]/50 text-[#EBE3D5] focus:outline-none focus:ring-2 focus:ring-[#C5A059] placeholder:text-[#EBE3D5]/40"
                                     placeholder="Enter your full name"
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <label className=" font-semibold text-[#263A33] text-sm flex items-center gap-2">
-                                    <FaEnvelope className="text-[#7BAE9B]" />
+                                <label className=" font-semibold text-[#EBE3D5] text-sm flex items-center gap-2">
+                                    <FaEnvelope className="text-[#C5A059]" />
                                     Email
                                 </label>
-                                <div className="w-full border border-[#7BAE9B]/20 rounded-xl px-4 py-3 bg-[#F5F8F5]/30 text-[#263A33]/60 cursor-not-allowed">
+                                <div className="w-full border border-[#C5A059]/20 rounded-xl px-4 py-3 bg-[#1C2E24]/30 text-[#EBE3D5]/60 cursor-not-allowed">
                                     {profile.email}
                                 </div>
-                                <p className="text-xs text-[#263A33]/40 mt-1">
+                                <p className="text-xs text-[#EBE3D5]/40 mt-1">
                                     Email cannot be changed.
                                 </p>
                             </div>
 
                             <div className="space-y-2">
-                                <label className=" font-semibold text-[#263A33] text-sm flex items-center gap-2">
-                                    <FaUserTag className="text-[#7BAE9B]" />
+                                <label className=" font-semibold text-[#EBE3D5] text-sm flex items-center gap-2">
+                                    <FaUserTag className="text-[#C5A059]" />
                                     Role
                                 </label>
-                                <div className="w-full border border-[#7BAE9B]/20 rounded-xl px-4 py-3 bg-[#F5F8F5]/30 text-[#263A33]/60 capitalize cursor-not-allowed">
+                                <div className="w-full border border-[#C5A059]/20 rounded-xl px-4 py-3 bg-[#1C2E24]/30 text-[#EBE3D5]/60 capitalize cursor-not-allowed">
                                     {profile.role}
                                 </div>
-                                <p className="text-xs text-[#263A33]/40 mt-1">
+                                <p className="text-xs text-[#EBE3D5]/40 mt-1">
                                     Role cannot be changed.
                                 </p>
                             </div>
 
                             <div className="space-y-2">
-                                <label className=" font-semibold text-[#263A33] text-sm flex items-center gap-2">
-                                    <FaCamera className="text-[#7BAE9B]" />
+                                <label className=" font-semibold text-[#EBE3D5] text-sm flex items-center gap-2">
+                                    <FaCamera className="text-[#C5A059]" />
                                     Profile Image URL
                                 </label>
                                 <input
                                     type="url"
                                     value={editData.profileImage}
                                     onChange={(e) => setEditData({ ...editData, profileImage: e.target.value })}
-                                    className="w-full border border-[#7BAE9B]/30 rounded-xl px-4 py-3 bg-[#F5F8F5]/50 text-[#263A33] focus:outline-none focus:ring-2 focus:ring-[#7BAE9B] placeholder:text-[#263A33]/40"
+                                    className="w-full border border-[#C5A059]/30 rounded-xl px-4 py-3 bg-[#1C2E24]/50 text-[#EBE3D5] focus:outline-none focus:ring-2 focus:ring-[#C5A059] placeholder:text-[#EBE3D5]/40"
                                     placeholder="https://example.com/your-image.jpg"
                                 />
-                                <p className="text-xs text-[#263A33]/40 mt-1">
+                                <p className="text-xs text-[#EBE3D5]/40 mt-1">
                                     Enter a URL for your profile picture (optional)
                                 </p>
                             </div>
@@ -372,14 +372,14 @@ export default function ProfilePage() {
                                 <Button
                                     onPress={handleUpdateProfile}
 
-                                    className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80"
+                                    className="bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
                                 >
                                     <FaSave className="mr-2" />
                                     Save Changes
                                 </Button>
                                 <Button
                                     onPress={cancelEditing}
-                                    className="bg-[#F5F8F5] border border-[#7BAE9B]/30 text-[#263A33] hover:bg-[#F5F8F5]/80 font-semibold"
+                                    className="bg-[#1C2E24] border border-[#C5A059]/30 text-[#EBE3D5] hover:bg-[#1C2E24]/80 font-semibold"
                                 >
                                     <FaTimes className="mr-2" />
                                     Cancel

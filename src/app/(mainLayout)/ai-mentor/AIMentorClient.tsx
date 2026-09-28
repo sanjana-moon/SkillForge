@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
@@ -212,23 +212,23 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
     };
 
     return (
-        <div className="min-h-screen bg-[#F5F8F5] p-4 md:p-6">
+        <div className="min-h-screen bg-[#1C2E24] p-4 md:p-6">
             <div className="mx-auto max-w-7xl h-[calc(100vh-120px)]">
                 <div className="flex flex-col h-full">
                     {/* Header */}
                     <div className="flex items-center justify-between mb-4">
                         <div>
-                            <h1 className="text-2xl md:text-3xl font-bold text-[#263A33] flex items-center gap-3">
-                                <FaRobot className="text-[#7BAE9B]" />
+                            <h1 className="text-2xl md:text-3xl font-bold text-[#EBE3D5] flex items-center gap-3">
+                                <FaRobot className="text-[#C5A059]" />
                                 AI Mentor
                             </h1>
-                            <p className="text-[#263A33]/50 text-sm mt-1">
+                            <p className="text-[#EBE3D5]/50 text-sm mt-1">
                                 Your personal learning assistant powered by AI
                             </p>
                         </div>
                         <Button
                             onPress={handleCreateSession}
-                            className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80"
+                            className="bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
                         >
                             <FaPlus />
                             New Conversation
@@ -238,17 +238,17 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                     {/* Main Content */}
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 flex-1 min-h-0">
                         {/* Sidebar - Sessions List */}
-                        <Card className="lg:col-span-1 bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl p-3 overflow-y-auto max-h-[calc(100vh-220px)]">
+                        <Card className="lg:col-span-1 bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-3 overflow-y-auto max-h-[calc(100vh-220px)]">
                             {sessions.length === 0 ? (
                                 <div className="text-center py-8">
-                                    <FaRobot className="text-4xl text-[#263A33]/10 mx-auto mb-3" />
-                                    <p className="text-[#263A33]/40 text-sm">
+                                    <FaRobot className="text-4xl text-[#EBE3D5]/10 mx-auto mb-3" />
+                                    <p className="text-[#EBE3D5]/40 text-sm">
                                         No conversations yet
                                     </p>
                                     <Button
                                         onPress={handleCreateSession}
                                         size="sm"
-                                        className="mt-3 bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80"
+                                        className="mt-3 bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
                                     >
                                         Start New
                                     </Button>
@@ -259,16 +259,16 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                         <div
                                             key={session._id}
                                             className={`group flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all ${currentSession?._id === session._id
-                                                    ? "bg-[#7BAE9B]/15 border border-[#7BAE9B]/30"
-                                                    : "hover:bg-[#F5F8F5] border border-transparent"
+                                                    ? "bg-[#C5A059]/15 border border-[#C5A059]/30"
+                                                    : "hover:bg-[#1C2E24] border border-transparent"
                                                 }`}
                                             onClick={() => handleSelectSession(session)}
                                         >
                                             <div className="flex-1 min-w-0">
-                                                <p className="text-sm font-medium text-[#263A33] truncate">
+                                                <p className="text-sm font-medium text-[#EBE3D5] truncate">
                                                     {session.title}
                                                 </p>
-                                                <p className="text-xs text-[#263A33]/40 flex items-center gap-1 mt-0.5">
+                                                <p className="text-xs text-[#EBE3D5]/40 flex items-center gap-1 mt-0.5">
                                                     <FaCalendarAlt className="text-[10px]" />
                                                     {formatDate(session.updatedAt || session.createdAt)}
                                                 </p>
@@ -279,7 +279,7 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                     handleDeleteSession(session._id!);
                                                 }}
                                                 disabled={isDeleting === session._id}
-                                                className="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg hover:bg-red-500/20 text-[#263A33]/40 hover:text-red-400 transition-all"
+                                                className="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg hover:bg-red-500/20 text-[#EBE3D5]/40 hover:text-red-400 transition-all"
                                             >
                                                 {isDeleting === session._id ? (
                                                     <Spinner size="sm" color="danger" />
@@ -294,20 +294,20 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                         </Card>
 
                         {/* Chat Area */}
-                        <Card className="lg:col-span-3 bg-[#DCEBE4] border border-[#7BAE9B]/20 rounded-2xl flex flex-col overflow-hidden">
+                        <Card className="lg:col-span-3 bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl flex flex-col overflow-hidden">
                             {!currentSession ? (
                                 <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
-                                    <FaRobot className="text-6xl text-[#263A33]/10 mb-4" />
-                                    <h3 className="text-xl font-semibold text-[#263A33] mb-2">
+                                    <FaRobot className="text-6xl text-[#EBE3D5]/10 mb-4" />
+                                    <h3 className="text-xl font-semibold text-[#EBE3D5] mb-2">
                                         Welcome to AI Mentor
                                     </h3>
-                                    <p className="text-[#263A33]/50 max-w-md">
+                                    <p className="text-[#EBE3D5]/50 max-w-md">
                                         Start a new conversation to get personalized learning guidance,
                                         career advice, and answers to your questions.
                                     </p>
                                     <Button
                                         onPress={handleCreateSession}
-                                        className="mt-6 bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80"
+                                        className="mt-6 bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
                                     >
                                         <FaPlus />
                                         Start New Conversation
@@ -323,8 +323,8 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                     <div className="flex-1 overflow-y-auto p-4 space-y-4">
                                         {messages.length === 0 ? (
                                             <div className="flex flex-col items-center justify-center h-full text-center">
-                                                <FaRobot className="text-4xl text-[#263A33]/10 mb-3" />
-                                                <p className="text-[#263A33]/40 text-sm">
+                                                <FaRobot className="text-4xl text-[#EBE3D5]/10 mb-3" />
+                                                <p className="text-[#EBE3D5]/40 text-sm">
                                                     Ask me anything about learning, career, or courses!
                                                 </p>
                                             </div>
@@ -343,24 +343,24 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                     >
                                                         <div
                                                             className={`max-w-[80%] rounded-2xl px-4 py-3 ${message.role === "user"
-                                                                    ? "bg-[#7BAE9B] text-[#F5F8F5]"
-                                                                    : "bg-[#F5F8F5] text-[#263A33] border border-[#7BAE9B]/10"
+                                                                    ? "bg-[#C5A059] text-[#1C2E24]"
+                                                                    : "bg-[#1C2E24] text-[#EBE3D5] border border-[#C5A059]/10"
                                                                 }`}
                                                         >
                                                             <div className="flex items-start gap-2">
                                                                 {message.role === "assistant" && (
-                                                                    <FaRobot className="text-[#7BAE9B] text-sm mt-0.5 shrink-0" />
+                                                                    <FaRobot className="text-[#C5A059] text-sm mt-0.5 shrink-0" />
                                                                 )}
                                                                 {message.role === "user" && (
-                                                                    <FaUser className="text-[#F5F8F5]/60 text-sm mt-0.5 shrink-0" />
+                                                                    <FaUser className="text-[#1C2E24]/60 text-sm mt-0.5 shrink-0" />
                                                                 )}
                                                                 <div className="whitespace-pre-wrap text-sm leading-relaxed">
                                                                     {message.content}
                                                                 </div>
                                                             </div>
                                                             <p className={`text-[10px] mt-1 ${message.role === "user"
-                                                                    ? "text-[#F5F8F5]/60"
-                                                                    : "text-[#263A33]/30"
+                                                                    ? "text-[#1C2E24]/60"
+                                                                    : "text-[#EBE3D5]/30"
                                                                 }`}>
                                                                 {formatDate(message.createdAt)}
                                                             </p>
@@ -375,13 +375,13 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                 animate={{ opacity: 1, y: 0 }}
                                                 className="flex justify-start"
                                             >
-                                                <div className="bg-[#F5F8F5] border border-[#7BAE9B]/10 rounded-2xl px-4 py-3">
+                                                <div className="bg-[#1C2E24] border border-[#C5A059]/10 rounded-2xl px-4 py-3">
                                                     <div className="flex items-center gap-2">
-                                                        <FaRobot className="text-[#7BAE9B] text-sm" />
+                                                        <FaRobot className="text-[#C5A059] text-sm" />
                                                         <div className="flex gap-1">
-                                                            <span className="w-2 h-2 bg-[#7BAE9B] rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                                                            <span className="w-2 h-2 bg-[#7BAE9B] rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                                                            <span className="w-2 h-2 bg-[#7BAE9B] rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                                                            <span className="w-2 h-2 bg-[#C5A059] rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                                                            <span className="w-2 h-2 bg-[#C5A059] rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                                                            <span className="w-2 h-2 bg-[#C5A059] rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -391,7 +391,7 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                     </div>
 
                                     {/* Input Area */}
-                                    <div className="p-4 border-t border-[#7BAE9B]/10">
+                                    <div className="p-4 border-t border-[#C5A059]/10">
                                         <div className="flex gap-3">
                                             <input
                                                 ref={inputRef}
@@ -401,12 +401,12 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                 onChange={(e) => setInputMessage(e.target.value)}
                                                 onKeyPress={handleKeyPress}
                                                 disabled={isLoading}
-                                                className="flex-1 px-4 py-3 bg-[#F5F8F5] border border-[#7BAE9B]/20 rounded-xl text-[#263A33] placeholder:text-[#263A33]/40 focus:outline-none focus:border-[#7BAE9B] transition-colors disabled:opacity-50"
+                                                className="flex-1 px-4 py-3 bg-[#1C2E24] border border-[#C5A059]/20 rounded-xl text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 focus:outline-none focus:border-[#C5A059] transition-colors disabled:opacity-50"
                                             />
                                             <Button
                                                 onPress={handleSendMessage}
                                                 isDisabled={!inputMessage.trim() || isLoading}
-                                                className="bg-[#7BAE9B] text-[#F5F8F5] font-semibold hover:bg-[#7BAE9B]/80 px-6 rounded-xl"
+                                                className="bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80 px-6 rounded-xl"
                                             >
                                                 <FaPaperPlane />
                                                 Send
