@@ -132,6 +132,7 @@ const Navbar = () => {
                 label: "Profile",
                 href: "/dashboard/profile",
             },
+            
         ];
     } else {
         dashboardLinks = [];

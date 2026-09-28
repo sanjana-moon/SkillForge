@@ -16,7 +16,7 @@ export default function Home() {
         <Hero />
         <FeaturedCourses/>
         <AIFeatures />
-        <AboutPage/>
+        {/* <AboutPage/> */}
         <Categories />
         <WhyChooseUs />
         <Testimonials />

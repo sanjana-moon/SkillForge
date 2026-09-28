@@ -1,5 +1,6 @@
 ﻿"use client";
 
+import Image from "next/image";
 import { FaQuoteLeft, FaStar } from "react-icons/fa6";
 
 const testimonials = [
@@ -74,9 +75,11 @@ export default function Testimonials() {
 
               {/* Author Info */}
               <div className="mt-8 pt-6 border-t border-[#C5A059]/10 flex items-center gap-4">
-                <img
+                <Image
                   src={test.avatar}
                   alt={test.author}
+                  width={44}
+                  height={44}
                   className="h-11 w-11 rounded-full object-cover border border-[#C5A059]/20"
                 />
                 <div>

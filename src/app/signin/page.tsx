@@ -1,5 +1,7 @@
 ﻿"use client";
 
+import { useEffect } from "react";
+
 import { authClient } from "@/lib/auth-client";
 import {
     Button,
@@ -13,12 +15,9 @@ import {
 } from "@heroui/react";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-import {
-    SubmitHandler,
-    useForm,
-} from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { FaGoogle } from "react-icons/fa6";
 import { IoLogInOutline } from "react-icons/io5";
@@ -32,12 +31,24 @@ type LoginForm = {
 
 const SigninPage = () => {
     const router = useRouter();
+    const searchParams = useSearchParams();
 
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm<LoginForm>();
+
+    // ── Detect return from Google OAuth on THIS page ──
+    const { data: session } = authClient.useSession();
+
+    useEffect(() => {
+        if (searchParams.get("social") === "success" && session?.user) {
+            toast.success("Welcome back to SkillForge!");
+            router.replace("/");
+        }
+    }, [searchParams, session, router]);
+    // ─────────────────────────────────────────────────
 
     const onSubmit: SubmitHandler<LoginForm> = async (data) => {
         try {
@@ -47,23 +58,15 @@ const SigninPage = () => {
             });
 
             if (error) {
-                toast.error(
-                    error.message ||
-                    "Signin failed."
-                );
+                toast.error(error.message || "Signin failed.");
                 return;
             }
-            toast.success(
-                "Welcome back to SkillForge!"
-            );
 
+            toast.success("Welcome back to SkillForge!");
             router.push("/");
         } catch (error) {
             console.error(error);
-
-            toast.error(
-                "Something went wrong."
-            );
+            toast.error("Something went wrong.");
         }
     };
 
@@ -71,18 +74,11 @@ const SigninPage = () => {
         try {
             await authClient.signIn.social({
                 provider: "google",
-                callbackURL: "/",
+                callbackURL: "/signin?social=success", // ← back to THIS page
             });
-
-            toast.success(
-                "Google Sign In successful."
-            );
         } catch (error) {
             console.error(error);
-
-            toast.error(
-                "Google Sign In failed."
-            );
+            toast.error("Google Sign In failed.");
         }
     };
 
@@ -107,10 +103,7 @@ const SigninPage = () => {
                     className="flex flex-col gap-5"
                 >
                     {/* Email */}
-                    <TextField
-                        isRequired
-                        isInvalid={!!errors.email}
-                    >
+                    <TextField isRequired isInvalid={!!errors.email}>
                         <Label className="font-medium text-[#EBE3D5]">
                             Email Address
                         </Label>
@@ -124,16 +117,11 @@ const SigninPage = () => {
                             className="mt-2 bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40"
                         />
 
-                        <FieldError>
-                            {errors.email?.message}
-                        </FieldError>
+                        <FieldError>{errors.email?.message}</FieldError>
                     </TextField>
 
                     {/* Password */}
-                    <TextField
-                        isRequired
-                        isInvalid={!!errors.password}
-                    >
+                    <TextField isRequired isInvalid={!!errors.password}>
                         <Label className="font-medium text-[#EBE3D5]">
                             Password
                         </Label>
@@ -156,9 +144,7 @@ const SigninPage = () => {
                             Password must contain at least 8 characters.
                         </Description>
 
-                        <FieldError>
-                            {errors.password?.message}
-                        </FieldError>
+                        <FieldError>{errors.password?.message}</FieldError>
                     </TextField>
 
                     {/* Login Button */}
@@ -170,6 +156,7 @@ const SigninPage = () => {
                         Sign In
                     </Button>
                 </Form>
+
                 {/* Divider */}
                 <div className="my-6 flex items-center gap-3">
                     <div className="h-px flex-1 bg-[#C5A059]/20" />
