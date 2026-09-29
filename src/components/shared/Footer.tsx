@@ -28,21 +28,6 @@ export default function Footer() {
             <p className="mt-4 text-sm leading-relaxed text-[#EBE3D5]/65">
               Personalized learning roadmaps, smart recommendations, and 24/7 AI mentorship designed to accelerate your tech career.
             </p>
-            {/* Social Icons */}
-            <div className="mt-6 flex items-center gap-4">
-              <a href="#" className="p-2 bg-[#3E5C4B] rounded-lg hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-[#C5A059]/5 transition duration-200">
-                <FaTwitter className="text-base" />
-              </a>
-              <a href="#" className="p-2 bg-[#3E5C4B] rounded-lg hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-[#C5A059]/5 transition duration-200">
-                <FaGithub className="text-base" />
-              </a>
-              <a href="#" className="p-2 bg-[#3E5C4B] rounded-lg hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-[#C5A059]/5 transition duration-200">
-                <FaLinkedin className="text-base" />
-              </a>
-              <a href="#" className="p-2 bg-[#3E5C4B] rounded-lg hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-[#C5A059]/5 transition duration-200">
-                <FaYoutube className="text-base" />
-              </a>
-            </div>
           </div>
 
           {/* Column 2: Quick Links */}
@@ -104,10 +89,24 @@ export default function Footer() {
         {/* Bottom copyright */}
         <div className="mt-12 pt-8 border-t border-[#C5A059]/10 flex flex-col sm:flex-row items-center justify-between text-xs text-[#EBE3D5]/40 font-mono">
           <p>&copy; {currentYear} SkillForge AI. All rights reserved.</p>
-          <p className="mt-2 sm:mt-0">Engineered with Gemini AI</p>
+
+          {/* Social Icons — moved from the brand column */}
+          <div className="mt-4 sm:mt-0 flex items-center gap-3">
+            <a href="#" className="p-2 bg-[#3E5C4B] rounded-lg hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-[#C5A059]/5 transition duration-200">
+              <FaTwitter className="text-base" />
+            </a>
+            <a href="#" className="p-2 bg-[#3E5C4B] rounded-lg hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-[#C5A059]/5 transition duration-200">
+              <FaGithub className="text-base" />
+            </a>
+            <a href="#" className="p-2 bg-[#3E5C4B] rounded-lg hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-[#C5A059]/5 transition duration-200">
+              <FaLinkedin className="text-base" />
+            </a>
+            <a href="#" className="p-2 bg-[#3E5C4B] rounded-lg hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-[#C5A059]/5 transition duration-200">
+              <FaYoutube className="text-base" />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
   );
 }
-
