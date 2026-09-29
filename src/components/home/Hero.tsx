@@ -75,7 +75,7 @@ export default function Hero() {
             <div className="relative w-full max-w-lg aspect-square rounded-3xl overflow-hidden border border-[#C5A059]/20 shadow-2xl bg-[#3E5C4B]/40 p-4 backdrop-blur-sm group">
               <div className="absolute inset-0 bg-linear-to-t from-[#1C2E24] via-transparent to-transparent opacity-60 z-10" />
               <Image
-                src="/AI.jfif"
+                src="/hero-2.png"
                 alt="SkillForge AI Interactive Visual"
                 width={500}
                 height={500}

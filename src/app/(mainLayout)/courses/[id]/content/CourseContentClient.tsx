@@ -127,7 +127,7 @@ const CourseContentClient = ({
                             {course.title}
                         </h1>
                         <p className="text-[#EBE3D5]/50 text-sm mt-1">
-                            {totalLessons} lessons â€¢ {completedLessons} completed
+                            {totalLessons} lessons {completedLessons} completed
                         </p>
                     </div>
                     <div className="flex items-center gap-3">

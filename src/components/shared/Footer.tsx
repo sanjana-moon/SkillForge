@@ -91,7 +91,7 @@ export default function Footer() {
           <p>&copy; {currentYear} SkillForge AI. All rights reserved.</p>
 
           {/* Social Icons — moved from the brand column */}
-          <div className="mt-4 sm:mt-0 flex items-center gap-3">
+          <div className="sm:mt-0 flex items-center gap-3">
             <a href="#" className="p-2 bg-[#3E5C4B] rounded-lg hover:text-[#C5A059] hover:bg-[#C5A059]/10 border border-[#C5A059]/5 transition duration-200">
               <FaTwitter className="text-base" />
             </a>

@@ -267,7 +267,7 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                 <ul className="space-y-2 text-[#EBE3D5]/70">
                                     {course.requirements.map((item, index) => (
                                         <li key={index} className="flex items-start gap-3">
-                                            <span className="text-[#C5A059] mt-0.5">â€¢</span>
+                                            <span className="text-[#C5A059] mt-0.5"></span>
                                             <span className="text-sm">{item}</span>
                                         </li>
                                     ))}
@@ -284,7 +284,7 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                 <ul className="space-y-2 text-[#EBE3D5]/70">
                                     {course.targetAudience.map((item, index) => (
                                         <li key={index} className="flex items-start gap-3">
-                                            <span className="text-[#C5A059] mt-0.5">â€¢</span>
+                                            <span className="text-[#C5A059] mt-0.5"></span>
                                             <span className="text-sm">{item}</span>
                                         </li>
                                     ))}
@@ -306,7 +306,7 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                         {course.instructorName}
                                     </p>
                                     <p className="text-sm text-[#EBE3D5]/50">
-                                        Instructor â€¢ {course.category} Expert
+                                        Instructor {course.category} Expert
                                     </p>
                                 </div>
                             </div>
