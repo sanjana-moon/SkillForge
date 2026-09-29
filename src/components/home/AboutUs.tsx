@@ -3,14 +3,9 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import {
-    Card,
-    Button,
-    Chip,
-} from "@heroui/react";
+import { Button, Chip } from "@heroui/react";
 import {
     FaRocket,
-    FaGraduationCap,
     FaUsers,
     FaBrain,
     FaAward,
@@ -19,11 +14,7 @@ import {
     FaRobot,
     FaBookOpen,
     FaGlobe,
-    FaCode,
-    FaShieldAlt,
-    FaHeadset,
 } from "react-icons/fa";
-import { MdOutlineSecurity, MdOutlineSupportAgent } from "react-icons/md";
 
 export default function AboutPage() {
     const stats = [
@@ -51,47 +42,36 @@ export default function AboutPage() {
 
     const values = [
         {
-            icon: <FaGraduationCap className="text-2xl" />,
             title: "Quality Education",
-            description: "We believe in providing high-quality, accessible education to everyone, regardless of their background or location.",
+            description:
+                "High-quality, accessible education for everyone, regardless of background or location.",
+            image:
+                "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80",
+            imageAlt: "Students learning together",
         },
         {
-            icon: <FaBrain className="text-2xl" />,
             title: "AI-Powered Learning",
-            description: "Leveraging cutting-edge AI technology to personalize learning experiences and provide instant support.",
+            description:
+                "Personalized learning experiences powered by cutting-edge AI.",
+            image:
+                "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+            imageAlt: "Artificial intelligence visualization",
         },
         {
-            icon: <FaUsers className="text-2xl" />,
             title: "Community First",
-            description: "Building a supportive community where learners can connect, collaborate, and grow together.",
+            description:
+                "A supportive space where learners connect, collaborate, and grow.",
+            image:
+                "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+            imageAlt: "Community of learners collaborating",
         },
         {
-            icon: <FaRocket className="text-2xl" />,
             title: "Continuous Innovation",
-            description: "Constantly evolving our platform with the latest technologies and teaching methodologies.",
-        },
-    ];
-
-    const features = [
-        {
-            icon: <FaCode className="text-xl" />,
-            title: "Practical Projects",
-            description: "Learn by building real-world projects that showcase your skills.",
-        },
-        {
-            icon: <FaRobot className="text-xl" />,
-            title: "AI Mentor",
-            description: "Get instant help and guidance from our AI-powered learning assistant.",
-        },
-        {
-            icon: <MdOutlineSecurity className="text-xl" />,
-            title: "Secure Learning",
-            description: "Safe and secure platform with industry-standard encryption.",
-        },
-        {
-            icon: <MdOutlineSupportAgent className="text-xl" />,
-            title: "24/7 Support",
-            description: "Our team and AI are always here to help you succeed.",
+            description:
+                "Constantly evolving with the latest technologies and methodologies.",
+            image:
+                "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+            imageAlt: "Technology and innovation",
         },
     ];
 
@@ -100,53 +80,68 @@ export default function AboutPage() {
             name: "Sarah Johnson",
             role: "CEO & Founder",
             bio: "Former tech executive with 15+ years in EdTech",
+            image:
+                "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
         },
         {
             name: "Michael Chen",
             role: "CTO",
             bio: "AI expert with a PhD in Machine Learning",
+            image:
+                "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80",
         },
         {
             name: "Emily Rodriguez",
             role: "Head of Content",
             bio: "Curriculum designer with 10+ years of teaching experience",
+            image:
+                "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80",
         },
         {
             name: "David Kim",
             role: "Lead Instructor",
             bio: "Senior Software Engineer and passionate educator",
+            image:
+                "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80",
         },
     ];
 
     return (
         <div className="min-h-screen bg-[#1C2E24]">
-            {/* Hero Section */}
+            {/* ─────────────────────────────
+                HERO
+            ───────────────────────────── */}
             <section className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-linear-to-br from-[#C5A059]/10 via-transparent to-transparent" />
-                <div className="absolute top-20 left-10 w-64 h-64 bg-[#C5A059]/5 rounded-full blur-3xl" />
-                <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#5C3A21]/5 rounded-full blur-3xl" />
+                <div className="absolute top-20 left-10 h-64 w-64 rounded-full bg-[#C5A059]/5 blur-3xl" />
+                <div className="absolute bottom-20 right-10 h-96 w-96 rounded-full bg-[#5C3A21]/5 blur-3xl" />
 
-                <div className="container mx-auto px-4 py-20 md:py-28 relative">
+                <div className="container relative mx-auto px-4 py-20 md:py-28">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="text-center max-w-4xl mx-auto"
+                        className="mx-auto max-w-4xl text-center"
                     >
-                        <Chip className="bg-[#C5A059]/10 text-[#C5A059] border border-[#C5A059]/20 px-4 py-2 text-sm font-medium mb-6">
+                        <Chip className="mb-6 border border-[#C5A059]/20 bg-[#C5A059]/10 px-4 py-2 text-sm font-medium text-[#C5A059]">
                             About SkillForge
                         </Chip>
-                        <h1 className="text-4xl md:text-6xl font-bold text-[#EBE3D5] leading-tight">
+                        <h1 className="text-4xl font-bold leading-tight text-[#EBE3D5] md:text-6xl">
                             Empowering Learners Through
-                            <span className="text-[#C5A059]"> AI-Powered Education</span>
+                            <span className="text-[#C5A059]">
+                                {" "}
+                                AI-Powered Education
+                            </span>
                         </h1>
-                        <p className="text-[#EBE3D5]/60 mt-6 text-lg max-w-2xl mx-auto">
-                            We're on a mission to make quality education accessible to everyone,
-                            using artificial intelligence to create personalized, engaging learning experiences.
+                        <p className="mx-auto mt-6 max-w-2xl text-lg text-[#EBE3D5]/60">
+                            We're on a mission to make quality education
+                            accessible to everyone, using artificial
+                            intelligence to create personalized, engaging
+                            learning experiences.
                         </p>
-                        <div className="flex flex-wrap justify-center gap-4 mt-8">
+                        <div className="mt-8 flex flex-wrap justify-center gap-4">
                             <Link href="/courses">
-                                <Button className="bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80">
+                                <Button className="bg-[#C5A059] font-semibold text-[#1C2E24] hover:bg-[#C5A059]/80">
                                     Explore Courses
                                     <FaArrowRight className="ml-2" />
                                 </Button>
@@ -161,53 +156,30 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* Stats Section */}
+            {/* ─────────────────────────────
+                MISSION
+            ───────────────────────────── */}
             <section className="container mx-auto px-4 py-16">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {stats.map((stat, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-6 text-center hover:border-[#C5A059]/40 transition-all duration-300"
-                        >
-                            <div className="flex justify-center mb-3">
-                                <div className="w-12 h-12 rounded-full bg-[#C5A059]/10 flex items-center justify-center">
-                                    {stat.icon}
-                                </div>
-                            </div>
-                            <p className="text-3xl font-bold text-[#EBE3D5]">
-                                {stat.value}
-                            </p>
-                            <p className="text-[#EBE3D5]/50 text-sm mt-1">
-                                {stat.label}
-                            </p>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Mission Section */}
-            <section className="container mx-auto px-4 py-16">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <Chip className="bg-[#C5A059]/10 text-[#C5A059] border border-[#C5A059]/20 px-4 py-2 text-sm font-medium mb-4">
+                        <Chip className="mb-4 border border-[#C5A059]/20 bg-[#C5A059]/10 px-4 py-2 text-sm font-medium text-[#C5A059]">
                             Our Mission
                         </Chip>
-                        <h2 className="text-3xl md:text-4xl font-bold text-[#EBE3D5]">
+                        <h2 className="text-3xl font-bold text-[#EBE3D5] md:text-4xl">
                             Making Quality Education Accessible
                         </h2>
-                        <p className="text-[#EBE3D5]/60 mt-4 text-base leading-relaxed">
-                            At SkillForge, we believe that everyone deserves access to high-quality education.
-                            Our platform combines expert-led courses with cutting-edge AI technology to create
-                            a learning experience that's personalized, engaging, and effective.
+                        <p className="mt-4 text-base leading-relaxed text-[#EBE3D5]/60">
+                            At SkillForge, we believe that everyone deserves
+                            access to high-quality education. Our platform
+                            combines expert-led courses with cutting-edge AI
+                            technology to create a learning experience that's
+                            personalized, engaging, and effective.
                         </p>
-                        <div className="space-y-3 mt-6">
+                        <div className="mt-6 space-y-3">
                             {[
                                 "Expert instructors with real-world experience",
                                 "AI-powered personalized learning paths",
@@ -215,8 +187,8 @@ export default function AboutPage() {
                                 "Supportive community of learners",
                             ].map((item, index) => (
                                 <div key={index} className="flex items-center gap-3">
-                                    <FaCheckCircle className="text-[#C5A059] text-sm shrink-0" />
-                                    <span className="text-[#EBE3D5]/70 text-sm">
+                                    <FaCheckCircle className="shrink-0 text-sm text-[#C5A059]" />
+                                    <span className="text-sm text-[#EBE3D5]/70">
                                         {item}
                                     </span>
                                 </div>
@@ -228,198 +200,274 @@ export default function AboutPage() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-8"
+                        className="rounded-2xl border border-[#C5A059]/20 bg-[#3E5C4B] p-8"
                     >
-                        <div className="flex items-center gap-3 mb-4">
-                            <FaGlobe className="text-[#C5A059] text-2xl" />
+                        <div className="mb-4 flex items-center gap-3">
+                            <FaGlobe className="text-2xl text-[#C5A059]" />
                             <h3 className="text-xl font-bold text-[#EBE3D5]">
                                 Our Impact
                             </h3>
                         </div>
                         <div className="space-y-4">
-                            <div>
-                                <div className="flex justify-between text-sm mb-1">
-                                    <span className="text-[#EBE3D5]/60">Students Empowered</span>
-                                    <span className="text-[#C5A059] font-medium">50,000+</span>
+                            {[
+                                {
+                                    label: "Students Empowered",
+                                    value: "50,000+",
+                                    width: "85%",
+                                },
+                                {
+                                    label: "Course Completion Rate",
+                                    value: "78%",
+                                    width: "78%",
+                                },
+                                {
+                                    label: "Student Satisfaction",
+                                    value: "98%",
+                                    width: "98%",
+                                },
+                            ].map((item) => (
+                                <div key={item.label}>
+                                    <div className="mb-1 flex justify-between text-sm">
+                                        <span className="text-[#EBE3D5]/60">
+                                            {item.label}
+                                        </span>
+                                        <span className="font-medium text-[#C5A059]">
+                                            {item.value}
+                                        </span>
+                                    </div>
+                                    <div className="h-2 w-full overflow-hidden rounded-full bg-[#1C2E24]">
+                                        <div
+                                            className="h-full rounded-full bg-[#C5A059]"
+                                            style={{ width: item.width }}
+                                        />
+                                    </div>
                                 </div>
-                                <div className="w-full h-2 bg-[#1C2E24] rounded-full overflow-hidden">
-                                    <div className="h-full bg-[#C5A059] rounded-full" style={{ width: "85%" }} />
-                                </div>
-                            </div>
-                            <div>
-                                <div className="flex justify-between text-sm mb-1">
-                                    <span className="text-[#EBE3D5]/60">Course Completion Rate</span>
-                                    <span className="text-[#C5A059] font-medium">78%</span>
-                                </div>
-                                <div className="w-full h-2 bg-[#1C2E24] rounded-full overflow-hidden">
-                                    <div className="h-full bg-[#C5A059] rounded-full" style={{ width: "78%" }} />
-                                </div>
-                            </div>
-                            <div>
-                                <div className="flex justify-between text-sm mb-1">
-                                    <span className="text-[#EBE3D5]/60">Student Satisfaction</span>
-                                    <span className="text-[#C5A059] font-medium">98%</span>
-                                </div>
-                                <div className="w-full h-2 bg-[#1C2E24] rounded-full overflow-hidden">
-                                    <div className="h-full bg-[#C5A059] rounded-full" style={{ width: "98%" }} />
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </motion.div>
                 </div>
             </section>
 
-            {/* Core Values */}
+            {/* ─────────────────────────────
+                CORE VALUES — Bento with full-height image
+            ───────────────────────────── */}
             <section className="container mx-auto px-4 py-16">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-12"
+                    className="mb-12 text-center"
                 >
-                    <Chip className="bg-[#C5A059]/10 text-[#C5A059] border border-[#C5A059]/20 px-4 py-2 text-sm font-medium mb-4">
+                    <Chip className="mb-4 border border-[#C5A059]/20 bg-[#C5A059]/10 px-4 py-2 text-sm font-medium text-[#C5A059]">
                         Core Values
                     </Chip>
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#EBE3D5]">
+                    <h2 className="text-3xl font-bold text-[#EBE3D5] md:text-4xl">
                         What Drives Us
                     </h2>
-                    <p className="text-[#EBE3D5]/60 mt-4 max-w-2xl mx-auto">
-                        Our values shape everything we do, from the courses we create to the community we build.
+                    <p className="mx-auto mt-4 max-w-2xl text-[#EBE3D5]/60">
+                        Our values shape everything we do, from the courses we
+                        create to the community we build.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {values.map((value, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-6 text-center hover:border-[#C5A059]/40 transition-all duration-300 group"
-                        >
-                            <div className="w-16 h-16 rounded-full bg-[#C5A059]/10 flex items-center justify-center mx-auto mb-4 text-[#C5A059] group-hover:bg-[#C5A059]/20 transition-all duration-300">
-                                {value.icon}
-                            </div>
-                            <h3 className="text-lg font-semibold text-[#EBE3D5] mb-2">
-                                {value.title}
+                {/* 2-column bento: image spans full height of the 3 right-side tiles */}
+                <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+                    {/* LEFT — full-height image tile (spans all 3 rows) */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.6 }}
+                        className="group relative min-h-[420px] overflow-hidden rounded-3xl border border-[#C5A059]/20 lg:min-h-full"
+                    >
+                        <Image
+                            src={values[0].image}
+                            alt={values[0].imageAlt}
+                            fill
+                            sizes="(max-width: 1024px) 100vw, 600px"
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+
+                        {/* Dark gradient for text legibility */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#1C2E24] via-[#1C2E24]/10 to-transparent" />
+
+                        {/* Corner value badge */}
+                        <div className="absolute left-6 top-6 rounded-full border border-[#C5A059]/30 bg-[#1C2E24]/70 px-3 py-1 font-mono text-xs uppercase tracking-widest text-[#C5A059] backdrop-blur-sm">
+                            Value 01
+                        </div>
+
+                        {/* Bottom text */}
+                        <div className="absolute bottom-0 left-0 right-0 p-8">
+                            <h3 className="text-2xl font-bold text-[#EBE3D5] md:text-3xl">
+                                {values[0].title}
                             </h3>
-                            <p className="text-[#EBE3D5]/50 text-sm leading-relaxed">
-                                {value.description}
+                            <p className="mt-3 max-w-md text-sm leading-relaxed text-[#EBE3D5]/75">
+                                {values[0].description}
                             </p>
-                        </motion.div>
-                    ))}
+                        </div>
+                    </motion.div>
+
+                    {/* RIGHT — three stacked tiles */}
+                    <div className="flex flex-col gap-5">
+                        {values.slice(1).map((value, index) => {
+                            const icons = [
+                                <FaBrain key="b" className="text-xl" />,
+                                <FaUsers key="u" className="text-xl" />,
+                                <FaRocket key="r" className="text-xl" />,
+                            ];
+
+                            return (
+                                <motion.div
+                                    key={value.title}
+                                    initial={{ opacity: 0, scale: 0.98 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true, amount: 0.3 }}
+                                    transition={{
+                                        duration: 0.5,
+                                        delay: 0.1 + index * 0.08,
+                                    }}
+                                    className="group relative flex flex-1 items-start gap-5 overflow-hidden rounded-3xl border border-[#C5A059]/20 bg-[#3E5C4B] p-6 transition-colors duration-300 hover:border-[#C5A059]/40"
+                                >
+                                    {/* brass corner glow */}
+                                    <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-[#C5A059]/10 blur-3xl opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
+
+                                    <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#C5A059]/20 bg-[#C5A059]/10 text-[#C5A059]">
+                                        {icons[index]}
+                                    </div>
+
+                                    <div className="relative">
+                                        <h3 className="text-lg font-semibold text-[#EBE3D5]">
+                                            {value.title}
+                                        </h3>
+                                        <p className="mt-2 text-sm leading-relaxed text-[#EBE3D5]/60">
+                                            {value.description}
+                                        </p>
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
+                    </div>
                 </div>
             </section>
 
-            {/* Features Section */}
+            {/* ─────────────────────────────
+                TEAM — portrait frames
+            ───────────────────────────── */}
             <section className="container mx-auto px-4 py-16">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-12"
+                    className="mb-12 text-center"
                 >
-                    <Chip className="bg-[#C5A059]/10 text-[#C5A059] border border-[#C5A059]/20 px-4 py-2 text-sm font-medium mb-4">
-                        Why Choose Us
-                    </Chip>
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#EBE3D5]">
-                        Features That Set Us Apart
-                    </h2>
-                </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {features.map((feature, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 + index * 0.1 }}
-                            className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-6 hover:border-[#C5A059]/40 transition-all duration-300"
-                        >
-                            <div className="w-12 h-12 rounded-xl bg-[#C5A059]/10 flex items-center justify-center text-[#C5A059] mb-4">
-                                {feature.icon}
-                            </div>
-                            <h3 className="text-[#EBE3D5] font-semibold mb-2">
-                                {feature.title}
-                            </h3>
-                            <p className="text-[#EBE3D5]/50 text-sm leading-relaxed">
-                                {feature.description}
-                            </p>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Team Section */}
-            <section className="container mx-auto px-4 py-16">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-12"
-                >
-                    <Chip className="bg-[#C5A059]/10 text-[#C5A059] border border-[#C5A059]/20 px-4 py-2 text-sm font-medium mb-4">
+                    <Chip className="mb-4 border border-[#C5A059]/20 bg-[#C5A059]/10 px-4 py-2 text-sm font-medium text-[#C5A059]">
                         Meet the Team
                     </Chip>
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#EBE3D5]">
+                    <h2 className="text-3xl font-bold text-[#EBE3D5] md:text-4xl">
                         Passionate People, Powerful Results
                     </h2>
-                    <p className="text-[#EBE3D5]/60 mt-4 max-w-2xl mx-auto">
-                        Behind SkillForge is a team of dedicated educators, engineers, and innovators
-                        committed to transforming education.
+                    <p className="mx-auto mt-4 max-w-2xl text-[#EBE3D5]/60">
+                        Behind SkillForge is a team of dedicated educators,
+                        engineers, and innovators committed to transforming
+                        education.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
                     {team.map((member, index) => (
                         <motion.div
-                            key={index}
+                            key={member.name}
                             initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3 + index * 0.1 }}
-                            className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-6 text-center hover:border-[#C5A059]/40 transition-all duration-300"
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{ delay: index * 0.08 }}
+                            className="group flex flex-col items-center text-center"
                         >
-                            <div className="w-24 h-24 rounded-full bg-linear-to-br from-[#C5A059] to-[#5C3A21] mx-auto mb-4 flex items-center justify-center text-3xl font-bold text-[#1C2E24]">
-                                {member.name.charAt(0)}
+                            <div className="relative mb-5">
+                                <div className="pointer-events-none absolute inset-0 rounded-full bg-[#C5A059]/25 opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+
+                                <div className="relative h-40 w-40 overflow-hidden rounded-full border-2 border-[#C5A059]/40 transition-transform duration-500 group-hover:scale-105">
+                                    <Image
+                                        src={member.image}
+                                        alt={member.name}
+                                        fill
+                                        sizes="160px"
+                                        className="object-cover"
+                                    />
+                                </div>
                             </div>
-                            <h3 className="text-[#EBE3D5] font-semibold">
+
+                            <h3 className="text-lg font-semibold text-[#EBE3D5]">
                                 {member.name}
                             </h3>
-                            <p className="text-[#C5A059] text-sm font-medium">
+                            <p className="text-sm font-medium text-[#C5A059]">
                                 {member.role}
                             </p>
-                            <p className="text-[#EBE3D5]/40 text-xs mt-2">
+                            <p className="mt-2 max-w-[220px] text-xs leading-relaxed text-[#EBE3D5]/50">
                                 {member.bio}
                             </p>
                         </motion.div>
                     ))}
                 </div>
             </section>
+            
+            {/* ─────────────────────────────
+                STATS — bottom of the page
+            ───────────────────────────── */}
+            <section className="container mx-auto px-4 pb-20 pt-8">
+                <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+                    {stats.map((stat, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{ delay: index * 0.08 }}
+                            className="rounded-2xl border border-[#C5A059]/20 bg-[#3E5C4B] p-6 text-center transition-all duration-300 hover:border-[#C5A059]/40"
+                        >
+                            <div className="mb-3 flex justify-center">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#C5A059]/10">
+                                    {stat.icon}
+                                </div>
+                            </div>
+                            <p className="text-3xl font-bold text-[#EBE3D5]">
+                                {stat.value}
+                            </p>
+                            <p className="mt-1 text-sm text-[#EBE3D5]/50">
+                                {stat.label}
+                            </p>
+                        </motion.div>
+                    ))}
+                </div>
+            </section>
 
-            {/* CTA Section */}
+            {/* ─────────────────────────────
+                CTA
+            ───────────────────────────── */}
             <section className="container mx-auto px-4 py-16">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="bg-linear-to-br from-[#C5A059]/10 via-[#5C3A21]/5 to-transparent border border-[#C5A059]/20 rounded-3xl p-12 text-center"
+                    className="rounded-3xl border border-[#C5A059]/20 bg-linear-to-br from-[#C5A059]/10 via-[#5C3A21]/5 to-transparent p-12 text-center"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#EBE3D5]">
+                    <h2 className="text-3xl font-bold text-[#EBE3D5] md:text-4xl">
                         Ready to Start Learning?
                     </h2>
-                    <p className="text-[#EBE3D5]/60 mt-4 max-w-2xl mx-auto">
-                        Join thousands of students who are already advancing their careers
-                        with SkillForge. Start your learning journey today.
+                    <p className="mx-auto mt-4 max-w-2xl text-[#EBE3D5]/60">
+                        Join thousands of students who are already advancing
+                        their careers with SkillForge. Start your learning
+                        journey today.
                     </p>
-                    <div className="flex flex-wrap justify-center gap-4 mt-8">
+                    <div className="mt-8 flex flex-wrap justify-center gap-4">
                         <Link href="/courses">
-                            <Button className="bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80 px-8 py-6 text-lg rounded-xl">
+                            <Button className="rounded-xl bg-[#C5A059] px-8 py-6 text-lg font-semibold text-[#1C2E24] hover:bg-[#C5A059]/80">
                                 Explore Courses
                                 <FaArrowRight className="ml-2" />
                             </Button>
                         </Link>
                         <Link href="/contact">
-                            <Button className="border border-[#C5A059]/30 text-[#EBE3D5] hover:bg-[#C5A059]/10 px-8 py-6 text-lg rounded-xl">
+                            <Button className="rounded-xl border border-[#C5A059]/30 px-8 py-6 text-lg text-[#EBE3D5] hover:bg-[#C5A059]/10">
                                 Contact Us
                             </Button>
                         </Link>

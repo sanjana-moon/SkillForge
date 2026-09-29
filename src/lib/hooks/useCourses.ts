@@ -7,6 +7,7 @@ import {
     checkEnrollment,
     type CourseFilters,
     type CourseListResponse,
+    getMyRole,
 } from "@/lib/api/courses/data";
 import { enrollInCourse } from "@/lib/api/courses/actions";
 
@@ -97,5 +98,18 @@ export const useEnrollCourse = () => {
                 queryKey: [QUERY_KEYS.course, variables.courseId],
             });
         },
+    });
+};
+
+
+export const useMyRole = (enabled: boolean) => {
+    return useQuery({
+        queryKey: ["my-role"],
+        queryFn: getMyRole,
+        enabled,                       // only fetch when a session exists
+        staleTime: 30 * 60 * 1000,     // 30 min — role rarely changes
+        gcTime: 60 * 60 * 1000,        // 1 hour
+        retry: 1,
+        refetchOnWindowFocus: false,   // avoid surprise refetches
     });
 };

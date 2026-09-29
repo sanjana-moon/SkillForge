@@ -450,3 +450,17 @@ export const getStudentPayments = async (email: string): Promise<Payment[]> => {
         throw error;
     }
 };
+
+// GET user's role (protected)
+
+export const getMyRole = async (): Promise<"student" | "instructor" | "admin"> => {
+    try {
+        const profile = await serverFetch<{ role?: string }>(
+            "/api/profile",
+            true
+        );
+        return (profile.role as "student" | "instructor" | "admin") ?? "student";
+    } catch {
+        return "student";
+    }
+};

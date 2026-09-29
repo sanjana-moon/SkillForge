@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@heroui/react";
 import { usePathname, useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 import { TfiAlignLeft } from "react-icons/tfi";
 import { RxCross2, RxAvatar } from "react-icons/rx";
 import { MdLogin, MdLogout } from "react-icons/md";
@@ -13,11 +14,13 @@ import Link from "next/link";
 
 import logo from "@/components/assets/images/logo.jpg";
 import { authClient } from "@/lib/auth-client";
+import { useMyRole } from "@/lib/hooks/useCourses";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Navbar = () => {
     const pathname = usePathname();
     const router = useRouter();
+    const queryClient = useQueryClient();
 
     const MotionButton = motion.create(Button);
 
@@ -26,7 +29,12 @@ const Navbar = () => {
     const [isAuthMenuOpen, setIsAuthMenuOpen] = useState(false);
 
     const { data: session } = authClient.useSession();
-    const user = session?.user;
+    const sessionUser = session?.user;
+
+    // ⭐ Role fetched once, cached 30 min
+    const { data: role } = useMyRole(!!sessionUser);
+
+    const user = sessionUser ? { ...sessionUser, role } : null;
 
     useEffect(() => {
         setIsMounted(true);
@@ -34,6 +42,7 @@ const Navbar = () => {
 
     const handleSignOut = async () => {
         await authClient.signOut();
+        queryClient.removeQueries({ queryKey: ["my-role"] });
         router.push("/");
     };
 
@@ -42,23 +51,15 @@ const Navbar = () => {
             ? "text-[#C5A059] border-b-2 border-[#C5A059] font-semibold pb-1"
             : "text-[#EBE3D5]/70 hover:text-[#EBE3D5] transition-colors";
 
-    // Public routes (visible to everyone)
+    // Public routes (visible to everyone) — My Courses inserted for students
     const publicNavLinks = [
-        {
-            href: "/",
-            label: "Home",
-        },
-        {
-            href: "/courses",
-            label: "Courses",
-        },
-        {
-            href: "/contact",
-            label: "Contact",
-        },
-    ];
-
-    const role = user?.role;
+        { href: "/", label: "Home" },
+        { href: "/courses", label: "Courses" },
+        { href: "/contact", label: "Contact" },
+        ...(role === "student"
+            ? [{ href: "/dashboard/student/my-courses", label: "My Courses" }]
+            : []),
+            ];
 
     let dashboardLinks: {
         key: string;
@@ -69,71 +70,24 @@ const Navbar = () => {
 
     if (role === "admin") {
         dashboardLinks = [
-            {
-                key: "overview",
-                label: "Overview",
-                href: "/dashboard/admin",
-            },
-            {
-                key: "users",
-                label: "Manage Users",
-                href: "/dashboard/admin/manage-users",
-            },
-            {
-                key: "courses",
-                label: "Manage Courses",
-                href: "/dashboard/admin/manage-courses",
-            },
-            {
-                key: "profile",
-                label: "Profile",
-                href: "/dashboard/profile",
-            },
+            { key: "overview", label: "Overview", href: "/dashboard/admin" },
+            { key: "users", label: "Manage Users", href: "/dashboard/admin/manage-users" },
+            { key: "courses", label: "Manage Courses", href: "/dashboard/admin/manage-courses" },
+            { key: "profile", label: "Profile", href: "/dashboard/profile" },
         ];
     } else if (role === "instructor") {
         dashboardLinks = [
-            {
-                key: "overview",
-                label: "Overview",
-                href: "/dashboard/instructor",
-            },
-            {
-                key: "addCourse",
-                label: "Add Course",
-                href: "/dashboard/instructor/add-course",
-            },
-            {
-                key: "manageCourse",
-                label: "Manage Courses",
-                href: "/dashboard/instructor/manage-courses",
-            },
-            {
-                key: "profile",
-                label: "Profile",
-                href: "/dashboard/profile",
-            },
+            { key: "overview", label: "Overview", href: "/dashboard/instructor" },
+            { key: "addCourse", label: "Add Course", href: "/dashboard/instructor/add-course" },
+            { key: "manageCourse", label: "Manage Courses", href: "/dashboard/instructor/manage-courses" },
+            { key: "profile", label: "Profile", href: "/dashboard/profile" },
         ];
     } else if (role === "student") {
         dashboardLinks = [
-            {
-                key: "overview",
-                label: "Overview",
-                href: "/dashboard/student",
-            },
-            {
-                key: "myCourses",
-                label: "My Courses",
-                href: "/dashboard/student/my-courses",
-            },
-            {
-                key: "profile",
-                label: "Profile",
-                href: "/dashboard/profile",
-            },
-            
+            { key: "overview", label: "Overview", href: "/dashboard/student" },
+            { key: "profile", label: "Profile", href: "/dashboard/profile" },
+            { key: "myCourses", label: "My Courses", href: "/dashboard/student/my-courses" },
         ];
-    } else {
-        dashboardLinks = [];
     }
 
     return (
@@ -154,10 +108,7 @@ const Navbar = () => {
                 <ul className="hidden lg:flex items-center gap-8 font-medium">
                     {publicNavLinks.map((link) => (
                         <li key={link.href}>
-                            <Link
-                                href={link.href}
-                                className={navLinkClass(link.href)}
-                            >
+                            <Link href={link.href} className={navLinkClass(link.href)}>
                                 {link.label}
                             </Link>
                         </li>
@@ -165,10 +116,7 @@ const Navbar = () => {
 
                     {user && (
                         <li>
-                            <Link
-                                href="/ai-mentor"
-                                className={navLinkClass("/ai-mentor")}
-                            >
+                            <Link href="/ai-mentor" className={navLinkClass("/ai-mentor")}>
                                 <div className="flex items-center gap-1.5">
                                     AI Mentor
                                 </div>
@@ -176,7 +124,7 @@ const Navbar = () => {
                         </li>
                     )}
 
-                    {user && (
+                    {user && dashboardLinks.length > 0 && (
                         <li className="relative group">
                             <button className="text-[#EBE3D5]/70 hover:text-[#EBE3D5] transition-colors flex items-center gap-2">
                                 Dashboard
@@ -217,18 +165,9 @@ const Navbar = () => {
                                 />
 
                                 <MotionButton
-                                    whileHover={{
-                                        scale: 1.05,
-                                        y: -2,
-                                    }}
-                                    whileTap={{
-                                        scale: 0.95,
-                                    }}
-                                    transition={{
-                                        type: "spring",
-                                        stiffness: 400,
-                                        damping: 15,
-                                    }}
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
                                     onClick={handleSignOut}
                                     className="bg-[#C5A059] text-[#1C2E24] font-semibold rounded-md hover:bg-[#C5A059]/80"
                                 >
@@ -240,18 +179,9 @@ const Navbar = () => {
                             <>
                                 <Link href="/signin">
                                     <MotionButton
-                                        whileHover={{
-                                            scale: 1.05,
-                                            y: -2,
-                                        }}
-                                        whileTap={{
-                                            scale: 0.95,
-                                        }}
-                                        transition={{
-                                            type: "spring",
-                                            stiffness: 400,
-                                            damping: 15,
-                                        }}
+                                        whileHover={{ scale: 1.05, y: -2 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
                                         className="bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
                                     >
                                         <MdLogin />
@@ -261,18 +191,9 @@ const Navbar = () => {
 
                                 <Link href="/signup">
                                     <MotionButton
-                                        whileHover={{
-                                            scale: 1.05,
-                                            y: -2,
-                                        }}
-                                        whileTap={{
-                                            scale: 0.95,
-                                        }}
-                                        transition={{
-                                            type: "spring",
-                                            stiffness: 400,
-                                            damping: 15,
-                                        }}
+                                        whileHover={{ scale: 1.05, y: -2 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
                                         className="border border-[#C5A059] text-[#EBE3D5] bg-transparent hover:bg-[#C5A059]/10"
                                     >
                                         <LuUserRoundPlus />
@@ -285,12 +206,8 @@ const Navbar = () => {
 
                     {/* MOBILE MENU BUTTON */}
                     <motion.button
-                        whileHover={{
-                            scale: 1.1,
-                        }}
-                        whileTap={{
-                            scale: 0.9,
-                        }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
                         className="lg:hidden text-[#EBE3D5]"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
@@ -303,12 +220,8 @@ const Navbar = () => {
 
                     {/* MOBILE USER BUTTON */}
                     <motion.button
-                        whileHover={{
-                            scale: 1.1,
-                        }}
-                        whileTap={{
-                            scale: 0.9,
-                        }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
                         className="lg:hidden"
                         onClick={() => setIsAuthMenuOpen(!isAuthMenuOpen)}
                     >
@@ -331,21 +244,10 @@ const Navbar = () => {
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div
-                        initial={{
-                            opacity: 0,
-                            height: 0,
-                        }}
-                        animate={{
-                            opacity: 1,
-                            height: "auto",
-                        }}
-                        exit={{
-                            opacity: 0,
-                            height: 0,
-                        }}
-                        transition={{
-                            duration: 0.25,
-                        }}
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25 }}
                         className="overflow-hidden border-t border-[#C5A059]/20 bg-[#1C2E24] lg:hidden"
                     >
                         <ul className="flex flex-col gap-4 p-5">
@@ -375,7 +277,7 @@ const Navbar = () => {
                                 </li>
                             )}
 
-                            {user && (
+                            {user && dashboardLinks.length > 0 && (
                                 <>
                                     <li className="border-t border-[#C5A059]/20 pt-4">
                                         <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#C5A059]/60">
@@ -405,24 +307,10 @@ const Navbar = () => {
             <AnimatePresence>
                 {isAuthMenuOpen && (
                     <motion.div
-                        initial={{
-                            opacity: 0,
-                            y: -10,
-                            scale: 0.95,
-                        }}
-                        animate={{
-                            opacity: 1,
-                            y: 0,
-                            scale: 1,
-                        }}
-                        exit={{
-                            opacity: 0,
-                            y: -10,
-                            scale: 0.95,
-                        }}
-                        transition={{
-                            duration: 0.2,
-                        }}
+                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
                         className="absolute right-4 top-20 z-50 lg:hidden"
                     >
                         <div className="min-w-64 rounded-2xl border border-[#C5A059]/20 bg-[#3E5C4B] p-5 shadow-2xl">
@@ -447,12 +335,8 @@ const Navbar = () => {
                                     </div>
 
                                     <MotionButton
-                                        whileHover={{
-                                            scale: 1.03,
-                                        }}
-                                        whileTap={{
-                                            scale: 0.95,
-                                        }}
+                                        whileHover={{ scale: 1.03 }}
+                                        whileTap={{ scale: 0.95 }}
                                         onClick={handleSignOut}
                                         className="w-full bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
                                     >
@@ -463,18 +347,14 @@ const Navbar = () => {
                             ) : (
                                 <div className="flex flex-col gap-3">
                                     <Link href="/signin">
-                                        <Button
-                                            className="w-full bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
-                                        >
+                                        <Button className="w-full bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80">
                                             <MdLogin />
                                             Sign In
                                         </Button>
                                     </Link>
 
                                     <Link href="/signup">
-                                        <Button
-                                            className="w-full border border-[#C5A059] text-[#EBE3D5] bg-transparent hover:bg-[#C5A059]/10"
-                                        >
+                                        <Button className="w-full border border-[#C5A059] text-[#EBE3D5] bg-transparent hover:bg-[#C5A059]/10">
                                             <LuUserRoundPlus />
                                             Sign Up
                                         </Button>
