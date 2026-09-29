@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FaGithub, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa6";
-import logo from "@/components/assets/images/logo.jpg";
+import logo from "@/components/assets/images/Logo (2).png";
 import Image from "next/image";
 
 export default function Footer() {
@@ -15,7 +15,7 @@ export default function Footer() {
           {/* Column 1: Brand & Desc */}
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 text-xl font-bold font-heading text-[#EBE3D5] group">
-              <Link href="/" className="no-underline shrink-0">
+              <Link href="/" className="">
                 <Image
                   src={logo}
                   alt="SkillForge"

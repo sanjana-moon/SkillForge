@@ -12,7 +12,7 @@ import { LuUserRoundPlus } from "react-icons/lu";
 import Image from "next/image";
 import Link from "next/link";
 
-import logo from "@/components/assets/images/logo.jpg";
+import logo from "@/components/assets/images/Logo (2).png";
 import { authClient } from "@/lib/auth-client";
 import { useMyRole } from "@/lib/hooks/useCourses";
 import { AnimatePresence, motion } from "framer-motion";
@@ -94,7 +94,7 @@ const Navbar = () => {
         <nav className="sticky top-0 z-50 w-full bg-[#1C2E24]/95 backdrop-blur-md border-b border-[#C5A059]/20 shadow-lg">
             <div className="mx-auto flex container items-center justify-between px-4 py-2">
                 {/* LOGO */}
-                <Link href="/" className="no-underline shrink-0">
+                <Link href="/" className="">
                     <Image
                         src={logo}
                         alt="SkillForge"

@@ -14,13 +14,14 @@ import {
     IoMdMenu,
     IoMdClose,
     IoMdHome,
+    IoMdArrowBack,
+    IoMdArrowForward,
 } from "react-icons/io";
 import { FaRobot } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
-import { Avatar } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
-import logo from "@/components/assets/images/logo.jpg";
+import logo from "@/components/assets/images/Logo (2).png";
 
 interface DashboardLink {
     key: string;
@@ -113,7 +114,7 @@ const DashboardSidebar = () => {
 
     return (
         <>
-            {/* Mobile Toggle Button (Positioned cleanly out of text flow paths) */}
+            {/* Mobile Toggle Button */}
             <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
                 className="lg:hidden fixed top-4 left-4 z-50 p-2.5 rounded-xl bg-[#1C2E24]/90 backdrop-blur-md border border-[#C5A059] text-[#EBE3D5] hover:text-white transition-all shadow-lg active:scale-95"
@@ -139,7 +140,13 @@ const DashboardSidebar = () => {
                 initial={false}
                 animate={{
                     width: isCollapsed ? 88 : 280,
-                    x: typeof window !== "undefined" && window.innerWidth < 1024 ? (isMobileOpen ? 0 : -280) : 0,
+                    x:
+                        typeof window !== "undefined" &&
+                        window.innerWidth < 1024
+                            ? isMobileOpen
+                                ? 0
+                                : -280
+                            : 0,
                 }}
                 transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
                 className="fixed left-0 top-0 z-40 h-full bg-[#1C2E24] border-r border-[#3E5C4B] shadow-2xl flex flex-col overflow-hidden"
@@ -152,16 +159,21 @@ const DashboardSidebar = () => {
                             alt="SkillForge"
                             width={150}
                             height={150}
-                            className="h-35 w-auto object-contain rounded-lg"
+                            className="h-auto object-contain rounded-lg"
                         />
                     </Link>
 
                     {!isMobileOpen && (
                         <button
                             onClick={() => setIsCollapsed(!isCollapsed)}
+                            aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
                             className="hidden lg:flex items-center justify-center w-7 h-7 rounded-lg border border-[#C5A059] text-[#EBE3D5] hover:text-[#EBE3D5] hover:bg-[#3E5C4B] transition-colors"
                         >
-                            {isCollapsed ? "ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢" : "ÃƒÂ¢Ã¢â‚¬Â Ã‚Â"}
+                            {isCollapsed ? (
+                                <IoMdArrowForward className="text-sm" />
+                            ) : (
+                                <IoMdArrowBack className="text-sm" />
+                            )}
                         </button>
                     )}
                 </div>
@@ -173,9 +185,9 @@ const DashboardSidebar = () => {
                             <Image
                                 src={user?.image ?? "/default-avatar.png"}
                                 alt={user?.name ?? "User"}
-                                height={40}
-                                width={40}
-                                className="w-10 h-10 border border-[#C5A059]/30 ring-4 ring-[#C5A059]/5 transition-transform duration-200"
+                                height={80}
+                                width={80}
+                                className="border border-[#C5A059]/30 ring-4 ring-[#C5A059]/5 transition-transform duration-200 rounded-full"
                             />
                             <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-[#1C2E24] rounded-full" />
                         </div>
@@ -191,9 +203,9 @@ const DashboardSidebar = () => {
                                     <p className="text-[#EBE3D5] text-sm font-semibold truncate leading-tight">
                                         {user?.name}
                                     </p>
-                                    <p className="text-[#EBE3D5] text-xs truncate mt-0.5">
+                                    {/* <p className="text-[#EBE3D5] text-xs truncate mt-0.5">
                                         {user?.email}
-                                    </p>
+                                    </p> */}
                                     <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-medium bg-[#C5A059]/10 text-[#5C3A21] border border-[#C5A059]/20 capitalize mt-1.5 tracking-wider">
                                         {role}
                                     </span>
@@ -203,7 +215,7 @@ const DashboardSidebar = () => {
                     </div>
                 </div>
 
-                {/* Navigation Links - Augmented Padding for Taller Rows */}
+                {/* Navigation Links */}
                 <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-1.5 custom-scrollbar">
                     {dashboardLinks.map((link) => {
                         const Icon = link.icon || IoMdSpeedometer;
@@ -216,23 +228,34 @@ const DashboardSidebar = () => {
                                 onClick={() => setIsMobileOpen(false)}
                                 className={`
                                     relative flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 group
-                                    ${active 
-                                        ? "bg-linear-to-r from-[#5C3A21]/15 to-[#5C3A21]/5 text-[#5C3A21] font-medium border border-[#C5A059]/20" 
-                                        : "text-[#EBE3D5] hover:text-[#EBE3D5] hover:bg-[#3E5C4B]/60 border border-transparent"
+                                    ${
+                                        active
+                                            ? "bg-linear-to-r from-[#5C3A21]/15 to-[#5C3A21]/5 text-[#5C3A21] font-medium border border-[#C5A059]/20"
+                                            : "text-[#EBE3D5] hover:text-[#EBE3D5] hover:bg-[#3E5C4B]/60 border border-transparent"
                                     }
                                     ${isCollapsed ? "justify-center px-0" : ""}
                                 `}
                             >
                                 {active && (
-                                    <motion.div 
+                                    <motion.div
                                         layoutId="activeIndicator"
                                         className="absolute left-0 top-3.5 bottom-3.5 w-1 bg-[#C5A059] rounded-r-md"
-                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 300,
+                                            damping: 30,
+                                        }}
                                     />
                                 )}
-                                
-                                <Icon className={`text-xl shrink-0 transition-transform group-hover:scale-105 duration-200 ${active ? "text-[#5C3A21]" : "text-[#EBE3D5] group-hover:text-[#EBE3D5]"}`} />
-                                
+
+                                <Icon
+                                    className={`text-xl shrink-0 transition-transform group-hover:scale-105 duration-200 ${
+                                        active
+                                            ? "text-[#5C3A21]"
+                                            : "text-[#EBE3D5] group-hover:text-[#EBE3D5]"
+                                    }`}
+                                />
+
                                 <AnimatePresence mode="popLayout">
                                     {!isCollapsed && (
                                         <motion.span
@@ -252,7 +275,7 @@ const DashboardSidebar = () => {
 
                 {/* Footer Utilities Area */}
                 <div className="p-3 border-t border-[#3E5C4B] space-y-1.5">
-                    {/* Back to Home Action Button */}
+                    {/* Back to Home */}
                     <Link
                         href="/"
                         className={`
@@ -276,7 +299,7 @@ const DashboardSidebar = () => {
                         </AnimatePresence>
                     </Link>
 
-                    {/* Sign Out Action Button */}
+                    {/* Sign Out */}
                     <button
                         onClick={handleSignOut}
                         className={`

@@ -251,7 +251,6 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                         </div>
                         <Button
                             onPress={handleCreateSession}
-                            isLoading={isCreating}
                             className="bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
                         >
                             <FaPlus />

@@ -8,8 +8,7 @@ import {
 import { RiBrainLine } from "react-icons/ri";
 import { MdSecurity } from "react-icons/md";
 import type { IconType } from "react-icons";
-import { getCategories } from "@/lib/api/courses/data";
-// import { getCategories, type Category } from "@/lib/api/categories";
+import { Category, getCategories } from "@/lib/api/courses/data";
 
 const ICONS: Record<string, { icon: IconType; color: string; desc: string }> = {
     "ai & machine learning": {

@@ -104,7 +104,7 @@ export default function StudentClient({
                 {/* Welcome Header */}
                 <div>
                     <h1 className="text-3xl md:text-4xl font-bold text-[#EBE3D5]">
-                        Welcome back, {user.name} Ã°Å¸â€˜â€¹
+                        Welcome back, {user.name}
                     </h1>
                     <p className="text-[#EBE3D5]/60 mt-2">
                         Continue your learning journey. Track your progress and pick up where you left off.
