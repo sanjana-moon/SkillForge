@@ -2,14 +2,13 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { Card, Button, Input, Spinner } from "@heroui/react";
+import { Card, Button, Spinner } from "@heroui/react";
 import {
     FaRobot,
     FaPlus,
     FaTrash,
     FaPaperPlane,
     FaUser,
-    FaSpinner,
     FaCalendarAlt,
 } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -38,7 +37,9 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
     const [isCreating, setIsCreating] = useState(false);
     const [isDeleting, setIsDeleting] = useState<string | null>(null);
     const [isLoadingSession, setIsLoadingSession] = useState(false);
-    const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    // ✅ Ref for the scrollable messages list (was messagesEndRef)
+    const messagesContainerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
     // Load session messages when current session changes
@@ -50,9 +51,23 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
         }
     }, [currentSession]);
 
-    // Scroll to bottom when messages change
+    // ✅ Scroll only the messages container, never the page
     useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        const container = messagesContainerRef.current;
+        if (!container) return;
+
+        const isNearBottom =
+            container.scrollHeight -
+                container.scrollTop -
+                container.clientHeight <
+            120;
+
+        if (isNearBottom) {
+            container.scrollTo({
+                top: container.scrollHeight,
+                behavior: "smooth",
+            });
+        }
     }, [messages]);
 
     // Focus input on load
@@ -96,7 +111,6 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
 
         setIsLoadingSession(true);
         try {
-            // Fetch full session with messages
             const fullSession = await getMentorSession(session._id!);
             setCurrentSession(fullSession);
         } catch (error) {
@@ -108,7 +122,10 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
     };
 
     const handleDeleteSession = async (sessionId: string) => {
-        if (!confirm("Are you sure you want to delete this conversation?")) return;
+        if (
+            !confirm("Are you sure you want to delete this conversation?")
+        )
+            return;
 
         try {
             setIsDeleting(sessionId);
@@ -118,8 +135,14 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                 setSessions((prev) => prev.filter((s) => s._id !== sessionId));
 
                 if (currentSession?._id === sessionId) {
-                    const remainingSessions = sessions.filter((s) => s._id !== sessionId);
-                    setCurrentSession(remainingSessions.length > 0 ? remainingSessions[0] : null);
+                    const remainingSessions = sessions.filter(
+                        (s) => s._id !== sessionId
+                    );
+                    setCurrentSession(
+                        remainingSessions.length > 0
+                            ? remainingSessions[0]
+                            : null
+                    );
                 }
 
                 toast.success("Conversation deleted");
@@ -153,7 +176,10 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
         setIsLoading(true);
 
         try {
-            const result = await sendMentorMessage(currentSession._id, userMessage.content);
+            const result = await sendMentorMessage(
+                currentSession._id,
+                userMessage.content
+            );
 
             if (result.success && result.data) {
                 const assistantMessage: MentorMessage = {
@@ -164,25 +190,21 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
 
                 setMessages((prev) => [...prev, assistantMessage]);
 
-                // Update session list with new title if needed
-                if (currentSession.title === "New Conversation") {
-                    const updatedSessions = sessions.map((s) =>
-                        s._id === currentSession._id
-                            ? { ...s, title: userMessage.content.slice(0, 40) + "..." }
-                            : s
-                    );
-                    setSessions(updatedSessions);
-                }
-
-                // Update session updated time
+                // Update session list title if needed
                 const updatedSessions = sessions.map((s) =>
                     s._id === currentSession._id
-                        ? { ...s, updatedAt: new Date() }
+                        ? {
+                              ...s,
+                              title:
+                                  s.title === "New Conversation"
+                                      ? userMessage.content.slice(0, 40) + "..."
+                                      : s.title,
+                              updatedAt: new Date(),
+                          }
                         : s
                 );
                 setSessions(updatedSessions);
             } else {
-                // Remove optimistic message on error
                 setMessages((prev) => prev.filter((m) => m !== userMessage));
                 toast.error(result.error || "Failed to send message");
             }
@@ -213,7 +235,8 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
 
     return (
         <div className="min-h-screen bg-[#1C2E24] p-4 md:p-6">
-            <div className="mx-auto max-w-7xl h-[calc(100vh-120px)]">
+            {/* ✅ dvh instead of vh — prevents mobile viewport jumps */}
+            <div className="mx-auto max-w-7xl h-[calc(100dvh-120px)]">
                 <div className="flex flex-col h-full">
                     {/* Header */}
                     <div className="flex items-center justify-between mb-4">
@@ -228,6 +251,7 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                         </div>
                         <Button
                             onPress={handleCreateSession}
+                            isLoading={isCreating}
                             className="bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
                         >
                             <FaPlus />
@@ -238,7 +262,7 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                     {/* Main Content */}
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 flex-1 min-h-0">
                         {/* Sidebar - Sessions List */}
-                        <Card className="lg:col-span-1 bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-3 overflow-y-auto max-h-[calc(100vh-220px)]">
+                        <Card className="lg:col-span-1 bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-3 overflow-y-auto max-h-[calc(100dvh-220px)]">
                             {sessions.length === 0 ? (
                                 <div className="text-center py-8">
                                     <FaRobot className="text-4xl text-[#EBE3D5]/10 mx-auto mb-3" />
@@ -258,11 +282,15 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                     {sessions.map((session) => (
                                         <div
                                             key={session._id}
-                                            className={`group flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all ${currentSession?._id === session._id
+                                            className={`group flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all ${
+                                                currentSession?._id ===
+                                                session._id
                                                     ? "bg-[#C5A059]/15 border border-[#C5A059]/30"
                                                     : "hover:bg-[#1C2E24] border border-transparent"
-                                                }`}
-                                            onClick={() => handleSelectSession(session)}
+                                            }`}
+                                            onClick={() =>
+                                                handleSelectSession(session)
+                                            }
                                         >
                                             <div className="flex-1 min-w-0">
                                                 <p className="text-sm font-medium text-[#EBE3D5] truncate">
@@ -270,19 +298,29 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                 </p>
                                                 <p className="text-xs text-[#EBE3D5]/40 flex items-center gap-1 mt-0.5">
                                                     <FaCalendarAlt className="text-[10px]" />
-                                                    {formatDate(session.updatedAt || session.createdAt)}
+                                                    {formatDate(
+                                                        session.updatedAt ||
+                                                            session.createdAt
+                                                    )}
                                                 </p>
                                             </div>
                                             <button
                                                 onClick={(e) => {
                                                     e.stopPropagation();
-                                                    handleDeleteSession(session._id!);
+                                                    handleDeleteSession(
+                                                        session._id!
+                                                    );
                                                 }}
-                                                disabled={isDeleting === session._id}
+                                                disabled={
+                                                    isDeleting === session._id
+                                                }
                                                 className="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg hover:bg-red-500/20 text-[#EBE3D5]/40 hover:text-red-400 transition-all"
                                             >
                                                 {isDeleting === session._id ? (
-                                                    <Spinner size="sm" color="danger" />
+                                                    <Spinner
+                                                        size="sm"
+                                                        color="danger"
+                                                    />
                                                 ) : (
                                                     <FaTrash className="text-xs" />
                                                 )}
@@ -302,8 +340,9 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                         Welcome to AI Mentor
                                     </h3>
                                     <p className="text-[#EBE3D5]/50 max-w-md">
-                                        Start a new conversation to get personalized learning guidance,
-                                        career advice, and answers to your questions.
+                                        Start a new conversation to get
+                                        personalized learning guidance, career
+                                        advice, and answers to your questions.
                                     </p>
                                     <Button
                                         onPress={handleCreateSession}
@@ -319,59 +358,92 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                 </div>
                             ) : (
                                 <>
-                                    {/* Messages */}
-                                    <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                                    {/* ✅ Messages — ref attached here for scoped scroll */}
+                                    <div
+                                        ref={messagesContainerRef}
+                                        className="flex-1 overflow-y-auto p-4 space-y-4"
+                                    >
                                         {messages.length === 0 ? (
                                             <div className="flex flex-col items-center justify-center h-full text-center">
                                                 <FaRobot className="text-4xl text-[#EBE3D5]/10 mb-3" />
                                                 <p className="text-[#EBE3D5]/40 text-sm">
-                                                    Ask me anything about learning, career, or courses!
+                                                    Ask me anything about
+                                                    learning, career, or
+                                                    courses!
                                                 </p>
                                             </div>
                                         ) : (
                                             <AnimatePresence>
-                                                {messages.map((message, index) => (
-                                                    <motion.div
-                                                        key={index}
-                                                        initial={{ opacity: 0, y: 20 }}
-                                                        animate={{ opacity: 1, y: 0 }}
-                                                        transition={{ duration: 0.3 }}
-                                                        className={`flex ${message.role === "user"
-                                                                ? "justify-end"
-                                                                : "justify-start"
+                                                {messages.map(
+                                                    (message, index) => (
+                                                        <motion.div
+                                                            key={index}
+                                                            initial={{
+                                                                opacity: 0,
+                                                                y: 20,
+                                                            }}
+                                                            animate={{
+                                                                opacity: 1,
+                                                                y: 0,
+                                                            }}
+                                                            transition={{
+                                                                duration: 0.3,
+                                                            }}
+                                                            className={`flex ${
+                                                                message.role ===
+                                                                "user"
+                                                                    ? "justify-end"
+                                                                    : "justify-start"
                                                             }`}
-                                                    >
-                                                        <div
-                                                            className={`max-w-[80%] rounded-2xl px-4 py-3 ${message.role === "user"
-                                                                    ? "bg-[#C5A059] text-[#1C2E24]"
-                                                                    : "bg-[#1C2E24] text-[#EBE3D5] border border-[#C5A059]/10"
-                                                                }`}
                                                         >
-                                                            <div className="flex items-start gap-2">
-                                                                {message.role === "assistant" && (
-                                                                    <FaRobot className="text-[#C5A059] text-sm mt-0.5 shrink-0" />
-                                                                )}
-                                                                {message.role === "user" && (
-                                                                    <FaUser className="text-[#1C2E24]/60 text-sm mt-0.5 shrink-0" />
-                                                                )}
-                                                                <div className="whitespace-pre-wrap text-sm leading-relaxed">
-                                                                    {message.content}
+                                                            <div
+                                                                className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                                                                    message.role ===
+                                                                    "user"
+                                                                        ? "bg-[#C5A059] text-[#1C2E24]"
+                                                                        : "bg-[#1C2E24] text-[#EBE3D5] border border-[#C5A059]/10"
+                                                                }`}
+                                                            >
+                                                                <div className="flex items-start gap-2">
+                                                                    {message.role ===
+                                                                        "assistant" && (
+                                                                        <FaRobot className="text-[#C5A059] text-sm mt-0.5 shrink-0" />
+                                                                    )}
+                                                                    {message.role ===
+                                                                        "user" && (
+                                                                        <FaUser className="text-[#1C2E24]/60 text-sm mt-0.5 shrink-0" />
+                                                                    )}
+                                                                    <div className="whitespace-pre-wrap text-sm leading-relaxed">
+                                                                        {
+                                                                            message.content
+                                                                        }
+                                                                    </div>
                                                                 </div>
+                                                                <p
+                                                                    className={`text-[10px] mt-1 ${
+                                                                        message.role ===
+                                                                        "user"
+                                                                            ? "text-[#1C2E24]/60"
+                                                                            : "text-[#EBE3D5]/30"
+                                                                    }`}
+                                                                >
+                                                                    {formatDate(
+                                                                        message.createdAt
+                                                                    )}
+                                                                </p>
                                                             </div>
-                                                            <p className={`text-[10px] mt-1 ${message.role === "user"
-                                                                    ? "text-[#1C2E24]/60"
-                                                                    : "text-[#EBE3D5]/30"
-                                                                }`}>
-                                                                {formatDate(message.createdAt)}
-                                                            </p>
-                                                        </div>
-                                                    </motion.div>
-                                                ))}
+                                                        </motion.div>
+                                                    )
+                                                )}
                                             </AnimatePresence>
                                         )}
+
                                         {isLoading && (
                                             <motion.div
-                                                initial={{ opacity: 0, y: 20 }}
+                                                initial={{
+                                                    opacity: 0,
+                                                    y: 20,
+                                                }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 className="flex justify-start"
                                             >
@@ -379,15 +451,32 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                     <div className="flex items-center gap-2">
                                                         <FaRobot className="text-[#C5A059] text-sm" />
                                                         <div className="flex gap-1">
-                                                            <span className="w-2 h-2 bg-[#C5A059] rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                                                            <span className="w-2 h-2 bg-[#C5A059] rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                                                            <span className="w-2 h-2 bg-[#C5A059] rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                                                            <span
+                                                                className="w-2 h-2 bg-[#C5A059] rounded-full animate-bounce"
+                                                                style={{
+                                                                    animationDelay:
+                                                                        "0ms",
+                                                                }}
+                                                            />
+                                                            <span
+                                                                className="w-2 h-2 bg-[#C5A059] rounded-full animate-bounce"
+                                                                style={{
+                                                                    animationDelay:
+                                                                        "150ms",
+                                                                }}
+                                                            />
+                                                            <span
+                                                                className="w-2 h-2 bg-[#C5A059] rounded-full animate-bounce"
+                                                                style={{
+                                                                    animationDelay:
+                                                                        "300ms",
+                                                                }}
+                                                            />
                                                         </div>
                                                     </div>
                                                 </div>
                                             </motion.div>
                                         )}
-                                        <div ref={messagesEndRef} />
                                     </div>
 
                                     {/* Input Area */}
@@ -398,14 +487,21 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                 type="text"
                                                 placeholder="Ask your AI Mentor..."
                                                 value={inputMessage}
-                                                onChange={(e) => setInputMessage(e.target.value)}
-                                                onKeyPress={handleKeyPress}
+                                                onChange={(e) =>
+                                                    setInputMessage(
+                                                        e.target.value
+                                                    )
+                                                }
+                                                onKeyDown={handleKeyPress}
                                                 disabled={isLoading}
                                                 className="flex-1 px-4 py-3 bg-[#1C2E24] border border-[#C5A059]/20 rounded-xl text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 focus:outline-none focus:border-[#C5A059] transition-colors disabled:opacity-50"
                                             />
                                             <Button
                                                 onPress={handleSendMessage}
-                                                isDisabled={!inputMessage.trim() || isLoading}
+                                                isDisabled={
+                                                    !inputMessage.trim() ||
+                                                    isLoading
+                                                }
                                                 className="bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80 px-6 rounded-xl"
                                             >
                                                 <FaPaperPlane />

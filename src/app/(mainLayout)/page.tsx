@@ -15,8 +15,8 @@ export default function Home() {
     <div className="min-h-screen bg-[#1C2E24] text-[#EBE3D5] flex flex-col justify-between">
       <Hero />
       <FeaturedCourses />
-      <AIFeatures />
       <Categories />
+      <AIFeatures />
       <AboutPage />
       <WhyChooseUs />
       <Testimonials />
