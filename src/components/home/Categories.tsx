@@ -1,106 +1,132 @@
 ﻿"use client";
 
-import { FaCode, FaCloud, FaDatabase, FaMobileScreenButton } from "react-icons/fa6";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import {
+    FaCode, FaCloud, FaDatabase, FaMobileScreenButton, FaLayerGroup,
+} from "react-icons/fa6";
 import { RiBrainLine } from "react-icons/ri";
 import { MdSecurity } from "react-icons/md";
+import type { IconType } from "react-icons";
+import { getCategories } from "@/lib/api/courses/data";
+// import { getCategories, type Category } from "@/lib/api/categories";
 
-const categories = [
-  {
-    title: "AI & Machine Learning",
-    description: "Deep Learning, LLMs, Neural Networks, and NLP.",
-    icon: RiBrainLine,
+const ICONS: Record<string, { icon: IconType; color: string; desc: string }> = {
+    "ai & machine learning": {
+        icon: RiBrainLine,
+        color: "from-[#C5A059] to-[#5C3A21]",
+        desc: "Deep Learning, LLMs, Neural Networks, and NLP.",
+    },
+    "web development": {
+        icon: FaCode,
+        color: "from-[#5C3A21] to-[#C5A059]",
+        desc: "Modern JavaScript, React, Next.js, and Backend APIs.",
+    },
+    "cyber security": {
+        icon: MdSecurity,
+        color: "from-[#D46A2B] to-[#D46A2B]",
+        desc: "Penetration Testing, Cryptography, and Threat Auditing.",
+    },
+    "cloud computing": {
+        icon: FaCloud,
+        color: "from-[#C5A059] to-[#5C3A21]",
+        desc: "AWS, Kubernetes, Terraform, and DevOps Pipelines.",
+    },
+    "data science": {
+        icon: FaDatabase,
+        color: "from-[#C5A059] to-[#D46A2B]",
+        desc: "Python, Pandas, Big Data Pipelines, and Visualization.",
+    },
+    "mobile apps": {
+        icon: FaMobileScreenButton,
+        color: "from-[#D46A2B] to-[#5C3A21]",
+        desc: "React Native, Flutter, Swift, and Android SDKs.",
+    },
+};
+
+const DEFAULT = {
+    icon: FaLayerGroup,
     color: "from-[#C5A059] to-[#5C3A21]",
-    count: "28 Courses",
-  },
-  {
-    title: "Web Development",
-    description: "Modern JavaScript, React, Next.js, and Backend APIs.",
-    icon: FaCode,
-    color: "from-[#5C3A21] to-[#C5A059]",
-    count: "35 Courses",
-  },
-  {
-    title: "Cyber Security",
-    description: "Penetration Testing, Cryptography, and Threat Auditing.",
-    icon: MdSecurity,
-    color: "from-[#D46A2B] to-[#D46A2B]",
-    count: "16 Courses",
-  },
-  {
-    title: "Cloud Computing",
-    description: "AWS, Kubernetes, Terraform, and DevOps Pipelines.",
-    icon: FaCloud,
-    color: "from-[#C5A059] to-[#5C3A21]",
-    count: "22 Courses",
-  },
-  {
-    title: "Data Science",
-    description: "Python, Pandas, Big Data Pipelines, and Visualization.",
-    icon: FaDatabase,
-    color: "from-[#C5A059] to-[#D46A2B]",
-    count: "18 Courses",
-  },
-  {
-    title: "Mobile Apps",
-    description: "React Native, Flutter, Swift, and Android SDKs.",
-    icon: FaMobileScreenButton,
-    color: "from-[#D46A2B] to-[#5C3A21]",
-    count: "14 Courses",
-  },
-];
+    desc: "Explore specialized skills in this technology domain.",
+};
 
 export default function Categories() {
-  return (
-    <section className="py-20 bg-[#1C2E24] relative">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#EBE3D5]">
-            Browse by{" "}
-            <span className="bg-linear-to-r from-[#C5A059] to-[#5C3A21] bg-clip-text text-transparent">
-              Technology Category
-            </span>
-          </h2>
-          <p className="mt-4 text-[#EBE3D5]/70 font-body">
-            Acquire specialized skills in critical tech domains structured from introductory concepts to master levels.
-          </p>
-        </div>
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [loading, setLoading] = useState(true);
 
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.map((cat, idx) => {
-            const IconComponent = cat.icon;
-            return (
-              <div
-                key={idx}
-                className="group relative bg-[#3E5C4B] border border-[#C5A059]/10 hover:border-[#C5A059]/30 rounded-3xl p-6 transition duration-300 hover:-translate-y-1 shadow-lg hover:shadow-[#C5A059]/5"
-              >
-                {/* Icon Wrapper */}
-                <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-tr ${cat.color} text-[#1C2E24] shadow-lg mb-6`}>
-                  <IconComponent className="text-2xl" />
+    useEffect(() => {
+        getCategories()
+            .then(setCategories)
+            .catch(console.error)
+            .finally(() => setLoading(false));
+    }, []);
+
+    return (
+        <section className="bg-[#1C2E24] py-20">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="mx-auto mb-16 max-w-3xl text-center">
+                    <h2 className="font-heading text-3xl font-bold text-[#EBE3D5] sm:text-4xl">
+                        Browse by{" "}
+                        <span className="bg-linear-to-r from-[#C5A059] to-[#5C3A21] bg-clip-text text-transparent">
+                            Technology Category
+                        </span>
+                    </h2>
+                    <p className="mt-4 font-body text-[#EBE3D5]/70">
+                        Acquire specialized skills in critical tech domains.
+                    </p>
                 </div>
 
-                {/* Title & Description */}
-                <h3 className="text-xl font-bold font-heading text-[#EBE3D5] group-hover:text-[#C5A059] transition">
-                  {cat.title}
-                </h3>
-                <p className="mt-2 text-sm text-[#EBE3D5]/60 font-body leading-relaxed">
-                  {cat.description}
-                </p>
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {(loading ? Array(6).fill(null) : categories).map(
+                        (cat: Category | null, i) => {
+                            if (!cat) {
+                                return (
+                                    <div
+                                        key={i}
+                                        className="h-56 animate-pulse rounded-3xl bg-[#3E5C4B]/60"
+                                    />
+                                );
+                            }
 
-                {/* Course Count tag */}
-                <div className="mt-6 flex justify-between items-center text-xs font-semibold font-mono text-[#5C3A21]">
-                  <span>{cat.count}</span>
-                  <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
-                    Explore &rarr;
-                  </span>
+                            const meta =
+                                ICONS[cat.name.toLowerCase()] ?? DEFAULT;
+                            const Icon = meta.icon;
+
+                            return (
+                                <Link
+                                    key={cat.name}
+                                    href={`/courses?category=${encodeURIComponent(cat.name)}`}
+                                    className="group rounded-3xl border border-[#C5A059]/10 bg-[#3E5C4B] p-6 shadow-lg transition hover:-translate-y-1 hover:border-[#C5A059]/30"
+                                >
+                                    <div
+                                        className={`mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-tr ${meta.color} text-[#1C2E24]`}
+                                    >
+                                        <Icon className="text-2xl" />
+                                    </div>
+
+                                    <h3 className="font-heading text-xl font-bold text-[#EBE3D5] group-hover:text-[#C5A059]">
+                                        {cat.name}
+                                    </h3>
+
+                                    <p className="mt-2 text-sm text-[#EBE3D5]/60">
+                                        {meta.desc}
+                                    </p>
+
+                                    <div className="mt-6 flex justify-between font-mono text-xs text-[#C5A059]">
+                                        <span>
+                                            {cat.count} Course
+                                            {cat.count === 1 ? "" : "s"}
+                                        </span>
+                                        <span className="opacity-0 transition group-hover:translate-x-1 group-hover:opacity-100">
+                                            Explore &rarr;
+                                        </span>
+                                    </div>
+                                </Link>
+                            );
+                        }
+                    )}
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
+            </div>
+        </section>
+    );
 }
-

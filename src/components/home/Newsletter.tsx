@@ -1,75 +1,124 @@
 ﻿"use client";
 
+import Image from "next/image";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 import { FaPaperPlane } from "react-icons/fa6";
 
 type NewsletterForm = {
-  email: string;
+    email: string;
 };
 
 export default function Newsletter() {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<NewsletterForm>();
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm<NewsletterForm>();
 
-  const onSubmit: SubmitHandler<NewsletterForm> = (data) => {
-    toast.success(`Subscribed successfully with: ${data.email}`);
-    reset();
-  };
+    const onSubmit: SubmitHandler<NewsletterForm> = (data) => {
+        toast.success(`Subscribed successfully with: ${data.email}`);
+        reset();
+    };
 
-  return (
-    <section className="py-20 bg-[#1C2E24] relative border-t border-[#C5A059]/10">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-[#3E5C4B] border border-[#C5A059]/20 px-8 py-12 sm:px-16 sm:py-16 shadow-2xl text-center flex flex-col items-center">
-          {/* Subtle backgrounds inside the callout */}
-          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-80 h-80 bg-[#C5A059]/10 blur-[100px] rounded-full pointer-events-none" />
-          <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-[#5C3A21]/10 blur-[100px] rounded-full pointer-events-none" />
+    return (
+        <section className="relative border-t border-[#C5A059]/10 bg-[#1C2E24] py-20">
+            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+                <div className="relative overflow-hidden rounded-3xl border border-[#C5A059]/20 bg-[#3E5C4B] shadow-2xl">
+                    {/* Ambient background glows */}
+                    <div className="pointer-events-none absolute top-0 right-0 h-80 w-80 -translate-y-1/2 translate-x-1/2 rounded-full bg-[#C5A059]/10 blur-[100px]" />
+                    <div className="pointer-events-none absolute bottom-0 left-0 h-80 w-80 translate-y-1/2 -translate-x-1/2 rounded-full bg-[#5C3A21]/10 blur-[100px]" />
 
-          {/* Heading */}
-          <h2 className="text-3xl font-bold font-heading text-[#EBE3D5] tracking-tight sm:text-4xl">
-            Stay Updated on Tech & AI
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-[#EBE3D5]/70 font-body leading-relaxed">
-            Subscribe to our newsletter to receive the latest roadmap templates, new course announcements, and expert AI tutorial links directly in your inbox.
-          </p>
+                    {/* Two-column layout */}
+                    <div className="relative z-10 grid grid-cols-1 items-center gap-10 px-8 py-12 sm:px-12 sm:py-16 lg:grid-cols-2 lg:gap-16 lg:px-16">
+                        {/* Image side */}
+                        <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
+                            {/* Accent glow behind image */}
+                            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-[#C5A059]/20 blur-3xl" />
 
-          {/* Newsletter Form */}
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="mt-8 w-full max-w-md flex flex-col sm:flex-row gap-3 relative z-10"
-          >
-            <div className="flex-grow flex flex-col items-start">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                {...register("email", {
-                  required: "Email address is required",
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Please enter a valid email address",
-                  },
-                })}
-                className="w-full rounded-xl bg-[#1C2E24]/60 border border-[#C5A059]/20 focus:border-[#C5A059] px-4 py-3 text-sm text-[#EBE3D5] placeholder-[#EBE3D5]/40 outline-none transition duration-200"
-              />
-              {errors.email && (
-                <span className="mt-1 text-xs text-red-400 pl-1">{errors.email.message}</span>
-              )}
+                            {/* Slightly rounded frame with side fade */}
+                            <div className="relative mx-auto aspect-[4/3] w-full max-w-[420px] overflow-hidden rounded-2xl">
+                                {/* The image itself, fading to the right */}
+                                <Image
+                                    src="https://images.unsplash.com/photo-1677442135136-760c813028c0?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    alt="Newsletter illustration"
+                                    fill
+                                    sizes="(max-width: 1024px) 420px, 480px"
+                                    className="object-cover"
+                                    style={{
+                                        WebkitMaskImage:
+                                            "linear-gradient(to right, black 0%, black 55%, transparent 100%)",
+                                        maskImage:
+                                            "linear-gradient(to right, black 0%, black 55%, transparent 100%)",
+                                    }}
+                                    unoptimized
+                                />
+
+                                {/* Fade into the card background on the right edge */}
+                                <div
+                                    className="pointer-events-none absolute inset-y-0 right-0 w-1/2"
+                                    style={{
+                                        background:
+                                            "linear-gradient(to right, transparent, #3E5C4B 90%)",
+                                    }}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Content side */}
+                        <div className="text-center lg:text-left">
+                            <h2 className="font-heading text-3xl font-bold tracking-tight text-[#EBE3D5] sm:text-4xl">
+                                Stay Updated on Tech &amp; AI
+                            </h2>
+
+                            <p className="mx-auto mt-4 max-w-xl font-body text-base leading-relaxed text-[#EBE3D5]/70 lg:mx-0">
+                                Subscribe to our newsletter to receive the
+                                latest roadmap templates, new course
+                                announcements, and expert AI tutorial links
+                                directly in your inbox.
+                            </p>
+
+                            {/* Newsletter Form */}
+                            <form
+                                onSubmit={handleSubmit(onSubmit)}
+                                className="mx-auto mt-8 flex w-full max-w-md flex-col gap-3 lg:mx-0 sm:flex-row"
+                            >
+                                <div className="flex flex-grow flex-col items-start">
+                                    <input
+                                        type="email"
+                                        placeholder="Enter your email address"
+                                        {...register("email", {
+                                            required:
+                                                "Email address is required",
+                                            pattern: {
+                                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                                message:
+                                                    "Please enter a valid email address",
+                                            },
+                                        })}
+                                        className="w-full rounded-xl border border-[#C5A059]/20 bg-[#1C2E24]/60 px-4 py-3 text-sm text-[#EBE3D5] placeholder-[#EBE3D5]/40 outline-none transition duration-200 focus:border-[#C5A059]"
+                                    />
+
+                                    {errors.email && (
+                                        <span className="mt-1 pl-1 text-xs text-red-400">
+                                            {errors.email.message}
+                                        </span>
+                                    )}
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-[#C5A059] to-[#5C3A21] px-6 py-3.5 text-sm font-bold text-[#1C2E24] shadow-md shadow-[#C5A059]/20 transition duration-200 hover:opacity-95 sm:py-3 self-stretch sm:self-start"
+                                >
+                                    <FaPaperPlane className="text-xs" />
+                                    Subscribe
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#C5A059] to-[#5C3A21] hover:opacity-95 text-[#1C2E24] text-sm font-bold px-6 py-3.5 sm:py-3 transition duration-200 shadow-md shadow-[#C5A059]/20 self-stretch sm:self-start whitespace-nowrap"
-            >
-              <FaPaperPlane className="text-xs" />
-              Subscribe
-            </button>
-          </form>
-        </div>
-      </div>
-    </section>
-  );
+        </section>
+    );
 }
-

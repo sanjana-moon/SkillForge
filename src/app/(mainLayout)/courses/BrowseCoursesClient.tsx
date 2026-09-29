@@ -38,8 +38,8 @@ const LEVELS = [
 const SORT_OPTIONS = [
     { value: "newest", label: "Newest" },
     { value: "title", label: "Title A-Z" },
-    { value: "price-low", label: "Price: Low Ã¢â€ â€™ High" },
-    { value: "price-high", label: "Price: High Ã¢â€ â€™ Low" },
+    { value: "price-low", label: "Price: Low → High" },
+    { value: "price-high", label: "Price: High → Low" },
     { value: "rating", label: "Highest Rated" },
     { value: "popular", label: "Most Popular" },
 ];
@@ -49,35 +49,60 @@ const BrowseCoursesClient = () => {
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
-    const [search, setSearch] = useState(searchParams.get("search") || "");
-    const [minPrice, setMinPrice] = useState(searchParams.get("minPrice") || "");
-    const [maxPrice, setMaxPrice] = useState(searchParams.get("maxPrice") || "");
-    const [isFilterOpen, setIsFilterOpen] = useState(false);
-
+    // URL is the single source of truth for filters
+    const urlSearch = searchParams.get("search") || "";
+    const urlMinPrice = searchParams.get("minPrice") || "";
+    const urlMaxPrice = searchParams.get("maxPrice") || "";
     const currentCategory = searchParams.get("category") || "all";
     const currentLevel = searchParams.get("level") || "all";
     const currentSort = searchParams.get("sort") || "newest";
-    const currentPage = parseInt(searchParams.get("page") || "1");
+    const currentPage = Math.max(1, parseInt(searchParams.get("page") || "1") || 1);
+
+    // Local state only drives the text inputs (debounced into the URL)
+    const [search, setSearch] = useState(urlSearch);
+    const [minPrice, setMinPrice] = useState(urlMinPrice);
+    const [maxPrice, setMaxPrice] = useState(urlMaxPrice);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
 
     const filters = {
-        search: search || undefined,
+        search: urlSearch || undefined,
         category: currentCategory === "all" ? undefined : currentCategory,
         level: currentLevel === "all" ? undefined : currentLevel,
         sort: currentSort,
         page: currentPage,
         limit: 8,
-        minPrice: minPrice ? Number(minPrice) : undefined,
-        maxPrice: maxPrice ? Number(maxPrice) : undefined,
+        minPrice: urlMinPrice ? Number(urlMinPrice) : undefined,
+        maxPrice: urlMaxPrice ? Number(urlMaxPrice) : undefined,
     };
 
-    const { data, isLoading, isError } = useCourses(filters);
+    const { data, isLoading, isError, refetch } = useCourses(filters);
 
+    // Debounced sync of text inputs -> URL. Skips when nothing changed,
+    // so it never pushes on mount or resets the page needlessly.
     useEffect(() => {
+        if (search === urlSearch && minPrice === urlMinPrice && maxPrice === urlMaxPrice) {
+            return;
+        }
+
         const timer = setTimeout(() => {
-            updateQueryParams("search", search);
+            const params = new URLSearchParams(searchParams.toString());
+
+            const setOrDelete = (key: string, value: string) => {
+                if (value) params.set(key, value);
+                else params.delete(key);
+            };
+
+            setOrDelete("search", search);
+            setOrDelete("minPrice", minPrice);
+            setOrDelete("maxPrice", maxPrice);
+            params.set("page", "1");
+
+            router.push(`${pathname}?${params.toString()}`, { scroll: false });
         }, 400);
+
         return () => clearTimeout(timer);
-    }, [search]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [search, minPrice, maxPrice]);
 
     const updateQueryParams = (key: string, value: string | number) => {
         const params = new URLSearchParams(searchParams.toString());
@@ -102,27 +127,6 @@ const BrowseCoursesClient = () => {
         router.push(pathname, { scroll: false });
         setIsFilterOpen(false);
     };
-
-    if (isLoading) {
-        return (
-            <div className="min-h-screen bg-[#1C2E24] flex items-center justify-center">
-                <Spinner size="lg" />
-            </div>
-        );
-    }
-
-    if (isError) {
-        return (
-            <div className="min-h-screen bg-[#1C2E24] flex items-center justify-center">
-                <Card className="bg-[#3E5C4B] border border-red-500/20 rounded-2xl p-8 text-center">
-                    <p className="text-red-400">Failed to load courses. Please try again.</p>
-                    <Button className="mt-4 bg-[#C5A059] text-[#1C2E24]" onPress={() => window.location.reload()}>
-                        Retry
-                    </Button>
-                </Card>
-            </div>
-        );
-    }
 
     const courses = data?.courses || [];
     const totalCourses = data?.totalCourses || 0;
@@ -207,10 +211,7 @@ const BrowseCoursesClient = () => {
                             type="number"
                             placeholder="Min Price"
                             value={minPrice}
-                            onChange={(e) => {
-                                setMinPrice(e.target.value);
-                                updateQueryParams("minPrice", e.target.value);
-                            }}
+                            onChange={(e) => setMinPrice(e.target.value)}
                             className="bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 py-3 outline-none focus:border-[#C5A059] text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 transition-colors"
                         />
 
@@ -218,10 +219,7 @@ const BrowseCoursesClient = () => {
                             type="number"
                             placeholder="Max Price"
                             value={maxPrice}
-                            onChange={(e) => {
-                                setMaxPrice(e.target.value);
-                                updateQueryParams("maxPrice", e.target.value);
-                            }}
+                            onChange={(e) => setMaxPrice(e.target.value)}
                             className="bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 py-3 outline-none focus:border-[#C5A059] text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 transition-colors"
                         />
                     </div>
@@ -307,20 +305,14 @@ const BrowseCoursesClient = () => {
                                         type="number"
                                         placeholder="Min"
                                         value={minPrice}
-                                        onChange={(e) => {
-                                            setMinPrice(e.target.value);
-                                            updateQueryParams("minPrice", e.target.value);
-                                        }}
+                                        onChange={(e) => setMinPrice(e.target.value)}
                                         className="bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 py-2.5 outline-none focus:border-[#C5A059] text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 text-sm transition-colors"
                                     />
                                     <input
                                         type="number"
                                         placeholder="Max"
                                         value={maxPrice}
-                                        onChange={(e) => {
-                                            setMaxPrice(e.target.value);
-                                            updateQueryParams("maxPrice", e.target.value);
-                                        }}
+                                        onChange={(e) => setMaxPrice(e.target.value)}
                                         className="bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 py-2.5 outline-none focus:border-[#C5A059] text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 text-sm transition-colors"
                                     />
                                 </div>
@@ -336,77 +328,92 @@ const BrowseCoursesClient = () => {
                     </motion.div>
                 </div>
 
-                {/* Results summary */}
-                <div className="mb-6 flex items-center justify-between">
-                    <p className="text-[#EBE3D5]/60 text-sm md:text-lg">
-                        Showing <span className="font-bold text-[#EBE3D5]">{totalCourses}</span> course{totalCourses !== 1 ? "s" : ""}
-                    </p>
-                </div>
-
-                {totalCourses === 0 ? (
-                    <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-3xl shadow-xl py-20 text-center">
-                        <FaBook className="text-5xl text-[#EBE3D5]/20 mx-auto mb-4" />
-                        <h2 className="text-3xl font-bold text-[#EBE3D5]">No courses found</h2>
-                        <p className="text-[#EBE3D5]/50 mt-3">Try changing your search or filters.</p>
+                {/* Results: loading/error live here so filters stay mounted */}
+                {isLoading ? (
+                    <div className="flex items-center justify-center py-24">
+                        <Spinner size="lg" />
+                    </div>
+                ) : isError ? (
+                    <Card className="bg-[#3E5C4B] border border-red-500/20 rounded-2xl p-8 text-center">
+                        <p className="text-red-400">Failed to load courses. Please try again.</p>
+                        <Button className="mt-4 bg-[#C5A059] text-[#1C2E24]" onPress={() => refetch()}>
+                            Retry
+                        </Button>
                     </Card>
                 ) : (
                     <>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.4 }}
-                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6"
-                        >
-                            {courses.map((course) => (
-                                <CourseCard key={course._id} course={course} />
-                            ))}
-                        </motion.div>
+                        <div className="mb-6 flex items-center justify-between">
+                            <p className="text-[#EBE3D5]/60 text-sm md:text-lg">
+                                Showing <span className="font-bold text-[#EBE3D5]">{totalCourses}</span> course{totalCourses !== 1 ? "s" : ""}
+                            </p>
+                        </div>
 
-                        {totalPages > 1 && (
-                            <div className="flex justify-center items-center gap-2 md:gap-3 mt-10 md:mt-12">
-                                <button
-                                    disabled={currentPage === 1}
-                                    onClick={() => updateQueryParams("page", currentPage - 1)}
-                                    className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-[#C5A059]/10 text-[#EBE3D5] flex items-center justify-center hover:bg-[#C5A059]/20 transition disabled:bg-[#C5A059]/5 disabled:text-[#EBE3D5]/30 disabled:cursor-not-allowed border border-[#C5A059]/20"
+                        {totalCourses === 0 ? (
+                            <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-3xl shadow-xl py-20 text-center">
+                                <FaBook className="text-5xl text-[#EBE3D5]/20 mx-auto mb-4" />
+                                <h2 className="text-3xl font-bold text-[#EBE3D5]">No courses found</h2>
+                                <p className="text-[#EBE3D5]/50 mt-3">Try changing your search or filters.</p>
+                            </Card>
+                        ) : (
+                            <>
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6"
                                 >
-                                    <BiLeftArrow size={16} />
-                                </button>
+                                    {courses.map((course) => (
+                                        <CourseCard key={course._id} course={course} />
+                                    ))}
+                                </motion.div>
 
-                                {Array.from({ length: Math.min(totalPages, 7) }, (_, index) => {
-                                    let pageNumber: number;
-                                    if (totalPages <= 7) pageNumber = index + 1;
-                                    else if (currentPage <= 4) pageNumber = index + 1;
-                                    else if (currentPage >= totalPages - 3) pageNumber = totalPages - 6 + index;
-                                    else pageNumber = currentPage - 3 + index;
-
-                                    if ((index === 0 && pageNumber > 1) || (index === 6 && pageNumber < totalPages)) {
-                                        return <span key={`ellipsis-${index}`} className="text-[#EBE3D5]/40">...</span>;
-                                    }
-                                    if (pageNumber < 1 || pageNumber > totalPages) return null;
-
-                                    return (
+                                {totalPages > 1 && (
+                                    <div className="flex justify-center items-center gap-2 md:gap-3 mt-10 md:mt-12">
                                         <button
-                                            key={pageNumber}
-                                            onClick={() => updateQueryParams("page", pageNumber)}
-                                            className={`w-9 h-9 md:w-11 md:h-11 rounded-xl font-semibold text-sm transition ${
-                                                currentPage === pageNumber
-                                                    ? "bg-[#C5A059] text-[#1C2E24] shadow-lg shadow-[#C5A059]/20"
-                                                    : "bg-[#3E5C4B] border border-[#C5A059]/20 text-[#EBE3D5] hover:bg-[#C5A059]/10"
-                                            }`}
+                                            disabled={currentPage === 1}
+                                            onClick={() => updateQueryParams("page", currentPage - 1)}
+                                            className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-[#C5A059]/10 text-[#EBE3D5] flex items-center justify-center hover:bg-[#C5A059]/20 transition disabled:bg-[#C5A059]/5 disabled:text-[#EBE3D5]/30 disabled:cursor-not-allowed border border-[#C5A059]/20"
                                         >
-                                            {pageNumber}
+                                            <BiLeftArrow size={16} />
                                         </button>
-                                    );
-                                })}
 
-                                <button
-                                    disabled={currentPage === totalPages}
-                                    onClick={() => updateQueryParams("page", currentPage + 1)}
-                                    className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-[#C5A059]/10 text-[#EBE3D5] flex items-center justify-center hover:bg-[#C5A059]/20 transition disabled:bg-[#C5A059]/5 disabled:text-[#EBE3D5]/30 disabled:cursor-not-allowed border border-[#C5A059]/20"
-                                >
-                                    <BiRightArrow size={16} />
-                                </button>
-                            </div>
+                                        {Array.from({ length: Math.min(totalPages, 7) }, (_, index) => {
+                                            let pageNumber: number;
+                                            if (totalPages <= 7) pageNumber = index + 1;
+                                            else if (currentPage <= 4) pageNumber = index + 1;
+                                            else if (currentPage >= totalPages - 3) pageNumber = totalPages - 6 + index;
+                                            else pageNumber = currentPage - 3 + index;
+
+                                            if ((index === 0 && pageNumber > 1) || (index === 6 && pageNumber < totalPages)) {
+                                                return <span key={`ellipsis-${index}`} className="text-[#EBE3D5]/40">...</span>;
+                                            }
+                                            if (pageNumber < 1 || pageNumber > totalPages) return null;
+
+                                            return (
+                                                <button
+                                                    key={pageNumber}
+                                                    onClick={() => updateQueryParams("page", pageNumber)}
+                                                    className={`w-9 h-9 md:w-11 md:h-11 rounded-xl font-semibold text-sm transition ${
+                                                        currentPage === pageNumber
+                                                            ? "bg-[#C5A059] text-[#1C2E24] shadow-lg shadow-[#C5A059]/20"
+                                                            : "bg-[#3E5C4B] border border-[#C5A059]/20 text-[#EBE3D5] hover:bg-[#C5A059]/10"
+                                                    }`}
+                                                >
+                                                    {pageNumber}
+                                                </button>
+                                            );
+                                        })}
+
+                                        <button
+                                            disabled={currentPage === totalPages}
+                                            onClick={() => updateQueryParams("page", currentPage + 1)}
+                                            className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-[#C5A059]/10 text-[#EBE3D5] flex items-center justify-center hover:bg-[#C5A059]/20 transition disabled:bg-[#C5A059]/5 disabled:text-[#EBE3D5]/30 disabled:cursor-not-allowed border border-[#C5A059]/20"
+                                        >
+                                            <BiRightArrow size={16} />
+                                        </button>
+                                    </div>
+                                )}
+                            </>
                         )}
                     </>
                 )}

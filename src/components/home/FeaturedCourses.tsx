@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Card, Spinner, Button } from "@heroui/react";
 import { FaArrowRight, FaBook } from "react-icons/fa";
 import CourseCard from "../courses/CourseCard";
-import { getCourses } from "@/lib/api/courses/data";
+import { getFeaturedCourses } from "@/lib/api/courses/data";
 import type { Course } from "@/lib/api/courses/data";
 
 const categories = [
@@ -25,67 +25,31 @@ export default function FeaturedCourses() {
     const [courses, setCourses] = useState<Course[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [reloadKey, setReloadKey] = useState(0);
 
     useEffect(() => {
-        const fetchFeaturedCourses = async () => {
+        let cancelled = false;
+
+        const load = async () => {
             try {
                 setLoading(true);
                 setError(null);
-                
-                const filters: any = {
-                    page: 1,
-                    limit: 8,
-                    sort: "popular",
-                };
-
-                // Add category filter if not "all"
-                if (activeCategory !== "all") {
-                    filters.category = activeCategory;
-                }
-
-                const response = await getCourses(filters);
-                setCourses(response.courses);
-            } catch (error) {
-                console.error("Error fetching featured courses:", error);
-                setError("Failed to load courses. Please try again.");
+                const data = await getFeaturedCourses(activeCategory);
+                if (!cancelled) setCourses(data);
+            } catch (err) {
+                console.error("Error fetching featured courses:", err);
+                if (!cancelled) setError("Failed to load courses. Please try again.");
             } finally {
-                setLoading(false);
+                if (!cancelled) setLoading(false);
             }
         };
 
-        fetchFeaturedCourses();
-    }, [activeCategory]);
+        load();
 
-    if (loading) {
-        return (
-            <section className="py-20 bg-[#1C2E24] relative border-t border-[#C5A059]/10">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col items-center justify-center min-h-[400px]">
-                        <Spinner size="lg" />
-                        <p className="text-[#EBE3D5]/60 mt-4">Loading featured courses...</p>
-                    </div>
-                </div>
-            </section>
-        );
-    }
-
-    if (error) {
-        return (
-            <section className="py-20 bg-[#1C2E24] relative border-t border-[#C5A059]/10">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <Card className="bg-[#3E5C4B] border border-red-500/20 rounded-2xl p-12 text-center">
-                        <p className="text-red-400 text-lg">{error}</p>
-                        <Button 
-                            className="mt-4 bg-[#C5A059] text-[#1C2E24]"
-                            onPress={() => window.location.reload()}
-                        >
-                            Retry
-                        </Button>
-                    </Card>
-                </div>
-            </section>
-        );
-    }
+        return () => {
+            cancelled = true;
+        };
+    }, [activeCategory, reloadKey]);
 
     return (
         <section className="py-20 bg-[#1C2E24] relative border-t border-[#C5A059]/10">
@@ -123,7 +87,22 @@ export default function FeaturedCourses() {
                 </div>
 
                 {/* Courses Grid */}
-                {courses.length === 0 ? (
+                {loading ? (
+                    <div className="flex flex-col items-center justify-center min-h-[400px]">
+                        <Spinner size="lg" />
+                        <p className="text-[#EBE3D5]/60 mt-4">Loading featured courses...</p>
+                    </div>
+                ) : error ? (
+                    <Card className="bg-[#3E5C4B] border border-red-500/20 rounded-2xl p-12 text-center">
+                        <p className="text-red-400 text-lg">{error}</p>
+                        <Button
+                            className="mt-4 bg-[#C5A059] text-[#1C2E24]"
+                            onPress={() => setReloadKey((k) => k + 1)}
+                        >
+                            Retry
+                        </Button>
+                    </Card>
+                ) : courses.length === 0 ? (
                     <Card className="bg-[#3E5C4B] border border-[#C5A059]/10 rounded-2xl p-12 text-center">
                         <FaBook className="text-5xl text-[#EBE3D5]/20 mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-[#EBE3D5] mb-2">

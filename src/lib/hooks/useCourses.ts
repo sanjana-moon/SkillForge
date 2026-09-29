@@ -1,5 +1,13 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { getCourses, getCourseById, getStudentStats, getStudentEnrollments, checkEnrollment } from "@/lib/api/courses/data";
+import {
+    getCourses,
+    getCourseById,
+    getStudentStats,
+    getStudentEnrollments,
+    checkEnrollment,
+    type CourseFilters,
+    type CourseListResponse,
+} from "@/lib/api/courses/data";
 import { enrollInCourse } from "@/lib/api/courses/actions";
 
 // Query Keys
@@ -12,12 +20,14 @@ export const QUERY_KEYS = {
 };
 
 // Fetch all courses with filters
-export const useCourses = (filters?: any) => {
+export const useCourses = (filters?: CourseFilters) => {
     return useQuery({
         queryKey: [QUERY_KEYS.courses, filters],
         queryFn: () => getCourses(filters),
-        staleTime: 5 * 60 * 1000, // 5 minutes
-        enabled: true,
+        staleTime: 5 * 60 * 1000,
+        gcTime: 10 * 60 * 1000,
+        // keep previous page visible while fetching the next page
+        placeholderData: (previousData) => previousData,
     });
 };
 
@@ -27,7 +37,7 @@ export const useCourse = (id: string) => {
         queryKey: [QUERY_KEYS.course, id],
         queryFn: () => getCourseById(id),
         enabled: !!id,
-        staleTime: 10 * 60 * 1000, // 10 minutes
+        staleTime: 10 * 60 * 1000,
     });
 };
 
@@ -66,13 +76,26 @@ export const useEnrollCourse = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: ({ courseId, courseTitle }: { courseId: string; courseTitle: string }) =>
-            enrollInCourse(courseId, courseTitle),
+        mutationFn: ({
+            courseId,
+            courseTitle,
+        }: {
+            courseId: string;
+            courseTitle: string;
+        }) => enrollInCourse(courseId, courseTitle),
         onSuccess: (_, variables) => {
-            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.studentEnrollments] });
-            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.studentStats] });
-            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.checkEnrollment, variables.courseId] });
-            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.course, variables.courseId] });
+            queryClient.invalidateQueries({
+                queryKey: [QUERY_KEYS.studentEnrollments],
+            });
+            queryClient.invalidateQueries({
+                queryKey: [QUERY_KEYS.studentStats],
+            });
+            queryClient.invalidateQueries({
+                queryKey: [QUERY_KEYS.checkEnrollment, variables.courseId],
+            });
+            queryClient.invalidateQueries({
+                queryKey: [QUERY_KEYS.course, variables.courseId],
+            });
         },
     });
 };

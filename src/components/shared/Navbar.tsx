@@ -7,8 +7,6 @@ import { TfiAlignLeft } from "react-icons/tfi";
 import { RxCross2, RxAvatar } from "react-icons/rx";
 import { MdLogin, MdLogout } from "react-icons/md";
 import { LuUserRoundPlus } from "react-icons/lu";
-import { IoMdSpeedometer } from "react-icons/io";
-import { FaRobot } from "react-icons/fa";
 
 import Image from "next/image";
 import Link from "next/link";

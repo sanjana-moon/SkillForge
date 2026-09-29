@@ -13,14 +13,14 @@ import WhyChooseUs from "@/components/home/WhyChooseUs";
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#1C2E24] text-[#EBE3D5] flex flex-col justify-between">
-        <Hero />
-        <FeaturedCourses/>
-        <AIFeatures />
-        {/* <AboutPage/> */}
-        <Categories />
-        <WhyChooseUs />
-        <Testimonials />
-        <Newsletter />
+      <Hero />
+      <FeaturedCourses />
+      <AIFeatures />
+      <Categories />
+      <AboutPage />
+      <WhyChooseUs />
+      <Testimonials />
+      <Newsletter />
     </div>
   );
 }

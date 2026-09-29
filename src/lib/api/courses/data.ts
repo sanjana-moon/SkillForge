@@ -179,10 +179,12 @@ export const getCourses = async (filters?: CourseFilters): Promise<CourseListRes
 };
 
 // GET featured courses (public)
-export const getFeaturedCourses = async (): Promise<Course[]> => {
+export const getFeaturedCourses = async (category?: string): Promise<Course[]> => {
     try {
-        const response = await serverFetch<Course[]>("/api/courses/featured", false);
-        return response;
+        const qs = category && category !== "all"
+            ? `?category=${encodeURIComponent(category)}`
+            : "";
+        return await serverFetch<Course[]>(`/api/courses/featured${qs}`, false);
     } catch (error) {
         console.error("Error fetching featured courses:", error);
         throw error;
@@ -201,10 +203,11 @@ export const getCourseById = async (courseId: string): Promise<Course> => {
 };
 
 // GET all categories (public)
-export const getCategories = async (): Promise<string[]> => {
+export type Category = { name: string; count: number };
+
+export const getCategories = async (): Promise<Category[]> => {
     try {
-        const response = await serverFetch<string[]>("/api/categories", false);
-        return response;
+        return await serverFetch<Category[]>("/api/categories", false);
     } catch (error) {
         console.error("Error fetching categories:", error);
         throw error;
