@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { Card, Button, Spinner } from "@heroui/react";
@@ -27,7 +27,7 @@ const getStatusColor = (status: string) => {
         case "rejected":
             return "bg-red-500/20 text-red-400 border-red-500/30";
         default:
-            return "bg-[#EBE3D5]/10 text-[#EBE3D5]/60 border-[#EBE3D5]/20";
+            return "bg-[#4B4B5A]/10 text-[#4B4B5A]/60 border-[#4B4B5A]/20";
     }
 };
 
@@ -38,7 +38,7 @@ const getPublishStatusColor = (status: string) => {
         case "unpublished":
             return "bg-gray-500/20 text-gray-400 border-gray-500/30";
         default:
-            return "bg-[#EBE3D5]/10 text-[#EBE3D5]/60 border-[#EBE3D5]/20";
+            return "bg-[#4B4B5A]/10 text-[#4B4B5A]/60 border-[#4B4B5A]/20";
     }
 };
 
@@ -184,34 +184,34 @@ const ManageCoursesClient = ({
         <div className="space-y-6">
             {/* Header */}
             <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-[#EBE3D5]">
+                <h1 className="text-3xl md:text-4xl font-bold text-[#4B4B5A]">
                     Manage Courses
                 </h1>
-                <p className="text-[#EBE3D5]/60 mt-2">
+                <p className="text-[#4B4B5A]/60 mt-2">
                     Review course submissions, approve or reject listings, and manage course content.
                 </p>
             </div>
 
             {/* Stats Summary */}
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-                <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-4">
-                    <p className="text-[#EBE3D5]/60 text-sm">Total Courses</p>
-                    <p className="text-2xl font-bold text-[#EBE3D5]">{courses.length}</p>
+                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
+                    <p className="text-[#4B4B5A]/60 text-sm">Total Courses</p>
+                    <p className="text-2xl font-bold text-[#4B4B5A]">{courses.length}</p>
                 </Card>
-                <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-4">
-                    <p className="text-[#EBE3D5]/60 text-sm">Pending Approval</p>
+                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
+                    <p className="text-[#4B4B5A]/60 text-sm">Pending Approval</p>
                     <p className="text-2xl font-bold text-yellow-400">
                         {courses.filter(c => c.approvalStatus === "pending").length}
                     </p>
                 </Card>
-                <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-4">
-                    <p className="text-[#EBE3D5]/60 text-sm">Approved</p>
+                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
+                    <p className="text-[#4B4B5A]/60 text-sm">Approved</p>
                     <p className="text-2xl font-bold text-green-400">
                         {courses.filter(c => c.approvalStatus === "approved").length}
                     </p>
                 </Card>
-                <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-4">
-                    <p className="text-[#EBE3D5]/60 text-sm">Published</p>
+                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
+                    <p className="text-[#4B4B5A]/60 text-sm">Published</p>
                     <p className="text-2xl font-bold text-blue-400">
                         {courses.filter(c => c.publishStatus === "published").length}
                     </p>
@@ -219,33 +219,33 @@ const ManageCoursesClient = ({
             </div>
 
             {/* Table */}
-            <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl shadow-xl overflow-hidden">
+            <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl shadow-xl overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full">
-                        <thead className="bg-[#1C2E24] border-b border-[#C5A059]/20">
+                        <thead className="bg-[#FFFFFF] border-b border-[#0E7CC9]/20">
                             <tr>
-                                <th className="px-6 py-4 text-left text-[#EBE3D5] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
                                     Course
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#EBE3D5] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
                                     Category
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#EBE3D5] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
                                     Level
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#EBE3D5] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
                                     Price
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#EBE3D5] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
                                     Instructor
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#EBE3D5] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
                                     Approval
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#EBE3D5] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
                                     Publish
                                 </th>
-                                <th className="px-6 py-4 text-center text-[#EBE3D5] font-semibold text-sm">
+                                <th className="px-6 py-4 text-center text-[#4B4B5A] font-semibold text-sm">
                                     Actions
                                 </th>
                             </tr>
@@ -256,39 +256,39 @@ const ManageCoursesClient = ({
                                 return (
                                     <tr
                                         key={courseId || Math.random().toString()}
-                                        className="border-b border-[#C5A059]/10 hover:bg-[#1C2E24]/50 transition-colors duration-200"
+                                        className="border-b border-[#0E7CC9]/10 hover:bg-[#FFFFFF]/50 transition-colors duration-200"
                                     >
                                         <td className="px-6 py-4">
                                             <div>
-                                                <h3 className="font-semibold text-[#EBE3D5]">
+                                                <h3 className="font-semibold text-[#4B4B5A]">
                                                     {course.title}
                                                 </h3>
-                                                <p className="text-xs text-[#EBE3D5]/40 mt-1">
+                                                <p className="text-xs text-[#4B4B5A]/40 mt-1">
                                                     {new Date(course.createdAt).toLocaleDateString()}
                                                 </p>
                                             </div>
                                         </td>
 
-                                        <td className="px-6 py-4 text-[#EBE3D5]/70">
+                                        <td className="px-6 py-4 text-[#4B4B5A]/70">
                                             {course.category}
                                         </td>
 
                                         <td className="px-6 py-4">
-                                            <span className="capitalize text-[#EBE3D5]/70">
+                                            <span className="capitalize text-[#4B4B5A]/70">
                                                 {course.level}
                                             </span>
                                         </td>
 
-                                        <td className="px-6 py-4 font-bold text-[#C5A059]">
+                                        <td className="px-6 py-4 font-bold text-[#0E7CC9]">
                                             ${course.price.toLocaleString()}
                                         </td>
 
                                         <td className="px-6 py-4">
                                             <div>
-                                                <p className="text-[#EBE3D5] text-sm">
+                                                <p className="text-[#4B4B5A] text-sm">
                                                     {course.instructorName}
                                                 </p>
-                                                <p className="text-xs text-[#EBE3D5]/40">
+                                                <p className="text-xs text-[#4B4B5A]/40">
                                                     {course.instructorEmail}
                                                 </p>
                                             </div>
@@ -334,7 +334,7 @@ const ManageCoursesClient = ({
                                                 )}
                                             </button>
                                             {course.approvalStatus !== "approved" && (
-                                                <p className="text-[10px] text-[#EBE3D5]/30 mt-1">
+                                                <p className="text-[10px] text-[#4B4B5A]/30 mt-1">
                                                     Approve first
                                                 </p>
                                             )}
@@ -346,7 +346,7 @@ const ManageCoursesClient = ({
                                                 <Button
                                                     size="sm"
                                                     onPress={() => handleViewCourse(courseId)}
-                                                    className="bg-[#C5A059]/10 hover:bg-[#C5A059]/20 text-[#C5A059] min-w-0 w-9 h-9 rounded-lg"
+                                                    className="bg-[#0E7CC9]/10 hover:bg-[#0E7CC9]/20 text-[#0E7CC9] min-w-0 w-9 h-9 rounded-lg"
                                                 >
                                                     <FaEye className="text-xs" />
                                                 </Button>
@@ -365,7 +365,7 @@ const ManageCoursesClient = ({
                             })}
                             {courses.length === 0 && (
                                 <tr>
-                                    <td colSpan={8} className="text-center py-12 text-[#EBE3D5]/40">
+                                    <td colSpan={8} className="text-center py-12 text-[#4B4B5A]/40">
                                         No courses found.
                                     </td>
                                 </tr>
@@ -376,7 +376,7 @@ const ManageCoursesClient = ({
             </Card>
 
             {/* Footer Stats */}
-            <div className="flex flex-wrap justify-between items-center text-[#EBE3D5]/40 text-sm gap-4">
+            <div className="flex flex-wrap justify-between items-center text-[#4B4B5A]/40 text-sm gap-4">
                 <p>Total Courses: {courses.length}</p>
                 <div className="flex flex-wrap gap-4">
                     <span className="flex items-center gap-2">

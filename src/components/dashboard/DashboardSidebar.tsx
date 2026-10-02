@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -83,18 +83,18 @@ const DashboardSidebar = () => {
 
     if (!mounted) {
         return (
-            <div className="fixed left-0 top-0 z-40 h-full w-70 bg-[#1C2E24] border-r border-[#3E5C4B] flex flex-col p-4 animate-pulse">
-                <div className="h-10 bg-[#3E5C4B] rounded-lg mb-8 w-1/2" />
+            <div className="fixed left-0 top-0 z-40 h-full w-70 bg-[#FFFFFF] border-r border-[#FBF8FD] flex flex-col p-4 animate-pulse">
+                <div className="h-10 bg-[#FBF8FD] rounded-lg mb-8 w-1/2" />
                 <div className="flex items-center gap-3 mb-8">
-                    <div className="h-10 w-10 rounded-full bg-[#3E5C4B]" />
+                    <div className="h-10 w-10 rounded-full bg-[#FBF8FD]" />
                     <div className="flex-1 space-y-2">
-                        <div className="h-3 bg-[#3E5C4B] rounded w-1/2" />
-                        <div className="h-3 bg-[#3E5C4B] rounded w-3/4" />
+                        <div className="h-3 bg-[#FBF8FD] rounded w-1/2" />
+                        <div className="h-3 bg-[#FBF8FD] rounded w-3/4" />
                     </div>
                 </div>
                 <div className="space-y-3 flex-1">
                     {[1, 2, 3, 4].map((n) => (
-                        <div key={n} className="h-12 bg-[#3E5C4B] rounded-xl" />
+                        <div key={n} className="h-12 bg-[#FBF8FD] rounded-xl" />
                     ))}
                 </div>
             </div>
@@ -117,7 +117,7 @@ const DashboardSidebar = () => {
             {/* Mobile Toggle Button */}
             <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
-                className="lg:hidden fixed top-4 left-4 z-50 p-2.5 rounded-xl bg-[#1C2E24]/90 backdrop-blur-md border border-[#C5A059] text-[#EBE3D5] hover:text-white transition-all shadow-lg active:scale-95"
+                className="lg:hidden fixed top-4 left-4 z-50 p-2.5 rounded-xl bg-[#FFFFFF]/90 backdrop-blur-md border border-[#0E7CC9] text-[#4B4B5A] hover:text-white transition-all shadow-lg active:scale-95"
             >
                 {isMobileOpen ? <IoMdClose className="text-xl" /> : <IoMdMenu className="text-xl" />}
             </button>
@@ -149,10 +149,10 @@ const DashboardSidebar = () => {
                             : 0,
                 }}
                 transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
-                className="fixed left-0 top-0 z-40 h-full bg-[#1C2E24] border-r border-[#3E5C4B] shadow-2xl flex flex-col overflow-hidden"
+                className="fixed left-0 top-0 z-40 h-full bg-[#FFFFFF] border-r border-[#FBF8FD] shadow-2xl flex flex-col overflow-hidden"
             >
                 {/* Header Section (Logo Only) */}
-                <div className="flex items-center justify-between px-5 py-4 border-b border-[#3E5C4B] min-h-18">
+                <div className="flex items-center justify-between px-5 py-4 border-b border-[#FBF8FD] min-h-18">
                     <Link href="/" className="flex items-center shrink-0">
                         <Image
                             src={logo}
@@ -167,7 +167,7 @@ const DashboardSidebar = () => {
                         <button
                             onClick={() => setIsCollapsed(!isCollapsed)}
                             aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-                            className="hidden lg:flex items-center justify-center w-7 h-7 rounded-lg border border-[#C5A059] text-[#EBE3D5] hover:text-[#EBE3D5] hover:bg-[#3E5C4B] transition-colors"
+                            className="hidden lg:flex items-center justify-center w-7 h-7 rounded-lg border border-[#0E7CC9] text-[#4B4B5A] hover:text-[#4B4B5A] hover:bg-[#FBF8FD] transition-colors"
                         >
                             {isCollapsed ? (
                                 <IoMdArrowForward className="text-sm" />
@@ -179,7 +179,7 @@ const DashboardSidebar = () => {
                 </div>
 
                 {/* User Profile Area */}
-                <div className="p-4 border-b border-[#3E5C4B] bg-linear-to-b from-transparent to-[#3E5C4B]/20">
+                <div className="p-4 border-b border-[#FBF8FD] bg-linear-to-b from-transparent to-[#FBF8FD]/20">
                     <div className={`flex items-center gap-3 ${isCollapsed ? "justify-center" : ""}`}>
                         <div className="relative shrink-0">
                             <Image
@@ -187,9 +187,9 @@ const DashboardSidebar = () => {
                                 alt={user?.name ?? "User"}
                                 height={80}
                                 width={80}
-                                className="border border-[#C5A059]/30 ring-4 ring-[#C5A059]/5 transition-transform duration-200 rounded-full"
+                                className="border border-[#0E7CC9]/30 ring-4 ring-[#0E7CC9]/5 transition-transform duration-200 rounded-full"
                             />
-                            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-[#1C2E24] rounded-full" />
+                            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-[#FFFFFF] rounded-full" />
                         </div>
 
                         <AnimatePresence mode="popLayout">
@@ -200,13 +200,13 @@ const DashboardSidebar = () => {
                                     exit={{ opacity: 0 }}
                                     className="flex-1 min-w-0"
                                 >
-                                    <p className="text-[#EBE3D5] text-sm font-semibold truncate leading-tight">
+                                    <p className="text-[#4B4B5A] text-sm font-semibold truncate leading-tight">
                                         {user?.name}
                                     </p>
-                                    {/* <p className="text-[#EBE3D5] text-xs truncate mt-0.5">
+                                    {/* <p className="text-[#4B4B5A] text-xs truncate mt-0.5">
                                         {user?.email}
                                     </p> */}
-                                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-medium bg-[#C5A059]/10 text-[#5C3A21] border border-[#C5A059]/20 capitalize mt-1.5 tracking-wider">
+                                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-medium bg-[#0E7CC9]/10 text-[#7A56CE] border border-[#0E7CC9]/20 capitalize mt-1.5 tracking-wider">
                                         {role}
                                     </span>
                                 </motion.div>
@@ -230,8 +230,8 @@ const DashboardSidebar = () => {
                                     relative flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 group
                                     ${
                                         active
-                                            ? "bg-linear-to-r from-[#5C3A21]/15 to-[#5C3A21]/5 text-[#5C3A21] font-medium border border-[#C5A059]/20"
-                                            : "text-[#EBE3D5] hover:text-[#EBE3D5] hover:bg-[#3E5C4B]/60 border border-transparent"
+                                            ? "bg-linear-to-r from-[#7A56CE]/15 to-[#7A56CE]/5 text-[#7A56CE] font-medium border border-[#0E7CC9]/20"
+                                            : "text-[#4B4B5A] hover:text-[#4B4B5A] hover:bg-[#FBF8FD]/60 border border-transparent"
                                     }
                                     ${isCollapsed ? "justify-center px-0" : ""}
                                 `}
@@ -239,7 +239,7 @@ const DashboardSidebar = () => {
                                 {active && (
                                     <motion.div
                                         layoutId="activeIndicator"
-                                        className="absolute left-0 top-3.5 bottom-3.5 w-1 bg-[#C5A059] rounded-r-md"
+                                        className="absolute left-0 top-3.5 bottom-3.5 w-1 bg-[image:var(--brand-gradient)] rounded-r-md"
                                         transition={{
                                             type: "spring",
                                             stiffness: 300,
@@ -251,8 +251,8 @@ const DashboardSidebar = () => {
                                 <Icon
                                     className={`text-xl shrink-0 transition-transform group-hover:scale-105 duration-200 ${
                                         active
-                                            ? "text-[#5C3A21]"
-                                            : "text-[#EBE3D5] group-hover:text-[#EBE3D5]"
+                                            ? "text-[#7A56CE]"
+                                            : "text-[#4B4B5A] group-hover:text-[#4B4B5A]"
                                     }`}
                                 />
 
@@ -274,17 +274,17 @@ const DashboardSidebar = () => {
                 </nav>
 
                 {/* Footer Utilities Area */}
-                <div className="p-3 border-t border-[#3E5C4B] space-y-1.5">
+                <div className="p-3 border-t border-[#FBF8FD] space-y-1.5">
                     {/* Back to Home */}
                     <Link
                         href="/"
                         className={`
                             flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 group
-                            text-[#EBE3D5] hover:text-[#EBE3D5] hover:bg-[#3E5C4B]/60 border border-transparent
+                            text-[#4B4B5A] hover:text-[#4B4B5A] hover:bg-[#FBF8FD]/60 border border-transparent
                             ${isCollapsed ? "justify-center px-0" : ""}
                         `}
                     >
-                        <IoMdHome className="text-xl text-[#EBE3D5] group-hover:text-[#EBE3D5] shrink-0 transition-transform group-hover:scale-105" />
+                        <IoMdHome className="text-xl text-[#4B4B5A] group-hover:text-[#4B4B5A] shrink-0 transition-transform group-hover:scale-105" />
                         <AnimatePresence mode="popLayout">
                             {!isCollapsed && (
                                 <motion.span
@@ -304,11 +304,11 @@ const DashboardSidebar = () => {
                         onClick={handleSignOut}
                         className={`
                             w-full flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200
-                            text-[#EBE3D5] hover:text-red-400 hover:bg-red-500/5 border border-transparent hover:border-red-500/10 group
+                            text-[#4B4B5A] hover:text-red-400 hover:bg-red-500/5 border border-transparent hover:border-red-500/10 group
                             ${isCollapsed ? "justify-center px-0" : ""}
                         `}
                     >
-                        <MdLogout className="text-xl text-[#EBE3D5] group-hover:text-red-400 shrink-0 transition-transform group-hover:-translate-x-0.5" />
+                        <MdLogout className="text-xl text-[#4B4B5A] group-hover:text-red-400 shrink-0 transition-transform group-hover:-translate-x-0.5" />
                         <AnimatePresence mode="popLayout">
                             {!isCollapsed && (
                                 <motion.span

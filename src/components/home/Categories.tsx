@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -13,39 +13,39 @@ import { Category, getCategories } from "@/lib/api/courses/data";
 const ICONS: Record<string, { icon: IconType; color: string; desc: string }> = {
     "ai & machine learning": {
         icon: RiBrainLine,
-        color: "from-[#C5A059] to-[#5C3A21]",
+        color: "from-[#0E7CC9] to-[#7A56CE]",
         desc: "Deep Learning, LLMs, Neural Networks, and NLP.",
     },
     "web development": {
         icon: FaCode,
-        color: "from-[#5C3A21] to-[#C5A059]",
+        color: "from-[#7A56CE] to-[#0E7CC9]",
         desc: "Modern JavaScript, React, Next.js, and Backend APIs.",
     },
     "cyber security": {
         icon: MdSecurity,
-        color: "from-[#D46A2B] to-[#D46A2B]",
+        color: "from-[#7A56CE] to-[#7A56CE]",
         desc: "Penetration Testing, Cryptography, and Threat Auditing.",
     },
     "cloud computing": {
         icon: FaCloud,
-        color: "from-[#C5A059] to-[#5C3A21]",
+        color: "from-[#0E7CC9] to-[#7A56CE]",
         desc: "AWS, Kubernetes, Terraform, and DevOps Pipelines.",
     },
     "data science": {
         icon: FaDatabase,
-        color: "from-[#C5A059] to-[#D46A2B]",
+        color: "from-[#0E7CC9] to-[#7A56CE]",
         desc: "Python, Pandas, Big Data Pipelines, and Visualization.",
     },
     "mobile apps": {
         icon: FaMobileScreenButton,
-        color: "from-[#D46A2B] to-[#5C3A21]",
+        color: "from-[#7A56CE] to-[#7A56CE]",
         desc: "React Native, Flutter, Swift, and Android SDKs.",
     },
 };
 
 const DEFAULT = {
     icon: FaLayerGroup,
-    color: "from-[#C5A059] to-[#5C3A21]",
+    color: "from-[#0E7CC9] to-[#7A56CE]",
     desc: "Explore specialized skills in this technology domain.",
 };
 
@@ -61,16 +61,16 @@ export default function Categories() {
     }, []);
 
     return (
-        <section className="bg-[#1C2E24] py-20">
+        <section className="bg-[#FFFFFF] py-20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mx-auto mb-16 max-w-3xl text-center">
-                    <h2 className="font-heading text-3xl font-bold text-[#EBE3D5] sm:text-4xl">
+                    <h2 className="font-heading text-3xl font-bold text-[#4B4B5A] sm:text-4xl">
                         Browse by{" "}
-                        <span className="bg-linear-to-r from-[#C5A059] to-[#5C3A21] bg-clip-text text-transparent">
+                        <span className="bg-linear-to-r from-[#0E7CC9] to-[#7A56CE] bg-clip-text text-transparent">
                             Technology Category
                         </span>
                     </h2>
-                    <p className="mt-4 font-body text-[#EBE3D5]/70">
+                    <p className="mt-4 font-body text-[#4B4B5A]/70">
                         Acquire specialized skills in critical tech domains.
                     </p>
                 </div>
@@ -82,7 +82,7 @@ export default function Categories() {
                                 return (
                                     <div
                                         key={i}
-                                        className="h-56 animate-pulse rounded-3xl bg-[#3E5C4B]/60"
+                                        className="h-56 animate-pulse rounded-3xl bg-[#FBF8FD]/60"
                                     />
                                 );
                             }
@@ -95,23 +95,23 @@ export default function Categories() {
                                 <Link
                                     key={cat.name}
                                     href={`/courses?category=${encodeURIComponent(cat.name)}`}
-                                    className="group rounded-3xl border border-[#C5A059]/10 bg-[#3E5C4B] p-6 shadow-lg transition hover:-translate-y-1 hover:border-[#C5A059]/30"
+                                    className="group rounded-3xl border border-[#0E7CC9]/10 bg-[#FBF8FD] p-6 shadow-lg transition hover:-translate-y-1 hover:border-[#0E7CC9]/30"
                                 >
                                     <div
-                                        className={`mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-tr ${meta.color} text-[#1C2E24]`}
+                                        className={`mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-tr ${meta.color} text-[#FFFFFF]`}
                                     >
                                         <Icon className="text-2xl" />
                                     </div>
 
-                                    <h3 className="font-heading text-xl font-bold text-[#EBE3D5] group-hover:text-[#C5A059]">
+                                    <h3 className="font-heading text-xl font-bold text-[#4B4B5A] group-hover:text-[#0E7CC9]">
                                         {cat.name}
                                     </h3>
 
-                                    <p className="mt-2 text-sm text-[#EBE3D5]/60">
+                                    <p className="mt-2 text-sm text-[#4B4B5A]/60">
                                         {meta.desc}
                                     </p>
 
-                                    <div className="mt-6 flex justify-between font-mono text-xs text-[#C5A059]">
+                                    <div className="mt-6 flex justify-between font-mono text-xs text-[#0E7CC9]">
                                         <span>
                                             {cat.count} Course
                                             {cat.count === 1 ? "" : "s"}

@@ -2,26 +2,47 @@
 @import "@heroui/styles";
 
 :root {
-  /* Requested palette */
-  --primary-bg: #1c2e24;
-  --secondary-card: #3e5c4b;
-  --primary-accent: #c5a059;
-  --secondary-accent: #5c3a21;
-  --highlight-alert: #d46a2b;
-  --primary-text: #ebe3d5;
-  --structural-footer: #1a1511;
-  --muted-border: #8c9683;
+  --canvas: #ffffff;
+  --sub-surface: #fbf8fd;
+  --border-divider: #e4e4ef;
+  --brand-start: #0e7cc9;
+  --brand-end: #7a56ce;
+  --brand-gradient: linear-gradient(135deg, var(--brand-start), var(--brand-end));
+  --active-background: var(--brand-gradient);
+  --footer-background: var(--brand-gradient);
+  --heading-text: #171722;
+  --body-text: #4b4b5a;
+  --muted-text: #747486;
+  --on-gradient-text: #ffffff;
+  --link-accent: #0e7cc9;
 
-  --background: var(--primary-bg);
-  --surface: var(--secondary-card);
-  --primary: var(--primary-accent);
-  --secondary: var(--secondary-accent);
-  --foreground: var(--primary-text);
-  --muted: var(--muted-border);
+  --button-primary-background: var(--brand-gradient);
+  --button-primary-text: var(--on-gradient-text);
+  --button-secondary-background: var(--canvas);
+  --button-secondary-border: var(--link-accent);
+  --button-secondary-text: var(--link-accent);
+  --button-ghost-background: transparent;
+  --button-ghost-text: var(--heading-text);
+  --button-ghost-hover-text: var(--link-accent);
 
-  /* Fonts */
-  --font-heading: var(--font-heading);
-  --font-body: var(--font-body);
+  --primary-bg: var(--canvas);
+  --secondary-card: var(--sub-surface);
+  --primary-accent: var(--brand-start);
+  --secondary-accent: var(--brand-end);
+  --highlight-alert: var(--link-accent);
+  --primary-text: var(--heading-text);
+  --structural-footer: var(--brand-end);
+  --muted-border: var(--border-divider);
+
+  --background: var(--canvas);
+  --surface: var(--sub-surface);
+  --primary: var(--brand-start);
+  --secondary: var(--brand-end);
+  --foreground: var(--heading-text);
+  --muted: var(--muted-text);
+
+  --font-heading: var(--font-plus-jakarta-sans);
+  --font-body: var(--font-plus-jakarta-sans);
 
   /* Radius */
   --radius: 16px;
@@ -43,6 +64,15 @@
   --color-primary-text: var(--primary-text);
   --color-structural-footer: var(--structural-footer);
   --color-muted-border: var(--muted-border);
+  --color-heading-text: var(--heading-text);
+  --color-body-text: var(--body-text);
+  --color-muted-text: var(--muted-text);
+  --color-link-accent: var(--link-accent);
+  --color-canvas: var(--canvas);
+  --color-sub-surface: var(--sub-surface);
+  --color-border-divider: var(--border-divider);
+  --color-brand-start: var(--brand-start);
+  --color-brand-end: var(--brand-end);
 
   /* Fonts */
   --font-heading: var(--font-heading);
@@ -62,8 +92,8 @@ html {
 
 body {
   @apply bg-background text-foreground;
-  background-color: var(--primary-bg);
-  color: var(--primary-text);
+  background-color: var(--canvas);
+  color: var(--body-text);
   font-family: var(--font-body);
 }
 
@@ -74,7 +104,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  color: var(--primary-text);
+  color: var(--heading-text);
 }
 
 p,
@@ -92,7 +122,16 @@ button {
   cursor: pointer;
 }
 
+button[class~="bg-[image:var(--brand-gradient)]"],
+a[class~="bg-[image:var(--brand-gradient)]"],
+[role="button"][class~="bg-[image:var(--brand-gradient)]"],
+button[class~="bg-[image:var(--brand-gradient)]"] *,
+a[class~="bg-[image:var(--brand-gradient)]"] *,
+[role="button"][class~="bg-[image:var(--brand-gradient)]"] * {
+  color: var(--on-gradient-text) !important;
+}
+
 ::selection {
-  background: rgba(197, 160, 89, 0.35);
-  color: var(--primary-text);
+  background: color-mix(in srgb, var(--brand-start) 25%, transparent);
+  color: var(--heading-text);
 }

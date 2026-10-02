@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -21,22 +21,22 @@ export default function AboutPage() {
         {
             value: "50K+",
             label: "Students Enrolled",
-            icon: <FaUsers className="text-[#C5A059]" />,
+            icon: <FaUsers className="text-[#0E7CC9]" />,
         },
         {
             value: "200+",
             label: "Courses Available",
-            icon: <FaBookOpen className="text-[#C5A059]" />,
+            icon: <FaBookOpen className="text-[#0E7CC9]" />,
         },
         {
             value: "98%",
             label: "Satisfaction Rate",
-            icon: <FaAward className="text-[#C5A059]" />,
+            icon: <FaAward className="text-[#0E7CC9]" />,
         },
         {
             value: "24/7",
             label: "AI Support",
-            icon: <FaRobot className="text-[#C5A059]" />,
+            icon: <FaRobot className="text-[#0E7CC9]" />,
         },
     ];
 
@@ -107,14 +107,14 @@ export default function AboutPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-[#1C2E24]">
+        <div className="min-h-screen bg-[#FFFFFF]">
             {/* ─────────────────────────────
                 HERO
             ───────────────────────────── */}
             <section className="relative overflow-hidden">
-                <div className="absolute inset-0 bg-linear-to-br from-[#C5A059]/10 via-transparent to-transparent" />
-                <div className="absolute top-20 left-10 h-64 w-64 rounded-full bg-[#C5A059]/5 blur-3xl" />
-                <div className="absolute bottom-20 right-10 h-96 w-96 rounded-full bg-[#5C3A21]/5 blur-3xl" />
+                <div className="absolute inset-0 bg-linear-to-br from-[#0E7CC9]/10 via-transparent to-transparent" />
+                <div className="absolute top-20 left-10 h-64 w-64 rounded-full bg-[#0E7CC9]/5 blur-3xl" />
+                <div className="absolute bottom-20 right-10 h-96 w-96 rounded-full bg-[#7A56CE]/5 blur-3xl" />
 
                 <div className="container relative mx-auto px-4 py-20 md:py-28">
                     <motion.div
@@ -123,17 +123,17 @@ export default function AboutPage() {
                         transition={{ duration: 0.6 }}
                         className="mx-auto max-w-4xl text-center"
                     >
-                        <Chip className="mb-6 border border-[#C5A059]/20 bg-[#C5A059]/10 px-4 py-2 text-sm font-medium text-[#C5A059]">
+                        <Chip className="mb-6 border border-[#0E7CC9]/20 bg-[#0E7CC9]/10 px-4 py-2 text-sm font-medium text-[#0E7CC9]">
                             About SkillForge
                         </Chip>
-                        <h1 className="text-4xl font-bold leading-tight text-[#EBE3D5] md:text-6xl">
+                        <h1 className="text-4xl font-bold leading-tight text-[#4B4B5A] md:text-6xl">
                             Empowering Learners Through
-                            <span className="text-[#C5A059]">
+                            <span className="text-[#0E7CC9]">
                                 {" "}
                                 AI-Powered Education
                             </span>
                         </h1>
-                        <p className="mx-auto mt-6 max-w-2xl text-lg text-[#EBE3D5]/60">
+                        <p className="mx-auto mt-6 max-w-2xl text-lg text-[#4B4B5A]/60">
                             We're on a mission to make quality education
                             accessible to everyone, using artificial
                             intelligence to create personalized, engaging
@@ -141,13 +141,13 @@ export default function AboutPage() {
                         </p>
                         <div className="mt-8 flex flex-wrap justify-center gap-4">
                             <Link href="/courses">
-                                <Button className="bg-[#C5A059] font-semibold text-[#1C2E24] hover:bg-[#C5A059]/80">
+                                <Button className="bg-[image:var(--brand-gradient)] font-semibold text-[#FFFFFF] hover:opacity-90">
                                     Explore Courses
                                     <FaArrowRight className="ml-2" />
                                 </Button>
                             </Link>
                             <Link href="/contact">
-                                <Button className="border border-[#C5A059]/30 text-[#EBE3D5] hover:bg-[#C5A059]/10 bg-transparent">
+                                <Button className="border border-[#0E7CC9]/30 text-[#4B4B5A] hover:bg-[#0E7CC9]/10 bg-transparent">
                                     Get in Touch
                                 </Button>
                             </Link>
@@ -166,13 +166,13 @@ export default function AboutPage() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <Chip className="mb-4 border border-[#C5A059]/20 bg-[#C5A059]/10 px-4 py-2 text-sm font-medium text-[#C5A059]">
+                        <Chip className="mb-4 border border-[#0E7CC9]/20 bg-[#0E7CC9]/10 px-4 py-2 text-sm font-medium text-[#0E7CC9]">
                             Our Mission
                         </Chip>
-                        <h2 className="text-3xl font-bold text-[#EBE3D5] md:text-4xl">
+                        <h2 className="text-3xl font-bold text-[#4B4B5A] md:text-4xl">
                             Making Quality Education Accessible
                         </h2>
-                        <p className="mt-4 text-base leading-relaxed text-[#EBE3D5]/60">
+                        <p className="mt-4 text-base leading-relaxed text-[#4B4B5A]/60">
                             At SkillForge, we believe that everyone deserves
                             access to high-quality education. Our platform
                             combines expert-led courses with cutting-edge AI
@@ -187,8 +187,8 @@ export default function AboutPage() {
                                 "Supportive community of learners",
                             ].map((item, index) => (
                                 <div key={index} className="flex items-center gap-3">
-                                    <FaCheckCircle className="shrink-0 text-sm text-[#C5A059]" />
-                                    <span className="text-sm text-[#EBE3D5]/70">
+                                    <FaCheckCircle className="shrink-0 text-sm text-[#0E7CC9]" />
+                                    <span className="text-sm text-[#4B4B5A]/70">
                                         {item}
                                     </span>
                                 </div>
@@ -200,11 +200,11 @@ export default function AboutPage() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="rounded-2xl border border-[#C5A059]/20 bg-[#3E5C4B] p-8"
+                        className="rounded-2xl border border-[#0E7CC9]/20 bg-[#FBF8FD] p-8"
                     >
                         <div className="mb-4 flex items-center gap-3">
-                            <FaGlobe className="text-2xl text-[#C5A059]" />
-                            <h3 className="text-xl font-bold text-[#EBE3D5]">
+                            <FaGlobe className="text-2xl text-[#0E7CC9]" />
+                            <h3 className="text-xl font-bold text-[#4B4B5A]">
                                 Our Impact
                             </h3>
                         </div>
@@ -228,16 +228,16 @@ export default function AboutPage() {
                             ].map((item) => (
                                 <div key={item.label}>
                                     <div className="mb-1 flex justify-between text-sm">
-                                        <span className="text-[#EBE3D5]/60">
+                                        <span className="text-[#4B4B5A]/60">
                                             {item.label}
                                         </span>
-                                        <span className="font-medium text-[#C5A059]">
+                                        <span className="font-medium text-[#0E7CC9]">
                                             {item.value}
                                         </span>
                                     </div>
-                                    <div className="h-2 w-full overflow-hidden rounded-full bg-[#1C2E24]">
+                                    <div className="h-2 w-full overflow-hidden rounded-full bg-[#FFFFFF]">
                                         <div
-                                            className="h-full rounded-full bg-[#C5A059]"
+                                            className="h-full rounded-full bg-[image:var(--brand-gradient)]"
                                             style={{ width: item.width }}
                                         />
                                     </div>
@@ -258,13 +258,13 @@ export default function AboutPage() {
                     transition={{ duration: 0.6 }}
                     className="mb-12 text-center"
                 >
-                    <Chip className="mb-4 border border-[#C5A059]/20 bg-[#C5A059]/10 px-4 py-2 text-sm font-medium text-[#C5A059]">
+                    <Chip className="mb-4 border border-[#0E7CC9]/20 bg-[#0E7CC9]/10 px-4 py-2 text-sm font-medium text-[#0E7CC9]">
                         Core Values
                     </Chip>
-                    <h2 className="text-3xl font-bold text-[#EBE3D5] md:text-4xl">
+                    <h2 className="text-3xl font-bold text-[#4B4B5A] md:text-4xl">
                         What Drives Us
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-[#EBE3D5]/60">
+                    <p className="mx-auto mt-4 max-w-2xl text-[#4B4B5A]/60">
                         Our values shape everything we do, from the courses we
                         create to the community we build.
                     </p>
@@ -278,7 +278,7 @@ export default function AboutPage() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.6 }}
-                        className="group relative min-h-[420px] overflow-hidden rounded-3xl border border-[#C5A059]/20 lg:min-h-full"
+                        className="group relative min-h-[420px] overflow-hidden rounded-3xl border border-[#0E7CC9]/20 lg:min-h-full"
                     >
                         <Image
                             src={values[0].image}
@@ -289,19 +289,19 @@ export default function AboutPage() {
                         />
 
                         {/* Dark gradient for text legibility */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#1C2E24] via-[#1C2E24]/10 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] via-[#FFFFFF]/10 to-transparent" />
 
                         {/* Corner value badge */}
-                        <div className="absolute left-6 top-6 rounded-full border border-[#C5A059]/30 bg-[#1C2E24]/70 px-3 py-1 font-mono text-xs uppercase tracking-widest text-[#C5A059] backdrop-blur-sm">
+                        <div className="absolute left-6 top-6 rounded-full border border-[#0E7CC9]/30 bg-[#FFFFFF]/70 px-3 py-1 font-mono text-xs uppercase tracking-widest text-[#0E7CC9] backdrop-blur-sm">
                             Value 01
                         </div>
 
                         {/* Bottom text */}
                         <div className="absolute bottom-0 left-0 right-0 p-8">
-                            <h3 className="text-2xl font-bold text-[#EBE3D5] md:text-3xl">
+                            <h3 className="text-2xl font-bold text-[#4B4B5A] md:text-3xl">
                                 {values[0].title}
                             </h3>
-                            <p className="mt-3 max-w-md text-sm leading-relaxed text-[#EBE3D5]/75">
+                            <p className="mt-3 max-w-md text-sm leading-relaxed text-[#4B4B5A]/75">
                                 {values[0].description}
                             </p>
                         </div>
@@ -326,20 +326,20 @@ export default function AboutPage() {
                                         duration: 0.5,
                                         delay: 0.1 + index * 0.08,
                                     }}
-                                    className="group relative flex flex-1 items-start gap-5 overflow-hidden rounded-3xl border border-[#C5A059]/20 bg-[#3E5C4B] p-6 transition-colors duration-300 hover:border-[#C5A059]/40"
+                                    className="group relative flex flex-1 items-start gap-5 overflow-hidden rounded-3xl border border-[#0E7CC9]/20 bg-[#FBF8FD] p-6 transition-colors duration-300 hover:border-[#0E7CC9]/40"
                                 >
                                     {/* brass corner glow */}
-                                    <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-[#C5A059]/10 blur-3xl opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
+                                    <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-[#0E7CC9]/10 blur-3xl opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
 
-                                    <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#C5A059]/20 bg-[#C5A059]/10 text-[#C5A059]">
+                                    <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#0E7CC9]/20 bg-[#0E7CC9]/10 text-[#0E7CC9]">
                                         {icons[index]}
                                     </div>
 
                                     <div className="relative">
-                                        <h3 className="text-lg font-semibold text-[#EBE3D5]">
+                                        <h3 className="text-lg font-semibold text-[#4B4B5A]">
                                             {value.title}
                                         </h3>
-                                        <p className="mt-2 text-sm leading-relaxed text-[#EBE3D5]/60">
+                                        <p className="mt-2 text-sm leading-relaxed text-[#4B4B5A]/60">
                                             {value.description}
                                         </p>
                                     </div>
@@ -360,13 +360,13 @@ export default function AboutPage() {
                     transition={{ duration: 0.6 }}
                     className="mb-12 text-center"
                 >
-                    <Chip className="mb-4 border border-[#C5A059]/20 bg-[#C5A059]/10 px-4 py-2 text-sm font-medium text-[#C5A059]">
+                    <Chip className="mb-4 border border-[#0E7CC9]/20 bg-[#0E7CC9]/10 px-4 py-2 text-sm font-medium text-[#0E7CC9]">
                         Meet the Team
                     </Chip>
-                    <h2 className="text-3xl font-bold text-[#EBE3D5] md:text-4xl">
+                    <h2 className="text-3xl font-bold text-[#4B4B5A] md:text-4xl">
                         Passionate People, Powerful Results
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-[#EBE3D5]/60">
+                    <p className="mx-auto mt-4 max-w-2xl text-[#4B4B5A]/60">
                         Behind SkillForge is a team of dedicated educators,
                         engineers, and innovators committed to transforming
                         education.
@@ -384,9 +384,9 @@ export default function AboutPage() {
                             className="group flex flex-col items-center text-center"
                         >
                             <div className="relative mb-5">
-                                <div className="pointer-events-none absolute inset-0 rounded-full bg-[#C5A059]/25 opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+                                <div className="pointer-events-none absolute inset-0 rounded-full bg-[#0E7CC9]/25 opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
 
-                                <div className="relative h-40 w-40 overflow-hidden rounded-full border-2 border-[#C5A059]/40 transition-transform duration-500 group-hover:scale-105">
+                                <div className="relative h-40 w-40 overflow-hidden rounded-full border-2 border-[#0E7CC9]/40 transition-transform duration-500 group-hover:scale-105">
                                     <Image
                                         src={member.image}
                                         alt={member.name}
@@ -397,13 +397,13 @@ export default function AboutPage() {
                                 </div>
                             </div>
 
-                            <h3 className="text-lg font-semibold text-[#EBE3D5]">
+                            <h3 className="text-lg font-semibold text-[#4B4B5A]">
                                 {member.name}
                             </h3>
-                            <p className="text-sm font-medium text-[#C5A059]">
+                            <p className="text-sm font-medium text-[#0E7CC9]">
                                 {member.role}
                             </p>
-                            <p className="mt-2 max-w-[220px] text-xs leading-relaxed text-[#EBE3D5]/50">
+                            <p className="mt-2 max-w-[220px] text-xs leading-relaxed text-[#4B4B5A]/50">
                                 {member.bio}
                             </p>
                         </motion.div>
@@ -423,17 +423,17 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ delay: index * 0.08 }}
-                            className="rounded-2xl border border-[#C5A059]/20 bg-[#3E5C4B] p-6 text-center transition-all duration-300 hover:border-[#C5A059]/40"
+                            className="rounded-2xl border border-[#0E7CC9]/20 bg-[#FBF8FD] p-6 text-center transition-all duration-300 hover:border-[#0E7CC9]/40"
                         >
                             <div className="mb-3 flex justify-center">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#C5A059]/10">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0E7CC9]/10">
                                     {stat.icon}
                                 </div>
                             </div>
-                            <p className="text-3xl font-bold text-[#EBE3D5]">
+                            <p className="text-3xl font-bold text-[#4B4B5A]">
                                 {stat.value}
                             </p>
-                            <p className="mt-1 text-sm text-[#EBE3D5]/50">
+                            <p className="mt-1 text-sm text-[#4B4B5A]/50">
                                 {stat.label}
                             </p>
                         </motion.div>
@@ -449,25 +449,25 @@ export default function AboutPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="rounded-3xl border border-[#C5A059]/20 bg-linear-to-br from-[#C5A059]/10 via-[#5C3A21]/5 to-transparent p-12 text-center"
+                    className="rounded-3xl border border-[#0E7CC9]/20 bg-linear-to-br from-[#0E7CC9]/10 via-[#7A56CE]/5 to-transparent p-12 text-center"
                 >
-                    <h2 className="text-3xl font-bold text-[#EBE3D5] md:text-4xl">
+                    <h2 className="text-3xl font-bold text-[#4B4B5A] md:text-4xl">
                         Ready to Start Learning?
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-[#EBE3D5]/60">
+                    <p className="mx-auto mt-4 max-w-2xl text-[#4B4B5A]/60">
                         Join thousands of students who are already advancing
                         their careers with SkillForge. Start your learning
                         journey today.
                     </p>
                     <div className="mt-8 flex flex-wrap justify-center gap-4">
                         <Link href="/courses">
-                            <Button className="rounded-xl bg-[#C5A059] px-8 py-6 text-lg font-semibold text-[#1C2E24] hover:bg-[#C5A059]/80">
+                            <Button className="rounded-xl bg-[image:var(--brand-gradient)] px-8 py-6 text-lg font-semibold text-[#FFFFFF] hover:opacity-90">
                                 Explore Courses
                                 <FaArrowRight className="ml-2" />
                             </Button>
                         </Link>
                         <Link href="/contact">
-                            <Button className="rounded-xl border border-[#C5A059]/30 px-8 py-6 text-lg text-[#EBE3D5] hover:bg-[#C5A059]/10 bg-transparent">
+                            <Button className="rounded-xl border border-[#0E7CC9]/30 px-8 py-6 text-lg text-[#4B4B5A] hover:bg-[#0E7CC9]/10 bg-transparent">
                                 Contact Us
                             </Button>
                         </Link>

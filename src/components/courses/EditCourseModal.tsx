@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { updateCourse } from "@/lib/api/courses/actions";
 import { uploadImage } from "@/components/utils/uploadImage";
@@ -133,24 +133,24 @@ const EditCourseModal = ({
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-            <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 md:p-8">
+            <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 md:p-8">
 
                 {/* Header */}
                 <div className="mb-6 text-center">
-                    <h1 className="text-2xl sm:text-3xl font-bold text-[#EBE3D5]">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-[#4B4B5A]">
                         Edit Course
                     </h1>
-                    <p className="text-sm sm:text-base text-[#EBE3D5]/60 mt-2">
+                    <p className="text-sm sm:text-base text-[#4B4B5A]/60 mt-2">
                         Update your course details below.
                     </p>
                 </div>
 
                 {/* Card */}
-                <Card className="p-4 sm:p-6 md:p-8 border border-[#C5A059]/20 bg-[#1C2E24]">
+                <Card className="p-4 sm:p-6 md:p-8 border border-[#0E7CC9]/20 bg-[#FFFFFF]">
 
                     {/* Thumbnail Preview */}
                     {imagePreview && (
-                        <div className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-4 mb-6 text-center">
+                        <div className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4 mb-6 text-center">
                             <Image
                                 src={imagePreview}
                                 alt={editingCourse?.title || "Course thumbnail"}
@@ -158,7 +158,7 @@ const EditCourseModal = ({
                                 height={200}
                                 className="h-auto max-h-40 object-cover rounded-xl mx-auto shadow-sm"
                             />
-                            <p className="text-xs text-[#EBE3D5]/40 mt-2">Current thumbnail</p>
+                            <p className="text-xs text-[#4B4B5A]/40 mt-2">Current thumbnail</p>
                         </div>
                     )}
 
@@ -166,12 +166,12 @@ const EditCourseModal = ({
 
                         {/* Course Title */}
                         <div>
-                            <label className="block mb-2 font-semibold text-[#EBE3D5] text-sm sm:text-base">
+                            <label className="block mb-2 font-semibold text-[#4B4B5A] text-sm sm:text-base">
                                 Course Title *
                             </label>
                             <Input
                                 placeholder="Enter course title"
-                                className="w-full bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40"
+                                className="w-full bg-[#FFFFFF]/50 border-[#0E7CC9]/30 text-[#4B4B5A] placeholder:text-[#4B4B5A]/40"
                                 {...register("title", { required: "Course title is required" })}
                             />
                             {errors.title && (
@@ -181,12 +181,12 @@ const EditCourseModal = ({
 
                         {/* Description */}
                         <div>
-                            <label className="block mb-2 font-semibold text-[#EBE3D5] text-sm sm:text-base">
+                            <label className="block mb-2 font-semibold text-[#4B4B5A] text-sm sm:text-base">
                                 Course Description *
                             </label>
                             <TextArea
                                 placeholder="Describe what students will learn..."
-                                className="w-full bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40"
+                                className="w-full bg-[#FFFFFF]/50 border-[#0E7CC9]/30 text-[#4B4B5A] placeholder:text-[#4B4B5A]/40"
                                 rows={4}
                                 {...register("description", { required: "Description is required" })}
                             />
@@ -198,17 +198,17 @@ const EditCourseModal = ({
                         {/* Category + Level */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
                             <div>
-                                <label className="block mb-2 font-semibold text-[#EBE3D5] text-sm sm:text-base">
+                                <label className="block mb-2 font-semibold text-[#4B4B5A] text-sm sm:text-base">
                                     Category *
                                 </label>
                                 <select
                                     {...register("category", { required: "Category is required" })}
-                                    className="w-full px-4 py-3 rounded-xl border border-[#C5A059]/30 bg-[#1C2E24]/50 focus:ring-2 focus:ring-[#C5A059] outline-none text-sm sm:text-base text-[#EBE3D5]"
+                                    className="w-full px-4 py-3 rounded-xl border border-[#0E7CC9]/30 bg-[#FFFFFF]/50 focus:ring-2 focus:ring-[#0E7CC9] outline-none text-sm sm:text-base text-[#4B4B5A]"
                                     defaultValue={editingCourse?.category || ""}
                                 >
-                                    <option value="" className="bg-[#3E5C4B]">Select Category</option>
+                                    <option value="" className="bg-[#FBF8FD]">Select Category</option>
                                     {CATEGORIES.map((cat) => (
-                                        <option key={cat} value={cat} className="bg-[#3E5C4B]">
+                                        <option key={cat} value={cat} className="bg-[#FBF8FD]">
                                             {cat.charAt(0).toUpperCase() + cat.slice(1)}
                                         </option>
                                     ))}
@@ -219,17 +219,17 @@ const EditCourseModal = ({
                             </div>
 
                             <div>
-                                <label className="block mb-2 font-semibold text-[#EBE3D5] text-sm sm:text-base">
+                                <label className="block mb-2 font-semibold text-[#4B4B5A] text-sm sm:text-base">
                                     Level *
                                 </label>
                                 <select
                                     {...register("level", { required: "Level is required" })}
-                                    className="w-full px-4 py-3 rounded-xl border border-[#C5A059]/30 bg-[#1C2E24]/50 focus:ring-2 focus:ring-[#C5A059] outline-none text-sm sm:text-base text-[#EBE3D5]"
+                                    className="w-full px-4 py-3 rounded-xl border border-[#0E7CC9]/30 bg-[#FFFFFF]/50 focus:ring-2 focus:ring-[#0E7CC9] outline-none text-sm sm:text-base text-[#4B4B5A]"
                                     defaultValue={editingCourse?.level || ""}
                                 >
-                                    <option value="" className="bg-[#3E5C4B]">Select Level</option>
+                                    <option value="" className="bg-[#FBF8FD]">Select Level</option>
                                     {LEVELS.map((level) => (
-                                        <option key={level.value} value={level.value} className="bg-[#3E5C4B]">
+                                        <option key={level.value} value={level.value} className="bg-[#FBF8FD]">
                                             {level.label}
                                         </option>
                                     ))}
@@ -243,13 +243,13 @@ const EditCourseModal = ({
                         {/* Price + Duration */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
                             <div>
-                                <label className="block mb-2 font-semibold text-[#EBE3D5] text-sm sm:text-base">
+                                <label className="block mb-2 font-semibold text-[#4B4B5A] text-sm sm:text-base">
                                     Price (USD) *
                                 </label>
                                 <Input
                                     type="number"
                                     placeholder="0.00"
-                                    className="w-full bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40"
+                                    className="w-full bg-[#FFFFFF]/50 border-[#0E7CC9]/30 text-[#4B4B5A] placeholder:text-[#4B4B5A]/40"
                                     {...register("price", {
                                         required: "Price is required",
                                         min: { value: 0, message: "Price cannot be negative" },
@@ -261,12 +261,12 @@ const EditCourseModal = ({
                             </div>
 
                             <div>
-                                <label className="block mb-2 font-semibold text-[#EBE3D5] text-sm sm:text-base">
+                                <label className="block mb-2 font-semibold text-[#4B4B5A] text-sm sm:text-base">
                                     Duration *
                                 </label>
                                 <Input
                                     placeholder="e.g., 10 hours, 6 weeks"
-                                    className="w-full bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40"
+                                    className="w-full bg-[#FFFFFF]/50 border-[#0E7CC9]/30 text-[#4B4B5A] placeholder:text-[#4B4B5A]/40"
                                     {...register("duration", { required: "Duration is required" })}
                                 />
                                 {errors.duration && (
@@ -277,18 +277,18 @@ const EditCourseModal = ({
 
                         {/* What You Will Learn */}
                         <div>
-                            <label className="block mb-2 font-semibold text-[#EBE3D5] text-sm sm:text-base">
+                            <label className="block mb-2 font-semibold text-[#4B4B5A] text-sm sm:text-base">
                                 What You Will Learn *
                             </label>
                             <TextArea
                                 placeholder="Enter each learning outcome on a new line..."
-                                className="w-full bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40"
+                                className="w-full bg-[#FFFFFF]/50 border-[#0E7CC9]/30 text-[#4B4B5A] placeholder:text-[#4B4B5A]/40"
                                 rows={3}
                                 {...register("whatYouWillLearn", {
                                     required: "Learning outcomes are required",
                                 })}
                             />
-                            <p className="text-[#EBE3D5]/40 text-xs mt-1">
+                            <p className="text-[#4B4B5A]/40 text-xs mt-1">
                                 Separate each point with a new line
                             </p>
                             {errors.whatYouWillLearn && (
@@ -298,48 +298,48 @@ const EditCourseModal = ({
 
                         {/* Requirements */}
                         <div>
-                            <label className="block mb-2 font-semibold text-[#EBE3D5] text-sm sm:text-base">
+                            <label className="block mb-2 font-semibold text-[#4B4B5A] text-sm sm:text-base">
                                 Requirements
                             </label>
                             <TextArea
                                 placeholder="Enter each requirement on a new line..."
-                                className="w-full bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40"
+                                className="w-full bg-[#FFFFFF]/50 border-[#0E7CC9]/30 text-[#4B4B5A] placeholder:text-[#4B4B5A]/40"
                                 rows={3}
                                 {...register("requirements")}
                             />
-                            <p className="text-[#EBE3D5]/40 text-xs mt-1">
+                            <p className="text-[#4B4B5A]/40 text-xs mt-1">
                                 Separate each requirement with a new line (optional)
                             </p>
                         </div>
 
                         {/* Target Audience */}
                         <div>
-                            <label className="block mb-2 font-semibold text-[#EBE3D5] text-sm sm:text-base">
+                            <label className="block mb-2 font-semibold text-[#4B4B5A] text-sm sm:text-base">
                                 Target Audience
                             </label>
                             <TextArea
                                 placeholder="Who is this course for?"
-                                className="w-full bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40"
+                                className="w-full bg-[#FFFFFF]/50 border-[#0E7CC9]/30 text-[#4B4B5A] placeholder:text-[#4B4B5A]/40"
                                 rows={3}
                                 {...register("targetAudience")}
                             />
-                            <p className="text-[#EBE3D5]/40 text-xs mt-1">
+                            <p className="text-[#4B4B5A]/40 text-xs mt-1">
                                 Describe who should take this course (optional)
                             </p>
                         </div>
 
                         {/* Thumbnail */}
                         <div>
-                            <label className="block mb-2 font-semibold text-[#EBE3D5] text-sm sm:text-base">
+                            <label className="block mb-2 font-semibold text-[#4B4B5A] text-sm sm:text-base">
                                 Update Thumbnail
                             </label>
                             <input
                                 type="file"
                                 accept="image/*"
                                 {...register("thumbnail")}
-                                className="w-full rounded-xl border-2 border-dashed border-[#C5A059]/50 bg-[#1C2E24]/50 p-4 text-[#EBE3D5] file:mr-4 file:rounded-lg file:border-0 file:bg-[#C5A059] file:px-4 file:py-2 file:text-[#1C2E24] hover:file:bg-[#C5A059]/80"
+                                className="w-full rounded-xl border-2 border-dashed border-[#0E7CC9]/50 bg-[#FFFFFF]/50 p-4 text-[#4B4B5A] file:mr-4 file:rounded-lg file:border-0 file:bg-[image:var(--brand-gradient)] file:px-4 file:py-2 file:text-[#FFFFFF] hover:file:bg-[#0E7CC9]/80"
                             />
-                            <p className="text-xs text-[#EBE3D5]/40 mt-1">Leave empty to keep current thumbnail</p>
+                            <p className="text-xs text-[#4B4B5A]/40 mt-1">Leave empty to keep current thumbnail</p>
                         </div>
 
                         {/* Control Buttons */}
@@ -350,13 +350,13 @@ const EditCourseModal = ({
                                     setIsModalOpen(false);
                                     setEditingCourse(null);
                                 }}
-                                className="flex-1 border border-[#C5A059]/30 text-[#EBE3D5] font-semibold py-5 sm:py-6 rounded-2xl hover:bg-[#C5A059]/10 transition-all text-sm sm:text-base"
+                                className="flex-1 border border-[#0E7CC9]/30 text-[#4B4B5A] font-semibold py-5 sm:py-6 rounded-2xl hover:bg-[#0E7CC9]/10 transition-all text-sm sm:text-base"
                             >
                                 Cancel
                             </Button>
                             <Button
                                 type="submit"
-                                className="flex-1 bg-[#C5A059] text-[#1C2E24] font-semibold py-5 sm:py-6 rounded-2xl hover:bg-[#C5A059]/80 transition-all text-sm sm:text-base"
+                                className="flex-1 bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold py-5 sm:py-6 rounded-2xl hover:opacity-90 transition-all text-sm sm:text-base"
                             >
                                 Save Changes
                             </Button>

@@ -1,22 +1,14 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import ReactQueryProvider from "@/lib/providers/ReactQueryProviders";
 // import ReactQueryProvider from "@/lib/providers/ReactQueryProvider";
 
-const cormorant = Cormorant_Garamond({
-    variable: "--font-heading",
+const plusJakartaSans = Plus_Jakarta_Sans({
+    variable: "--font-plus-jakarta-sans",
     subsets: ["latin"],
-    weight: ["400", "600", "700"],
-    style: ["normal", "italic"],
-    display: "swap",
-});
-
-const inter = Inter({
-    variable: "--font-body",
-    subsets: ["latin"],
-    weight: ["300", "400", "500", "600", "700"],
+    weight: ["400", "500", "600", "700", "800"],
     display: "swap",
 });
 
@@ -49,7 +41,7 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`${cormorant.variable} ${inter.variable} h-full scroll-smooth`}
+            className={`${plusJakartaSans.variable} h-full scroll-smooth`}
         >
             <body className="min-h-screen bg-background text-foreground font-body antialiased">
                 {/* ✅ React Query Provider must wrap everything that uses React Query */}

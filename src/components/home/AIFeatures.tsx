@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -23,7 +23,7 @@ type FeatureCard = {
     description: string;
     highlights: string[];
     icon: typeof FaBrain;
-    accent: "#C5A059" | "#5C3A21" | "#D46A2B";
+    accent: "#0E7CC9" | "#7A56CE" | "#7A56CE";
     ctaLabel: string;
     /** Search query sent to /api/courses?search=... */
     searchQuery: string;
@@ -42,7 +42,7 @@ const FEATURES: FeatureCard[] = [
             "Dynamic timeline recalculation",
         ],
         icon: FaBrain,
-        accent: "#C5A059",
+        accent: "#0E7CC9",
         ctaLabel: "Launch Roadmap Builder",
         searchQuery: "roadmap",
         href: "/ai-mentor",
@@ -57,7 +57,7 @@ const FEATURES: FeatureCard[] = [
             "Code optimization suggestions",
         ],
         icon: FaMessage,
-        accent: "#5C3A21",
+        accent: "#7A56CE",
         ctaLabel: "Chat with AI Mentor",
         searchQuery: "programming",
         href: "/ai-mentor",
@@ -72,7 +72,7 @@ const FEATURES: FeatureCard[] = [
             "Relevance-ranked results",
         ],
         icon: FaMagnifyingGlass,
-        accent: "#D46A2B",
+        accent: "#7A56CE",
         ctaLabel: "Search Courses",
         searchQuery: "api",
         href: "/courses?search=api",
@@ -87,7 +87,7 @@ const FEATURES: FeatureCard[] = [
             "Gap detection after each module",
         ],
         icon: HiSparkles,
-        accent: "#C5A059",
+        accent: "#0E7CC9",
         ctaLabel: "View Roadmaps",
         searchQuery: "advanced",
         href: "/courses?search=advanced",
@@ -96,26 +96,26 @@ const FEATURES: FeatureCard[] = [
 
 export default function AIFeatures() {
     return (
-        <section className="relative overflow-hidden border-t border-[#C5A059]/10 bg-[#1C2E24] py-20">
+        <section className="relative overflow-hidden border-t border-[#0E7CC9]/10 bg-[#FFFFFF] py-20">
             {/* Background glow */}
-            <div className="pointer-events-none absolute top-1/2 left-1/2 h-75 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-r from-[#C5A059]/10 to-[#5C3A21]/10 blur-[120px]" />
+            <div className="pointer-events-none absolute top-1/2 left-1/2 h-75 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-r from-[#0E7CC9]/10 to-[#7A56CE]/10 blur-[120px]" />
 
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="mx-auto mb-16 max-w-3xl text-center">
-                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#5C3A21]/30 bg-[#5C3A21]/15 px-3 py-1 font-mono text-xs font-bold text-[#C5A059]">
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#7A56CE]/30 bg-[#7A56CE]/15 px-3 py-1 font-mono text-xs font-bold text-[#0E7CC9]">
                         <HiSparkles className="text-sm" />
                         Empower Your Study Engine
                     </div>
 
-                    <h2 className="font-heading text-3xl font-bold text-[#EBE3D5] sm:text-4xl">
+                    <h2 className="font-heading text-3xl font-bold text-[#4B4B5A] sm:text-4xl">
                         Custom Built{" "}
-                        <span className="bg-linear-to-r from-[#C5A059] to-[#5C3A21] bg-clip-text text-transparent">
+                        <span className="bg-linear-to-r from-[#0E7CC9] to-[#7A56CE] bg-clip-text text-transparent">
                             AI Tools
                         </span>
                     </h2>
 
-                    <p className="mt-4 font-body text-[#EBE3D5]/70">
+                    <p className="mt-4 font-body text-[#4B4B5A]/70">
                         Harness generative intelligence built to accelerate
                         comprehension, solve blocks, and personalize mapping.
                     </p>
@@ -180,7 +180,7 @@ function FeatureCardItem({ feature }: { feature: FeatureCard }) {
 
     return (
         <div
-            className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[#C5A059]/10 bg-linear-to-b from-[#3E5C4B] to-[#1C2E24] p-8 shadow-xl transition duration-300"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[#0E7CC9]/10 bg-linear-to-b from-[#FBF8FD] to-[#FFFFFF] p-8 shadow-xl transition duration-300"
             style={{
                 // use accent color for border on hover, kept inline for dynamic color
                 borderColor: "rgba(197,160,89,0.1)",
@@ -206,18 +206,18 @@ function FeatureCardItem({ feature }: { feature: FeatureCard }) {
                 </div>
 
                 <h3
-                    className="font-heading text-2xl font-bold text-[#EBE3D5] transition"
+                    className="font-heading text-2xl font-bold text-[#4B4B5A] transition"
                     style={{ transition: "color 200ms ease" }}
                 >
                     {feature.title}
                 </h3>
 
-                <p className="mt-3 font-body text-sm leading-relaxed text-[#EBE3D5]/70">
+                <p className="mt-3 font-body text-sm leading-relaxed text-[#4B4B5A]/70">
                     {feature.description}
                 </p>
 
                 {/* Highlights */}
-                <ul className="mt-6 space-y-2 font-mono text-xs text-[#EBE3D5]/60">
+                <ul className="mt-6 space-y-2 font-mono text-xs text-[#4B4B5A]/60">
                     {feature.highlights.map((line) => (
                         <li key={line} className="flex items-center gap-2">
                             <span
@@ -231,18 +231,18 @@ function FeatureCardItem({ feature }: { feature: FeatureCard }) {
 
                 {/* Live preview of matching courses */}
                 <div className="mt-6">
-                    <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[#EBE3D5]/40">
+                    <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[#4B4B5A]/40">
                         Matching courses
                     </p>
 
                     {loading && (
-                        <p className="text-xs text-[#EBE3D5]/50">
+                        <p className="text-xs text-[#4B4B5A]/50">
                             Searching…
                         </p>
                     )}
 
                     {!loading && preview && preview.length === 0 && (
-                        <p className="text-xs text-[#EBE3D5]/50">
+                        <p className="text-xs text-[#4B4B5A]/50">
                             No matches yet for “{feature.searchQuery}”.
                         </p>
                     )}
@@ -253,12 +253,12 @@ function FeatureCardItem({ feature }: { feature: FeatureCard }) {
                                 <li key={c._id}>
                                     <Link
                                         href={`/courses/${c._id}`}
-                                        className="flex items-center justify-between gap-3 rounded-lg border border-[#C5A059]/10 bg-[#1C2E24]/50 px-3 py-2 text-xs text-[#EBE3D5]/80 transition hover:border-[#C5A059]/40 hover:text-[#EBE3D5]"
+                                        className="flex items-center justify-between gap-3 rounded-lg border border-[#0E7CC9]/10 bg-[#FFFFFF]/50 px-3 py-2 text-xs text-[#4B4B5A]/80 transition hover:border-[#0E7CC9]/40 hover:text-[#4B4B5A]"
                                     >
                                         <span className="truncate">
                                             {c.title}
                                         </span>
-                                        <span className="shrink-0 font-mono text-[10px] text-[#C5A059]">
+                                        <span className="shrink-0 font-mono text-[10px] text-[#0E7CC9]">
                                             ${c.price}
                                         </span>
                                     </Link>

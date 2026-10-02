@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -23,19 +23,19 @@ export default function Newsletter() {
     };
 
     return (
-        <section className="relative border-t border-[#C5A059]/10 bg-[#1C2E24] py-20">
+        <section className="relative border-t border-[#0E7CC9]/10 bg-[#FFFFFF] py-20">
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-                <div className="relative overflow-hidden rounded-3xl border border-[#C5A059]/20 bg-[#3E5C4B] shadow-2xl">
+                <div className="relative overflow-hidden rounded-3xl border border-[#0E7CC9]/20 bg-[#FBF8FD] shadow-2xl">
                     {/* Ambient background glows */}
-                    <div className="pointer-events-none absolute top-0 right-0 h-80 w-80 -translate-y-1/2 translate-x-1/2 rounded-full bg-[#C5A059]/10 blur-[100px]" />
-                    <div className="pointer-events-none absolute bottom-0 left-0 h-80 w-80 translate-y-1/2 -translate-x-1/2 rounded-full bg-[#5C3A21]/10 blur-[100px]" />
+                    <div className="pointer-events-none absolute top-0 right-0 h-80 w-80 -translate-y-1/2 translate-x-1/2 rounded-full bg-[#0E7CC9]/10 blur-[100px]" />
+                    <div className="pointer-events-none absolute bottom-0 left-0 h-80 w-80 translate-y-1/2 -translate-x-1/2 rounded-full bg-[#7A56CE]/10 blur-[100px]" />
 
                     {/* Two-column layout */}
                     <div className="relative z-10 grid grid-cols-1 items-center gap-10 px-8 py-12 sm:px-12 sm:py-16 lg:grid-cols-2 lg:gap-16 lg:px-16">
                         {/* Image side */}
                         <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
                             {/* Accent glow behind image */}
-                            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-[#C5A059]/20 blur-3xl" />
+                            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-[#0E7CC9]/20 blur-3xl" />
 
                             {/* Slightly rounded frame with side fade */}
                             <div className="relative mx-auto aspect-[4/3] w-full max-w-[420px] overflow-hidden rounded-2xl">
@@ -60,7 +60,7 @@ export default function Newsletter() {
                                     className="pointer-events-none absolute inset-y-0 right-0 w-1/2"
                                     style={{
                                         background:
-                                            "linear-gradient(to right, transparent, #3E5C4B 90%)",
+                                            "linear-gradient(to right, transparent, #FBF8FD 90%)",
                                     }}
                                 />
                             </div>
@@ -68,11 +68,11 @@ export default function Newsletter() {
 
                         {/* Content side */}
                         <div className="text-center lg:text-left">
-                            <h2 className="font-heading text-3xl font-bold tracking-tight text-[#EBE3D5] sm:text-4xl">
+                            <h2 className="font-heading text-3xl font-bold tracking-tight text-[#4B4B5A] sm:text-4xl">
                                 Stay Updated on Tech &amp; AI
                             </h2>
 
-                            <p className="mx-auto mt-4 max-w-xl font-body text-base leading-relaxed text-[#EBE3D5]/70 lg:mx-0">
+                            <p className="mx-auto mt-4 max-w-xl font-body text-base leading-relaxed text-[#4B4B5A]/70 lg:mx-0">
                                 Subscribe to our newsletter to receive the
                                 latest roadmap templates, new course
                                 announcements, and expert AI tutorial links
@@ -97,7 +97,7 @@ export default function Newsletter() {
                                                     "Please enter a valid email address",
                                             },
                                         })}
-                                        className="w-full rounded-xl border border-[#C5A059]/20 bg-[#1C2E24]/60 px-4 py-3 text-sm text-[#EBE3D5] placeholder-[#EBE3D5]/40 outline-none transition duration-200 focus:border-[#C5A059]"
+                                        className="w-full rounded-xl border border-[#0E7CC9]/20 bg-[#FFFFFF]/60 px-4 py-3 text-sm text-[#4B4B5A] placeholder-[#4B4B5A]/40 outline-none transition duration-200 focus:border-[#0E7CC9]"
                                     />
 
                                     {errors.email && (
@@ -109,7 +109,7 @@ export default function Newsletter() {
 
                                 <button
                                     type="submit"
-                                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-[#C5A059] to-[#5C3A21] px-6 py-3.5 text-sm font-bold text-[#1C2E24] shadow-md shadow-[#C5A059]/20 transition duration-200 hover:opacity-95 sm:py-3 self-stretch sm:self-start"
+                                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-[#0E7CC9] to-[#7A56CE] px-6 py-3.5 text-sm font-bold text-[#FFFFFF] shadow-md shadow-[#0E7CC9]/20 transition duration-200 hover:opacity-95 sm:py-3 self-stretch sm:self-start"
                                 >
                                     <FaPaperPlane className="text-xs" />
                                     Subscribe

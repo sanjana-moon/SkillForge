@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import {
@@ -148,7 +148,7 @@ export default function CourseEnrollmentWidget({
             case "advanced":
                 return "text-red-400";
             default:
-                return "text-[#C5A059]";
+                return "text-[#0E7CC9]";
         }
     };
 
@@ -170,7 +170,7 @@ export default function CourseEnrollmentWidget({
         return (
             <Button
                 isDisabled
-                className="w-full bg-[#3E5C4B] text-[#EBE3D5]/40 font-bold h-12 rounded-xl transition-colors cursor-default"
+                className="w-full bg-[#FBF8FD] text-[#4B4B5A]/40 font-bold h-12 rounded-xl transition-colors cursor-default"
             >
                 Checking...
             </Button>
@@ -181,7 +181,7 @@ export default function CourseEnrollmentWidget({
         <>
             <Button
                 onPress={() => setIsModalOpen(true)}
-                className="w-full bg-[#C5A059] text-[#1C2E24] hover:bg-[#C5A059]/80 font-bold h-12 rounded-xl transition-colors"
+                className="w-full bg-[image:var(--brand-gradient)] text-[#FFFFFF] hover:opacity-90 font-bold h-12 rounded-xl transition-colors"
             >
                 Enroll Now - ${price.toFixed(2)}
             </Button>
@@ -189,15 +189,15 @@ export default function CourseEnrollmentWidget({
             <Modal isOpen={isModalOpen} onOpenChange={setIsModalOpen}>
                 <Modal.Backdrop>
                     <Modal.Container>
-                        <Modal.Dialog className="sm:max-w-125 bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl">
+                        <Modal.Dialog className="sm:max-w-125 bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl">
                             <Modal.CloseTrigger />
 
                             <Modal.Header>
-                                <Modal.Icon className="bg-[#C5A059]/15 text-[#C5A059]">
+                                <Modal.Icon className="bg-[#0E7CC9]/15 text-[#0E7CC9]">
                                     <FaUserGraduate className="size-5" />
                                 </Modal.Icon>
 
-                                <Modal.Heading className="text-2xl font-bold text-[#EBE3D5] text-center">
+                                <Modal.Heading className="text-2xl font-bold text-[#4B4B5A] text-center">
                                     Enroll in Course
                                 </Modal.Heading>
                             </Modal.Header>
@@ -205,7 +205,7 @@ export default function CourseEnrollmentWidget({
                             <Modal.Body className="pb-6">
                                 {!user ? (
                                     <div className="text-center py-8">
-                                        <p className="text-[#EBE3D5]/60 mb-4">
+                                        <p className="text-[#4B4B5A]/60 mb-4">
                                             Please sign in to enroll in this course.
                                         </p>
                                         <Button
@@ -213,18 +213,18 @@ export default function CourseEnrollmentWidget({
                                                 setIsModalOpen(false);
                                                 router.push("/signin");
                                             }}
-                                            className="bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
+                                            className="bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold hover:opacity-90"
                                         >
                                             Sign In
                                         </Button>
                                     </div>
                                 ) : user.role !== "student" ? (
                                     <div className="text-center py-8">
-                                        <p className="text-[#EBE3D5]/60 mb-4">
+                                        <p className="text-[#4B4B5A]/60 mb-4">
                                             Only students can enroll in courses.
                                         </p>
-                                        <p className="text-sm text-[#EBE3D5]/40">
-                                            Your current role: <span className="capitalize text-[#C5A059]">{user.role}</span>
+                                        <p className="text-sm text-[#4B4B5A]/40">
+                                            Your current role: <span className="capitalize text-[#0E7CC9]">{user.role}</span>
                                         </p>
                                     </div>
                                 ) : isEnrolled ? (
@@ -232,10 +232,10 @@ export default function CourseEnrollmentWidget({
                                         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/20 border-2 border-green-500/30 mb-4">
                                             <FaCheckCircle className="text-3xl text-green-400" />
                                         </div>
-                                        <h3 className="text-xl font-bold text-[#EBE3D5] mb-2">
+                                        <h3 className="text-xl font-bold text-[#4B4B5A] mb-2">
                                             Already Enrolled!
                                         </h3>
-                                        <p className="text-[#EBE3D5]/60">
+                                        <p className="text-[#4B4B5A]/60">
                                             You are already enrolled in <strong>{courseTitle}</strong>
                                         </p>
                                         <Button
@@ -243,7 +243,7 @@ export default function CourseEnrollmentWidget({
                                                 setIsModalOpen(false);
                                                 router.push(`/courses/${courseId}`);
                                             }}
-                                            className="mt-4 bg-[#C5A059] text-[#1C2E24] font-semibold hover:bg-[#C5A059]/80"
+                                            className="mt-4 bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold hover:opacity-90"
                                         >
                                             Go to Course
                                         </Button>
@@ -251,50 +251,50 @@ export default function CourseEnrollmentWidget({
                                 ) : (
                                     <div className="space-y-5">
                                         {/* Course Details */}
-                                        <div className="bg-[#1C2E24] rounded-xl p-4 border border-[#C5A059]/10">
+                                        <div className="bg-[#FFFFFF] rounded-xl p-4 border border-[#0E7CC9]/10">
                                             <div className="space-y-3">
                                                 <div className="flex justify-between">
-                                                    <span className="text-[#EBE3D5]/50 text-sm">
+                                                    <span className="text-[#4B4B5A]/50 text-sm">
                                                         Course
                                                     </span>
-                                                    <span className="font-semibold text-[#EBE3D5]">
+                                                    <span className="font-semibold text-[#4B4B5A]">
                                                         {courseTitle}
                                                     </span>
                                                 </div>
-                                                <div className="border-t border-[#C5A059]/10" />
+                                                <div className="border-t border-[#0E7CC9]/10" />
                                                 <div className="flex justify-between">
-                                                    <span className="text-[#EBE3D5]/50 text-sm">
+                                                    <span className="text-[#4B4B5A]/50 text-sm">
                                                         Price
                                                     </span>
-                                                    <span className="text-[#C5A059] font-bold text-xl">
+                                                    <span className="text-[#0E7CC9] font-bold text-xl">
                                                         ${price.toFixed(2)}
                                                     </span>
                                                 </div>
-                                                <div className="border-t border-[#C5A059]/10" />
+                                                <div className="border-t border-[#0E7CC9]/10" />
                                                 <div className="flex justify-between">
-                                                    <span className="text-[#EBE3D5]/50 text-sm">
+                                                    <span className="text-[#4B4B5A]/50 text-sm">
                                                         Duration
                                                     </span>
-                                                    <span className="text-[#EBE3D5] flex items-center gap-1">
-                                                        <FaClock className="text-[#C5A059] text-xs" />
+                                                    <span className="text-[#4B4B5A] flex items-center gap-1">
+                                                        <FaClock className="text-[#0E7CC9] text-xs" />
                                                         {duration}
                                                     </span>
                                                 </div>
-                                                <div className="border-t border-[#C5A059]/10" />
+                                                <div className="border-t border-[#0E7CC9]/10" />
                                                 <div className="flex justify-between">
-                                                    <span className="text-[#EBE3D5]/50 text-sm">
+                                                    <span className="text-[#4B4B5A]/50 text-sm">
                                                         Level
                                                     </span>
                                                     <span className={`font-medium ${getLevelColor(level)}`}>
                                                         {level.charAt(0).toUpperCase() + level.slice(1)}
                                                     </span>
                                                 </div>
-                                                <div className="border-t border-[#C5A059]/10" />
+                                                <div className="border-t border-[#0E7CC9]/10" />
                                                 <div className="flex justify-between">
-                                                    <span className="text-[#EBE3D5]/50 text-sm">
+                                                    <span className="text-[#4B4B5A]/50 text-sm">
                                                         Instructor
                                                     </span>
-                                                    <span className="text-[#EBE3D5]">
+                                                    <span className="text-[#4B4B5A]">
                                                         {instructorName}
                                                     </span>
                                                 </div>
@@ -303,7 +303,7 @@ export default function CourseEnrollmentWidget({
 
                                         {/* Start Date */}
                                         <TextField>
-                                            <Label className="text-[#EBE3D5] font-medium">
+                                            <Label className="text-[#4B4B5A] font-medium">
                                                 When would you like to start?
                                             </Label>
                                             <Input
@@ -312,20 +312,20 @@ export default function CourseEnrollmentWidget({
                                                 onChange={(e) =>
                                                     setStartDate(e.target.value)
                                                 }
-                                                className="mt-2 bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5]"
+                                                className="mt-2 bg-[#FFFFFF]/50 border-[#0E7CC9]/30 text-[#4B4B5A]"
                                             />
                                         </TextField>
 
                                         {/* Note */}
                                         <TextField>
-                                            <Label className="text-[#EBE3D5] font-medium">
+                                            <Label className="text-[#4B4B5A] font-medium">
                                                 Additional Notes (Optional)
                                             </Label>
                                             <TextArea
                                                 placeholder="Any special requests or questions..."
                                                 value={note}
                                                 onChange={(e) => setNote(e.target.value)}
-                                                className="mt-2 bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40"
+                                                className="mt-2 bg-[#FFFFFF]/50 border-[#0E7CC9]/30 text-[#4B4B5A] placeholder:text-[#4B4B5A]/40"
                                                 rows={3}
                                             />
                                         </TextField>
@@ -334,7 +334,7 @@ export default function CourseEnrollmentWidget({
                                         <Button
                                             isDisabled={submitting}
                                             onPress={handleEnrollment}
-                                            className="w-full bg-[#C5A059] text-[#1C2E24] hover:bg-[#C5A059]/80 font-bold rounded-xl transition-colors py-6"
+                                            className="w-full bg-[image:var(--brand-gradient)] text-[#FFFFFF] hover:opacity-90 font-bold rounded-xl transition-colors py-6"
                                         >
                                             {submitting ? (
                                                 "Processing..."
@@ -346,7 +346,7 @@ export default function CourseEnrollmentWidget({
                                             )}
                                         </Button>
 
-                                        <div className="flex items-center justify-center gap-2 text-xs text-[#EBE3D5]/40">
+                                        <div className="flex items-center justify-center gap-2 text-xs text-[#4B4B5A]/40">
                                             <FaLock className="text-[10px]" />
                                             <span>
                                                 Secure payment powered by Stripe

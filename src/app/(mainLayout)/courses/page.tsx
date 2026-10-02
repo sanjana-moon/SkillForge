@@ -1,4 +1,4 @@
-﻿import { Metadata } from "next";
+import { Metadata } from "next";
 import { Suspense } from "react";
 import { Spinner } from "@heroui/react";
 import BrowseCoursesClient from "./BrowseCoursesClient";
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function BrowseCoursesPage() {
     return (
         <Suspense fallback={
-            <div className="min-h-screen bg-[#1C2E24] flex items-center justify-center">
+            <div className="min-h-screen bg-[#FFFFFF] flex items-center justify-center">
                 <Spinner size="lg" />
             </div>
         }>

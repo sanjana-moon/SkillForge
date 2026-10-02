@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import {
@@ -133,20 +133,20 @@ const BrowseCoursesClient = () => {
     const totalPages = data?.totalPages || 0;
 
     return (
-        <div className="min-h-screen bg-[#1C2E24]">
+        <div className="min-h-screen bg-[#FFFFFF]">
             <div className="container mx-auto px-4 py-6 md:py-10">
                 {/* Hero */}
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="relative overflow-hidden bg-linear-to-r from-[#3E5C4B] via-[#1C2E24] to-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl md:rounded-3xl py-10 md:py-16 px-6 md:px-8 text-center shadow-xl mb-6 md:mb-10"
+                    className="relative overflow-hidden bg-linear-to-r from-[#FBF8FD] via-[#FFFFFF] to-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl md:rounded-3xl py-10 md:py-16 px-6 md:px-8 text-center shadow-xl mb-6 md:mb-10"
                 >
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-[#C5A059] via-[#5C3A21] to-[#C5A059]" />
-                    <FaBook className="text-4xl md:text-5xl text-[#C5A059] mx-auto mb-3 md:mb-4" />
-                    <h1 className="text-3xl md:text-5xl font-bold text-[#EBE3D5]">
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-[#0E7CC9] via-[#7A56CE] to-[#0E7CC9]" />
+                    <FaBook className="text-4xl md:text-5xl text-[#0E7CC9] mx-auto mb-3 md:mb-4" />
+                    <h1 className="text-3xl md:text-5xl font-bold text-[#4B4B5A]">
                         Discover Your Next Course
                     </h1>
-                    <p className="text-[#EBE3D5]/70 mt-3 md:mt-5 max-w-3xl mx-auto text-base md:text-lg">
+                    <p className="text-[#4B4B5A]/70 mt-3 md:mt-5 max-w-3xl mx-auto text-base md:text-lg">
                         Explore a wide range of courses from expert instructors.
                         Learn new skills, advance your career, and achieve your goals.
                     </p>
@@ -157,27 +157,27 @@ const BrowseCoursesClient = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="hidden lg:block bg-[#3E5C4B] rounded-3xl shadow-xl border border-[#C5A059]/20 p-6 mb-8"
+                    className="hidden lg:block bg-[#FBF8FD] rounded-3xl shadow-xl border border-[#0E7CC9]/20 p-6 mb-8"
                 >
                     <div className="grid grid-cols-7 gap-4">
-                        <div className="col-span-2 flex items-center gap-3 bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 focus-within:border-[#C5A059] transition-colors">
-                            <FaSearch className="text-[#C5A059]" />
+                        <div className="col-span-2 flex items-center gap-3 bg-[#FFFFFF] border border-[#0E7CC9]/30 rounded-xl px-4 focus-within:border-[#0E7CC9] transition-colors">
+                            <FaSearch className="text-[#0E7CC9]" />
                             <input
                                 type="text"
                                 placeholder="Search courses..."
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                className="w-full py-3 bg-transparent outline-none text-[#EBE3D5] placeholder:text-[#EBE3D5]/40"
+                                className="w-full py-3 bg-transparent outline-none text-[#4B4B5A] placeholder:text-[#4B4B5A]/40"
                             />
                         </div>
 
                         <select
                             value={currentCategory}
                             onChange={(e) => updateQueryParams("category", e.target.value)}
-                            className="bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 py-3 outline-none focus:border-[#C5A059] text-[#EBE3D5] transition-colors"
+                            className="bg-[#FFFFFF] border border-[#0E7CC9]/30 rounded-xl px-4 py-3 outline-none focus:border-[#0E7CC9] text-[#4B4B5A] transition-colors"
                         >
                             {CATEGORIES.map((category) => (
-                                <option key={category} value={category} className="bg-[#3E5C4B]">
+                                <option key={category} value={category} className="bg-[#FBF8FD]">
                                     {category === "all" ? "All Categories" : category.charAt(0).toUpperCase() + category.slice(1)}
                                 </option>
                             ))}
@@ -186,10 +186,10 @@ const BrowseCoursesClient = () => {
                         <select
                             value={currentLevel}
                             onChange={(e) => updateQueryParams("level", e.target.value)}
-                            className="bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 py-3 outline-none focus:border-[#C5A059] text-[#EBE3D5] transition-colors"
+                            className="bg-[#FFFFFF] border border-[#0E7CC9]/30 rounded-xl px-4 py-3 outline-none focus:border-[#0E7CC9] text-[#4B4B5A] transition-colors"
                         >
                             {LEVELS.map((level) => (
-                                <option key={level.value} value={level.value} className="bg-[#3E5C4B]">
+                                <option key={level.value} value={level.value} className="bg-[#FBF8FD]">
                                     {level.label}
                                 </option>
                             ))}
@@ -198,10 +198,10 @@ const BrowseCoursesClient = () => {
                         <select
                             value={currentSort}
                             onChange={(e) => updateQueryParams("sort", e.target.value)}
-                            className="bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 py-3 outline-none focus:border-[#C5A059] text-[#EBE3D5] transition-colors"
+                            className="bg-[#FFFFFF] border border-[#0E7CC9]/30 rounded-xl px-4 py-3 outline-none focus:border-[#0E7CC9] text-[#4B4B5A] transition-colors"
                         >
                             {SORT_OPTIONS.map((option) => (
-                                <option key={option.value} value={option.value} className="bg-[#3E5C4B]">
+                                <option key={option.value} value={option.value} className="bg-[#FBF8FD]">
                                     {option.label}
                                 </option>
                             ))}
@@ -212,7 +212,7 @@ const BrowseCoursesClient = () => {
                             placeholder="Min Price"
                             value={minPrice}
                             onChange={(e) => setMinPrice(e.target.value)}
-                            className="bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 py-3 outline-none focus:border-[#C5A059] text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 transition-colors"
+                            className="bg-[#FFFFFF] border border-[#0E7CC9]/30 rounded-xl px-4 py-3 outline-none focus:border-[#0E7CC9] text-[#4B4B5A] placeholder:text-[#4B4B5A]/40 transition-colors"
                         />
 
                         <input
@@ -220,7 +220,7 @@ const BrowseCoursesClient = () => {
                             placeholder="Max Price"
                             value={maxPrice}
                             onChange={(e) => setMaxPrice(e.target.value)}
-                            className="bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 py-3 outline-none focus:border-[#C5A059] text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 transition-colors"
+                            className="bg-[#FFFFFF] border border-[#0E7CC9]/30 rounded-xl px-4 py-3 outline-none focus:border-[#0E7CC9] text-[#4B4B5A] placeholder:text-[#4B4B5A]/40 transition-colors"
                         />
                     </div>
                 </motion.div>
@@ -228,19 +228,19 @@ const BrowseCoursesClient = () => {
                 {/* Filters - Mobile */}
                 <div className="lg:hidden mb-4">
                     <div className="flex gap-3">
-                        <div className="flex-1 flex items-center gap-3 bg-[#3E5C4B] border border-[#C5A059]/30 rounded-xl px-4 focus-within:border-[#C5A059] transition-colors">
-                            <FaSearch className="text-[#C5A059]" />
+                        <div className="flex-1 flex items-center gap-3 bg-[#FBF8FD] border border-[#0E7CC9]/30 rounded-xl px-4 focus-within:border-[#0E7CC9] transition-colors">
+                            <FaSearch className="text-[#0E7CC9]" />
                             <input
                                 type="text"
                                 placeholder="Search courses..."
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                className="w-full py-3 bg-transparent outline-none text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 text-sm"
+                                className="w-full py-3 bg-transparent outline-none text-[#4B4B5A] placeholder:text-[#4B4B5A]/40 text-sm"
                             />
                         </div>
                         <Button
                             onPress={() => setIsFilterOpen(!isFilterOpen)}
-                            className="bg-[#3E5C4B] border border-[#C5A059]/30 text-[#EBE3D5] min-w-13 h-13 rounded-xl hover:bg-[#C5A059]/10"
+                            className="bg-[#FBF8FD] border border-[#0E7CC9]/30 text-[#4B4B5A] min-w-13 h-13 rounded-xl hover:bg-[#0E7CC9]/10"
                         >
                             {isFilterOpen ? <FaTimes /> : <FaFilter />}
                         </Button>
@@ -252,16 +252,16 @@ const BrowseCoursesClient = () => {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden mt-3"
                     >
-                        <div className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-4 space-y-3">
+                        <div className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4 space-y-3">
                             <div>
-                                <label className="text-[#EBE3D5]/60 text-xs font-medium block mb-1.5">Category</label>
+                                <label className="text-[#4B4B5A]/60 text-xs font-medium block mb-1.5">Category</label>
                                 <select
                                     value={currentCategory}
                                     onChange={(e) => updateQueryParams("category", e.target.value)}
-                                    className="w-full bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 py-2.5 outline-none focus:border-[#C5A059] text-[#EBE3D5] text-sm transition-colors"
+                                    className="w-full bg-[#FFFFFF] border border-[#0E7CC9]/30 rounded-xl px-4 py-2.5 outline-none focus:border-[#0E7CC9] text-[#4B4B5A] text-sm transition-colors"
                                 >
                                     {CATEGORIES.map((category) => (
-                                        <option key={category} value={category} className="bg-[#3E5C4B]">
+                                        <option key={category} value={category} className="bg-[#FBF8FD]">
                                             {category === "all" ? "All Categories" : category.charAt(0).toUpperCase() + category.slice(1)}
                                         </option>
                                     ))}
@@ -269,14 +269,14 @@ const BrowseCoursesClient = () => {
                             </div>
 
                             <div>
-                                <label className="text-[#EBE3D5]/60 text-xs font-medium block mb-1.5">Level</label>
+                                <label className="text-[#4B4B5A]/60 text-xs font-medium block mb-1.5">Level</label>
                                 <select
                                     value={currentLevel}
                                     onChange={(e) => updateQueryParams("level", e.target.value)}
-                                    className="w-full bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 py-2.5 outline-none focus:border-[#C5A059] text-[#EBE3D5] text-sm transition-colors"
+                                    className="w-full bg-[#FFFFFF] border border-[#0E7CC9]/30 rounded-xl px-4 py-2.5 outline-none focus:border-[#0E7CC9] text-[#4B4B5A] text-sm transition-colors"
                                 >
                                     {LEVELS.map((level) => (
-                                        <option key={level.value} value={level.value} className="bg-[#3E5C4B]">
+                                        <option key={level.value} value={level.value} className="bg-[#FBF8FD]">
                                             {level.label}
                                         </option>
                                     ))}
@@ -284,14 +284,14 @@ const BrowseCoursesClient = () => {
                             </div>
 
                             <div>
-                                <label className="text-[#EBE3D5]/60 text-xs font-medium block mb-1.5">Sort By</label>
+                                <label className="text-[#4B4B5A]/60 text-xs font-medium block mb-1.5">Sort By</label>
                                 <select
                                     value={currentSort}
                                     onChange={(e) => updateQueryParams("sort", e.target.value)}
-                                    className="w-full bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 py-2.5 outline-none focus:border-[#C5A059] text-[#EBE3D5] text-sm transition-colors"
+                                    className="w-full bg-[#FFFFFF] border border-[#0E7CC9]/30 rounded-xl px-4 py-2.5 outline-none focus:border-[#0E7CC9] text-[#4B4B5A] text-sm transition-colors"
                                 >
                                     {SORT_OPTIONS.map((option) => (
-                                        <option key={option.value} value={option.value} className="bg-[#3E5C4B]">
+                                        <option key={option.value} value={option.value} className="bg-[#FBF8FD]">
                                             {option.label}
                                         </option>
                                     ))}
@@ -299,28 +299,28 @@ const BrowseCoursesClient = () => {
                             </div>
 
                             <div>
-                                <label className="text-[#EBE3D5]/60 text-xs font-medium block mb-1.5">Price Range</label>
+                                <label className="text-[#4B4B5A]/60 text-xs font-medium block mb-1.5">Price Range</label>
                                 <div className="grid grid-cols-2 gap-3">
                                     <input
                                         type="number"
                                         placeholder="Min"
                                         value={minPrice}
                                         onChange={(e) => setMinPrice(e.target.value)}
-                                        className="bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 py-2.5 outline-none focus:border-[#C5A059] text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 text-sm transition-colors"
+                                        className="bg-[#FFFFFF] border border-[#0E7CC9]/30 rounded-xl px-4 py-2.5 outline-none focus:border-[#0E7CC9] text-[#4B4B5A] placeholder:text-[#4B4B5A]/40 text-sm transition-colors"
                                     />
                                     <input
                                         type="number"
                                         placeholder="Max"
                                         value={maxPrice}
                                         onChange={(e) => setMaxPrice(e.target.value)}
-                                        className="bg-[#1C2E24] border border-[#C5A059]/30 rounded-xl px-4 py-2.5 outline-none focus:border-[#C5A059] text-[#EBE3D5] placeholder:text-[#EBE3D5]/40 text-sm transition-colors"
+                                        className="bg-[#FFFFFF] border border-[#0E7CC9]/30 rounded-xl px-4 py-2.5 outline-none focus:border-[#0E7CC9] text-[#4B4B5A] placeholder:text-[#4B4B5A]/40 text-sm transition-colors"
                                     />
                                 </div>
                             </div>
 
                             <Button
                                 onPress={clearFilters}
-                                className="w-full bg-[#C5A059]/10 hover:bg-[#C5A059]/20 text-[#C5A059] font-medium rounded-xl py-2.5 text-sm"
+                                className="w-full bg-[#0E7CC9]/10 hover:bg-[#0E7CC9]/20 text-[#0E7CC9] font-medium rounded-xl py-2.5 text-sm"
                             >
                                 Clear Filters
                             </Button>
@@ -334,25 +334,25 @@ const BrowseCoursesClient = () => {
                         <Spinner size="lg" />
                     </div>
                 ) : isError ? (
-                    <Card className="bg-[#3E5C4B] border border-red-500/20 rounded-2xl p-8 text-center">
+                    <Card className="bg-[#FBF8FD] border border-red-500/20 rounded-2xl p-8 text-center">
                         <p className="text-red-400">Failed to load courses. Please try again.</p>
-                        <Button className="mt-4 bg-[#C5A059] text-[#1C2E24]" onPress={() => refetch()}>
+                        <Button className="mt-4 bg-[image:var(--brand-gradient)] text-[#FFFFFF]" onPress={() => refetch()}>
                             Retry
                         </Button>
                     </Card>
                 ) : (
                     <>
                         <div className="mb-6 flex items-center justify-between">
-                            <p className="text-[#EBE3D5]/60 text-sm md:text-lg">
-                                Showing <span className="font-bold text-[#EBE3D5]">{totalCourses}</span> course{totalCourses !== 1 ? "s" : ""}
+                            <p className="text-[#4B4B5A]/60 text-sm md:text-lg">
+                                Showing <span className="font-bold text-[#4B4B5A]">{totalCourses}</span> course{totalCourses !== 1 ? "s" : ""}
                             </p>
                         </div>
 
                         {totalCourses === 0 ? (
-                            <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-3xl shadow-xl py-20 text-center">
-                                <FaBook className="text-5xl text-[#EBE3D5]/20 mx-auto mb-4" />
-                                <h2 className="text-3xl font-bold text-[#EBE3D5]">No courses found</h2>
-                                <p className="text-[#EBE3D5]/50 mt-3">Try changing your search or filters.</p>
+                            <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-3xl shadow-xl py-20 text-center">
+                                <FaBook className="text-5xl text-[#4B4B5A]/20 mx-auto mb-4" />
+                                <h2 className="text-3xl font-bold text-[#4B4B5A]">No courses found</h2>
+                                <p className="text-[#4B4B5A]/50 mt-3">Try changing your search or filters.</p>
                             </Card>
                         ) : (
                             <>
@@ -372,7 +372,7 @@ const BrowseCoursesClient = () => {
                                         <button
                                             disabled={currentPage === 1}
                                             onClick={() => updateQueryParams("page", currentPage - 1)}
-                                            className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-[#C5A059]/10 text-[#EBE3D5] flex items-center justify-center hover:bg-[#C5A059]/20 transition disabled:bg-[#C5A059]/5 disabled:text-[#EBE3D5]/30 disabled:cursor-not-allowed border border-[#C5A059]/20"
+                                            className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-[#0E7CC9]/10 text-[#4B4B5A] flex items-center justify-center hover:bg-[#0E7CC9]/20 transition disabled:bg-[#0E7CC9]/5 disabled:text-[#4B4B5A]/30 disabled:cursor-not-allowed border border-[#0E7CC9]/20"
                                         >
                                             <BiLeftArrow size={16} />
                                         </button>
@@ -385,7 +385,7 @@ const BrowseCoursesClient = () => {
                                             else pageNumber = currentPage - 3 + index;
 
                                             if ((index === 0 && pageNumber > 1) || (index === 6 && pageNumber < totalPages)) {
-                                                return <span key={`ellipsis-${index}`} className="text-[#EBE3D5]/40">...</span>;
+                                                return <span key={`ellipsis-${index}`} className="text-[#4B4B5A]/40">...</span>;
                                             }
                                             if (pageNumber < 1 || pageNumber > totalPages) return null;
 
@@ -395,8 +395,8 @@ const BrowseCoursesClient = () => {
                                                     onClick={() => updateQueryParams("page", pageNumber)}
                                                     className={`w-9 h-9 md:w-11 md:h-11 rounded-xl font-semibold text-sm transition ${
                                                         currentPage === pageNumber
-                                                            ? "bg-[#C5A059] text-[#1C2E24] shadow-lg shadow-[#C5A059]/20"
-                                                            : "bg-[#3E5C4B] border border-[#C5A059]/20 text-[#EBE3D5] hover:bg-[#C5A059]/10"
+                                                            ? "bg-[image:var(--brand-gradient)] text-[#FFFFFF] shadow-lg shadow-[#0E7CC9]/20"
+                                                            : "bg-[#FBF8FD] border border-[#0E7CC9]/20 text-[#4B4B5A] hover:bg-[#0E7CC9]/10"
                                                     }`}
                                                 >
                                                     {pageNumber}
@@ -407,7 +407,7 @@ const BrowseCoursesClient = () => {
                                         <button
                                             disabled={currentPage === totalPages}
                                             onClick={() => updateQueryParams("page", currentPage + 1)}
-                                            className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-[#C5A059]/10 text-[#EBE3D5] flex items-center justify-center hover:bg-[#C5A059]/20 transition disabled:bg-[#C5A059]/5 disabled:text-[#EBE3D5]/30 disabled:cursor-not-allowed border border-[#C5A059]/20"
+                                            className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-[#0E7CC9]/10 text-[#4B4B5A] flex items-center justify-center hover:bg-[#0E7CC9]/20 transition disabled:bg-[#0E7CC9]/5 disabled:text-[#4B4B5A]/30 disabled:cursor-not-allowed border border-[#0E7CC9]/20"
                                         >
                                             <BiRightArrow size={16} />
                                         </button>

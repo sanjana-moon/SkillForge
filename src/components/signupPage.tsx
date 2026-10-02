@@ -92,20 +92,20 @@ export default function SignUpPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#1C2E24] flex items-center justify-center px-4 py-10">
-            <Card className="w-full container md:max-w-4xl rounded-3xl shadow-xl p-8 border border-[#C5A059]/30 bg-[#3E5C4B]">
+        <div className="min-h-screen bg-[#FFFFFF] flex items-center justify-center px-4 py-10">
+            <Card className="w-full container md:max-w-4xl rounded-3xl shadow-xl p-8 border border-[#0E7CC9]/30 bg-[#FBF8FD]">
                 <div className="mb-8 text-center">
-                    <h1 className="text-4xl font-bold text-[#EBE3D5]">
+                    <h1 className="text-4xl font-bold text-[#4B4B5A]">
                         Create Your Account
                     </h1>
-                    <p className="mt-2 text-[#EBE3D5]/70">
+                    <p className="mt-2 text-[#4B4B5A]/70">
                         AI-assisted workspace to craft and elevate your ideas.
                     </p>
                 </div>
 
                 <Form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                     <TextField>
-                        <Label className="text-[#EBE3D5] font-medium">
+                        <Label className="text-[#4B4B5A] font-medium">
                             Full Name
                         </Label>
                         <Input
@@ -113,7 +113,7 @@ export default function SignUpPage() {
                             {...register("name", {
                                 required: "Full name is required",
                             })}
-                            className="mt-2 bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5]"
+                            className="mt-2 bg-[#FFFFFF]/50 border-[#0E7CC9]/30 text-[#4B4B5A]"
                         />
                         {errors.name && (
                             <p className="mt-1 text-sm text-red-400">
@@ -123,7 +123,7 @@ export default function SignUpPage() {
                     </TextField>
 
                     <TextField>
-                        <Label className="text-[#EBE3D5] font-medium">
+                        <Label className="text-[#4B4B5A] font-medium">
                             Profile Photo
                         </Label>
                         <input
@@ -132,7 +132,7 @@ export default function SignUpPage() {
                             {...register("image", {
                                 required: "Please upload a profile image",
                             })}
-                            className="mt-2 w-full rounded-md border-2 border-dashed border-[#C5A059]/50 bg-[#1C2E24]/50 p-3 text-[#EBE3D5] file:mr-4 file:rounded-lg file:border-0 file:bg-[#C5A059] file:px-4 file:py-2 file:text-[#1C2E24] hover:file:bg-[#C5A059]/80"
+                            className="mt-2 w-full rounded-md border-2 border-dashed border-[#0E7CC9]/50 bg-[#FFFFFF]/50 p-3 text-[#4B4B5A] file:mr-4 file:rounded-lg file:border-0 file:bg-[image:var(--brand-gradient)] file:px-4 file:py-2 file:text-[#FFFFFF] hover:file:bg-[#0E7CC9]/80"
                         />
                         {errors.image && (
                             <p className="mt-1 text-sm text-red-400">
@@ -142,7 +142,7 @@ export default function SignUpPage() {
                     </TextField>
 
                     <TextField>
-                        <Label className="text-[#EBE3D5] font-medium">
+                        <Label className="text-[#4B4B5A] font-medium">
                             Email Address
                         </Label>
                         <Input
@@ -151,7 +151,7 @@ export default function SignUpPage() {
                             {...register("email", {
                                 required: "Email is required",
                             })}
-                            className="mt-2 bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5]"
+                            className="mt-2 bg-[#FFFFFF]/50 border-[#0E7CC9]/30 text-[#4B4B5A]"
                         />
                         {errors.email && (
                             <p className="mt-1 text-sm text-red-400">
@@ -161,7 +161,7 @@ export default function SignUpPage() {
                     </TextField>
 
                     <TextField>
-                        <Label className="text-[#EBE3D5] font-medium">
+                        <Label className="text-[#4B4B5A] font-medium">
                             Password
                         </Label>
                         <Input
@@ -175,9 +175,9 @@ export default function SignUpPage() {
                                         "Password must be at least 8 characters",
                                 },
                             })}
-                            className="mt-2 bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5]"
+                            className="mt-2 bg-[#FFFFFF]/50 border-[#0E7CC9]/30 text-[#4B4B5A]"
                         />
-                        <Description className="text-[#EBE3D5]/60">
+                        <Description className="text-[#4B4B5A]/60">
                             Password must contain at least 8 characters.
                         </Description>
                         {errors.password && (
@@ -188,11 +188,11 @@ export default function SignUpPage() {
                     </TextField>
 
                     <TextField>
-                        <Label className="text-[#EBE3D5] font-medium">
+                        <Label className="text-[#4B4B5A] font-medium">
                             Select Your Role
                         </Label>
                         <div className="mt-3 grid grid-cols-2 gap-4">
-                            <label className="flex cursor-pointer items-center gap-3 rounded-md border border-[#C5A059]/30 p-4 transition hover:border-[#C5A059] hover:bg-[#1C2E24]/30">
+                            <label className="flex cursor-pointer items-center gap-3 rounded-md border border-[#0E7CC9]/30 p-4 transition hover:border-[#0E7CC9] hover:bg-[#FFFFFF]/30">
                                 <input
                                     type="radio"
                                     value="student"
@@ -200,32 +200,32 @@ export default function SignUpPage() {
                                     {...register("role", {
                                         required: "Please select a role",
                                     })}
-                                    className="accent-[#C5A059]"
+                                    className="accent-[#0E7CC9]"
                                 />
                                 <div>
-                                    <p className="font-semibold text-[#EBE3D5]">
+                                    <p className="font-semibold text-[#4B4B5A]">
                                         Learner
                                     </p>
-                                    <p className="text-sm text-[#EBE3D5]/60">
+                                    <p className="text-sm text-[#4B4B5A]/60">
                                         Explore courses, learn new skills.
                                     </p>
                                 </div>
                             </label>
 
-                            <label className="flex cursor-pointer items-center gap-3 rounded-md border border-[#C5A059]/30 p-4 transition hover:border-[#C5A059] hover:bg-[#1C2E24]/30">
+                            <label className="flex cursor-pointer items-center gap-3 rounded-md border border-[#0E7CC9]/30 p-4 transition hover:border-[#0E7CC9] hover:bg-[#FFFFFF]/30">
                                 <input
                                     type="radio"
                                     value="instructor"
                                     {...register("role", {
                                         required: "Please select a role",
                                     })}
-                                    className="accent-[#C5A059]"
+                                    className="accent-[#0E7CC9]"
                                 />
                                 <div>
-                                    <p className="font-semibold text-[#EBE3D5]">
+                                    <p className="font-semibold text-[#4B4B5A]">
                                         Instructor
                                     </p>
-                                    <p className="text-sm text-[#EBE3D5]/60">
+                                    <p className="text-sm text-[#4B4B5A]/60">
                                         Create and manage courses.
                                     </p>
                                 </div>
@@ -241,7 +241,7 @@ export default function SignUpPage() {
                     <Button
                         type="submit"
                         isDisabled={loading}
-                        className="mt-4 w-full rounded-md bg-[#C5A059] py-6 text-base font-semibold text-[#1C2E24] transition hover:bg-[#C5A059]/80"
+                        className="mt-4 w-full rounded-md bg-[image:var(--brand-gradient)] py-6 text-base font-semibold text-[#FFFFFF] transition hover:opacity-90"
                     >
                         <IoMdCheckmarkCircleOutline className="mr-2 text-xl" />
                         {loading ? "Creating account..." : "Create Account"}
@@ -249,24 +249,24 @@ export default function SignUpPage() {
                 </Form>
 
                 <div className="my-4 flex items-center gap-2">
-                    <div className="h-px flex-1 bg-[#C5A059]/20" />
-                    <span className="text-sm text-[#EBE3D5]/40">OR</span>
-                    <div className="h-px flex-1 bg-[#C5A059]/20" />
+                    <div className="h-px flex-1 bg-[#0E7CC9]/20" />
+                    <span className="text-sm text-[#4B4B5A]/40">OR</span>
+                    <div className="h-px flex-1 bg-[#0E7CC9]/20" />
                 </div>
 
                 <Button
                     onClick={handleGoogleSignin}
-                    className="w-full rounded-md border border-[#C5A059]/30 py-6 text-[#EBE3D5] hover:bg-[#1C2E24]/50"
+                    className="w-full rounded-md border border-[#0E7CC9]/30 py-6 text-[#4B4B5A] hover:bg-[#FFFFFF]/50"
                 >
-                    <FaGoogle className="mr-2 text-lg text-[#C5A059]" />
+                    <FaGoogle className="mr-2 text-lg text-[#0E7CC9]" />
                     Continue with Google
                 </Button>
 
-                <p className="mt-1 text-center text-sm text-[#EBE3D5]/60">
+                <p className="mt-1 text-center text-sm text-[#4B4B5A]/60">
                     Already have an account?{" "}
                     <Link
                         href="/signin"
-                        className="font-semibold text-[#C5A059] hover:text-[#C5A059]/80"
+                        className="font-semibold text-[#0E7CC9] hover:text-[#0E7CC9]/80"
                     >
                         Signin
                     </Link>

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -18,7 +18,7 @@ const getLevelColor = (level: string) => {
         case "advanced":
             return "text-red-400";
         default:
-            return "text-[#C5A059]";
+            return "text-[#0E7CC9]";
     }
 };
 
@@ -40,9 +40,9 @@ export default function CourseCard({ course }: CourseCardProps) {
     const formattedPrice = `$${course.price.toFixed(2)}`;
 
     return (
-        <div className="group bg-[#3E5C4B] border border-[#C5A059]/10 hover:border-[#C5A059]/30 rounded-md overflow-hidden shadow-lg hover:shadow-[#C5A059]/5 flex flex-col transition-all duration-300 hover:-translate-y-1">
+        <div className="group bg-[#FBF8FD] border border-[#0E7CC9]/10 hover:border-[#0E7CC9]/30 rounded-md overflow-hidden shadow-lg hover:shadow-[#0E7CC9]/5 flex flex-col transition-all duration-300 hover:-translate-y-1">
             {/* Thumbnail - 2/3 of the card */}
-            <div className="relative aspect-4/3 overflow-hidden bg-[#1C2E24]">
+            <div className="relative aspect-4/3 overflow-hidden bg-[#FFFFFF]">
                 {imageUrl ? (
                     <Image
                         src={imageUrl}
@@ -52,14 +52,14 @@ export default function CourseCard({ course }: CourseCardProps) {
                         className="object-cover h-70 w-auto transition-transform duration-500 group-hover:scale-105 mx-auto"
                     />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center text-[#EBE3D5]/10">
+                    <div className="w-full h-full flex items-center justify-center text-[#4B4B5A]/10">
                         <span className="text-4xl">Ã°Å¸â€œÅ¡</span>
                     </div>
                 )}
-                <div className="absolute inset-0 bg-linear-to-t from-[#1C2E24]/60 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#FFFFFF]/60 to-transparent" />
                 
                 {/* Category tag - Bottom Left */}
-                <span className="absolute bottom-3 left-3 inline-block px-2.5 py-0.5 bg-[#1C2E24]/80 backdrop-blur-sm border border-[#C5A059]/20 rounded-full text-[10px] font-mono font-bold text-[#C5A059]">
+                <span className="absolute bottom-3 left-3 inline-block px-2.5 py-0.5 bg-[#FFFFFF]/80 backdrop-blur-sm border border-[#0E7CC9]/20 rounded-full text-[10px] font-mono font-bold text-[#0E7CC9]">
                     {course.category}
                 </span>
 
@@ -79,23 +79,23 @@ export default function CourseCard({ course }: CourseCardProps) {
             <div className="p-4 grow flex flex-col justify-between">
                 {/* Rating & Title */}
                 <div>
-                    <div className="flex items-center gap-1.5 text-xs text-[#EBE3D5]/60 font-semibold mb-1.5">
+                    <div className="flex items-center gap-1.5 text-xs text-[#4B4B5A]/60 font-semibold mb-1.5">
                         <FaStar className="text-yellow-400 text-xs" />
-                        <span className="text-[#EBE3D5]">{course.avgRating?.toFixed(1) || "0.0"}</span>
+                        <span className="text-[#4B4B5A]">{course.avgRating?.toFixed(1) || "0.0"}</span>
                         <span className="text-[10px]">({course.reviewCount || 0})</span>
                     </div>
 
-                    <h3 className="text-sm font-bold font-heading text-[#EBE3D5] group-hover:text-[#C5A059] transition line-clamp-1 leading-snug">
+                    <h3 className="text-sm font-bold font-heading text-[#4B4B5A] group-hover:text-[#0E7CC9] transition line-clamp-1 leading-snug">
                         {course.title}
                     </h3>
                 </div>
 
                 {/* Metadata & Price */}
-                <div className="mt-3 pt-3 border-t border-[#C5A059]/10">
+                <div className="mt-3 pt-3 border-t border-[#0E7CC9]/10">
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3 text-[10px] text-[#EBE3D5]/60">
+                        <div className="flex items-center gap-3 text-[10px] text-[#4B4B5A]/60">
                             <div className="flex items-center gap-1">
-                                <FaRegClock className="text-[#C5A059] text-[10px]" />
+                                <FaRegClock className="text-[#0E7CC9] text-[10px]" />
                                 <span>{course.duration}</span>
                             </div>
                             <div className="flex items-center gap-1">
@@ -104,17 +104,17 @@ export default function CourseCard({ course }: CourseCardProps) {
                             </div>
                         </div>
                         <div className="text-right">
-                            <p className="text-[10px] text-[#EBE3D5]/30 line-through">
+                            <p className="text-[10px] text-[#4B4B5A]/30 line-through">
                                 ${(course.price * 1.5).toFixed(2)}
                             </p>
-                            <p className="text-sm font-extrabold text-[#C5A059]">
+                            <p className="text-sm font-extrabold text-[#0E7CC9]">
                                 {formattedPrice}
                             </p>
                         </div>
                     </div>
                     <Link
                         href={`/courses/${course._id}`}
-                        className="w-full inline-flex items-center justify-center rounded-sm hover:bg-[#1C2E24]/10 bg-[#C5A059] text-[#1C2E24] border border-[#C5A059]/20 py-1.5 text-[10px] font-semibold hover:text-[#EBE3D5] transition-all duration-300 mt-2"
+                        className="w-full inline-flex items-center justify-center rounded-sm hover:bg-[#FFFFFF]/10 bg-[image:var(--brand-gradient)] text-[#FFFFFF] border border-[#0E7CC9]/20 py-1.5 text-[10px] font-semibold hover:text-[#FFFFFF] transition-all duration-300 mt-2"
                     >
                         View Course
                     </Link>

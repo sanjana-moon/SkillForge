@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 
@@ -10,7 +10,7 @@ const features = [
     image:
       "https://images.unsplash.com/photo-1674027444485-cec3da58eef4?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     imageAlt: "AI symbols illustration",
-    accent: "#C5A059",
+    accent: "#0E7CC9",
   },
   {
     title: "Verified Instructors",
@@ -19,7 +19,7 @@ const features = [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNqKKazBMrChLV9KMPhv4FItTlPSdoQ-uBVngRMtNQHR9ebd4nc6HzVLtx&s=10",
     imageAlt: "Verified identity illustration",
-    accent: "#D46A2B",
+    accent: "#7A56CE",
   },
   {
     title: "Learn Without Limits",
@@ -28,7 +28,7 @@ const features = [
     image:
       "https://cdn.pixabay.com/photo/2023/01/30/08/06/symbols-7755074_1280.jpg",
     imageAlt: "Interconnected platforms illustration",
-    accent: "#8C9683",
+    accent: "#E4E4EF",
   },
   {
     title: "Fair, Transparent Pricing",
@@ -37,25 +37,25 @@ const features = [
     image:
       "https://images.unsplash.com/photo-1655813710718-00043b177128?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     imageAlt: "Transparent payment illustration",
-    accent: "#C5A059",
+    accent: "#0E7CC9",
   },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative w-full bg-[#1C2E24] py-24 px-6 overflow-hidden">
+    <section className="relative w-full bg-[#FFFFFF] py-24 px-6 overflow-hidden">
       {/* Heading */}
       <div className="mx-auto mb-20 max-w-3xl text-center">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#C5A059]">
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#0E7CC9]">
           Why SkillForge
         </p>
         <h2
-          className="text-4xl md:text-5xl font-bold text-[#EBE3D5]"
+          className="text-4xl md:text-5xl font-bold text-[#4B4B5A]"
           style={{ fontFamily: "Georgia, serif" }}
         >
           Built for people who want to go deep
         </h2>
-        <p className="mt-5 text-base text-[#EBE3D5]/70">
+        <p className="mt-5 text-base text-[#4B4B5A]/70">
           Not just collect certificates. Every part of SkillForge is
           designed to help you actually master what you set out to
           learn.
@@ -94,11 +94,11 @@ export default function WhyChooseUs() {
                   />
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-semibold text-[#EBE3D5] transition-colors duration-300">
+                <h3 className="text-2xl md:text-3xl font-semibold text-[#4B4B5A] transition-colors duration-300">
                   {feature.title}
                 </h3>
 
-                <p className="mt-4 text-base leading-relaxed text-[#EBE3D5]/70">
+                <p className="mt-4 text-base leading-relaxed text-[#4B4B5A]/70">
                   {feature.description}
                 </p>
               </div>

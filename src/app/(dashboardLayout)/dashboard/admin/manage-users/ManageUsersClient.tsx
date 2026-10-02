@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { Card, Button, Spinner } from "@heroui/react";
@@ -19,39 +19,39 @@ interface ManageUsersClientProps {
 const getRoleIcon = (role: string) => {
     switch (role) {
         case "admin":
-            return <FaUserShield className="text-[#C5A059]" />;
+            return <FaUserShield className="text-[#0E7CC9]" />;
         case "instructor":
-            return <FaChalkboardTeacher className="text-[#5C3A21]" />;
+            return <FaChalkboardTeacher className="text-[#7A56CE]" />;
         case "student":
-            return <FaUserGraduate className="text-[#5C3A21]" />;
+            return <FaUserGraduate className="text-[#7A56CE]" />;
         default:
-            return <FaUserCog className="text-[#EBE3D5]/60" />;
+            return <FaUserCog className="text-[#4B4B5A]/60" />;
     }
 };
 
 const getRoleColor = (role: string) => {
     switch (role) {
         case "admin":
-            return "bg-[#C5A059]/20 text-[#C5A059] border-[#C5A059]/30";
+            return "bg-[#0E7CC9]/20 text-[#0E7CC9] border-[#0E7CC9]/30";
         case "instructor":
-            return "bg-[#5C3A21]/20 text-[#5C3A21] border-[#5C3A21]/30";
+            return "bg-[#7A56CE]/20 text-[#7A56CE] border-[#7A56CE]/30";
         case "student":
-            return "bg-[#5C3A21]/20 text-[#5C3A21] border-[#5C3A21]/30";
+            return "bg-[#7A56CE]/20 text-[#7A56CE] border-[#7A56CE]/30";
         default:
-            return "bg-[#EBE3D5]/10 text-[#EBE3D5]/60 border-[#EBE3D5]/20";
+            return "bg-[#4B4B5A]/10 text-[#4B4B5A]/60 border-[#4B4B5A]/20";
     }
 };
 
 const getRoleBadgeColor = (role: string) => {
     switch (role) {
         case "admin":
-            return "bg-[#C5A059]";
+            return "bg-[image:var(--brand-gradient)]";
         case "instructor":
-            return "bg-[#5C3A21]";
+            return "bg-[#7A56CE]";
         case "student":
-            return "bg-[#5C3A21]";
+            return "bg-[#7A56CE]";
         default:
-            return "bg-[#EBE3D5]/20";
+            return "bg-[#4B4B5A]/20";
     }
 };
 
@@ -122,53 +122,53 @@ export default function ManageUsersClient({
         <div className="space-y-6">
             {/* Header */}
             <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-[#EBE3D5]">
+                <h1 className="text-3xl md:text-4xl font-bold text-[#4B4B5A]">
                     Manage Users
                 </h1>
-                <p className="text-[#EBE3D5]/60 mt-2">
+                <p className="text-[#4B4B5A]/60 mt-2">
                     Manage student, instructor, and admin accounts. Update roles or remove users.
                 </p>
             </div>
 
             {/* Stats Summary */}
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-                <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-4">
-                    <p className="text-[#EBE3D5]/60 text-sm">Total Users</p>
-                    <p className="text-2xl font-bold text-[#EBE3D5]">{totalUsers}</p>
+                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
+                    <p className="text-[#4B4B5A]/60 text-sm">Total Users</p>
+                    <p className="text-2xl font-bold text-[#4B4B5A]">{totalUsers}</p>
                 </Card>
-                <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-4">
-                    <p className="text-[#EBE3D5]/60 text-sm">Admins</p>
-                    <p className="text-2xl font-bold text-[#C5A059]">{adminCount}</p>
+                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
+                    <p className="text-[#4B4B5A]/60 text-sm">Admins</p>
+                    <p className="text-2xl font-bold text-[#0E7CC9]">{adminCount}</p>
                 </Card>
-                <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-4">
-                    <p className="text-[#EBE3D5]/60 text-sm">Instructors</p>
-                    <p className="text-2xl font-bold text-[#5C3A21]">{instructorCount}</p>
+                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
+                    <p className="text-[#4B4B5A]/60 text-sm">Instructors</p>
+                    <p className="text-2xl font-bold text-[#7A56CE]">{instructorCount}</p>
                 </Card>
-                <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl p-4">
-                    <p className="text-[#EBE3D5]/60 text-sm">Students</p>
-                    <p className="text-2xl font-bold text-[#5C3A21]">{studentCount}</p>
+                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
+                    <p className="text-[#4B4B5A]/60 text-sm">Students</p>
+                    <p className="text-2xl font-bold text-[#7A56CE]">{studentCount}</p>
                 </Card>
             </div>
 
             {/* Users Table */}
-            <Card className="bg-[#3E5C4B] border border-[#C5A059]/20 rounded-2xl shadow-xl overflow-hidden">
+            <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl shadow-xl overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full">
-                        <thead className="bg-[#1C2E24] border-b border-[#C5A059]/20">
+                        <thead className="bg-[#FFFFFF] border-b border-[#0E7CC9]/20">
                             <tr>
-                                <th className="px-6 py-4 text-left text-[#EBE3D5] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
                                     User
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#EBE3D5] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
                                     Email
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#EBE3D5] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
                                     Role
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#EBE3D5] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
                                     Status
                                 </th>
-                                <th className="px-6 py-4 text-center text-[#EBE3D5] font-semibold text-sm">
+                                <th className="px-6 py-4 text-center text-[#4B4B5A] font-semibold text-sm">
                                     Actions
                                 </th>
                             </tr>
@@ -176,7 +176,7 @@ export default function ManageUsersClient({
                         <tbody>
                             {users.length === 0 ? (
                                 <tr>
-                                    <td colSpan={5} className="px-6 py-12 text-center text-[#EBE3D5]/40">
+                                    <td colSpan={5} className="px-6 py-12 text-center text-[#4B4B5A]/40">
                                         No users found.
                                     </td>
                                 </tr>
@@ -184,24 +184,24 @@ export default function ManageUsersClient({
                                 users.map((user) => (
                                     <tr
                                         key={user._id}
-                                        className="border-b border-[#C5A059]/10 hover:bg-[#1C2E24]/50 transition-colors duration-200"
+                                        className="border-b border-[#0E7CC9]/10 hover:bg-[#FFFFFF]/50 transition-colors duration-200"
                                     >
                                         <td className="px-6 py-4">
                                             <div className="flex items-center gap-3">
                                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center ${getRoleColor(user.role)}`}>
                                                     {getRoleIcon(user.role)}
                                                 </div>
-                                                <span className="font-medium text-[#EBE3D5]">
+                                                <span className="font-medium text-[#4B4B5A]">
                                                     {user.name}
                                                 </span>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4 text-[#EBE3D5]/70">
+                                        <td className="px-6 py-4 text-[#4B4B5A]/70">
                                             {user.email}
                                         </td>
                                         <td className="px-6 py-4">
                                             <select
-                                                className={`px-3 py-2 rounded-lg border outline-none text-sm font-medium cursor-pointer bg-[#1C2E24]/50 ${getRoleColor(user.role)}`}
+                                                className={`px-3 py-2 rounded-lg border outline-none text-sm font-medium cursor-pointer bg-[#FFFFFF]/50 ${getRoleColor(user.role)}`}
                                                 value={user.role}
                                                 onChange={(e) =>
                                                     handleRoleChange(
@@ -211,13 +211,13 @@ export default function ManageUsersClient({
                                                 }
                                                 disabled={loading === user._id}
                                             >
-                                                <option value="student" className="bg-[#3E5C4B] text-[#EBE3D5]">
+                                                <option value="student" className="bg-[#FBF8FD] text-[#4B4B5A]">
                                                     Student
                                                 </option>
-                                                <option value="instructor" className="bg-[#3E5C4B] text-[#EBE3D5]">
+                                                <option value="instructor" className="bg-[#FBF8FD] text-[#4B4B5A]">
                                                     Instructor
                                                 </option>
-                                                <option value="admin" className="bg-[#3E5C4B] text-[#EBE3D5]">
+                                                <option value="admin" className="bg-[#FBF8FD] text-[#4B4B5A]">
                                                     Admin
                                                 </option>
                                             </select>
@@ -248,19 +248,19 @@ export default function ManageUsersClient({
             </Card>
 
             {/* Footer Stats */}
-            <div className="flex flex-wrap justify-between items-center text-[#EBE3D5]/40 text-sm gap-4">
+            <div className="flex flex-wrap justify-between items-center text-[#4B4B5A]/40 text-sm gap-4">
                 <p>Total Users: {totalUsers}</p>
                 <div className="flex flex-wrap gap-4">
                     <span className="flex items-center gap-2">
-                        <span className="w-3 h-3 rounded-full bg-[#C5A059]"></span>
+                        <span className="w-3 h-3 rounded-full bg-[image:var(--brand-gradient)]"></span>
                         Admin: {adminCount}
                     </span>
                     <span className="flex items-center gap-2">
-                        <span className="w-3 h-3 rounded-full bg-[#5C3A21]"></span>
+                        <span className="w-3 h-3 rounded-full bg-[#7A56CE]"></span>
                         Instructor: {instructorCount}
                     </span>
                     <span className="flex items-center gap-2">
-                        <span className="w-3 h-3 rounded-full bg-[#5C3A21]"></span>
+                        <span className="w-3 h-3 rounded-full bg-[#7A56CE]"></span>
                         Student: {studentCount}
                     </span>
                     <span className="flex items-center gap-2">

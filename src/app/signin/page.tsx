@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect } from "react";
 
@@ -83,15 +83,15 @@ const SigninPage = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[#1C2E24] px-4 py-12">
-            <Card className="w-full container md:max-w-3xl rounded-3xl border border-[#C5A059]/30 bg-[#3E5C4B] p-8 shadow-xl">
+        <div className="min-h-screen flex items-center justify-center bg-[#FFFFFF] px-4 py-12">
+            <Card className="w-full container md:max-w-3xl rounded-3xl border border-[#0E7CC9]/30 bg-[#FBF8FD] p-8 shadow-xl">
                 {/* Header */}
                 <div className="mb-8 text-center">
-                    <h1 className="text-4xl font-bold text-[#EBE3D5]">
+                    <h1 className="text-4xl font-bold text-[#4B4B5A]">
                         Welcome Back
                     </h1>
 
-                    <p className="mt-2 text-[#EBE3D5]/70">
+                    <p className="mt-2 text-[#4B4B5A]/70">
                         Sign in to your SkillForge account and <br />
                         continue crafting and elevating your ideas.
                     </p>
@@ -104,7 +104,7 @@ const SigninPage = () => {
                 >
                     {/* Email */}
                     <TextField isRequired isInvalid={!!errors.email}>
-                        <Label className="font-medium text-[#EBE3D5]">
+                        <Label className="font-medium text-[#4B4B5A]">
                             Email Address
                         </Label>
 
@@ -114,7 +114,7 @@ const SigninPage = () => {
                             {...register("email", {
                                 required: "Email is required",
                             })}
-                            className="mt-2 bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40"
+                            className="mt-2 bg-[#FFFFFF]/50 border-[#0E7CC9]/30 text-[#4B4B5A] placeholder:text-[#4B4B5A]/40"
                         />
 
                         <FieldError>{errors.email?.message}</FieldError>
@@ -122,7 +122,7 @@ const SigninPage = () => {
 
                     {/* Password */}
                     <TextField isRequired isInvalid={!!errors.password}>
-                        <Label className="font-medium text-[#EBE3D5]">
+                        <Label className="font-medium text-[#4B4B5A]">
                             Password
                         </Label>
 
@@ -137,10 +137,10 @@ const SigninPage = () => {
                                         "Password must be at least 8 characters.",
                                 },
                             })}
-                            className="mt-2 bg-[#1C2E24]/50 border-[#C5A059]/30 text-[#EBE3D5] placeholder:text-[#EBE3D5]/40"
+                            className="mt-2 bg-[#FFFFFF]/50 border-[#0E7CC9]/30 text-[#4B4B5A] placeholder:text-[#4B4B5A]/40"
                         />
 
-                        <Description className="text-[#EBE3D5]/60">
+                        <Description className="text-[#4B4B5A]/60">
                             Password must contain at least 8 characters.
                         </Description>
 
@@ -150,7 +150,7 @@ const SigninPage = () => {
                     {/* Login Button */}
                     <Button
                         type="submit"
-                        className="mt-2 w-full rounded-md bg-[#C5A059] py-6 text-base font-semibold text-[#1C2E24] transition hover:bg-[#C5A059]/80"
+                        className="mt-2 w-full rounded-md bg-[image:var(--brand-gradient)] py-6 text-base font-semibold text-[#FFFFFF] transition hover:opacity-90"
                     >
                         <IoLogInOutline className="mr-2 text-xl" />
                         Sign In
@@ -159,28 +159,28 @@ const SigninPage = () => {
 
                 {/* Divider */}
                 <div className="my-6 flex items-center gap-3">
-                    <div className="h-px flex-1 bg-[#C5A059]/20" />
-                    <span className="text-sm font-medium text-[#EBE3D5]/40">
+                    <div className="h-px flex-1 bg-[#0E7CC9]/20" />
+                    <span className="text-sm font-medium text-[#4B4B5A]/40">
                         OR
                     </span>
-                    <div className="h-px flex-1 bg-[#C5A059]/20" />
+                    <div className="h-px flex-1 bg-[#0E7CC9]/20" />
                 </div>
 
                 {/* Google Sign In */}
                 <Button
                     onClick={handleGoogleLogin}
-                    className="w-full rounded-md border border-[#C5A059]/30 py-6 text-[#EBE3D5] hover:bg-[#1C2E24]/50"
+                    className="w-full rounded-md border border-[#0E7CC9]/30 py-6 text-[#4B4B5A] hover:bg-[#FFFFFF]/50"
                 >
-                    <FaGoogle className="mr-2 text-lg text-[#C5A059]" />
+                    <FaGoogle className="mr-2 text-lg text-[#0E7CC9]" />
                     Continue with Google
                 </Button>
 
                 {/* Register Link */}
-                <p className="mt-6 text-center text-sm text-[#EBE3D5]/60">
+                <p className="mt-6 text-center text-sm text-[#4B4B5A]/60">
                     Don't have an account yet?{" "}
                     <Link
                         href="/signup"
-                        className="font-semibold text-[#C5A059] hover:text-[#C5A059]/80 hover:underline"
+                        className="font-semibold text-[#0E7CC9] hover:text-[#0E7CC9]/80 hover:underline"
                     >
                         Create an Account
                     </Link>
