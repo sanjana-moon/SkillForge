@@ -272,82 +272,82 @@ export default function AboutPage() {
 
                 {/* 2-column bento: image spans full height of the 3 right-side tiles */}
                 <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                    {/* LEFT — full-height image tile (spans all 3 rows) */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true, amount: 0.2 }}
-                        transition={{ duration: 0.6 }}
-                        className="group relative min-h-[420px] overflow-hidden rounded-3xl border border-[#0E7CC9]/20 lg:min-h-full"
-                    >
-                        <Image
-                            src={values[0].image}
-                            alt={values[0].imageAlt}
-                            fill
-                            sizes="(max-width: 1024px) 100vw, 600px"
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
+    {/* LEFT — full-height image tile */}
+    <motion.div
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6 }}
+        className="group relative min-h-[420px] overflow-hidden rounded-3xl border border-[#0E7CC9]/20 lg:min-h-full"
+    >
+        <Image
+            src={values[0].image}
+            alt={values[0].imageAlt}
+            fill
+            sizes="(max-width: 1024px) 100vw, 600px"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+        />
 
-                        {/* Dark gradient for text legibility */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] via-[#FFFFFF]/10 to-transparent" />
+        {/* Blue gradient for text legibility */}
+        <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-t from-[#0E7CC9]/80 via-[#0E7CC9]/10 to-transparent" />
 
-                        {/* Corner value badge */}
-                        <div className="absolute left-6 top-6 rounded-full border border-[#0E7CC9]/30 bg-[#FFFFFF]/70 px-3 py-1 font-mono text-xs uppercase tracking-widest text-[#0E7CC9] backdrop-blur-sm">
-                            Value 01
-                        </div>
+        {/* Corner value badge */}
+        <div className="absolute left-6 top-6 z-10 rounded-full border border-[#0E7CC9]/30 bg-[#FFFFFF]/70 px-3 py-1 font-mono text-xs uppercase tracking-widest text-[#0E7CC9] backdrop-blur-sm">
+            Value 01
+        </div>
 
-                        {/* Bottom text */}
-                        <div className="absolute bottom-0 left-0 right-0 p-8">
-                            <h3 className="text-2xl font-bold text-[#4B4B5A] md:text-3xl">
-                                {values[0].title}
-                            </h3>
-                            <p className="mt-3 max-w-md text-sm leading-relaxed text-[#4B4B5A]/75">
-                                {values[0].description}
-                            </p>
-                        </div>
-                    </motion.div>
+        {/* Bottom text */}
+        <div className="absolute bottom-0 left-0 right-0 z-10 p-8">
+            <h3 className="text-2xl font-bold text-white md:text-3xl">
+                {values[0].title}
+            </h3>
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-white/75">
+                {values[0].description}
+            </p>
+        </div>
+    </motion.div>
 
-                    {/* RIGHT — three stacked tiles */}
-                    <div className="flex flex-col gap-5">
-                        {values.slice(1).map((value, index) => {
-                            const icons = [
-                                <FaBrain key="b" className="text-xl" />,
-                                <FaUsers key="u" className="text-xl" />,
-                                <FaRocket key="r" className="text-xl" />,
-                            ];
+    {/* RIGHT — three stacked tiles */}
+    <div className="flex flex-col gap-5">
+        {values.slice(1).map((value,index) => {
+            const icons = [
+                <FaBrain key="b" className="text-xl" />,
+                <FaUsers key="u" className="text-xl" />,
+                <FaRocket key="r" className="text-xl" />,
+            ];
 
-                            return (
-                                <motion.div
-                                    key={value.title}
-                                    initial={{ opacity: 0, scale: 0.98 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true, amount: 0.3 }}
-                                    transition={{
-                                        duration: 0.5,
-                                        delay: 0.1 + index * 0.08,
-                                    }}
-                                    className="group relative flex flex-1 items-start gap-5 overflow-hidden rounded-3xl border border-[#0E7CC9]/20 bg-[#FBF8FD] p-6 transition-colors duration-300 hover:border-[#0E7CC9]/40"
-                                >
-                                    {/* brass corner glow */}
-                                    <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-[#0E7CC9]/10 blur-3xl opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
+            return (
+                <motion.div
+                    key={value.title}
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{
+                        duration: 0.5,
+                        delay: 0.1 + index * 0.08,
+                    }}
+                    className="group relative flex flex-1 items-start gap-5 overflow-hidden rounded-3xl border border-[#0E7CC9]/20 bg-[#0E7CC9] p-6 transition-colors duration-300 hover:border-[#0E7CC9]/40"
+                >
+                    {/* Blue corner glow */}
+                    <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-white/10 blur-3xl opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
 
-                                    <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#0E7CC9]/20 bg-[#0E7CC9]/10 text-[#0E7CC9]">
-                                        {icons[index]}
-                                    </div>
-
-                                    <div className="relative">
-                                        <h3 className="text-lg font-semibold text-[#4B4B5A]">
-                                            {value.title}
-                                        </h3>
-                                        <p className="mt-2 text-sm leading-relaxed text-[#4B4B5A]/60">
-                                            {value.description}
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
+                    <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-white">
+                        {icons[index]}
                     </div>
-                </div>
+
+                    <div className="relative">
+                        <h3 className="text-lg font-semibold text-white">
+                            {value.title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-relaxed text-white/75">
+                            {value.description}
+                        </p>
+                    </div>
+                </motion.div>
+            );
+        })}
+    </div>
+</div>
             </section>
 
             {/* ─────────────────────────────

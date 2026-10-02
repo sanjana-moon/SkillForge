@@ -39,7 +39,7 @@ export default function Hero() {
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <Link
                 href="/courses"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#0E7CC9] to-[#7A56CE] px-8 py-4 text-base font-bold text-white shadow-lg shadow-[#0E7CC9]/25 hover:opacity-95 hover:shadow-[#0E7CC9]/40 transition-all duration-300 group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-[image:var(--brand-gradient)] px-8 py-4 text-base font-bold shadow-lg shadow-[#0E7CC9]/25 hover:opacity-95 hover:shadow-[#0E7CC9]/40 transition-all duration-300 group"
               >
                 <FaCompass className="text-lg text-white group-hover:rotate-45 transition-transform duration-300" />
                 <p className="text-white">Explore Courses</p>

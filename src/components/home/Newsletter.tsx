@@ -40,6 +40,7 @@ export default function Newsletter() {
                             {/* Slightly rounded frame with side fade */}
                             <div className="relative mx-auto aspect-[4/3] w-full max-w-[420px] overflow-hidden rounded-2xl">
                                 {/* The image itself, fading to the right */}
+
                                 <Image
                                     src="https://images.unsplash.com/photo-1677442135136-760c813028c0?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                     alt="Newsletter illustration"
@@ -48,19 +49,20 @@ export default function Newsletter() {
                                     className="object-cover"
                                     style={{
                                         WebkitMaskImage:
-                                            "linear-gradient(to right, black 0%, black 55%, transparent 100%)",
+                                            "linear-gradient(to right, black 0%, black 50%, transparent 100%)",
                                         maskImage:
-                                            "linear-gradient(to right, black 0%, black 55%, transparent 100%)",
+                                            "linear-gradient(to right, black 0%, black 50%, transparent 100%)",
                                     }}
                                     unoptimized
                                 />
 
-                                {/* Fade into the card background on the right edge */}
+
+                                {/* Fade into the blue card background on the right edge */}
                                 <div
                                     className="pointer-events-none absolute inset-y-0 right-0 w-1/2"
                                     style={{
                                         background:
-                                            "linear-gradient(to right, transparent, #FBF8FD 90%)",
+                                            "linear-gradient(to right, transparent, #0E7CC9 90%)",
                                     }}
                                 />
                             </div>
@@ -109,7 +111,7 @@ export default function Newsletter() {
 
                                 <button
                                     type="submit"
-                                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-[#0E7CC9] to-[#7A56CE] px-6 py-3.5 text-sm font-bold text-[#FFFFFF] shadow-md shadow-[#0E7CC9]/20 transition duration-200 hover:opacity-95 sm:py-3 self-stretch sm:self-start"
+                                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[image:var(--brand-gradient)] px-6 py-3.5 text-sm shadow-md shadow-[#0E7CC9]/20 transition duration-200 hover:opacity-95 sm:py-3 self-stretch sm:self-start"
                                 >
                                     <FaPaperPlane className="text-xs" />
                                     Subscribe
