@@ -92,17 +92,17 @@ export default function Footer() {
 
           {/* Social Icons — moved from the brand column */}
           <div className="sm:mt-0 flex items-center gap-3">
-            <a href="#" className="p-2 bg-[#FBF8FD] rounded-lg hover:text-[#0E7CC9] hover:bg-[#0E7CC9]/10 border border-[#0E7CC9]/5 transition duration-200">
-              <FaTwitter className="text-base" />
+            <a href="#" className="p-2 bg-[#FBF8FD] rounded-lg hover:border-2 hover:border-white hover:bg-[#0E7CC9]/10 border border-[#0E7CC9]/5 transition duration-200">
+              <FaTwitter className="text-[#0E7CC9] hover:text-white" />
             </a>
-            <a href="#" className="p-2 bg-[#FBF8FD] rounded-lg hover:text-[#0E7CC9] hover:bg-[#0E7CC9]/10 border border-[#0E7CC9]/5 transition duration-200">
-              <FaGithub className="text-base" />
+            <a href="#" className="p-2 bg-[#FBF8FD] rounded-lg hover:border-2 hover:border-white hover:bg-[#0E7CC9]/10  border border-[#0E7CC9]/5 transition duration-200">
+              <FaGithub className="text-[#0E7CC9] hover:text-white" />
             </a>
-            <a href="#" className="p-2 bg-[#FBF8FD] rounded-lg hover:text-[#0E7CC9] hover:bg-[#0E7CC9]/10 border border-[#0E7CC9]/5 transition duration-200">
-              <FaLinkedin className="text-base" />
+            <a href="#" className="p-2 bg-[#FBF8FD] rounded-lg hover:border-2 hover:border-white hover:bg-[#0E7CC9]/10  border border-[#0E7CC9]/5 transition duration-200">
+              <FaLinkedin className="text-[#0E7CC9] hover:text-white" />
             </a>
-            <a href="#" className="p-2 bg-[#FBF8FD] rounded-lg hover:text-[#0E7CC9] hover:bg-[#0E7CC9]/10 border border-[#0E7CC9]/5 transition duration-200">
-              <FaYoutube className="text-base" />
+            <a href="#" className="p-2 bg-[#FBF8FD] rounded-lg hover:border-2 hover:border-white hover:bg-[#0E7CC9]/10  border border-[#0E7CC9]/5 transition duration-200">
+              <FaYoutube className="text-[#0E7CC9] hover:text-white" />
             </a>
           </div>
         </div>
