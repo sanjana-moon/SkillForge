@@ -228,7 +228,7 @@ export const getCourseContent = async (courseId: string): Promise<CourseContent>
         return response.content || { lessons: [] };
     } catch (error) {
         console.error("Error fetching course content:", error);
-        return { lessons: [] };
+        throw error;   // ← no longer hides failures
     }
 };
 
