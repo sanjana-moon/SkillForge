@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FaGithub, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa6";
-import logo from "@/components/assets/images/Logo (2).png";
+import logo from "@/components/assets/images/Logoo.png";
 import Image from "next/image";
 
 export default function Footer() {
@@ -92,7 +92,7 @@ export default function Footer() {
 
           {/* Social Icons — moved from the brand column */}
           <div className="sm:mt-0 flex items-center gap-3">
-            <a href="#" className="p-2 bg-[#FBF8FD] rounded-lg hover:border-2 hover:border-white hover:bg-[#0E7CC9]/10 border border-[#0E7CC9]/5 transition duration-200">
+            <a href="#" className="p-2 bg-[#FBF8FD] rounded-lg hover:border-2 hover:border-white hover:bg-[#0E7CC9]/10  border border-[#0E7CC9]/5 transition duration-200">
               <FaTwitter className="text-[#0E7CC9] hover:text-white" />
             </a>
             <a href="#" className="p-2 bg-[#FBF8FD] rounded-lg hover:border-2 hover:border-white hover:bg-[#0E7CC9]/10  border border-[#0E7CC9]/5 transition duration-200">

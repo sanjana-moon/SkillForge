@@ -21,7 +21,7 @@ import { FaRobot } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
-import logo from "@/components/assets/images/Logo (2).png";
+import logo from "@/components/assets/images/Logooo.png";
 
 interface DashboardLink {
     key: string;

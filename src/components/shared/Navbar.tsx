@@ -12,7 +12,7 @@ import { LuUserRoundPlus } from "react-icons/lu";
 import Image from "next/image";
 import Link from "next/link";
 
-import logo from "@/components/assets/images/Logo (2).png";
+import logo from "@/components/assets/images/Logooo.png";
 import { authClient } from "@/lib/auth-client";
 import { useMyRole } from "@/lib/hooks/useCourses";
 import { AnimatePresence, motion } from "framer-motion";
