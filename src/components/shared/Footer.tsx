@@ -32,9 +32,9 @@ export default function Footer() {
 
           {/* Column 2: Quick Links */}
           <div>
-            <h3 className="text-sm font-bold font-mono text-[#FFFFFF] tracking-wider uppercase mb-4">
+            <p className="text-sm font-bold font-mono text-[#FFFFFF] tracking-wider uppercase mb-4">
               Explore
-            </h3>
+            </p>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/" className="hover:text-[#FFFFFF] transition">Home</Link>
@@ -53,9 +53,9 @@ export default function Footer() {
 
           {/* Column 3: Platform */}
           <div>
-            <h3 className="text-sm font-bold font-mono text-[#FFFFFF] tracking-wider uppercase mb-4">
+            <p className="text-sm font-bold font-mono text-[#FFFFFF] tracking-wider uppercase mb-4">
               Support
-            </h3>
+            </p>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/about" className="hover:text-[#FFFFFF] transition">About Us</Link>
@@ -74,9 +74,9 @@ export default function Footer() {
 
           {/* Column 4: Contact/Info */}
           <div>
-            <h3 className="text-sm font-bold font-mono text-[#FFFFFF] tracking-wider uppercase mb-4">
+            <p className="text-sm font-bold font-mono text-[#FFFFFF] tracking-wider uppercase mb-4">
               Get in Touch
-            </h3>
+            </p>
             <p className="text-sm leading-relaxed text-[#FFFFFF]/75">
               Have questions or suggestions? Reach out to our support team.
             </p>
