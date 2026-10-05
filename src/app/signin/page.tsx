@@ -169,10 +169,10 @@ const SigninPage = () => {
                 {/* Google Sign In */}
                 <Button
                     onClick={handleGoogleLogin}
-                    className="w-full rounded-md border border-[#0E7CC9]/30 py-6 text-[#4B4B5A] hover:bg-[#FFFFFF]/50"
+                    className="w-full rounded-md border border-[#0E7CC9]/30 py-6 text-white! hover:text-[#0E7CC9]! hover:bg-[#FFFFFF]/50"
                 >
-                    <FaGoogle className="mr-2 text-lg text-[#0E7CC9]" />
-                    Continue with Google
+                    <FaGoogle className="mr-2 text-lg" />
+                    <p>Continue with Google</p>
                 </Button>
 
                 {/* Register Link */}
@@ -180,7 +180,7 @@ const SigninPage = () => {
                     Don't have an account yet?{" "}
                     <Link
                         href="/signup"
-                        className="font-semibold text-[#0E7CC9] hover:text-[#0E7CC9]/80 hover:underline"
+                        className="font-semibold !text-[#0E7CC9] hover:!text-[#0E7CC9]/80 hover:underline"
                     >
                         Create an Account
                     </Link>

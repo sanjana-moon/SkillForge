@@ -14,8 +14,6 @@ import {
     IoMdMenu,
     IoMdClose,
     IoMdHome,
-    IoMdArrowBack,
-    IoMdArrowForward,
 } from "react-icons/io";
 import { FaRobot } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
@@ -61,7 +59,6 @@ const getLinksForRole = (role?: string): DashboardLink[] => {
 const DashboardSidebar = () => {
     const pathname = usePathname();
     const router = useRouter();
-    const [isCollapsed, setIsCollapsed] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
 
@@ -139,7 +136,6 @@ const DashboardSidebar = () => {
             <motion.aside
                 initial={false}
                 animate={{
-                    width: isCollapsed ? 88 : 280,
                     x:
                         typeof window !== "undefined" &&
                         window.innerWidth < 1024
@@ -149,7 +145,7 @@ const DashboardSidebar = () => {
                             : 0,
                 }}
                 transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
-                className="fixed left-0 top-0 z-40 h-full bg-[#FFFFFF] border-r border-[#FBF8FD] shadow-2xl flex flex-col overflow-hidden"
+                className="fixed left-0 top-0 z-40 h-full w-70 bg-[#FFFFFF] border-r border-[#FBF8FD] shadow-2xl flex flex-col overflow-hidden"
             >
                 {/* Header Section (Logo Only) */}
                 <div className="flex items-center justify-between px-5 py-4 border-b border-[#FBF8FD] min-h-18">
@@ -162,25 +158,11 @@ const DashboardSidebar = () => {
                             className="h-auto object-contain rounded-lg"
                         />
                     </Link>
-
-                    {!isMobileOpen && (
-                        <button
-                            onClick={() => setIsCollapsed(!isCollapsed)}
-                            aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-                            className="hidden lg:flex items-center justify-center w-7 h-7 rounded-lg border border-[#0E7CC9] text-[#4B4B5A] hover:text-[#4B4B5A] hover:bg-[#FBF8FD] transition-colors"
-                        >
-                            {isCollapsed ? (
-                                <IoMdArrowForward className="text-sm" />
-                            ) : (
-                                <IoMdArrowBack className="text-sm" />
-                            )}
-                        </button>
-                    )}
                 </div>
 
                 {/* User Profile Area */}
                 <div className="p-4 border-b border-[#FBF8FD] bg-linear-to-b from-transparent to-[#FBF8FD]/20">
-                    <div className={`flex items-center gap-3 ${isCollapsed ? "justify-center" : ""}`}>
+                    <div className="flex items-center gap-3">
                         <div className="relative shrink-0">
                             <Image
                                 src={user?.image ?? "/default-avatar.png"}
@@ -192,26 +174,14 @@ const DashboardSidebar = () => {
                             <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-[#FFFFFF] rounded-full" />
                         </div>
 
-                        <AnimatePresence mode="popLayout">
-                            {!isCollapsed && (
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    className="flex-1 min-w-0"
-                                >
-                                    <p className="text-[#4B4B5A] text-sm font-semibold truncate leading-tight">
-                                        {user?.name}
-                                    </p>
-                                    {/* <p className="text-[#4B4B5A] text-xs truncate mt-0.5">
-                                        {user?.email}
-                                    </p> */}
-                                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-medium bg-[#0E7CC9]/10 text-[#7A56CE] border border-[#0E7CC9]/20 capitalize mt-1.5 tracking-wider">
-                                        {role}
-                                    </span>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
+                        <div className="flex-1 min-w-0">
+                            <p className="text-[#4B4B5A] text-sm font-semibold truncate leading-tight">
+                                {user?.name}
+                            </p>
+                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-medium bg-[#0E7CC9]/10 text-[#7A56CE] border border-[#0E7CC9]/20 capitalize mt-1.5 tracking-wider">
+                                {role}
+                            </span>
+                        </div>
                     </div>
                 </div>
 
@@ -233,7 +203,6 @@ const DashboardSidebar = () => {
                                             ? "bg-linear-to-r from-[#7A56CE]/15 to-[#7A56CE]/5 text-[#7A56CE] font-medium border border-[#0E7CC9]/20"
                                             : "text-[#4B4B5A] hover:text-[#4B4B5A] hover:bg-[#FBF8FD]/60 border border-transparent"
                                     }
-                                    ${isCollapsed ? "justify-center px-0" : ""}
                                 `}
                             >
                                 {active && (
@@ -256,18 +225,9 @@ const DashboardSidebar = () => {
                                     }`}
                                 />
 
-                                <AnimatePresence mode="popLayout">
-                                    {!isCollapsed && (
-                                        <motion.span
-                                            initial={{ opacity: 0, x: -4 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            exit={{ opacity: 0, x: -4 }}
-                                            className="text-sm tracking-wide whitespace-nowrap"
-                                        >
-                                            {link.label}
-                                        </motion.span>
-                                    )}
-                                </AnimatePresence>
+                                <span className="text-sm tracking-wide whitespace-nowrap">
+                                    {link.label}
+                                </span>
                             </Link>
                         );
                     })}
@@ -278,49 +238,23 @@ const DashboardSidebar = () => {
                     {/* Back to Home */}
                     <Link
                         href="/"
-                        className={`
-                            flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 group
-                            text-[#4B4B5A] hover:text-[#4B4B5A] hover:bg-[#FBF8FD]/60 border border-transparent
-                            ${isCollapsed ? "justify-center px-0" : ""}
-                        `}
+                        className="flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 group text-[#4B4B5A] hover:text-[#4B4B5A] hover:bg-[#FBF8FD]/60 border border-transparent"
                     >
                         <IoMdHome className="text-xl text-[#4B4B5A] group-hover:text-[#4B4B5A] shrink-0 transition-transform group-hover:scale-105" />
-                        <AnimatePresence mode="popLayout">
-                            {!isCollapsed && (
-                                <motion.span
-                                    initial={{ opacity: 0, x: -4 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -4 }}
-                                    className="text-sm tracking-wide"
-                                >
-                                    Back to Home
-                                </motion.span>
-                            )}
-                        </AnimatePresence>
+                        <span className="text-sm tracking-wide">
+                            Back to Home
+                        </span>
                     </Link>
 
                     {/* Sign Out */}
                     <button
                         onClick={handleSignOut}
-                        className={`
-                            w-full flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200
-                            text-[#4B4B5A] hover:text-red-400 hover:bg-red-500/5 border border-transparent hover:border-red-500/10 group
-                            ${isCollapsed ? "justify-center px-0" : ""}
-                        `}
+                        className="w-full flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 text-[#4B4B5A] hover:text-red-400 hover:bg-red-500/5 border border-transparent hover:border-red-500/10 group"
                     >
                         <MdLogout className="text-xl text-[#4B4B5A] group-hover:text-red-400 shrink-0 transition-transform group-hover:-translate-x-0.5" />
-                        <AnimatePresence mode="popLayout">
-                            {!isCollapsed && (
-                                <motion.span
-                                    initial={{ opacity: 0, x: -4 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -4 }}
-                                    className="text-sm font-medium tracking-wide"
-                                >
-                                    Logout
-                                </motion.span>
-                            )}
-                        </AnimatePresence>
+                        <span className="text-sm font-medium tracking-wide">
+                            Logout
+                        </span>
                     </button>
                 </div>
             </motion.aside>

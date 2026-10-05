@@ -256,9 +256,9 @@ export default function SignUpPage() {
 
                 <Button
                     onClick={handleGoogleSignin}
-                    className="w-full rounded-md border border-[#0E7CC9]/30 py-6 text-[#4B4B5A] hover:bg-[#FFFFFF]/50"
+                    className="w-full rounded-md border border-[#0E7CC9]/30 py-6 text-white! hover:text-[#0E7CC9]! hover:bg-[#FFFFFF]/50"
                 >
-                    <FaGoogle className="mr-2 text-lg text-[#0E7CC9]" />
+                    <FaGoogle className="mr-2 text-lg" />
                     Continue with Google
                 </Button>
 
@@ -266,7 +266,7 @@ export default function SignUpPage() {
                     Already have an account?{" "}
                     <Link
                         href="/signin"
-                        className="font-semibold text-[#0E7CC9] hover:text-[#0E7CC9]/80"
+                        className="font-semibold text-[#0E7CC9]! hover:text-[#0E7CC9]/80! hover:underline"
                     >
                         Signin
                     </Link>
