@@ -228,7 +228,7 @@ export default function StudentClient({
                                                     )}
                                                 </div>
                                             </div>
-                                            <Link href={`/courses/${course.courseId}`}>
+                                            <Link href={`/courses/${enrollment.courseId}/content`}>
                                                 <Button
                                                     isIconOnly
                                                     size="sm"
@@ -240,7 +240,7 @@ export default function StudentClient({
                                         </div>
                                         <div className="mt-3">
                                             <div className="w-full h-2 bg-[#FFFFFF] rounded-full overflow-hidden">
-                                                <div 
+                                                <div
                                                     className={`h-full rounded-full transition-all duration-500 ${getProgressBarColor(course.progress)}`}
                                                     style={{ width: `${course.progress}%` }}
                                                 />
