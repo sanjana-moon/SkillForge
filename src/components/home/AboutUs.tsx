@@ -21,22 +21,22 @@ export default function AboutPage() {
         {
             value: "50K+",
             label: "Students Enrolled",
-            icon: <FaUsers className="text-teal" />,
+            icon: <FaUsers className="text-accent" />,
         },
         {
             value: "200+",
             label: "Courses Available",
-            icon: <FaBookOpen className="text-teal" />,
+            icon: <FaBookOpen className="text-accent" />,
         },
         {
             value: "98%",
             label: "Satisfaction Rate",
-            icon: <FaAward className="text-teal" />,
+            icon: <FaAward className="text-accent" />,
         },
         {
             value: "24/7",
             label: "AI Support",
-            icon: <FaRobot className="text-teal" />,
+            icon: <FaRobot className="text-accent" />,
         },
     ];
 
@@ -107,33 +107,30 @@ export default function AboutPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-white">
-            {/* ─────────────────────────────
-                HERO
-            ───────────────────────────── */}
+        <div className="min-h-screen bg-main">
+            {/* HERO */}
             <section className="relative overflow-hidden">
-                <div className="absolute inset-0 bg-linear-to-br from-teal/10 via-transparent to-transparent" />
-                <div className="absolute top-20 left-10 h-64 w-64 rounded-full bg-teal/5 blur-3xl" />
-                <div className="absolute bottom-20 right-10 h-96 w-96 rounded-full bg-teal/5 blur-3xl" />
+                <div className="absolute inset-0 bg-linear-to-br from-accent/10 via-transparent to-transparent" />
+                <div className="absolute top-20 left-10 h-64 w-64 rounded-full bg-accent/5 blur-3xl" />
+                <div className="absolute bottom-20 right-10 h-96 w-96 rounded-full bg-accent/5 blur-3xl" />
 
-                <div className="container relative mx-auto px-4 py-20 md:py-28">
+                <div className="section-container relative">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                         className="mx-auto max-w-4xl text-center"
                     >
-                        <Chip className="mb-6 border border-teal/20 bg-teal/10 px-4 py-2 text-sm font-medium text-teal">
+                        <Chip className="mb-6 border border-main bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
                             About SkillForge
                         </Chip>
-                        <h1 className="text-4xl font-bold leading-tight text-navy md:text-6xl">
+                        <h1 className="text-4xl font-bold leading-tight text-main md:text-6xl">
                             Empowering Learners Through
-                            <span className="text-teal">
-                                {" "}
-                                AI-Powered Education
+                            <span className="text-accent">
+                                {" "}AI-Powered Education
                             </span>
                         </h1>
-                        <p className="mx-auto mt-6 max-w-2xl text-lg text-navy/60">
+                        <p className="mx-auto mt-6 max-w-2xl text-lg text-main/60">
                             We're on a mission to make quality education
                             accessible to everyone, using artificial
                             intelligence to create personalized, engaging
@@ -141,13 +138,13 @@ export default function AboutPage() {
                         </p>
                         <div className="mt-8 flex flex-wrap justify-center gap-4">
                             <Link href="/courses">
-                                <Button className="bg-[image:var(--brand-gradient)] font-semibold text-white hover:opacity-90">
+                                <Button className="bg-action-primary font-semibold hover:opacity-90">
                                     Explore Courses
                                     <FaArrowRight className="ml-2" />
                                 </Button>
                             </Link>
                             <Link href="/contact">
-                                <Button className="border border-teal/30 text-navy hover:bg-teal/10 bg-transparent">
+                                <Button className="border border-accent/30 text-main hover:bg-accent/10 bg-transparent">
                                     Get in Touch
                                 </Button>
                             </Link>
@@ -156,23 +153,21 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* ─────────────────────────────
-                MISSION
-            ───────────────────────────── */}
-            <section className="container mx-auto px-4 py-16">
+            {/* MISSION */}
+            <section className="section-container">
                 <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <Chip className="mb-4 border border-teal/20 bg-teal/10 px-4 py-2 text-sm font-medium text-teal">
+                        <Chip className="mb-4 border border-main bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
                             Our Mission
                         </Chip>
-                        <h2 className="text-3xl font-bold text-navy md:text-4xl">
+                        <h2 className="text-3xl font-bold text-main md:text-4xl">
                             Making Quality Education Accessible
                         </h2>
-                        <p className="mt-4 text-base leading-relaxed text-navy/60">
+                        <p className="mt-4 text-base leading-relaxed text-main/60">
                             At SkillForge, we believe that everyone deserves
                             access to high-quality education. Our platform
                             combines expert-led courses with cutting-edge AI
@@ -187,8 +182,8 @@ export default function AboutPage() {
                                 "Supportive community of learners",
                             ].map((item, index) => (
                                 <div key={index} className="flex items-center gap-3">
-                                    <FaCheckCircle className="shrink-0 text-sm text-teal" />
-                                    <span className="text-sm text-navy/70">
+                                    <FaCheckCircle className="shrink-0 text-sm text-accent" />
+                                    <span className="text-sm text-main/70">
                                         {item}
                                     </span>
                                 </div>
@@ -200,11 +195,11 @@ export default function AboutPage() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="rounded-2xl border border-teal/20 bg-white p-8"
+                        className="rounded-2xl border border-main bg-surface p-8"
                     >
                         <div className="mb-4 flex items-center gap-3">
-                            <FaGlobe className="text-2xl text-teal" />
-                            <h3 className="text-xl font-bold text-navy">
+                            <FaGlobe className="text-2xl text-accent" />
+                            <h3 className="text-xl font-bold text-main">
                                 Our Impact
                             </h3>
                         </div>
@@ -228,16 +223,16 @@ export default function AboutPage() {
                             ].map((item) => (
                                 <div key={item.label}>
                                     <div className="mb-1 flex justify-between text-sm">
-                                        <span className="text-navy/60">
+                                        <span className="text-main/60">
                                             {item.label}
                                         </span>
-                                        <span className="font-medium text-teal">
+                                        <span className="font-medium text-accent">
                                             {item.value}
                                         </span>
                                     </div>
-                                    <div className="h-2 w-full overflow-hidden rounded-full bg-white">
+                                    <div className="h-2 w-full overflow-hidden rounded-full bg-main">
                                         <div
-                                            className="h-full rounded-full bg-[image:var(--brand-gradient)]"
+                                            className="h-full rounded-full bg-action-primary"
                                             style={{ width: item.width }}
                                         />
                                     </div>
@@ -248,37 +243,34 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* ─────────────────────────────
-                CORE VALUES — Bento with full-height image
-            ───────────────────────────── */}
-            <section className="container mx-auto px-4 py-16">
+            {/* CORE VALUES */}
+            <section className="section-container">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     className="mb-12 text-center"
                 >
-                    <Chip className="mb-4 border border-teal/20 bg-teal/10 px-4 py-2 text-sm font-medium text-teal">
+                    <Chip className="mb-4 border border-main bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
                         Core Values
                     </Chip>
-                    <h2 className="text-3xl font-bold text-navy md:text-4xl">
+                    <h2 className="text-3xl font-bold text-main md:text-4xl">
                         What Drives Us
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-navy/60">
+                    <p className="mx-auto mt-4 max-w-2xl text-main/60">
                         Our values shape everything we do, from the courses we
                         create to the community we build.
                     </p>
                 </motion.div>
 
-                {/* 2-column bento: image spans full height of the 3 right-side tiles */}
                 <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                    {/* LEFT — full-height image tile (spans all 3 rows) */}
+                    {/* LEFT — full-height image tile */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.98 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.6 }}
-                        className="group relative min-h-[420px] overflow-hidden rounded-3xl border border-teal/20 lg:min-h-full"
+                        className="group relative min-h-[420px] overflow-hidden rounded-3xl border border-main lg:min-h-full"
                     >
                         <Image
                             src={values[0].image}
@@ -289,10 +281,10 @@ export default function AboutPage() {
                         />
 
                         {/* Dark gradient for text legibility */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#567C8D]/30 via-teal/10 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#2F4156]/80 via-[#2F4156]/40 to-transparent" />
 
                         {/* Corner value badge */}
-                        <div className="absolute left-6 top-6 rounded-full border border-teal/30 bg-white/70 px-3 py-1 font-mono text-xs uppercase tracking-widest text-teal backdrop-blur-sm">
+                        <div className="absolute left-6 top-6 rounded-full border border-accent/30 bg-surface/70 px-3 py-1 font-mono text-xs uppercase tracking-widest text-accent backdrop-blur-sm">
                             Value 01
                         </div>
 
@@ -326,20 +318,19 @@ export default function AboutPage() {
                                         duration: 0.5,
                                         delay: 0.1 + index * 0.08,
                                     }}
-                                    className="group relative flex flex-1 items-start gap-5 overflow-hidden rounded-3xl border border-teal/20 bg-white p-6 transition-colors duration-300 hover:border-teal/40"
+                                    className="group relative flex flex-1 items-start gap-5 overflow-hidden rounded-3xl border border-main bg-surface p-6 transition-colors duration-300 hover:border-accent/40"
                                 >
-                                    {/* brass corner glow */}
-                                    <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-teal/10 blur-3xl opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
+                                    <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-accent/10 blur-3xl opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
 
-                                    <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-teal/20 bg-teal/10 text-teal">
+                                    <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-accent/20 bg-accent/10 text-accent">
                                         {icons[index]}
                                     </div>
 
                                     <div className="relative">
-                                        <h3 className="text-lg font-semibold text-navy">
+                                        <h3 className="text-lg font-semibold text-main">
                                             {value.title}
                                         </h3>
-                                        <p className="mt-2 text-sm leading-relaxed text-navy/60">
+                                        <p className="mt-2 text-sm leading-relaxed text-main/60">
                                             {value.description}
                                         </p>
                                     </div>
@@ -350,23 +341,21 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* ─────────────────────────────
-                TEAM — portrait frames
-            ───────────────────────────── */}
-            <section className="container mx-auto px-4 py-16">
+            {/* TEAM */}
+            <section className="section-container">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     className="mb-12 text-center"
                 >
-                    <Chip className="mb-4 border border-teal/20 bg-teal/10 px-4 py-2 text-sm font-medium text-teal">
+                    <Chip className="mb-4 border border-main bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
                         Meet the Team
                     </Chip>
-                    <h2 className="text-3xl font-bold text-navy md:text-4xl">
+                    <h2 className="text-3xl font-bold text-main md:text-4xl">
                         Passionate People, Powerful Results
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-navy/60">
+                    <p className="mx-auto mt-4 max-w-2xl text-main/60">
                         Behind SkillForge is a team of dedicated educators,
                         engineers, and innovators committed to transforming
                         education.
@@ -384,9 +373,9 @@ export default function AboutPage() {
                             className="group flex flex-col items-center text-center"
                         >
                             <div className="relative mb-5">
-                                <div className="pointer-events-none absolute inset-0 rounded-full bg-teal/25 opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+                                <div className="pointer-events-none absolute inset-0 rounded-full bg-accent/25 opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
 
-                                <div className="relative h-40 w-40 overflow-hidden rounded-full border-2 border-teal/40 transition-transform duration-500 group-hover:scale-105">
+                                <div className="relative h-40 w-40 overflow-hidden rounded-full border-2 border-accent/40 transition-transform duration-500 group-hover:scale-105">
                                     <Image
                                         src={member.image}
                                         alt={member.name}
@@ -397,13 +386,13 @@ export default function AboutPage() {
                                 </div>
                             </div>
 
-                            <h3 className="text-lg font-semibold text-navy">
+                            <h3 className="text-lg font-semibold text-main">
                                 {member.name}
                             </h3>
-                            <p className="text-sm font-medium text-teal">
+                            <p className="text-sm font-medium text-accent">
                                 {member.role}
                             </p>
-                            <p className="mt-2 max-w-[220px] text-xs leading-relaxed text-navy/50">
+                            <p className="mt-2 max-w-[220px] text-xs leading-relaxed text-main/50">
                                 {member.bio}
                             </p>
                         </motion.div>
@@ -411,10 +400,8 @@ export default function AboutPage() {
                 </div>
             </section>
             
-            {/* ─────────────────────────────
-                STATS — bottom of the page
-            ───────────────────────────── */}
-            <section className="container mx-auto px-4 pb-20 pt-8">
+            {/* STATS */}
+            <section className="section-container pt-8 pb-20">
                 <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
                     {stats.map((stat, index) => (
                         <motion.div
@@ -423,17 +410,17 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ delay: index * 0.08 }}
-                            className="rounded-2xl border border-teal/20 bg-white p-6 text-center transition-all duration-300 hover:border-teal/40"
+                            className="rounded-2xl border border-main bg-surface p-6 text-center transition-all duration-300 hover:border-accent/40"
                         >
                             <div className="mb-3 flex justify-center">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal/10">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10">
                                     {stat.icon}
                                 </div>
                             </div>
-                            <p className="text-3xl font-bold text-navy">
+                            <p className="text-3xl font-bold text-main">
                                 {stat.value}
                             </p>
-                            <p className="mt-1 text-sm text-navy/50">
+                            <p className="mt-1 text-sm text-main/50">
                                 {stat.label}
                             </p>
                         </motion.div>
@@ -441,33 +428,31 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* ─────────────────────────────
-                CTA
-            ───────────────────────────── */}
-            <section className="container mx-auto px-4 py-16">
+            {/* CTA */}
+            <section className="section-container">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="rounded-3xl border border-teal/20 bg-linear-to-br from-teal/10 via-teal/5 to-transparent p-12 text-center"
+                    className="rounded-3xl border border-main bg-linear-to-br from-accent/10 via-accent/5 to-transparent p-12 text-center"
                 >
-                    <h2 className="text-3xl font-bold text-navy md:text-4xl">
+                    <h2 className="text-3xl font-bold text-main md:text-4xl">
                         Ready to Start Learning?
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-navy/60">
+                    <p className="mx-auto mt-4 max-w-2xl text-main/60">
                         Join thousands of students who are already advancing
                         their careers with SkillForge. Start your learning
                         journey today.
                     </p>
                     <div className="mt-8 flex flex-wrap justify-center gap-4">
                         <Link href="/courses">
-                            <Button className="rounded-xl bg-[image:var(--brand-gradient)] px-8 py-6 text-lg font-semibold text-white hover:opacity-90">
+                            <Button className="rounded-xl bg-action-primary px-8 py-6 text-lg font-semibold hover:opacity-90">
                                 Explore Courses
                                 <FaArrowRight className="ml-2" />
                             </Button>
                         </Link>
                         <Link href="/contact">
-                            <Button className="rounded-xl border border-teal/30 px-8 py-6 text-lg text-navy hover:bg-teal/10 bg-transparent">
+                            <Button className="rounded-xl border border-accent/30 px-8 py-6 text-lg text-main hover:bg-accent/10 bg-transparent">
                                 Contact Us
                             </Button>
                         </Link>
