@@ -48,8 +48,8 @@ const Navbar = () => {
 
     const navLinkClass = (href: string) =>
         pathname === href
-            ? "text-[#0E7CC9] border-b-2 border-[#0E7CC9] font-semibold pb-1"
-            : "text-[#4B4B5A]/70 hover:text-[#4B4B5A] transition-colors";
+            ? "text-accent border-b-2 border-accent font-semibold pb-1"
+            : "text-main/70 hover:text-main transition-colors";
 
     // Public routes (visible to everyone) — My Courses inserted for students
     const publicNavLinks = [
@@ -59,7 +59,7 @@ const Navbar = () => {
         ...(role === "student"
             ? [{ href: "/dashboard/student/my-courses", label: "My Courses" }]
             : []),
-            ];
+    ];
 
     let dashboardLinks: {
         key: string;
@@ -91,10 +91,11 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="sticky top-0 z-50 w-full bg-[#FFFFFF]/95 backdrop-blur-md border-b border-[#0E7CC9]/20 shadow-lg">
-            <div className="mx-auto flex container items-center justify-between px-4 py-2">
+        <nav className="sticky top-0 z-50 w-full bg-surface/95 backdrop-blur-md border-b border-main shadow-lg">
+            {/* Applied section-container with !py-2 to override the large section padding */}
+            <div className="section-container !py-2 flex items-center justify-between">
                 {/* LOGO */}
-                <Link href="/" className="">
+                <Link href="/">
                     <Image
                         src={logo}
                         alt="SkillForge"
@@ -126,18 +127,18 @@ const Navbar = () => {
 
                     {user && dashboardLinks.length > 0 && (
                         <li className="relative group">
-                            <button className="text-[#4B4B5A]/70 hover:text-[#4B4B5A] transition-colors flex items-center gap-2">
+                            <button className="text-main/70 hover:text-main transition-colors flex items-center gap-2">
                                 Dashboard
                             </button>
 
-                            <div className="absolute left-0 top-full hidden min-w-56 rounded-xl border border-[#0E7CC9]/20 bg-[#FBF8FD] shadow-2xl group-hover:block overflow-hidden">
+                            <div className="absolute left-0 top-full hidden min-w-56 rounded-xl border border-main bg-surface shadow-2xl group-hover:block overflow-hidden">
                                 {dashboardLinks.map((item) => (
                                     <Link
                                         key={item.key}
                                         href={item.href}
-                                        className="flex items-center gap-3 px-5 py-3 text-[#4B4B5A]/70 hover:bg-[#0E7CC9]/10 hover:text-[#4B4B5A] transition-colors"
+                                        className="flex items-center gap-3 px-5 py-3 text-main/70 hover:bg-alt hover:text-main transition-colors"
                                     >
-                                        {item.icon && <item.icon className="text-[#0E7CC9]" />}
+                                        {item.icon && <item.icon className="text-accent" />}
                                         {item.label}
                                     </Link>
                                 ))}
@@ -152,7 +153,7 @@ const Navbar = () => {
                     <div className="hidden lg:flex items-center gap-3">
                         {isMounted && user ? (
                             <>
-                                <span className="font-medium text-[#4B4B5A]">
+                                <span className="font-medium text-main">
                                     Hi, {user.name}
                                 </span>
 
@@ -161,7 +162,7 @@ const Navbar = () => {
                                     alt={user.name ?? "User"}
                                     width={40}
                                     height={40}
-                                    className="border-2 border-[#0E7CC9] rounded-full object-cover"
+                                    className="border-2 border-accent rounded-full object-cover"
                                 />
 
                                 <MotionButton
@@ -169,7 +170,7 @@ const Navbar = () => {
                                     whileTap={{ scale: 0.95 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 15 }}
                                     onClick={handleSignOut}
-                                    className="bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold rounded-md hover:opacity-90"
+                                    className="bg-action-primary font-semibold rounded-md hover:opacity-90"
                                 >
                                     <MdLogout />
                                     Logout
@@ -182,7 +183,7 @@ const Navbar = () => {
                                         whileHover={{ scale: 1.05, y: -2 }}
                                         whileTap={{ scale: 0.95 }}
                                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                                        className="bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold hover:opacity-90"
+                                        className="bg-action-primary font-semibold hover:opacity-90"
                                     >
                                         <MdLogin />
                                         Sign In
@@ -194,7 +195,7 @@ const Navbar = () => {
                                         whileHover={{ scale: 1.05, y: -2 }}
                                         whileTap={{ scale: 0.95 }}
                                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                                        className="border border-[#0E7CC9] text-[#4B4B5A] bg-transparent hover:bg-[#0E7CC9]/10"
+                                        className="border border-accent text-main bg-transparent hover:bg-alt"
                                     >
                                         <LuUserRoundPlus />
                                         Sign Up
@@ -208,13 +209,13 @@ const Navbar = () => {
                     <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        className="lg:hidden text-[#4B4B5A]"
+                        className="lg:hidden text-main"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
                         {isMenuOpen ? (
-                            <RxCross2 className="text-2xl text-[#0E7CC9]" />
+                            <RxCross2 className="text-2xl text-accent" />
                         ) : (
-                            <TfiAlignLeft className="text-2xl text-[#0E7CC9]" />
+                            <TfiAlignLeft className="text-2xl text-accent" />
                         )}
                     </motion.button>
 
@@ -231,10 +232,10 @@ const Navbar = () => {
                                 alt={user.name ?? "User"}
                                 width={40}
                                 height={40}
-                                className="border-2 border-[#0E7CC9] rounded-full object-cover"
+                                className="border-2 border-accent rounded-full object-cover"
                             />
                         ) : (
-                            <RxAvatar className="text-3xl text-[#0E7CC9]" />
+                            <RxAvatar className="text-3xl text-accent" />
                         )}
                     </motion.button>
                 </div>
@@ -248,7 +249,7 @@ const Navbar = () => {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.25 }}
-                        className="overflow-hidden border-t border-[#0E7CC9]/20 bg-[#FFFFFF] lg:hidden"
+                        className="overflow-hidden border-t border-main bg-surface lg:hidden"
                     >
                         <ul className="flex flex-col gap-4 p-5">
                             {publicNavLinks.map((link) => (
@@ -279,8 +280,8 @@ const Navbar = () => {
 
                             {user && dashboardLinks.length > 0 && (
                                 <>
-                                    <li className="border-t border-[#0E7CC9]/20 pt-4">
-                                        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#0E7CC9]/60">
+                                    <li className="border-t border-main pt-4">
+                                        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-accent/60">
                                             Dashboard
                                         </p>
                                     </li>
@@ -313,23 +314,23 @@ const Navbar = () => {
                         transition={{ duration: 0.2 }}
                         className="absolute right-4 top-20 z-50 lg:hidden"
                     >
-                        <div className="min-w-64 rounded-2xl border border-[#0E7CC9]/20 bg-[#FBF8FD] p-5 shadow-2xl">
+                        <div className="min-w-64 rounded-2xl border border-main bg-surface p-5 shadow-2xl">
                             {user ? (
                                 <>
-                                    <div className="mb-5 flex flex-col items-center border-b border-[#0E7CC9]/20 pb-4">
+                                    <div className="mb-5 flex flex-col items-center border-b border-main pb-4">
                                         <Image
                                             src={user.image ?? "/default-avatar.png"}
                                             alt={user.name ?? "User"}
                                             width={50}
                                             height={50}
-                                            className="mb-3 border-2 border-[#0E7CC9] rounded-full object-cover"
+                                            className="mb-3 border-2 border-accent rounded-full object-cover"
                                         />
 
-                                        <h2 className="text-lg font-semibold text-[#4B4B5A]">
+                                        <h2 className="text-lg font-semibold text-main">
                                             {user.name}
                                         </h2>
 
-                                        <p className="text-sm text-[#4B4B5A]/60">
+                                        <p className="text-sm text-muted">
                                             {user.email}
                                         </p>
                                     </div>
@@ -338,7 +339,7 @@ const Navbar = () => {
                                         whileHover={{ scale: 1.03 }}
                                         whileTap={{ scale: 0.95 }}
                                         onClick={handleSignOut}
-                                        className="w-full bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold hover:opacity-90"
+                                        className="w-full bg-action-primary font-semibold hover:opacity-90"
                                     >
                                         <MdLogout />
                                         Logout
@@ -347,14 +348,14 @@ const Navbar = () => {
                             ) : (
                                 <div className="flex flex-col gap-3">
                                     <Link href="/signin">
-                                        <Button className="w-full bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold hover:opacity-90">
+                                        <Button className="w-full bg-action-primary font-semibold hover:opacity-90">
                                             <MdLogin />
                                             Sign In
                                         </Button>
                                     </Link>
 
                                     <Link href="/signup">
-                                        <Button className="w-full border border-[#0E7CC9] text-[#4B4B5A] bg-transparent hover:bg-[#0E7CC9]/10">
+                                        <Button className="w-full border border-accent text-main bg-transparent hover:bg-alt">
                                             <LuUserRoundPlus />
                                             Sign Up
                                         </Button>
