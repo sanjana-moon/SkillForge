@@ -1,80 +1,70 @@
+
 @import "tailwindcss";
 @import "@heroui/styles";
 
+/* =========================================================
+   1. DESIGN TOKENS
+========================================================= */
+
 :root {
-  --canvas: #ffffff;
-  --sub-surface: #fbf8fd;
-  --border-divider: #e4e4ef;
-  --brand-start: #0e7cc9;
-  --brand-end: #7a56ce;
-  --brand-gradient: linear-gradient(135deg, var(--brand-start), var(--brand-end));
-  --active-background: var(--brand-gradient);
-  --footer-background: var(--brand-gradient);
-  --heading-text: #171722;
-  --body-text: #4b4b5a;
-  --muted-text: #747486;
-  --on-gradient-text: #ffffff;
-  --link-accent: #0e7cc9;
+  /* Core Palette */
+  --navy: #2F4156;
+  --teal: #567C8D;
+  --sky-blue: #C8D9E6;
+  --beige: #F5EFEB;
+  --white: #FFFFFF;
 
-  --button-primary-background: var(--brand-gradient);
-  --button-primary-text: var(--on-gradient-text);
-  --button-secondary-background: var(--canvas);
-  --button-secondary-border: var(--link-accent);
-  --button-secondary-text: var(--link-accent);
-  --button-ghost-background: transparent;
-  --button-ghost-text: var(--heading-text);
-  --button-ghost-hover-text: var(--link-accent);
+  /* Semantic Colors */
+  --color-bg-main: var(--beige);
+  --color-bg-surface: var(--white);
+  --color-bg-alt: var(--sky-blue);
 
-  --primary-bg: var(--canvas);
-  --secondary-card: var(--sub-surface);
-  --primary-accent: var(--brand-start);
-  --secondary-accent: var(--brand-end);
-  --highlight-alert: var(--link-accent);
-  --primary-text: var(--heading-text);
-  --structural-footer: var(--brand-end);
-  --muted-border: var(--border-divider);
+  --color-text-main: var(--navy);
+  --color-text-muted: #6B7A8A;
+  --color-text-inverse: var(--white);
+  --color-text-accent: var(--teal);
 
-  --background: var(--canvas);
-  --surface: var(--sub-surface);
-  --primary: var(--brand-start);
-  --secondary: var(--brand-end);
-  --foreground: var(--heading-text);
-  --muted: var(--muted-text);
+  --color-border-main: var(--sky-blue);
 
+  --color-action-primary: var(--navy);
+  --color-action-secondary: var(--teal);
+
+  /* Typography */
   --font-heading: var(--font-plus-jakarta-sans);
   --font-body: var(--font-plus-jakarta-sans);
 
-  /* Radius */
+  /* Border Radius */
   --radius: 16px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
 }
 
-@theme inline {
-  /* Colors */
-  --color-background: var(--background);
-  --color-surface: var(--surface);
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-primary-bg: var(--primary-bg);
-  --color-secondary-card: var(--secondary-card);
-  --color-primary-accent: var(--primary-accent);
-  --color-secondary-accent: var(--secondary-accent);
-  --color-highlight-alert: var(--highlight-alert);
-  --color-primary-text: var(--primary-text);
-  --color-structural-footer: var(--structural-footer);
-  --color-muted-border: var(--muted-border);
-  --color-heading-text: var(--heading-text);
-  --color-body-text: var(--body-text);
-  --color-muted-text: var(--muted-text);
-  --color-link-accent: var(--link-accent);
-  --color-canvas: var(--canvas);
-  --color-sub-surface: var(--sub-surface);
-  --color-border-divider: var(--border-divider);
-  --color-brand-start: var(--brand-start);
-  --color-brand-end: var(--brand-end);
+/* =========================================================
+   2. TAILWIND THEME CONFIGURATION
+========================================================= */
 
-  /* Fonts */
+@theme inline {
+  /* Background */
+  --color-bg-main: var(--color-bg-main);
+  --color-bg-surface: var(--color-bg-surface);
+  --color-bg-alt: var(--color-bg-alt);
+
+  /* Text */
+  --color-text-main: var(--color-text-main);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-inverse: var(--color-text-inverse);
+  --color-text-accent: var(--color-text-accent);
+
+  /* Borders */
+  --color-border-main: var(--color-border-main);
+
+  /* Actions */
+  --color-action-primary: var(--color-action-primary);
+  --color-action-secondary: var(--color-action-secondary);
+
+  /* Typography */
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);
 
@@ -82,20 +72,32 @@
   --radius-lg: var(--radius);
 }
 
+/* =========================================================
+   3. GLOBAL RESET
+========================================================= */
+
 * {
   @apply box-border;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
-  @apply bg-background text-foreground;
-  background-color: var(--canvas);
-  color: var(--body-text);
+  margin: 0;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
   font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* =========================================================
+   4. GLOBAL TYPOGRAPHY
+========================================================= */
 
 h1,
 h2,
@@ -103,8 +105,10 @@ h3,
 h4,
 h5,
 h6 {
+  margin-top: 0;
   font-family: var(--font-heading);
-  color: var(--heading-text);
+  color: var(--color-text-main);
+  line-height: 1.2;
 }
 
 p,
@@ -118,20 +122,79 @@ a {
   color: inherit;
 }
 
+a {
+  text-decoration: none;
+}
+
+/* =========================================================
+   5. GLOBAL INTERACTIONS & ACCESSIBILITY
+========================================================= */
+
 button {
   cursor: pointer;
 }
 
-button[class~="bg-[image:var(--brand-gradient)]"],
-a[class~="bg-[image:var(--brand-gradient)]"],
-[role="button"][class~="bg-[image:var(--brand-gradient)]"],
-button[class~="bg-[image:var(--brand-gradient)]"] *,
-a[class~="bg-[image:var(--brand-gradient)]"] *,
-[role="button"][class~="bg-[image:var(--brand-gradient)]"] * {
-  color: var(--on-gradient-text) !important;
+button:disabled {
+  cursor: not-allowed;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-action-secondary);
+  outline-offset: 3px;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--brand-start) 25%, transparent);
-  color: var(--heading-text);
+  background-color: var(--color-bg-alt);
+  color: var(--color-text-main);
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   6. REUSABLE LAYOUT COMPONENTS
+========================================================= */
+
+@layer components {
+  /* Standard Section Container */
+  .section-container {
+    @apply w-full mx-auto px-4 py-16 md:px-8 lg:py-24;
+    max-width: 1280px;
+  }
+
+  /* Backward Compatibility */
+  .global-pos {
+    @apply w-full mx-auto px-4 py-16 md:px-8 lg:py-24;
+    max-width: 1280px;
+  }
+
+  /* Full Width Section */
+  .section-fullwidth {
+    @apply w-full;
+  }
+}
+
+/* =========================================================
+   7. HEROUI COMPONENT OVERRIDES
+========================================================= */
+
+/* Ensure readable text inside primary action backgrounds */
+.bg-action-primary,
+.bg-action-primary * {
+  color: #FFFFFF !important;
+}
+
+/* SVG icon color */
+.bg-action-primary svg {
+  fill: #FFFFFF;
+  stroke: #FFFFFF;
 }
