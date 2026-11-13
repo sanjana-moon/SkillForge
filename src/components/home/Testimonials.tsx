@@ -32,17 +32,14 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-20 bg-white relative border-t border-teal/10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="bg-main border-t border-main">
+      <div className="section-container">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-navy">
-            What Our{" "}
-            <span className="bg-gradient-to-r from-teal to-teal bg-clip-text text-transparent">
-              Community Says
-            </span>
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-main">
+            What Our <span className="text-accent">Community Says</span>
           </h2>
-          <p className="mt-4 text-navy/70 font-body">
+          <p className="mt-4 text-main/70 font-body">
             Hear from students and creators who elevated their skills using our AI learning space.
           </p>
         </div>
@@ -52,10 +49,10 @@ export default function Testimonials() {
           {testimonials.map((test, idx) => (
             <div
               key={idx}
-              className="bg-white border border-teal/10 rounded-3xl p-8 flex flex-col justify-between shadow-lg relative group hover:border-teal/20 transition-all duration-300"
+              className="bg-surface border border-main rounded-3xl p-8 flex flex-col justify-between shadow-lg relative group hover:border-accent/20 transition-all duration-300"
             >
               {/* Quote Icon */}
-              <div className="absolute top-6 right-8 text-teal/10 text-4xl group-hover:text-teal/20 transition duration-300 pointer-events-none">
+              <div className="absolute top-6 right-8 text-accent/10 text-4xl group-hover:text-accent/20 transition duration-300 pointer-events-none">
                 <FaQuoteLeft />
               </div>
 
@@ -68,24 +65,24 @@ export default function Testimonials() {
                 </div>
 
                 {/* Quote Text */}
-                <p className="text-base text-navy/85 leading-relaxed font-body italic">
+                <p className="text-base text-main/85 leading-relaxed font-body italic">
                   "{test.quote}"
                 </p>
               </div>
 
               {/* Author Info */}
-              <div className="mt-8 pt-6 border-t border-teal/10 flex items-center gap-4">
+              <div className="mt-8 pt-6 border-t border-main flex items-center gap-4">
                 <Image
                   src={test.avatar}
                   alt={test.author}
                   width={44}
                   height={44}
-                  className="h-11 w-11 rounded-full object-cover border border-teal/20"
+                  className="h-11 w-11 rounded-full object-cover border border-main"
                 />
                 <div>
-                  <h4 className="text-sm font-bold text-navy">{test.author}</h4>
-                  <p className="text-xs text-navy/55 font-medium mt-0.5">
-                    {test.role} &middot; <span className="text-teal">{test.company}</span>
+                  <h4 className="text-sm font-bold text-main">{test.author}</h4>
+                  <p className="text-xs text-main/55 font-medium mt-0.5">
+                    {test.role} &middot; <span className="text-accent">{test.company}</span>
                   </p>
                 </div>
               </div>
@@ -96,4 +93,3 @@ export default function Testimonials() {
     </section>
   );
 }
-

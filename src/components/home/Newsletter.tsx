@@ -23,24 +23,22 @@ export default function Newsletter() {
     };
 
     return (
-        <section className="relative border-t border-teal/10 bg-white py-20">
-            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-                <div className="relative overflow-hidden rounded-3xl border border-teal/20 bg-white shadow-2xl">
+        <section className="relative border-t border-main bg-main">
+            <div className="section-container">
+                <div className="relative overflow-hidden rounded-3xl border border-main bg-surface shadow-2xl">
                     {/* Ambient background glows */}
-                    <div className="pointer-events-none absolute top-0 right-0 h-80 w-80 -translate-y-1/2 translate-x-1/2 rounded-full bg-teal/10 blur-[100px]" />
-                    <div className="pointer-events-none absolute bottom-0 left-0 h-80 w-80 translate-y-1/2 -translate-x-1/2 rounded-full bg-teal/10 blur-[100px]" />
+                    <div className="pointer-events-none absolute top-0 right-0 h-80 w-80 -translate-y-1/2 translate-x-1/2 rounded-full bg-accent/10 blur-[100px]" />
+                    <div className="pointer-events-none absolute bottom-0 left-0 h-80 w-80 translate-y-1/2 -translate-x-1/2 rounded-full bg-accent/10 blur-[100px]" />
 
                     {/* Two-column layout */}
                     <div className="relative z-10 grid grid-cols-1 items-center gap-10 px-8 py-12 sm:px-12 sm:py-16 lg:grid-cols-2 lg:gap-16 lg:px-16">
                         {/* Image side */}
                         <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
                             {/* Accent glow behind image */}
-                            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-teal/20 blur-3xl" />
+                            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-accent/20 blur-3xl" />
 
-                            {/* Slightly rounded frame with side fade */}
+                            {/* Rounded frame with side fade */}
                             <div className="relative mx-auto aspect-[4/3] w-full max-w-[420px] overflow-hidden rounded-2xl">
-                                {/* The image itself, fading to the right */}
-
                                 <Image
                                     src="https://images.unsplash.com/photo-1677442135136-760c813028c0?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                     alt="Newsletter illustration"
@@ -56,25 +54,18 @@ export default function Newsletter() {
                                     unoptimized
                                 />
 
-
-                                {/* Fade into the blue card background on the right edge */}
-                                <div
-                                    className="pointer-events-none absolute inset-y-0 right-0 w-1/2"
-                                    style={{
-                                        background:
-                                            "linear-gradient(to right, transparent, #567C8D 90%)",
-                                    }}
-                                />
+                                {/* Fade into card background on the right edge */}
+                                <div className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-[linear-gradient(to_right,transparent,var(--color-text-accent)_90%)]" />
                             </div>
                         </div>
 
                         {/* Content side */}
                         <div className="text-center lg:text-left">
-                            <h2 className="font-heading text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+                            <h2 className="font-heading text-3xl font-bold tracking-tight text-main sm:text-4xl">
                                 Stay Updated on Tech &amp; AI
                             </h2>
 
-                            <p className="mx-auto mt-4 max-w-xl font-body text-base leading-relaxed text-navy/70 lg:mx-0">
+                            <p className="mx-auto mt-4 max-w-xl font-body text-base leading-relaxed text-main/70 lg:mx-0">
                                 Subscribe to our newsletter to receive the
                                 latest roadmap templates, new course
                                 announcements, and expert AI tutorial links
@@ -99,7 +90,7 @@ export default function Newsletter() {
                                                     "Please enter a valid email address",
                                             },
                                         })}
-                                        className="w-full rounded-xl border border-teal/20 bg-white/60 px-4 py-3 text-sm text-navy placeholder-navy/40 outline-none transition duration-200 focus:border-teal"
+                                        className="w-full rounded-xl border border-main bg-main/60 px-4 py-3 text-sm text-main placeholder-main/40 outline-none transition duration-200 focus:border-accent"
                                     />
 
                                     {errors.email && (
@@ -111,7 +102,7 @@ export default function Newsletter() {
 
                                 <button
                                     type="submit"
-                                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[image:var(--brand-gradient)] px-6 py-3.5 text-sm shadow-md shadow-teal/20 transition duration-200 hover:opacity-95 sm:py-3 self-stretch sm:self-start"
+                                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-action-primary px-6 py-3.5 text-sm shadow-md shadow-accent/20 transition duration-200 hover:opacity-95 sm:py-3 self-stretch sm:self-start"
                                 >
                                     <FaPaperPlane className="text-xs" />
                                     Subscribe

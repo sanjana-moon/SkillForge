@@ -144,7 +144,7 @@ export default function AboutPage() {
                                 </Button>
                             </Link>
                             <Link href="/contact">
-                                <Button className="border border-accent/30 text-main hover:bg-accent/10 bg-transparent">
+                                <Button className="border border-[var(--royal-blue)] text-[var(--royal-blue)] hover:bg-[var(--royal-blue)]/10 bg-transparent font-semibold">
                                     Get in Touch
                                 </Button>
                             </Link>
@@ -226,7 +226,8 @@ export default function AboutPage() {
                                         <span className="text-main/60">
                                             {item.label}
                                         </span>
-                                        <span className="font-medium text-accent">
+                                        {/* Updated percentage text color to royal-blue */}
+                                        <span className="font-semibold text-[var(--royal-blue)]">
                                             {item.value}
                                         </span>
                                     </div>
@@ -281,7 +282,7 @@ export default function AboutPage() {
                         />
 
                         {/* Dark gradient for text legibility */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#2F4156]/80 via-[#2F4156]/40 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/80 via-[#0F172A]/40 to-transparent" />
 
                         {/* Corner value badge */}
                         <div className="absolute left-6 top-6 rounded-full border border-accent/30 bg-surface/70 px-3 py-1 font-mono text-xs uppercase tracking-widest text-accent backdrop-blur-sm">
@@ -452,7 +453,7 @@ export default function AboutPage() {
                             </Button>
                         </Link>
                         <Link href="/contact">
-                            <Button className="rounded-xl border border-accent/30 px-8 py-6 text-lg text-main hover:bg-accent/10 bg-transparent">
+                            <Button className="rounded-xl border border-[var(--royal-blue)] px-8 py-6 text-lg text-[var(--royal-blue)] hover:bg-[var(--royal-blue)]/10 bg-transparent font-semibold">
                                 Contact Us
                             </Button>
                         </Link>
