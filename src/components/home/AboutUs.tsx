@@ -107,9 +107,9 @@ export default function AboutPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-main">
+        <section className="bg-main">
             {/* HERO */}
-            <section className="relative overflow-hidden">
+            <div className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-linear-to-br from-accent/10 via-transparent to-transparent" />
                 <div className="absolute top-20 left-10 h-64 w-64 rounded-full bg-accent/5 blur-3xl" />
                 <div className="absolute bottom-20 right-10 h-96 w-96 rounded-full bg-accent/5 blur-3xl" />
@@ -117,7 +117,8 @@ export default function AboutPage() {
                 <div className="section-container relative">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.6 }}
                         className="mx-auto max-w-4xl text-center"
                     >
@@ -151,14 +152,15 @@ export default function AboutPage() {
                         </div>
                     </motion.div>
                 </div>
-            </section>
+            </div>
 
             {/* MISSION */}
-            <section className="section-container">
+            <div className="section-container">
                 <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.6 }}
                     >
                         <Chip className="mb-4 border border-main bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
@@ -193,7 +195,8 @@ export default function AboutPage() {
 
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="rounded-2xl border border-main bg-surface p-8"
                     >
@@ -226,7 +229,6 @@ export default function AboutPage() {
                                         <span className="text-main/60">
                                             {item.label}
                                         </span>
-                                        {/* Fixed: Uses text-accent instead of --royal-blue */}
                                         <span className="font-semibold text-accent">
                                             {item.value}
                                         </span>
@@ -242,13 +244,14 @@ export default function AboutPage() {
                         </div>
                     </motion.div>
                 </div>
-            </section>
+            </div>
 
             {/* CORE VALUES */}
-            <section className="section-container">
+            <div className="section-container">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6 }}
                     className="mb-12 text-center"
                 >
@@ -281,15 +284,12 @@ export default function AboutPage() {
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                         />
 
-                        {/* Dark gradient for text legibility */}
                         <div className="absolute inset-0 bg-gradient-to-t from-[#2F4156]/80 via-[#2F4156]/40 to-transparent" />
 
-                        {/* Corner value badge */}
                         <div className="absolute left-6 top-6 rounded-full border border-accent/30 bg-surface/70 px-3 py-1 font-mono text-xs uppercase tracking-widest text-accent backdrop-blur-sm">
                             Value 01
                         </div>
 
-                        {/* Bottom text */}
                         <div className="absolute bottom-0 left-0 right-0 p-8">
                             <h3 className="text-2xl font-bold text-white md:text-3xl">
                                 {values[0].title}
@@ -340,13 +340,14 @@ export default function AboutPage() {
                         })}
                     </div>
                 </div>
-            </section>
+            </div>
 
             {/* TEAM */}
-            <section className="section-container">
+            <div className="section-container">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6 }}
                     className="mb-12 text-center"
                 >
@@ -363,7 +364,6 @@ export default function AboutPage() {
                     </p>
                 </motion.div>
 
-                {/* Reduced gap from gap-8 to gap-4 for a tighter, more connected team grid */}
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
                     {team.map((member, index) => (
                         <motion.div
@@ -374,7 +374,6 @@ export default function AboutPage() {
                             transition={{ delay: index * 0.08 }}
                             className="group relative flex flex-col items-center overflow-hidden rounded-3xl border border-main bg-surface p-6 text-center shadow-sm transition-all duration-300 hover:border-accent/40 hover:shadow-lg"
                         >
-                            {/* Decorative accent bar at top */}
                             <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-accent/0 via-accent/50 to-accent/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                             <div className="relative mb-5">
@@ -403,10 +402,10 @@ export default function AboutPage() {
                         </motion.div>
                     ))}
                 </div>
-            </section>
-            
+            </div>
+
             {/* STATS */}
-            <section className="section-container pt-8 pb-20">
+            <div className="section-container pt-8 pb-20">
                 <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
                     {stats.map((stat, index) => (
                         <motion.div
@@ -431,13 +430,14 @@ export default function AboutPage() {
                         </motion.div>
                     ))}
                 </div>
-            </section>
+            </div>
 
             {/* CTA */}
-            <section className="section-container">
+            <div className="section-container">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6 }}
                     className="rounded-3xl border border-main bg-linear-to-br from-accent/10 via-accent/5 to-transparent p-12 text-center"
                 >
@@ -463,7 +463,7 @@ export default function AboutPage() {
                         </Link>
                     </div>
                 </motion.div>
-            </section>
-        </div>
+            </div>
+        </section>
     );
 }
