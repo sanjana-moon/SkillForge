@@ -9,21 +9,19 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[image:var(--brand-gradient)] border-t border-white/20 text-white/80 py-16 relative z-10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <footer className="bg-action-primary border-t border-white/10 relative z-10">
+      <div className="section-container !py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Column 1: Brand & Desc */}
           <div className="md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 text-xl font-bold font-heading text-white group">
-              <Link href="/" className="">
-                <Image
-                  src={logo}
-                  alt="SkillForge"
-                  width={140}
-                  height={45}
-                  className="h-12 md:h-16 w-auto"
-                />
-              </Link>
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src={logo}
+                alt="SkillForge"
+                width={140}
+                height={45}
+                className="h-12 md:h-16 w-auto"
+              />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-white/75">
               Personalized learning roadmaps, smart recommendations, and 24/7 AI mentorship designed to accelerate your tech career.
@@ -37,37 +35,53 @@ export default function Footer() {
             </p>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="hover:text-white transition">Home</Link>
+                <Link href="/" className="text-white/80 hover:text-white transition">
+                  Home
+                </Link>
               </li>
               <li>
-                <Link href="/courses" className="hover:text-white transition">Courses Directory</Link>
+                <Link href="/courses" className="text-white/80 hover:text-white transition">
+                  Courses Directory
+                </Link>
               </li>
               <li>
-                <Link href="/ai-mentor" className="hover:text-white transition">AI Mentor Room</Link>
+                <Link href="/ai-mentor" className="text-white/80 hover:text-white transition">
+                  AI Mentor Room
+                </Link>
               </li>
               <li>
-                <Link href="/dashboard" className="hover:text-white transition">Student Dashboard</Link>
+                <Link href="/dashboard" className="text-white/80 hover:text-white transition">
+                  Student Dashboard
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Platform */}
+          {/* Column 3: Support */}
           <div>
             <p className="text-md font-bold font-mono text-white tracking-wider uppercase mb-4">
               Support
             </p>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/about" className="hover:text-white transition">About Us</Link>
+                <Link href="/about" className="text-white/80 hover:text-white transition">
+                  About Us
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">Help Center</a>
+                <a href="#" className="text-white/80 hover:text-white transition">
+                  Help Center
+                </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">Terms of Service</a>
+                <a href="#" className="text-white/80 hover:text-white transition">
+                  Terms of Service
+                </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">Privacy Policy</a>
+                <a href="#" className="text-white/80 hover:text-white transition">
+                  Privacy Policy
+                </a>
               </li>
             </ul>
           </div>
@@ -87,22 +101,22 @@ export default function Footer() {
         </div>
 
         {/* Bottom copyright */}
-        <div className="mt-12 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between text-xs text-white/65 font-mono">
+        <div className="mt-10 pt-6 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between text-xs text-white/65 font-mono gap-6">
           <p>&copy; {currentYear} SkillForge AI. All rights reserved.</p>
 
-          {/* Social Icons — moved from the brand column */}
-          <div className="sm:mt-0 flex items-center gap-3">
-            <a href="#" className="p-2 bg-white rounded-lg hover:border-2 hover:border-white hover:bg-teal/10  border border-teal/5 transition duration-200">
-              <FaTwitter className="text-teal hover:text-white" />
+          {/* Social Icons */}
+          <div className="flex items-center gap-3">
+            <a href="#" className="p-2 bg-white/10 text-white rounded-lg hover:bg-white hover:text-[var(--color-action-primary)] transition duration-200">
+              <FaTwitter className="text-sm" />
             </a>
-            <a href="#" className="p-2 bg-white rounded-lg hover:border-2 hover:border-white hover:bg-teal/10  border border-teal/5 transition duration-200">
-              <FaGithub className="text-teal hover:text-white" />
+            <a href="#" className="p-2 bg-white/10 text-white rounded-lg hover:bg-white hover:text-[var(--color-action-primary)] transition duration-200">
+              <FaGithub className="text-sm" />
             </a>
-            <a href="#" className="p-2 bg-white rounded-lg hover:border-2 hover:border-white hover:bg-teal/10  border border-teal/5 transition duration-200">
-              <FaLinkedin className="text-teal hover:text-white" />
+            <a href="#" className="p-2 bg-white/10 text-white rounded-lg hover:bg-white hover:text-[var(--color-action-primary)] transition duration-200">
+              <FaLinkedin className="text-sm" />
             </a>
-            <a href="#" className="p-2 bg-white rounded-lg hover:border-2 hover:border-white hover:bg-teal/10  border border-teal/5 transition duration-200">
-              <FaYoutube className="text-teal hover:text-white" />
+            <a href="#" className="p-2 bg-white/10 text-white rounded-lg hover:bg-white hover:text-[var(--color-action-primary)] transition duration-200">
+              <FaYoutube className="text-sm" />
             </a>
           </div>
         </div>

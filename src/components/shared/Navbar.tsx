@@ -48,8 +48,8 @@ const Navbar = () => {
 
     const navLinkClass = (href: string) =>
         pathname === href
-            ? "text-accent border-b-2 border-accent font-semibold pb-1"
-            : "text-main/70 hover:text-main transition-colors";
+            ? "text-color-text-accent border-b-2 border-color-text-accent font-semibold pb-1"
+            : "text-color-text-muted hover:text-color-text-main transition-colors";
 
     // Public routes (visible to everyone) — My Courses inserted for students
     const publicNavLinks = [
@@ -91,8 +91,8 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="sticky top-0 z-50 w-full bg-surface/95 backdrop-blur-md border-b border-main shadow-lg">
-            {/* Applied section-container with !py-2 to override the large section padding */}
+        <nav className="sticky top-0 z-50 w-full bg-[var(--color-bg-surface)]/95 backdrop-blur-md border-b border-[var(--color-border-main)] shadow-lg">
+            {/* Applied section-container with !py-2 to override large padding */}
             <div className="section-container !py-2 flex items-center justify-between">
                 {/* LOGO */}
                 <Link href="/">
@@ -127,18 +127,18 @@ const Navbar = () => {
 
                     {user && dashboardLinks.length > 0 && (
                         <li className="relative group">
-                            <button className="text-main/70 hover:text-main transition-colors flex items-center gap-2">
+                            <button className="text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] transition-colors flex items-center gap-2">
                                 Dashboard
                             </button>
 
-                            <div className="absolute left-0 top-full hidden min-w-56 rounded-xl border border-main bg-surface shadow-2xl group-hover:block overflow-hidden">
+                            <div className="absolute left-0 top-full hidden min-w-56 rounded-xl border border-[var(--color-border-main)] bg-[var(--color-bg-surface)] shadow-2xl group-hover:block overflow-hidden">
                                 {dashboardLinks.map((item) => (
                                     <Link
                                         key={item.key}
                                         href={item.href}
-                                        className="flex items-center gap-3 px-5 py-3 text-main/70 hover:bg-alt hover:text-main transition-colors"
+                                        className="flex items-center gap-3 px-5 py-3 text-[var(--color-text-muted)] hover:bg-[var(--color-bg-alt)] hover:text-[var(--color-text-main)] transition-colors"
                                     >
-                                        {item.icon && <item.icon className="text-accent" />}
+                                        {item.icon && <item.icon className="text-[var(--color-text-accent)]" />}
                                         {item.label}
                                     </Link>
                                 ))}
@@ -153,7 +153,7 @@ const Navbar = () => {
                     <div className="hidden lg:flex items-center gap-3">
                         {isMounted && user ? (
                             <>
-                                <span className="font-medium text-main">
+                                <span className="font-medium text-[var(--color-text-main)]">
                                     Hi, {user.name}
                                 </span>
 
@@ -162,7 +162,7 @@ const Navbar = () => {
                                     alt={user.name ?? "User"}
                                     width={40}
                                     height={40}
-                                    className="border-2 border-accent rounded-full object-cover"
+                                    className="border-2 border-[var(--color-text-accent)] rounded-full object-cover"
                                 />
 
                                 <MotionButton
@@ -170,7 +170,7 @@ const Navbar = () => {
                                     whileTap={{ scale: 0.95 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 15 }}
                                     onClick={handleSignOut}
-                                    className="bg-action-primary font-semibold rounded-md hover:opacity-90"
+                                    className="bg-[var(--color-action-primary)] font-semibold rounded-md hover:opacity-90 text-[var(--color-text-inverse)]"
                                 >
                                     <MdLogout />
                                     Logout
@@ -183,7 +183,7 @@ const Navbar = () => {
                                         whileHover={{ scale: 1.05, y: -2 }}
                                         whileTap={{ scale: 0.95 }}
                                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                                        className="bg-action-primary font-semibold hover:opacity-90"
+                                        className="bg-[var(--color-action-primary)] font-semibold hover:opacity-90 text-[var(--color-text-inverse)]"
                                     >
                                         <MdLogin />
                                         Sign In
@@ -195,7 +195,7 @@ const Navbar = () => {
                                         whileHover={{ scale: 1.05, y: -2 }}
                                         whileTap={{ scale: 0.95 }}
                                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                                        className="border border-accent text-main bg-transparent hover:bg-alt"
+                                        className="border border-[var(--color-text-accent)] text-[var(--color-text-main)] bg-transparent hover:bg-[var(--color-bg-alt)]"
                                     >
                                         <LuUserRoundPlus />
                                         Sign Up
@@ -209,13 +209,13 @@ const Navbar = () => {
                     <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        className="lg:hidden text-main"
+                        className="lg:hidden text-[var(--color-text-main)]"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
                         {isMenuOpen ? (
-                            <RxCross2 className="text-2xl text-accent" />
+                            <RxCross2 className="text-2xl text-[var(--color-text-accent)]" />
                         ) : (
-                            <TfiAlignLeft className="text-2xl text-accent" />
+                            <TfiAlignLeft className="text-2xl text-[var(--color-text-accent)]" />
                         )}
                     </motion.button>
 
@@ -232,10 +232,10 @@ const Navbar = () => {
                                 alt={user.name ?? "User"}
                                 width={40}
                                 height={40}
-                                className="border-2 border-accent rounded-full object-cover"
+                                className="border-2 border-[var(--color-text-accent)] rounded-full object-cover"
                             />
                         ) : (
-                            <RxAvatar className="text-3xl text-accent" />
+                            <RxAvatar className="text-3xl text-[var(--color-text-accent)]" />
                         )}
                     </motion.button>
                 </div>
@@ -249,7 +249,7 @@ const Navbar = () => {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.25 }}
-                        className="overflow-hidden border-t border-main bg-surface lg:hidden"
+                        className="overflow-hidden border-t border-[var(--color-border-main)] bg-[var(--color-bg-surface)] lg:hidden"
                     >
                         <ul className="flex flex-col gap-4 p-5">
                             {publicNavLinks.map((link) => (
@@ -280,8 +280,8 @@ const Navbar = () => {
 
                             {user && dashboardLinks.length > 0 && (
                                 <>
-                                    <li className="border-t border-main pt-4">
-                                        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-accent/60">
+                                    <li className="border-t border-[var(--color-border-main)] pt-4">
+                                        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-text-accent)]/60">
                                             Dashboard
                                         </p>
                                     </li>
@@ -314,23 +314,23 @@ const Navbar = () => {
                         transition={{ duration: 0.2 }}
                         className="absolute right-4 top-20 z-50 lg:hidden"
                     >
-                        <div className="min-w-64 rounded-2xl border border-main bg-surface p-5 shadow-2xl">
+                        <div className="min-w-64 rounded-2xl border border-[var(--color-border-main)] bg-[var(--color-bg-surface)] p-5 shadow-2xl">
                             {user ? (
                                 <>
-                                    <div className="mb-5 flex flex-col items-center border-b border-main pb-4">
+                                    <div className="mb-5 flex flex-col items-center border-b border-[var(--color-border-main)] pb-4">
                                         <Image
                                             src={user.image ?? "/default-avatar.png"}
                                             alt={user.name ?? "User"}
                                             width={50}
                                             height={50}
-                                            className="mb-3 border-2 border-accent rounded-full object-cover"
+                                            className="mb-3 border-2 border-[var(--color-text-accent)] rounded-full object-cover"
                                         />
 
-                                        <h2 className="text-lg font-semibold text-main">
+                                        <h2 className="text-lg font-semibold text-[var(--color-text-main)]">
                                             {user.name}
                                         </h2>
 
-                                        <p className="text-sm text-muted">
+                                        <p className="text-sm text-[var(--color-text-muted)]">
                                             {user.email}
                                         </p>
                                     </div>
@@ -339,7 +339,7 @@ const Navbar = () => {
                                         whileHover={{ scale: 1.03 }}
                                         whileTap={{ scale: 0.95 }}
                                         onClick={handleSignOut}
-                                        className="w-full bg-action-primary font-semibold hover:opacity-90"
+                                        className="w-full bg-[var(--color-action-primary)] font-semibold hover:opacity-90 text-[var(--color-text-inverse)]"
                                     >
                                         <MdLogout />
                                         Logout
@@ -348,14 +348,14 @@ const Navbar = () => {
                             ) : (
                                 <div className="flex flex-col gap-3">
                                     <Link href="/signin">
-                                        <Button className="w-full bg-action-primary font-semibold hover:opacity-90">
+                                        <Button className="w-full bg-[var(--color-action-primary)] font-semibold hover:opacity-90 text-[var(--color-text-inverse)]">
                                             <MdLogin />
                                             Sign In
                                         </Button>
                                     </Link>
 
                                     <Link href="/signup">
-                                        <Button className="w-full border border-accent text-main bg-transparent hover:bg-alt">
+                                        <Button className="w-full border border-[var(--color-text-accent)] text-[var(--color-text-main)] bg-transparent hover:bg-[var(--color-bg-alt)]">
                                             <LuUserRoundPlus />
                                             Sign Up
                                         </Button>

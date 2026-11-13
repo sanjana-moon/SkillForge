@@ -12,13 +12,12 @@ export default function Hero() {
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[450px] h-[450px] bg-accent/10 blur-[150px] rounded-full pointer-events-none" />
 
-      {/* Replaced custom wrapper with standardized section-container */}
       <div className="section-container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           {/* Left Column: Text & CTAs */}
           <div className="flex flex-col text-center lg:text-left">
             {/* Tagline */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 self-center lg:self-start bg-alt border border-main rounded-full text-xs font-semibold font-mono text-accent mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 self-center lg:self-start bg-alt/50 border border-main rounded-full text-xs font-semibold font-mono text-accent mb-6">
               <RiBrainLine className="text-sm animate-pulse" />
               Personalized Learning Powered by Gemini AI
             </div>
@@ -38,7 +37,7 @@ export default function Hero() {
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <Link
                 href="/courses"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-action-primary px-8 py-4 text-base font-bold shadow-lg hover:opacity-95 transition-all duration-300 group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-action-primary px-8 py-4 text-base font-bold shadow-lg shadow-accent/10 hover:opacity-95 hover:shadow-accent/20 transition-all duration-300 group"
               >
                 <FaCompass className="text-lg group-hover:rotate-45 transition-transform duration-300" />
                 <span>Explore Courses</span>
@@ -46,7 +45,7 @@ export default function Hero() {
 
               <Link
                 href="/ai-mentor"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-main px-8 py-4 text-base font-semibold text-main hover:bg-surface transition duration-300 group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-accent text-accent px-8 py-4 text-base font-semibold hover:bg-accent hover:text-inverse transition duration-300 group"
               >
                 Get AI Recommendation
                 <FaArrowRight className="text-sm group-hover:translate-x-1 transition duration-300" />
