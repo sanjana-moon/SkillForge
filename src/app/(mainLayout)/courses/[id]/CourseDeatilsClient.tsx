@@ -4,19 +4,16 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Card, Button } from "@heroui/react";
 import {
-    Card,
-    Button,
-} from "@heroui/react";
-import {
-    FaStar,
-    FaUserGraduate,
-    FaShare,
-    FaBookmark,
-    FaCheckCircle,
-    FaTimesCircle,
-    FaArrowLeft,
-    FaPlay,
+  FaStar,
+  FaUserGraduate,
+  FaShare,
+  FaBookmark,
+  FaCheckCircle,
+  FaTimesCircle,
+  FaArrowLeft,
+  FaPlay,
 } from "react-icons/fa";
 import { toast } from "react-toastify";
 import type { Course } from "@/lib/api/courses/data";
@@ -25,381 +22,396 @@ import CourseEnrollmentWidget from "@/components/courses/CourseEnrollmentWidget"
 import { checkEnrollment } from "@/lib/api/courses/data";
 
 interface CourseDetailsClientProps {
-    course: Course;
+  course: Course;
 }
 
 const getLevelColor = (level: string) => {
-    switch (level) {
-        case "beginner":
-            return "text-green-400 bg-green-500/10 border-green-500/30";
-        case "intermediate":
-            return "text-yellow-400 bg-yellow-500/10 border-yellow-500/30";
-        case "advanced":
-            return "text-red-400 bg-red-500/10 border-red-500/30";
-        default:
-            return "text-teal bg-teal/10 border-teal/30";
-    }
+  switch (level) {
+    case "beginner":
+      return "text-success bg-success/10 border-success/30";
+    case "intermediate":
+      return "text-warning bg-warning/10 border-warning/30";
+    case "advanced":
+      return "text-error bg-error/10 border-error/30";
+    default:
+      return "text-accent bg-accent/10 border-accent/30";
+  }
 };
 
 const getLevelLabel = (level: string) => {
-    switch (level) {
-        case "beginner":
-            return "Beginner";
-        case "intermediate":
-            return "Intermediate";
-        case "advanced":
-            return "Advanced";
-        default:
-            return level;
-    }
+  switch (level) {
+    case "beginner":
+      return "Beginner";
+    case "intermediate":
+      return "Intermediate";
+    case "advanced":
+      return "Advanced";
+    default:
+      return level;
+  }
 };
 
 const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
-    const router = useRouter();
-    const { data: session } = useSession();
-    const [isEnrolled, setIsEnrolled] = useState(false);
-    const [loading, setLoading] = useState(true);
+  const router = useRouter();
+  const { data: session } = useSession();
+  const [isEnrolled, setIsEnrolled] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-    // Check if user is enrolled
-    useEffect(() => {
-        const checkEnrollmentStatus = async () => {
-            if (!session?.user) {
-                setLoading(false);
-                return;
-            }
+  // Check if user is enrolled
+  useEffect(() => {
+    const checkEnrollmentStatus = async () => {
+      if (!session?.user) {
+        setLoading(false);
+        return;
+      }
 
-            try {
-                const result = await checkEnrollment(course._id!);
-                setIsEnrolled(result.enrolled);
-            } catch (error) {
-                console.error("Error checking enrollment:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        checkEnrollmentStatus();
-    }, [course._id, session?.user]);
-
-    const handleShare = () => {
-        if (navigator.share) {
-            navigator.share({
-                title: course.title,
-                text: course.description,
-                url: window.location.href,
-            }).catch(() => {});
-        } else {
-            navigator.clipboard.writeText(window.location.href);
-            toast.success("Link copied to clipboard!");
-        }
+      try {
+        const result = await checkEnrollment(course._id!);
+        setIsEnrolled(result.enrolled);
+      } catch (error) {
+        console.error("Error checking enrollment:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    const handleViewContent = () => {
-        router.push(`/courses/${course._id}/content`);
-    };
+    checkEnrollmentStatus();
+  }, [course._id, session?.user]);
 
-    return (
-        <div className="min-h-screen bg-white">
-            {/* Back Button */}
-            <div className="container mx-auto px-4 pt-6">
-                <button
-                    onClick={() => router.back()}
-                    className="flex items-center gap-2 text-navy/60 hover:text-navy transition-colors"
-                >
-                    <FaArrowLeft className="text-sm" />
-                    <span>Back to Courses</span>
-                </button>
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: course.title,
+          text: course.description,
+          url: window.location.href,
+        })
+        .catch(() => {});
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      toast.success("Link copied to clipboard!");
+    }
+  };
+
+  const handleViewContent = () => {
+    router.push(`/courses/${course._id}/content`);
+  };
+
+  return (
+    <div className="min-h-screen bg-main">
+      {/* Back Button */}
+      <div className="section-container pt-6 pb-0">
+        <button
+          onClick={() => router.back()}
+          className="flex items-center gap-2 text-main/60 hover:text-main transition-colors"
+        >
+          <FaArrowLeft className="text-sm" />
+          <span>Back to Courses</span>
+        </button>
+      </div>
+
+      {/* Hero Section */}
+      <div className="section-container py-6">
+        <div className="relative overflow-hidden bg-surface border border-main rounded-3xl shadow-xl">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-action-primary" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-4 md:p-10 items-stretch">
+            {/* Thumbnail — Full height, no overlay */}
+            <div className="lg:col-span-1">
+              <div className="relative h-full min-h-[280px] rounded-2xl overflow-hidden bg-main border border-main">
+                {course.thumbnail ? (
+                  <Image
+                    src={course.thumbnail}
+                    alt={course.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-main/10">
+                    <FaBookmark className="text-6xl" />
+                  </div>
+                )}
+
+                {/* Status Badge */}
+                {course.approvalStatus === "approved" &&
+                course.publishStatus === "published" ? (
+                  <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 bg-success/10 backdrop-blur-sm rounded-lg text-xs font-bold text-success border border-success/20">
+                    <FaCheckCircle className="text-[10px]" />
+                    Published
+                  </span>
+                ) : (
+                  <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 bg-warning/10 backdrop-blur-sm rounded-lg text-xs font-bold text-warning border border-warning/20">
+                    <FaTimesCircle className="text-[10px]" />
+                    Draft
+                  </span>
+                )}
+              </div>
             </div>
 
-            {/* Hero Section */}
-            <div className="container mx-auto px-4 py-6">
-                <div className="relative overflow-hidden bg-gradient-to-r from-white via-white to-white border border-teal/20 rounded-3xl shadow-xl">
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal via-teal to-teal" />
-
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-6 md:p-10">
-                        {/* Thumbnail */}
-                        <div className="lg:col-span-1">
-                            <div className="relative aspect-video rounded-2xl overflow-hidden bg-white border border-teal/20">
-                                {course.thumbnail ? (
-                                    <Image
-                                        src={course.thumbnail}
-                                        alt={course.title}
-                                        fill
-                                        className="object-cover"
-                                    />
-                                ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-navy/10">
-                                        <FaBookmark className="text-6xl" />
-                                    </div>
-                                )}
-                                <div className="absolute inset-0 bg-gradient-to-t from-white/60 to-transparent" />
-
-                                {/* Status Badge */}
-                                {course.approvalStatus === "approved" && course.publishStatus === "published" ? (
-                                    <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 bg-green-500/20 backdrop-blur-sm rounded-lg text-xs font-bold text-green-400 border border-green-500/30">
-                                        <FaCheckCircle className="text-[10px]" />
-                                        Published
-                                    </span>
-                                ) : (
-                                    <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 bg-yellow-500/20 backdrop-blur-sm rounded-lg text-xs font-bold text-yellow-400 border border-yellow-500/30">
-                                        <FaTimesCircle className="text-[10px]" />
-                                        Draft
-                                    </span>
-                                )}
-                            </div>
-                        </div>
-
-                        {/* Course Info */}
-                        <div className="lg:col-span-2 flex flex-col justify-between">
-                            <div>
-                                <div className="flex items-center gap-3 flex-wrap mb-3">
-                                    <span className="px-3 py-1 bg-teal/10 border border-teal/20 rounded-full text-xs font-medium text-teal uppercase">
-                                        {course.category}
-                                    </span>
-                                    <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getLevelColor(course.level)}`}>
-                                        {getLevelLabel(course.level)}
-                                    </span>
-                                    <span className="px-3 py-1 bg-white border border-teal/10 rounded-full text-xs font-medium text-navy/60">
-                                        {course.duration}
-                                    </span>
-                                </div>
-
-                                <h1 className="text-2xl md:text-4xl font-bold text-navy leading-tight">
-                                    {course.title}
-                                </h1>
-
-                                <div className="flex items-center gap-4 mt-3">
-                                    <div className="flex items-center gap-1.5 text-sm text-navy/60">
-                                        <FaStar className="text-yellow-400" />
-                                        <span className="text-navy font-medium">
-                                            {course.avgRating?.toFixed(1) || "0.0"}
-                                        </span>
-                                        <span>({course.reviewCount || 0} reviews)</span>
-                                    </div>
-                                    <div className="flex items-center gap-1.5 text-sm text-navy/60">
-                                        <FaUserGraduate className="text-teal" />
-                                        <span>{course.enrollmentCount || 0} students</span>
-                                    </div>
-                                </div>
-
-                                <p className="text-navy/70 mt-4 text-base leading-relaxed">
-                                    {course.description}
-                                </p>
-                            </div>
-
-                            {/* Price & Actions */}
-                            <div className="flex flex-wrap items-center gap-4 mt-6 pt-6 border-t border-teal/10">
-                                <div className="flex items-baseline gap-3">
-                                    <span className="text-3xl font-bold text-teal">
-                                        ${course.price.toFixed(2)}
-                                    </span>
-                                    <span className="text-sm text-navy/40 line-through">
-                                        ${(course.price * 1.5).toFixed(2)}
-                                    </span>
-                                </div>
-
-                                <div className="flex flex-wrap gap-3 ml-auto">
-                                    {/* âœ… View Content Button - Shows when enrolled */}
-                                    {isEnrolled && (
-                                        <Button
-                                            onPress={handleViewContent}
-                                            className="bg-teal text-white font-semibold hover:bg-teal/80"
-                                        >
-                                            <FaPlay />
-                                            View Content
-                                        </Button>
-                                    )}
-
-                                    <Button
-                                        onPress={handleShare}
-                                        className="bg-white border border-teal/20 text-navy hover:bg-teal/10"
-                                    >
-                                        <FaShare />
-                                        Share
-                                    </Button>
-
-                                    <CourseEnrollmentWidget
-                                        courseId={course._id!}
-                                        courseTitle={course.title}
-                                        price={course.price}
-                                        duration={course.duration}
-                                        level={course.level}
-                                        instructorName={course.instructorName}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            {/* Course Info */}
+            <div className="lg:col-span-2 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-3 flex-wrap mb-3">
+                  <span className="px-3 py-1 bg-accent/10 border border-accent/20 rounded-full text-xs font-medium text-accent uppercase">
+                    {course.category}
+                  </span>
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs font-medium border ${getLevelColor(course.level)}`}
+                  >
+                    {getLevelLabel(course.level)}
+                  </span>
+                  <span className="px-3 py-1 bg-main border border-main rounded-full text-xs font-medium text-main/60">
+                    {course.duration}
+                  </span>
                 </div>
-            </div>
 
-            {/* Course Details */}
-            <div className="container mx-auto px-4 py-8">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* Main Content */}
-                    <div className="lg:col-span-2 space-y-8">
-                        {/* What You Will Learn */}
-                        {course.whatYouWillLearn && course.whatYouWillLearn.length > 0 && (
-                            <Card className="bg-white border border-teal/20 rounded-2xl p-6">
-                                <h2 className="text-xl font-bold text-navy mb-4">
-                                    What You Will Learn
-                                </h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                    {course.whatYouWillLearn.map((item, index) => (
-                                        <div
-                                            key={index}
-                                            className="flex items-start gap-3 text-navy/70"
-                                        >
-                                            <FaCheckCircle className="text-teal text-sm mt-0.5 flex-shrink-0" />
-                                            <span className="text-sm">{item}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </Card>
-                        )}
+                <h1 className="text-2xl md:text-4xl font-bold text-main leading-tight">
+                  {course.title}
+                </h1>
 
-                        {/* Requirements */}
-                        {course.requirements && course.requirements.length > 0 && (
-                            <Card className="bg-white border border-teal/20 rounded-2xl p-6">
-                                <h2 className="text-xl font-bold text-navy mb-4">
-                                    Requirements
-                                </h2>
-                                <ul className="space-y-2 text-navy/70">
-                                    {course.requirements.map((item, index) => (
-                                        <li key={index} className="flex items-start gap-3">
-                                            <span className="text-teal mt-0.5"></span>
-                                            <span className="text-sm">{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </Card>
-                        )}
-
-                        {/* Target Audience */}
-                        {course.targetAudience && course.targetAudience.length > 0 && (
-                            <Card className="bg-white border border-teal/20 rounded-2xl p-6">
-                                <h2 className="text-xl font-bold text-navy mb-4">
-                                    Who This Course Is For
-                                </h2>
-                                <ul className="space-y-2 text-navy/70">
-                                    {course.targetAudience.map((item, index) => (
-                                        <li key={index} className="flex items-start gap-3">
-                                            <span className="text-teal mt-0.5"></span>
-                                            <span className="text-sm">{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </Card>
-                        )}
-
-                        {/* Instructor Info */}
-                        <Card className="bg-white border border-teal/20 rounded-2xl p-6">
-                            <h2 className="text-xl font-bold text-navy mb-4">
-                                Instructor
-                            </h2>
-                            <div className="flex items-center gap-4">
-                                <div className="h-16 w-16 rounded-full bg-teal/10 flex items-center justify-center text-teal font-bold text-2xl">
-                                    {course.instructorName?.charAt(0) || "U"}
-                                </div>
-                                <div>
-                                    <p className="text-lg font-semibold text-navy">
-                                        {course.instructorName}
-                                    </p>
-                                    <p className="text-sm text-navy/50">
-                                        Instructor {course.category} Expert
-                                    </p>
-                                </div>
-                            </div>
-                        </Card>
-                    </div>
-
-                    {/* Sidebar */}
-                    <div className="space-y-6">
-                        {/* Quick Info */}
-                        <Card className="bg-white border border-teal/20 rounded-2xl p-6 sticky top-24">
-                            <h3 className="text-lg font-bold text-navy mb-4">
-                                Course Overview
-                            </h3>
-                            <div className="space-y-3">
-                                <div className="flex justify-between text-sm">
-                                    <span className="text-navy/50">Category</span>
-                                    <span className="text-navy">{course.category}</span>
-                                </div>
-                                <div className="border-t border-teal/10 my-2" />
-                                <div className="flex justify-between text-sm">
-                                    <span className="text-navy/50">Level</span>
-                                    <span className="text-navy">{getLevelLabel(course.level)}</span>
-                                </div>
-                                <div className="border-t border-teal/10 my-2" />
-                                <div className="flex justify-between text-sm">
-                                    <span className="text-navy/50">Duration</span>
-                                    <span className="text-navy">{course.duration}</span>
-                                </div>
-                                <div className="border-t border-teal/10 my-2" />
-                                <div className="flex justify-between text-sm">
-                                    <span className="text-navy/50">Students</span>
-                                    <span className="text-navy">{course.enrollmentCount || 0}</span>
-                                </div>
-                                <div className="border-t border-teal/10 my-2" />
-                                <div className="flex justify-between text-sm">
-                                    <span className="text-navy/50">Rating</span>
-                                    <span className="text-navy flex items-center gap-1">
-                                        <FaStar className="text-yellow-400 text-xs" />
-                                        {course.avgRating?.toFixed(1) || "0.0"}
-                                    </span>
-                                </div>
-                                <div className="border-t border-teal/10 my-2" />
-                                <div className="flex justify-between text-sm">
-                                    <span className="text-navy/50">Status</span>
-                                    <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-                                        course.approvalStatus === "approved" && course.publishStatus === "published"
-                                            ? "text-green-400 bg-green-500/10"
-                                            : "text-yellow-400 bg-yellow-500/10"
-                                    }`}>
-                                        {course.approvalStatus === "approved" && course.publishStatus === "published"
-                                            ? "Published"
-                                            : "Draft"}
-                                    </span>
-                                </div>
-
-                                {/* âœ… View Content Button in Sidebar - Shows when enrolled */}
-                                {isEnrolled && (
-                                    <>
-                                        <div className="border-t border-teal/10 my-2" />
-                                        <Button
-                                            onPress={handleViewContent}
-                                            fullWidth
-                                            className="bg-teal text-white font-semibold hover:bg-teal/80"
-                                        >
-                                            <FaPlay />
-                                            View Course Content
-                                        </Button>
-                                    </>
-                                )}
-                            </div>
-
-                            <div className="border-t border-teal/10 my-4" />
-
-                            <CourseEnrollmentWidget
-                                courseId={course._id!}
-                                courseTitle={course.title}
-                                price={course.price}
-                                duration={course.duration}
-                                level={course.level}
-                                instructorName={course.instructorName}
-                            />
-
-                            {!session && (
-                                <p className="text-navy/40 text-xs text-center mt-3">
-                                    Please <Link href="/signin" className="text-teal hover:underline">sign in</Link> to enroll
-                                </p>
-                            )}
-                        </Card>
-                    </div>
+                <div className="flex items-center gap-4 mt-3">
+                  <div className="flex items-center gap-1.5 text-sm text-main/60">
+                    <FaStar className="text-warning" />
+                    <span className="text-main font-medium">
+                      {course.avgRating?.toFixed(1) || "0.0"}
+                    </span>
+                    <span>({course.reviewCount || 0} reviews)</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-sm text-main/60">
+                    <FaUserGraduate className="text-accent" />
+                    <span>{course.enrollmentCount || 0} students</span>
+                  </div>
                 </div>
+
+                <p className="text-main/70 mt-4 text-base leading-relaxed">
+                  {course.description}
+                </p>
+              </div>
+
+              {/* Price & Actions */}
+              <div className="flex flex-wrap items-center gap-4 mt-6 pt-6 border-t border-main">
+                <div className="flex items-baseline gap-3">
+                  <span className="text-3xl font-bold text-accent">
+                    ${course.price.toFixed(2)}
+                  </span>
+                  <span className="text-sm text-main/40 line-through">
+                    ${(course.price * 1.5).toFixed(2)}
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap gap-3 ml-auto">
+                  {/* View Content Button - Shows when enrolled */}
+                  {isEnrolled && (
+                    <Button
+                      onPress={handleViewContent}
+                      className="bg-action-primary font-semibold hover:opacity-90"
+                    >
+                      <FaPlay />
+                      View Content
+                    </Button>
+                  )}
+
+                  <Button
+                    onPress={handleShare}
+                    className="bg-surface border border-accent text-accent *:text-accent hover:bg-accent/10"
+                  >
+                    <FaShare />
+                    Share
+                  </Button>
+
+                  <CourseEnrollmentWidget
+                    courseId={course._id!}
+                    courseTitle={course.title}
+                    price={course.price}
+                    duration={course.duration}
+                    level={course.level}
+                    instructorName={course.instructorName}
+                  />
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    );
+      </div>
+
+      {/* Course Details */}
+      <div className="section-container py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* What You Will Learn */}
+            {course.whatYouWillLearn && course.whatYouWillLearn.length > 0 && (
+              <Card className="bg-surface border border-main rounded-2xl p-6">
+                <h2 className="text-xl font-bold text-main mb-4">
+                  What You Will Learn
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {course.whatYouWillLearn.map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex items-start gap-3 text-main/70"
+                    >
+                      <FaCheckCircle className="text-accent text-sm mt-0.5 flex-shrink-0" />
+                      <span className="text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            )}
+
+            {/* Requirements */}
+            {course.requirements && course.requirements.length > 0 && (
+              <Card className="bg-surface border border-main rounded-2xl p-6">
+                <h2 className="text-xl font-bold text-main mb-4">
+                  Requirements
+                </h2>
+                <ul className="space-y-2 text-main/70">
+                  {course.requirements.map((item, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">•</span>
+                      <span className="text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            )}
+
+            {/* Target Audience */}
+            {course.targetAudience && course.targetAudience.length > 0 && (
+              <Card className="bg-surface border border-main rounded-2xl p-6">
+                <h2 className="text-xl font-bold text-main mb-4">
+                  Who This Course Is For
+                </h2>
+                <ul className="space-y-2 text-main/70">
+                  {course.targetAudience.map((item, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">•</span>
+                      <span className="text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            )}
+
+            {/* Instructor Info */}
+            <Card className="bg-surface border border-main rounded-2xl p-6">
+              <h2 className="text-xl font-bold text-main mb-4">Instructor</h2>
+              <div className="flex items-center gap-4">
+                <div className="h-16 w-16 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold text-2xl">
+                  {course.instructorName?.charAt(0) || "U"}
+                </div>
+                <div>
+                  <p className="text-lg font-semibold text-main">
+                    {course.instructorName}
+                  </p>
+                  <p className="text-sm text-main/50">
+                    Instructor {course.category} Expert
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
+
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Quick Info */}
+            <Card className="bg-surface border border-main rounded-2xl p-6 sticky top-24">
+              <h3 className="text-lg font-bold text-main mb-4">
+                Course Overview
+              </h3>
+              <div className="space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span className="text-main/50">Category</span>
+                  <span className="text-main">{course.category}</span>
+                </div>
+                <div className="border-t border-main my-2" />
+                <div className="flex justify-between text-sm">
+                  <span className="text-main/50">Level</span>
+                  <span className="text-main">
+                    {getLevelLabel(course.level)}
+                  </span>
+                </div>
+                <div className="border-t border-main my-2" />
+                <div className="flex justify-between text-sm">
+                  <span className="text-main/50">Duration</span>
+                  <span className="text-main">{course.duration}</span>
+                </div>
+                <div className="border-t border-main my-2" />
+                <div className="flex justify-between text-sm">
+                  <span className="text-main/50">Students</span>
+                  <span className="text-main">
+                    {course.enrollmentCount || 0}
+                  </span>
+                </div>
+                <div className="border-t border-main my-2" />
+                <div className="flex justify-between text-sm">
+                  <span className="text-main/50">Rating</span>
+                  <span className="text-main flex items-center gap-1">
+                    <FaStar className="text-warning text-xs" />
+                    {course.avgRating?.toFixed(1) || "0.0"}
+                  </span>
+                </div>
+                <div className="border-t border-main my-2" />
+                <div className="flex justify-between text-sm">
+                  <span className="text-main/50">Status</span>
+                  <span
+                    className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                      course.approvalStatus === "approved" &&
+                      course.publishStatus === "published"
+                        ? "text-success bg-success/10"
+                        : "text-warning bg-warning/10"
+                    }`}
+                  >
+                    {course.approvalStatus === "approved" &&
+                    course.publishStatus === "published"
+                      ? "Published"
+                      : "Draft"}
+                  </span>
+                </div>
+
+                {/* View Content Button in Sidebar - Shows when enrolled */}
+                {isEnrolled && (
+                  <>
+                    <div className="border-t border-main my-2" />
+                    <Button
+                      onPress={handleViewContent}
+                      fullWidth
+                      className="bg-action-primary font-semibold hover:opacity-90"
+                    >
+                      <FaPlay />
+                      View Course Content
+                    </Button>
+                  </>
+                )}
+              </div>
+
+              <div className="border-t border-main my-4" />
+
+              <CourseEnrollmentWidget
+                courseId={course._id!}
+                courseTitle={course.title}
+                price={course.price}
+                duration={course.duration}
+                level={course.level}
+                instructorName={course.instructorName}
+              />
+
+              {!session && (
+                <p className="text-main/40 text-xs text-center mt-3">
+                  Please{" "}
+                  <Link href="/signin" className="text-accent hover:underline">
+                    sign in
+                  </Link>{" "}
+                  to enroll
+                </p>
+              )}
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default CourseDetailsClient;
