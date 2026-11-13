@@ -2,11 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {
-    Card,
-    Button,
-    Spinner,
-} from "@heroui/react";
+import { Card, Button, Spinner } from "@heroui/react";
 import {
     FaBook,
     FaGraduationCap,
@@ -27,26 +23,24 @@ interface StudentClientProps {
     };
 }
 
-export default function StudentClient({
-    user,
-}: StudentClientProps) {
+export default function StudentClient({ user }: StudentClientProps) {
     const { data: dashboardData, isLoading, isError } = useStudentStats(user.email);
 
     const getProgressColor = (progress: number) => {
-        if (progress >= 80) return "text-green-400";
-        if (progress >= 50) return "text-yellow-400";
-        return "text-teal";
+        if (progress >= 80) return "text-success";
+        if (progress >= 50) return "text-warning";
+        return "text-accent";
     };
 
     const getProgressBarColor = (progress: number) => {
-        if (progress >= 80) return "bg-green-400";
-        if (progress >= 50) return "bg-yellow-400";
-        return "bg-[image:var(--brand-gradient)]";
+        if (progress >= 80) return "bg-success";
+        if (progress >= 50) return "bg-warning";
+        return "bg-action-primary";
     };
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-white flex items-center justify-center">
+            <div className="min-h-screen bg-main flex items-center justify-center">
                 <Spinner size="lg" />
             </div>
         );
@@ -54,10 +48,13 @@ export default function StudentClient({
 
     if (isError) {
         return (
-            <div className="min-h-screen bg-white flex items-center justify-center p-4">
-                <Card className="bg-white border border-red-500/20 rounded-2xl p-8 text-center">
-                    <p className="text-red-400">Failed to load dashboard data.</p>
-                    <Button className="mt-4 bg-[image:var(--brand-gradient)] text-white" onPress={() => window.location.reload()}>
+            <div className="min-h-screen bg-main flex items-center justify-center p-4">
+                <Card className="bg-surface border border-error/20 rounded-2xl p-8 text-center">
+                    <p className="text-error">Failed to load dashboard data.</p>
+                    <Button
+                        className="mt-4 bg-action-primary"
+                        onPress={() => window.location.reload()}
+                    >
                         Retry
                     </Button>
                 </Card>
@@ -65,248 +62,272 @@ export default function StudentClient({
         );
     }
 
-    const { enrolledCourses, completedCourses, inProgress, recentCourses } = dashboardData || {
-        enrolledCourses: 0,
-        completedCourses: 0,
-        inProgress: 0,
-        recentCourses: [],
-    };
+    const { enrolledCourses, completedCourses, inProgress, recentCourses } =
+        dashboardData || {
+            enrolledCourses: 0,
+            completedCourses: 0,
+            inProgress: 0,
+            recentCourses: [],
+        };
 
     const stats = [
         {
             title: "Enrolled Courses",
             value: enrolledCourses,
-            icon: <FaBook className="text-teal" />,
-            color: "bg-teal/10 border-teal/20",
+            icon: <FaBook className="text-accent" />,
+            color: "bg-accent/10 border-accent/20",
         },
         {
             title: "In Progress",
             value: inProgress,
-            icon: <FaClock className="text-yellow-400" />,
-            color: "bg-yellow-500/10 border-yellow-500/20",
+            icon: <FaClock className="text-warning" />,
+            color: "bg-warning/10 border-warning/20",
         },
         {
             title: "Completed",
             value: completedCourses,
-            icon: <FaGraduationCap className="text-green-400" />,
-            color: "bg-green-500/10 border-green-500/20",
+            icon: <FaGraduationCap className="text-success" />,
+            color: "bg-success/10 border-success/20",
         },
     ];
 
     return (
-        <section className="min-h-screen bg-white p-4 md:p-6">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="space-y-8"
-            >
-                {/* Welcome Header */}
-                <div>
-                    <h1 className="text-3xl md:text-4xl font-bold text-navy">
-                        Welcome back, {user.name}
-                    </h1>
-                    <p className="text-navy/60 mt-2">
-                        Continue your learning journey. Track your progress and pick up where you left off.
-                    </p>
-                </div>
+        <section className="min-h-screen bg-main">
+            <div className="section-container">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="space-y-8"
+                >
+                    {/* Welcome Header */}
+                    <div>
+                        <h1 className="text-3xl md:text-4xl font-bold text-main">
+                            Welcome back, {user.name}
+                        </h1>
+                        <p className="text-main/60 mt-2">
+                            Continue your learning journey. Track your progress
+                            and pick up where you left off.
+                        </p>
+                    </div>
 
-                {/* Stats Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                    {stats.map((stat, index) => (
+                    {/* Stats Cards */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                        {stats.map((stat, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                                whileHover={{ y: -4 }}
+                                className="transition-all duration-300"
+                            >
+                                <Card
+                                    className={`bg-surface border ${stat.color} rounded-2xl p-6 shadow-xl hover:shadow-accent/5 transition-all`}
+                                >
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <p className="text-main/60 text-sm font-medium">
+                                                {stat.title}
+                                            </p>
+                                            <p className="text-3xl md:text-4xl font-bold text-main mt-2">
+                                                {stat.value}
+                                            </p>
+                                        </div>
+                                        <div className="w-12 h-12 rounded-full bg-main flex items-center justify-center">
+                                            {stat.icon}
+                                        </div>
+                                    </div>
+                                </Card>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Quick Actions */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                    >
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                            <Card className="bg-surface border border-main rounded-2xl p-6 hover:shadow-accent/5 transition-all">
+                                <h3 className="text-lg font-semibold text-main mb-2">
+                                    Browse New Courses
+                                </h3>
+                                <p className="text-main/60 text-sm mb-4">
+                                    Discover new courses and expand your skills.
+                                </p>
+                                <Link href="/courses">
+                                    <Button className="bg-action-primary font-semibold hover:opacity-90">
+                                        Explore Courses
+                                        <FaArrowRight className="ml-2" />
+                                    </Button>
+                                </Link>
+                            </Card>
+
+                            <Card className="bg-surface border border-main rounded-2xl p-6 hover:shadow-accent/5 transition-all">
+                                <h3 className="text-lg font-semibold text-main mb-2">
+                                    AI Mentor
+                                </h3>
+                                <p className="text-main/60 text-sm mb-4">
+                                    Get personalized learning guidance from our
+                                    AI Mentor.
+                                </p>
+                                <Link href="/ai-mentor">
+                                    <Button className="bg-action-primary font-semibold hover:opacity-90">
+                                        Chat with AI Mentor
+                                        <FaArrowRight className="ml-2" />
+                                    </Button>
+                                </Link>
+                            </Card>
+                        </div>
+                    </motion.div>
+
+                    {/* Recent Courses */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 }}
+                    >
+                        <div className="flex items-center justify-between mb-4">
+                            <h2 className="text-xl font-bold text-main">
+                                My Recent Courses
+                            </h2>
+                            {enrolledCourses > 0 && (
+                                <Link href="/dashboard/student/my-courses">
+                                    <Button className="bg-transparent text-accent hover:bg-accent/10 font-medium">
+                                        View All
+                                        <FaArrowRight className="ml-2 text-sm" />
+                                    </Button>
+                                </Link>
+                            )}
+                        </div>
+
+                        {recentCourses && recentCourses.length > 0 ? (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                                {recentCourses.map((course, index) => (
+                                    <motion.div
+                                        key={course._id}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.5 + index * 0.1 }}
+                                    >
+                                        <Card className="bg-surface border border-main hover:border-accent/30 rounded-2xl p-5 transition-all duration-300 hover:shadow-accent/5">
+                                            <div className="flex items-start justify-between">
+                                                <div className="flex-1 min-w-0">
+                                                    <h3 className="font-semibold text-main truncate">
+                                                        {course.courseTitle}
+                                                    </h3>
+                                                    <div className="flex items-center gap-3 mt-2">
+                                                        <div className="flex items-center gap-1.5 text-sm text-main/60">
+                                                            <FaClock className="text-accent text-xs" />
+                                                            <span>
+                                                                {course.progress}%
+                                                                Complete
+                                                            </span>
+                                                        </div>
+                                                        {course.progress === 100 && (
+                                                            <span className="flex items-center gap-1 text-xs text-success">
+                                                                <FaCheckCircle />
+                                                                Completed
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                                {/* FIX: use course._id (not enrollment.courseId) */}
+                                                <Link
+                                                    href={`/courses/${course._id}/content`}
+                                                >
+                                                    <Button
+                                                        isIconOnly
+                                                        size="sm"
+                                                        className="bg-accent/10 hover:bg-accent/20 text-accent min-w-0 w-9 h-9 rounded-lg"
+                                                    >
+                                                        <FaPlay className="text-xs" />
+                                                    </Button>
+                                                </Link>
+                                            </div>
+                                            <div className="mt-3">
+                                                <div className="w-full h-2 bg-main rounded-full overflow-hidden">
+                                                    <div
+                                                        className={`h-full rounded-full transition-all duration-500 ${getProgressBarColor(course.progress)}`}
+                                                        style={{
+                                                            width: `${course.progress}%`,
+                                                        }}
+                                                    />
+                                                </div>
+                                                <div
+                                                    className={`text-xs mt-1 text-right ${getProgressColor(course.progress)}`}
+                                                >
+                                                    {course.progress}%
+                                                </div>
+                                            </div>
+                                        </Card>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        ) : (
+                            <Card className="bg-surface border border-main rounded-2xl p-12 text-center">
+                                <FaBook className="text-4xl text-main/20 mx-auto mb-4" />
+                                <h3 className="text-lg font-semibold text-main mb-2">
+                                    No Courses Yet
+                                </h3>
+                                <p className="text-main/60 text-sm mb-4">
+                                    Start your learning journey by enrolling in
+                                    your first course.
+                                </p>
+                                <Link href="/courses">
+                                    <Button className="bg-action-primary font-semibold hover:opacity-90">
+                                        Browse Courses
+                                        <FaArrowRight className="ml-2" />
+                                    </Button>
+                                </Link>
+                            </Card>
+                        )}
+                    </motion.div>
+
+                    {/* Learning Stats */}
+                    {enrolledCourses > 0 && (
                         <motion.div
-                            key={index}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            whileHover={{ y: -4 }}
-                            className="transition-all duration-300"
+                            transition={{ delay: 0.6 }}
                         >
-                            <Card className={`bg-white border ${stat.color} rounded-2xl p-6 shadow-xl hover:shadow-teal/5 transition-all`}>
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <p className="text-navy/60 text-sm font-medium">
-                                            {stat.title}
+                            <Card className="bg-surface border border-main rounded-2xl p-6">
+                                <h3 className="text-lg font-semibold text-main mb-4">
+                                    Learning Progress
+                                </h3>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div className="text-center">
+                                        <p className="text-3xl font-bold text-accent">
+                                            {completedCourses}
                                         </p>
-                                        <p className="text-3xl md:text-4xl font-bold text-navy mt-2">
-                                            {stat.value}
+                                        <p className="text-main/60 text-sm mt-1">
+                                            Courses Completed
                                         </p>
                                     </div>
-                                    <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center">
-                                        {stat.icon}
+                                    <div className="text-center">
+                                        <p className="text-3xl font-bold text-warning">
+                                            {inProgress}
+                                        </p>
+                                        <p className="text-main/60 text-sm mt-1">
+                                            In Progress
+                                        </p>
+                                    </div>
+                                    <div className="text-center">
+                                        <p className="text-3xl font-bold text-main">
+                                            {enrolledCourses}
+                                        </p>
+                                        <p className="text-main/60 text-sm mt-1">
+                                            Total Enrolled
+                                        </p>
                                     </div>
                                 </div>
                             </Card>
                         </motion.div>
-                    ))}
-                </div>
-
-                {/* Quick Actions */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                        <Card className="bg-white border border-teal/20 rounded-2xl p-6 hover:shadow-teal/5 transition-all">
-                            <h3 className="text-lg font-semibold text-navy mb-2">
-                                Browse New Courses
-                            </h3>
-                            <p className="text-navy/60 text-sm mb-4">
-                                Discover new courses and expand your skills.
-                            </p>
-                            <Link href="/courses">
-                                <Button className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90">
-                                    Explore Courses
-                                    <FaArrowRight className="ml-2" />
-                                </Button>
-                            </Link>
-                        </Card>
-
-                        <Card className="bg-white border border-teal/20 rounded-2xl p-6 hover:shadow-teal/5 transition-all">
-                            <h3 className="text-lg font-semibold text-navy mb-2">
-                                AI Mentor
-                            </h3>
-                            <p className="text-navy/60 text-sm mb-4">
-                                Get personalized learning guidance from our AI Mentor.
-                            </p>
-                            <Link href="/ai-mentor">
-                                <Button className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90">
-                                    Chat with AI Mentor
-                                    <FaArrowRight className="ml-2" />
-                                </Button>
-                            </Link>
-                        </Card>
-                    </div>
-                </motion.div>
-
-                {/* Recent Courses */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                >
-                    <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-xl font-bold text-navy">
-                            My Recent Courses
-                        </h2>
-                        {enrolledCourses > 0 && (
-                            <Link href="/dashboard/student/my-courses">
-                                <Button className="bg-transparent text-teal hover:bg-teal/10 font-medium">
-                                    View All
-                                    <FaArrowRight className="ml-2 text-sm" />
-                                </Button>
-                            </Link>
-                        )}
-                    </div>
-
-                    {recentCourses && recentCourses.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                            {recentCourses.map((course, index) => (
-                                <motion.div
-                                    key={course._id}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.5 + index * 0.1 }}
-                                >
-                                    <Card className="bg-white border border-teal/10 hover:border-teal/30 rounded-2xl p-5 transition-all duration-300 hover:shadow-teal/5">
-                                        <div className="flex items-start justify-between">
-                                            <div className="flex-1 min-w-0">
-                                                <h3 className="font-semibold text-navy truncate">
-                                                    {course.courseTitle}
-                                                </h3>
-                                                <div className="flex items-center gap-3 mt-2">
-                                                    <div className="flex items-center gap-1.5 text-sm text-navy/60">
-                                                        <FaClock className="text-teal text-xs" />
-                                                        <span>{course.progress}% Complete</span>
-                                                    </div>
-                                                    {course.progress === 100 && (
-                                                        <span className="flex items-center gap-1 text-xs text-green-400">
-                                                            <FaCheckCircle />
-                                                            Completed
-                                                        </span>
-                                                    )}
-                                                </div>
-                                            </div>
-                                            <Link href={`/courses/${enrollment.courseId}/content`}>
-                                                <Button
-                                                    isIconOnly
-                                                    size="sm"
-                                                    className="bg-teal/10 hover:bg-teal/20 text-teal min-w-0 w-9 h-9 rounded-lg"
-                                                >
-                                                    <FaPlay className="text-xs" />
-                                                </Button>
-                                            </Link>
-                                        </div>
-                                        <div className="mt-3">
-                                            <div className="w-full h-2 bg-white rounded-full overflow-hidden">
-                                                <div
-                                                    className={`h-full rounded-full transition-all duration-500 ${getProgressBarColor(course.progress)}`}
-                                                    style={{ width: `${course.progress}%` }}
-                                                />
-                                            </div>
-                                            <div className={`text-xs mt-1 text-right ${getProgressColor(course.progress)}`}>
-                                                {course.progress}%
-                                            </div>
-                                        </div>
-                                    </Card>
-                                </motion.div>
-                            ))}
-                        </div>
-                    ) : (
-                        <Card className="bg-white border border-teal/10 rounded-2xl p-12 text-center">
-                            <FaBook className="text-4xl text-navy/20 mx-auto mb-4" />
-                            <h3 className="text-lg font-semibold text-navy mb-2">
-                                No Courses Yet
-                            </h3>
-                            <p className="text-navy/60 text-sm mb-4">
-                                Start your learning journey by enrolling in your first course.
-                            </p>
-                            <Link href="/courses">
-                                <Button className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90">
-                                    Browse Courses
-                                    <FaArrowRight className="ml-2" />
-                                </Button>
-                            </Link>
-                        </Card>
                     )}
                 </motion.div>
-
-                {/* Learning Stats */}
-                {enrolledCourses > 0 && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6 }}
-                    >
-                        <Card className="bg-white border border-teal/20 rounded-2xl p-6">
-                            <h3 className="text-lg font-semibold text-navy mb-4">
-                                Learning Progress
-                            </h3>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div className="text-center">
-                                    <p className="text-3xl font-bold text-teal">
-                                        {completedCourses}
-                                    </p>
-                                    <p className="text-navy/60 text-sm mt-1">Courses Completed</p>
-                                </div>
-                                <div className="text-center">
-                                    <p className="text-3xl font-bold text-yellow-400">
-                                        {inProgress}
-                                    </p>
-                                    <p className="text-navy/60 text-sm mt-1">In Progress</p>
-                                </div>
-                                <div className="text-center">
-                                    <p className="text-3xl font-bold text-navy">
-                                        {enrolledCourses}
-                                    </p>
-                                    <p className="text-navy/60 text-sm mt-1">Total Enrolled</p>
-                                </div>
-                            </div>
-                        </Card>
-                    </motion.div>
-                )}
-            </motion.div>
+            </div>
         </section>
     );
 }
