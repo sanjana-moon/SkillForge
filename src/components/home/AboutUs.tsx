@@ -144,7 +144,7 @@ export default function AboutPage() {
                                 </Button>
                             </Link>
                             <Link href="/contact">
-                                <Button className="border border-[var(--royal-blue)] text-[var(--royal-blue)] hover:bg-[var(--royal-blue)]/10 bg-transparent font-semibold">
+                                <Button className="border border-accent text-accent hover:bg-accent hover:text-inverse bg-transparent font-semibold">
                                     Get in Touch
                                 </Button>
                             </Link>
@@ -226,8 +226,8 @@ export default function AboutPage() {
                                         <span className="text-main/60">
                                             {item.label}
                                         </span>
-                                        {/* Updated percentage text color to royal-blue */}
-                                        <span className="font-semibold text-[var(--royal-blue)]">
+                                        {/* Fixed: Uses text-accent instead of --royal-blue */}
+                                        <span className="font-semibold text-accent">
                                             {item.value}
                                         </span>
                                     </div>
@@ -282,7 +282,7 @@ export default function AboutPage() {
                         />
 
                         {/* Dark gradient for text legibility */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/80 via-[#0F172A]/40 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#2F4156]/80 via-[#2F4156]/40 to-transparent" />
 
                         {/* Corner value badge */}
                         <div className="absolute left-6 top-6 rounded-full border border-accent/30 bg-surface/70 px-3 py-1 font-mono text-xs uppercase tracking-widest text-accent backdrop-blur-sm">
@@ -363,7 +363,8 @@ export default function AboutPage() {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                {/* Reduced gap from gap-8 to gap-4 for a tighter, more connected team grid */}
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
                     {team.map((member, index) => (
                         <motion.div
                             key={member.name}
@@ -371,29 +372,32 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ delay: index * 0.08 }}
-                            className="group flex flex-col items-center text-center"
+                            className="group relative flex flex-col items-center overflow-hidden rounded-3xl border border-main bg-surface p-6 text-center shadow-sm transition-all duration-300 hover:border-accent/40 hover:shadow-lg"
                         >
-                            <div className="relative mb-5">
-                                <div className="pointer-events-none absolute inset-0 rounded-full bg-accent/25 opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+                            {/* Decorative accent bar at top */}
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-accent/0 via-accent/50 to-accent/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                                <div className="relative h-40 w-40 overflow-hidden rounded-full border-2 border-accent/40 transition-transform duration-500 group-hover:scale-105">
+                            <div className="relative mb-5">
+                                <div className="pointer-events-none absolute inset-0 rounded-full bg-accent/25 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+
+                                <div className="relative h-32 w-32 overflow-hidden rounded-full border-2 border-accent/20 transition-all duration-500 group-hover:scale-105 group-hover:border-accent/50">
                                     <Image
                                         src={member.image}
                                         alt={member.name}
                                         fill
-                                        sizes="160px"
+                                        sizes="128px"
                                         className="object-cover"
                                     />
                                 </div>
                             </div>
 
-                            <h3 className="text-lg font-semibold text-main">
+                            <h3 className="text-base font-bold text-main">
                                 {member.name}
                             </h3>
-                            <p className="text-sm font-medium text-accent">
+                            <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-accent">
                                 {member.role}
                             </p>
-                            <p className="mt-2 max-w-[220px] text-xs leading-relaxed text-main/50">
+                            <p className="mt-3 text-xs leading-relaxed text-main/60">
                                 {member.bio}
                             </p>
                         </motion.div>
@@ -453,7 +457,7 @@ export default function AboutPage() {
                             </Button>
                         </Link>
                         <Link href="/contact">
-                            <Button className="rounded-xl border border-[var(--royal-blue)] px-8 py-6 text-lg text-[var(--royal-blue)] hover:bg-[var(--royal-blue)]/10 bg-transparent font-semibold">
+                            <Button className="rounded-xl border border-accent px-8 py-6 text-lg text-accent hover:bg-accent hover:text-inverse bg-transparent font-semibold">
                                 Contact Us
                             </Button>
                         </Link>
