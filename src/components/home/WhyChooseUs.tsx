@@ -42,7 +42,7 @@ export default function WhyChooseUs() {
     <section className="relative w-full overflow-hidden bg-main">
       <div className="section-container">
         {/* Heading */}
-        <div className="mx-auto mb-20 max-w-3xl text-center">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
             Why SkillForge
           </p>
@@ -56,15 +56,15 @@ export default function WhyChooseUs() {
           </p>
         </div>
 
-        {/* Alternating rows */}
-        <div className="mx-auto flex max-w-6xl flex-col gap-24 md:gap-32">
+        {/* Alternating rows — balanced spacing */}
+        <div className="mx-auto flex max-w-6xl flex-col gap-20 md:gap-28">
           {features.map((feature, index) => {
             const isReversed = index % 2 === 1;
 
             return (
               <div
                 key={feature.title}
-                className={`group flex flex-col items-center gap-10 md:gap-16 ${
+                className={`group flex flex-col items-center gap-10 md:gap-14 ${
                   isReversed ? "md:flex-row-reverse" : "md:flex-row"
                 }`}
               >
