@@ -12,13 +12,13 @@ interface CourseCardProps {
 const getLevelColor = (level: string) => {
     switch (level) {
         case "beginner":
-            return "text-green-400";
+            return "text-green-500";
         case "intermediate":
-            return "text-yellow-400";
+            return "text-yellow-500";
         case "advanced":
-            return "text-red-400";
+            return "text-red-500";
         default:
-            return "text-teal";
+            return "text-accent";
     }
 };
 
@@ -40,62 +40,61 @@ export default function CourseCard({ course }: CourseCardProps) {
     const formattedPrice = `$${course.price.toFixed(2)}`;
 
     return (
-        <div className="group bg-white border border-teal/10 hover:border-teal/30 rounded-md overflow-hidden shadow-lg hover:shadow-teal/5 flex flex-col transition-all duration-300 hover:-translate-y-1">
-            {/* Thumbnail - 2/3 of the card */}
-            <div className="relative aspect-4/3 overflow-hidden bg-white">
+        <div className="group bg-surface border border-main hover:border-accent/30 rounded-md overflow-hidden shadow-lg hover:shadow-accent/5 flex flex-col transition-all duration-300 hover:-translate-y-1">
+            {/* Thumbnail - fixed aspect ratio, image fills container */}
+            <div className="relative aspect-[4/3] overflow-hidden bg-surface">
                 {imageUrl ? (
                     <Image
                         src={imageUrl}
                         alt={course.title}
-                        width={400}
-                        height={1000}
-                        className="object-cover h-70 w-auto transition-transform duration-500 group-hover:scale-105 mx-auto"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center text-navy/10">
-                        <span className="text-4xl">Ã°Å¸â€œÅ¡</span>
+                    <div className="w-full h-full flex items-center justify-center text-main/10">
+                        <span className="text-4xl">📚</span>
                     </div>
                 )}
-                <div className="absolute inset-0 bg-linear-to-t from-white/60 to-transparent" />
                 
-                {/* Category tag - Bottom Left */}
-                <span className="absolute bottom-3 left-3 inline-block px-2.5 py-0.5 bg-white/80 backdrop-blur-sm border border-teal/20 rounded-full text-[10px] font-mono font-bold text-teal">
+                {/* Category tag */}
+                <span className="absolute bottom-3 left-3 inline-block px-2.5 py-0.5 bg-surface border border-main rounded-full text-[10px] font-mono font-bold text-accent shadow-sm z-10">
                     {course.category}
                 </span>
 
-                {/* Status Badge - Top Right */}
+                {/* Status Badge */}
                 {course.approvalStatus === "approved" && course.publishStatus === "published" ? (
-                    <span className="absolute top-3 right-3 inline-block px-2 py-0.5 bg-green-500/20 backdrop-blur-sm rounded-lg text-[9px] font-bold text-green-400 uppercase tracking-wider border border-green-500/30">
+                    <span className="absolute top-3 right-3 inline-block px-2 py-0.5 bg-green-500/10 backdrop-blur-sm rounded-lg text-[9px] font-bold text-green-600 uppercase tracking-wider border border-green-500/20 z-10">
                         Published
                     </span>
                 ) : (
-                    <span className="absolute top-3 right-3 inline-block px-2 py-0.5 bg-yellow-500/20 backdrop-blur-sm rounded-lg text-[9px] font-bold text-yellow-400 uppercase tracking-wider border border-yellow-500/30">
+                    <span className="absolute top-3 right-3 inline-block px-2 py-0.5 bg-yellow-500/10 backdrop-blur-sm rounded-lg text-[9px] font-bold text-yellow-600 uppercase tracking-wider border border-yellow-500/20 z-10">
                         Draft
                     </span>
                 )}
             </div>
 
-            {/* Content - 1/3 of the card */}
+            {/* Content */}
             <div className="p-4 grow flex flex-col justify-between">
                 {/* Rating & Title */}
                 <div>
-                    <div className="flex items-center gap-1.5 text-xs text-navy/60 font-semibold mb-1.5">
-                        <FaStar className="text-yellow-400 text-xs" />
-                        <span className="text-navy">{course.avgRating?.toFixed(1) || "0.0"}</span>
+                    <div className="flex items-center gap-1.5 text-xs text-main/60 font-semibold mb-1.5">
+                        <FaStar className="text-yellow-500 text-xs" />
+                        <span className="text-main">{course.avgRating?.toFixed(1) || "0.0"}</span>
                         <span className="text-[10px]">({course.reviewCount || 0})</span>
                     </div>
 
-                    <h3 className="text-sm font-bold font-heading text-navy group-hover:text-teal transition line-clamp-1 leading-snug">
+                    <h3 className="text-sm font-bold font-heading text-main group-hover:text-accent transition line-clamp-1 leading-snug">
                         {course.title}
                     </h3>
                 </div>
 
                 {/* Metadata & Price */}
-                <div className="mt-3 pt-3 border-t border-teal/10">
+                <div className="mt-3 pt-3 border-t border-main">
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3 text-[10px] text-navy/60">
+                        <div className="flex items-center gap-3 text-[10px] text-main/60">
                             <div className="flex items-center gap-1">
-                                <FaRegClock className="text-teal text-[10px]" />
+                                <FaRegClock className="text-accent text-[10px]" />
                                 <span>{course.duration}</span>
                             </div>
                             <div className="flex items-center gap-1">
@@ -104,17 +103,18 @@ export default function CourseCard({ course }: CourseCardProps) {
                             </div>
                         </div>
                         <div className="text-right">
-                            <p className="text-[10px] text-navy/30 line-through">
+                            <p className="text-[10px] text-main/30 line-through">
                                 ${(course.price * 1.5).toFixed(2)}
                             </p>
-                            <p className="text-sm font-extrabold text-teal">
+                            <p className="text-sm font-extrabold text-accent">
                                 {formattedPrice}
                             </p>
                         </div>
                     </div>
+                    
                     <Link
                         href={`/courses/${course._id}`}
-                        className="w-full inline-flex items-center justify-center rounded-sm hover:bg-white/10 bg-[image:var(--brand-gradient)] text-white border border-teal/20 py-1.5 text-[10px] font-semibold hover:text-white transition-all duration-300 mt-2"
+                        className="w-full inline-flex items-center justify-center rounded-sm bg-action-primary border border-main py-1.5 text-[10px] font-semibold transition-all duration-300 mt-2 hover:opacity-90"
                     >
                         View Course
                     </Link>
