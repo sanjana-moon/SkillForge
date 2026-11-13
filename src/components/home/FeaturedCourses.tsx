@@ -74,7 +74,7 @@ export default function FeaturedCourses() {
                                 className={`px-4 py-2 rounded-xl text-xs font-semibold font-mono border transition-all duration-300 ${
                                     activeCategory === cat.value
                                         ? "bg-action-primary border-accent shadow-md shadow-accent/10"
-                                        : "border-main text-main/75 hover:border-accent hover:text-main"
+                                        : "border-main text-main/75 hover:bg-alt hover:border-accent hover:text-main"
                                 }`}
                             >
                                 {cat.label}
@@ -90,8 +90,8 @@ export default function FeaturedCourses() {
                         <p className="text-main/60 mt-4">Loading featured courses...</p>
                     </div>
                 ) : error ? (
-                    <Card className="bg-surface border border-red-500/20 rounded-2xl p-12 text-center">
-                        <p className="text-red-400 text-lg">{error}</p>
+                    <Card className="bg-surface border border-error/20 rounded-2xl p-12 text-center">
+                        <p className="text-error text-lg">{error}</p>
                         <Button
                             className="mt-4 bg-action-primary"
                             onPress={() => setReloadKey((k) => k + 1)}

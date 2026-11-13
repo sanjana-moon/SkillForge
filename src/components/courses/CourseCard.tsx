@@ -12,11 +12,11 @@ interface CourseCardProps {
 const getLevelColor = (level: string) => {
     switch (level) {
         case "beginner":
-            return "text-green-500";
+            return "text-success";
         case "intermediate":
-            return "text-yellow-500";
+            return "text-warning";
         case "advanced":
-            return "text-red-500";
+            return "text-error";
         default:
             return "text-accent";
     }
@@ -41,7 +41,7 @@ export default function CourseCard({ course }: CourseCardProps) {
 
     return (
         <div className="group bg-surface border border-main hover:border-accent/30 rounded-md overflow-hidden shadow-lg hover:shadow-accent/5 flex flex-col transition-all duration-300 hover:-translate-y-1">
-            {/* Thumbnail - fixed aspect ratio, image fills container */}
+            {/* Thumbnail */}
             <div className="relative aspect-[4/3] overflow-hidden bg-surface">
                 {imageUrl ? (
                     <Image
@@ -56,7 +56,7 @@ export default function CourseCard({ course }: CourseCardProps) {
                         <span className="text-4xl">📚</span>
                     </div>
                 )}
-                
+
                 {/* Category tag */}
                 <span className="absolute bottom-3 left-3 inline-block px-2.5 py-0.5 bg-surface border border-main rounded-full text-[10px] font-mono font-bold text-accent shadow-sm z-10">
                     {course.category}
@@ -64,11 +64,11 @@ export default function CourseCard({ course }: CourseCardProps) {
 
                 {/* Status Badge */}
                 {course.approvalStatus === "approved" && course.publishStatus === "published" ? (
-                    <span className="absolute top-3 right-3 inline-block px-2 py-0.5 bg-green-500/10 backdrop-blur-sm rounded-lg text-[9px] font-bold text-green-600 uppercase tracking-wider border border-green-500/20 z-10">
+                    <span className="absolute top-3 right-3 inline-block px-2 py-0.5 bg-success/10 backdrop-blur-sm rounded-lg text-[9px] font-bold text-success uppercase tracking-wider border border-success/20 z-10">
                         Published
                     </span>
                 ) : (
-                    <span className="absolute top-3 right-3 inline-block px-2 py-0.5 bg-yellow-500/10 backdrop-blur-sm rounded-lg text-[9px] font-bold text-yellow-600 uppercase tracking-wider border border-yellow-500/20 z-10">
+                    <span className="absolute top-3 right-3 inline-block px-2 py-0.5 bg-warning/10 backdrop-blur-sm rounded-lg text-[9px] font-bold text-warning uppercase tracking-wider border border-warning/20 z-10">
                         Draft
                     </span>
                 )}
@@ -79,7 +79,7 @@ export default function CourseCard({ course }: CourseCardProps) {
                 {/* Rating & Title */}
                 <div>
                     <div className="flex items-center gap-1.5 text-xs text-main/60 font-semibold mb-1.5">
-                        <FaStar className="text-yellow-500 text-xs" />
+                        <FaStar className="text-warning text-xs" />
                         <span className="text-main">{course.avgRating?.toFixed(1) || "0.0"}</span>
                         <span className="text-[10px]">({course.reviewCount || 0})</span>
                     </div>
@@ -111,7 +111,7 @@ export default function CourseCard({ course }: CourseCardProps) {
                             </p>
                         </div>
                     </div>
-                    
+
                     <Link
                         href={`/courses/${course._id}`}
                         className="w-full inline-flex items-center justify-center rounded-sm bg-action-primary border border-main py-1.5 text-[10px] font-semibold transition-all duration-300 mt-2 hover:opacity-90"
