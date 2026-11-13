@@ -167,8 +167,7 @@ button:disabled {
 @layer components {
   /* Standard Section Container */
   .section-container {
-    @apply w-full mx-auto px-4 py-16 md:px-8 lg:py-24;
-    max-width: 1280px;
+    @apply w-full max-w-7xl mx-auto px-4 py-16 md:px-8 lg:py-24;
   }
 
   /* Backward Compatibility */
