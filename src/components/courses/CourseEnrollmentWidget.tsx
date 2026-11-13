@@ -10,9 +10,9 @@ import {
     TextField,
 } from "@heroui/react";
 
-import { 
-    FaLock, 
-    FaUserGraduate, 
+import {
+    FaLock,
+    FaUserGraduate,
     FaClock,
     FaCheckCircle,
 } from "react-icons/fa";
@@ -90,10 +90,8 @@ export default function CourseEnrollmentWidget({
         setSubmitting(true);
 
         try {
-            // Ã¢Å“â€¦ Generate a unique transaction ID
             const transactionId = `txn_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
 
-            // Ã¢Å“â€¦ Create checkout session with all required data
             const bookingData = {
                 type: "course_enrollment",
                 courseId,
@@ -104,7 +102,6 @@ export default function CourseEnrollmentWidget({
                 studentName: user.name,
                 startDate,
                 note,
-                // Ã¢Å“â€¦ Added userId for metadata
                 userId: user.id,
             };
 
@@ -126,7 +123,6 @@ export default function CourseEnrollmentWidget({
             const data = await res.json();
 
             if (data?.url) {
-                // Ã¢Å“â€¦ Redirect to Stripe Checkout
                 window.location.href = data.url;
             } else {
                 toast.error("Failed to create checkout session");
@@ -142,13 +138,13 @@ export default function CourseEnrollmentWidget({
     const getLevelColor = (level: string) => {
         switch (level) {
             case "beginner":
-                return "text-green-400";
+                return "text-success";
             case "intermediate":
-                return "text-yellow-400";
+                return "text-warning";
             case "advanced":
-                return "text-red-400";
+                return "text-error";
             default:
-                return "text-teal";
+                return "text-accent";
         }
     };
 
@@ -157,7 +153,7 @@ export default function CourseEnrollmentWidget({
         return (
             <Button
                 isDisabled
-                className="w-full bg-green-500/20 text-green-400 border border-green-500/30 font-bold h-12 rounded-xl transition-colors cursor-default"
+                className="w-full bg-success/10 text-success border border-success/30 font-bold h-12 rounded-xl transition-colors cursor-default *:text-success"
             >
                 <FaCheckCircle />
                 Already Enrolled
@@ -170,7 +166,7 @@ export default function CourseEnrollmentWidget({
         return (
             <Button
                 isDisabled
-                className="w-full bg-white text-navy/40 font-bold h-12 rounded-xl transition-colors cursor-default"
+                className="w-full bg-surface border border-main text-main/40 font-bold h-12 rounded-xl transition-colors cursor-default"
             >
                 Checking...
             </Button>
@@ -181,7 +177,7 @@ export default function CourseEnrollmentWidget({
         <>
             <Button
                 onPress={() => setIsModalOpen(true)}
-                className="w-full bg-[image:var(--brand-gradient)] text-white hover:opacity-90 font-bold h-12 rounded-xl transition-colors"
+                className="w-full bg-action-primary font-bold h-12 rounded-xl transition-colors hover:opacity-90"
             >
                 Enroll Now - ${price.toFixed(2)}
             </Button>
@@ -189,15 +185,15 @@ export default function CourseEnrollmentWidget({
             <Modal isOpen={isModalOpen} onOpenChange={setIsModalOpen}>
                 <Modal.Backdrop>
                     <Modal.Container>
-                        <Modal.Dialog className="sm:max-w-125 bg-white border border-teal/20 rounded-2xl">
+                        <Modal.Dialog className="sm:max-w-125 bg-surface border border-main rounded-2xl">
                             <Modal.CloseTrigger />
 
                             <Modal.Header>
-                                <Modal.Icon className="bg-teal/15 text-teal">
+                                <Modal.Icon className="bg-accent/10 text-accent">
                                     <FaUserGraduate className="size-5" />
                                 </Modal.Icon>
 
-                                <Modal.Heading className="text-2xl font-bold text-navy text-center">
+                                <Modal.Heading className="text-2xl font-bold text-main text-center">
                                     Enroll in Course
                                 </Modal.Heading>
                             </Modal.Header>
@@ -205,7 +201,7 @@ export default function CourseEnrollmentWidget({
                             <Modal.Body className="pb-6">
                                 {!user ? (
                                     <div className="text-center py-8">
-                                        <p className="text-navy/60 mb-4">
+                                        <p className="text-main/60 mb-4">
                                             Please sign in to enroll in this course.
                                         </p>
                                         <Button
@@ -213,29 +209,29 @@ export default function CourseEnrollmentWidget({
                                                 setIsModalOpen(false);
                                                 router.push("/signin");
                                             }}
-                                            className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90"
+                                            className="bg-action-primary font-semibold hover:opacity-90"
                                         >
                                             Sign In
                                         </Button>
                                     </div>
                                 ) : user.role !== "student" ? (
                                     <div className="text-center py-8">
-                                        <p className="text-navy/60 mb-4">
+                                        <p className="text-main/60 mb-4">
                                             Only students can enroll in courses.
                                         </p>
-                                        <p className="text-sm text-navy/40">
-                                            Your current role: <span className="capitalize text-teal">{user.role}</span>
+                                        <p className="text-sm text-main/40">
+                                            Your current role: <span className="capitalize text-accent">{user.role}</span>
                                         </p>
                                     </div>
                                 ) : isEnrolled ? (
                                     <div className="text-center py-8">
-                                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/20 border-2 border-green-500/30 mb-4">
-                                            <FaCheckCircle className="text-3xl text-green-400" />
+                                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-success/10 border-2 border-success/30 mb-4">
+                                            <FaCheckCircle className="text-3xl text-success" />
                                         </div>
-                                        <h3 className="text-xl font-bold text-navy mb-2">
+                                        <h3 className="text-xl font-bold text-main mb-2">
                                             Already Enrolled!
                                         </h3>
-                                        <p className="text-navy/60">
+                                        <p className="text-main/60">
                                             You are already enrolled in <strong>{courseTitle}</strong>
                                         </p>
                                         <Button
@@ -243,7 +239,7 @@ export default function CourseEnrollmentWidget({
                                                 setIsModalOpen(false);
                                                 router.push(`/courses/${courseId}`);
                                             }}
-                                            className="mt-4 bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90"
+                                            className="mt-4 bg-action-primary font-semibold hover:opacity-90"
                                         >
                                             Go to Course
                                         </Button>
@@ -251,50 +247,50 @@ export default function CourseEnrollmentWidget({
                                 ) : (
                                     <div className="space-y-5">
                                         {/* Course Details */}
-                                        <div className="bg-white rounded-xl p-4 border border-teal/10">
+                                        <div className="bg-main rounded-xl p-4 border border-main">
                                             <div className="space-y-3">
                                                 <div className="flex justify-between">
-                                                    <span className="text-navy/50 text-sm">
+                                                    <span className="text-main/50 text-sm">
                                                         Course
                                                     </span>
-                                                    <span className="font-semibold text-navy">
+                                                    <span className="font-semibold text-main">
                                                         {courseTitle}
                                                     </span>
                                                 </div>
-                                                <div className="border-t border-teal/10" />
+                                                <div className="border-t border-main" />
                                                 <div className="flex justify-between">
-                                                    <span className="text-navy/50 text-sm">
+                                                    <span className="text-main/50 text-sm">
                                                         Price
                                                     </span>
-                                                    <span className="text-teal font-bold text-xl">
+                                                    <span className="text-accent font-bold text-xl">
                                                         ${price.toFixed(2)}
                                                     </span>
                                                 </div>
-                                                <div className="border-t border-teal/10" />
+                                                <div className="border-t border-main" />
                                                 <div className="flex justify-between">
-                                                    <span className="text-navy/50 text-sm">
+                                                    <span className="text-main/50 text-sm">
                                                         Duration
                                                     </span>
-                                                    <span className="text-navy flex items-center gap-1">
-                                                        <FaClock className="text-teal text-xs" />
+                                                    <span className="text-main flex items-center gap-1">
+                                                        <FaClock className="text-accent text-xs" />
                                                         {duration}
                                                     </span>
                                                 </div>
-                                                <div className="border-t border-teal/10" />
+                                                <div className="border-t border-main" />
                                                 <div className="flex justify-between">
-                                                    <span className="text-navy/50 text-sm">
+                                                    <span className="text-main/50 text-sm">
                                                         Level
                                                     </span>
                                                     <span className={`font-medium ${getLevelColor(level)}`}>
                                                         {level.charAt(0).toUpperCase() + level.slice(1)}
                                                     </span>
                                                 </div>
-                                                <div className="border-t border-teal/10" />
+                                                <div className="border-t border-main" />
                                                 <div className="flex justify-between">
-                                                    <span className="text-navy/50 text-sm">
+                                                    <span className="text-main/50 text-sm">
                                                         Instructor
                                                     </span>
-                                                    <span className="text-navy">
+                                                    <span className="text-main">
                                                         {instructorName}
                                                     </span>
                                                 </div>
@@ -303,7 +299,7 @@ export default function CourseEnrollmentWidget({
 
                                         {/* Start Date */}
                                         <TextField>
-                                            <Label className="text-navy font-medium">
+                                            <Label className="text-main font-medium">
                                                 When would you like to start?
                                             </Label>
                                             <Input
@@ -312,20 +308,20 @@ export default function CourseEnrollmentWidget({
                                                 onChange={(e) =>
                                                     setStartDate(e.target.value)
                                                 }
-                                                className="mt-2 bg-white/50 border-teal/30 text-navy"
+                                                className="mt-2 bg-surface border-main text-main"
                                             />
                                         </TextField>
 
                                         {/* Note */}
                                         <TextField>
-                                            <Label className="text-navy font-medium">
+                                            <Label className="text-main font-medium">
                                                 Additional Notes (Optional)
                                             </Label>
                                             <TextArea
                                                 placeholder="Any special requests or questions..."
                                                 value={note}
                                                 onChange={(e) => setNote(e.target.value)}
-                                                className="mt-2 bg-white/50 border-teal/30 text-navy placeholder:text-navy/40"
+                                                className="mt-2 bg-surface border-main text-main placeholder:text-main/40"
                                                 rows={3}
                                             />
                                         </TextField>
@@ -334,7 +330,7 @@ export default function CourseEnrollmentWidget({
                                         <Button
                                             isDisabled={submitting}
                                             onPress={handleEnrollment}
-                                            className="w-full bg-[image:var(--brand-gradient)] text-white hover:opacity-90 font-bold rounded-xl transition-colors py-6"
+                                            className="w-full bg-action-primary font-bold rounded-xl transition-colors py-6 hover:opacity-90"
                                         >
                                             {submitting ? (
                                                 "Processing..."
@@ -346,7 +342,7 @@ export default function CourseEnrollmentWidget({
                                             )}
                                         </Button>
 
-                                        <div className="flex items-center justify-center gap-2 text-xs text-navy/40">
+                                        <div className="flex items-center justify-center gap-2 text-xs text-main/40">
                                             <FaLock className="text-[10px]" />
                                             <span>
                                                 Secure payment powered by Stripe
