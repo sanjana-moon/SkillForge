@@ -17,14 +17,14 @@ interface AdminDashboardClientProps {
 }
 
 const COLORS = [
-    "#567C8D",
-    "#567C8D",
-    "#567C8D",
-    "#2F4156",
-    "#2F4156",
-    "#2F4156",
-    "#2F4156",
-    "#2F4156",
+    "var(--teal)",
+    "var(--teal)",
+    "var(--teal)",
+    "var(--navy)",
+    "var(--navy)",
+    "var(--navy)",
+    "var(--navy)",
+    "var(--navy)",
 ];
 
 const AdminDashboardClient = ({
@@ -97,7 +97,7 @@ const AdminDashboardClient = ({
                                 nameKey="category"
                                 outerRadius={130}
                                 labelLine={{
-                                    stroke: "#567C8D",
+                                    stroke: "var(--teal)",
                                     strokeWidth: 2,
                                 }}
                                 label={({ cx, cy, midAngle, outerRadius, percent, name }) => {
@@ -113,7 +113,7 @@ const AdminDashboardClient = ({
                                         <text
                                             x={x}
                                             y={y}
-                                            fill="#FFFFFF"
+                                            fill="var(--white)"
                                             textAnchor={x > (cx ?? 0) ? "start" : "end"}
                                             dominantBaseline="central"
                                             fontSize={14}
@@ -138,16 +138,16 @@ const AdminDashboardClient = ({
                                     "Count",
                                 ]}
                                 contentStyle={{
-                                    backgroundColor: "#FFFFFF",
-                                    border: "1px solid rgba(167,139,250,.3)",
+                                    backgroundColor: "var(--white)",
+                                    border: "1px solid rgba(86, 124, 141, 0.3)",
                                     borderRadius: "12px",
-                                    color: "#2F4156",
+                                    color: "var(--navy)",
                                 }}
                                 labelStyle={{
-                                    color: "#2F4156",
+                                    color: "var(--navy)",
                                 }}
                                 itemStyle={{
-                                    color: "#2F4156",
+                                    color: "var(--navy)",
                                 }}
                             />
 
@@ -157,7 +157,7 @@ const AdminDashboardClient = ({
                                 formatter={(value) => (
                                     <span
                                         style={{
-                                            color: "#2F4156",
+                                            color: "var(--navy)",
                                             fontWeight: 600,
                                         }}
                                     >
