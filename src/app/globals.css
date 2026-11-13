@@ -2,49 +2,51 @@
 @import "@heroui/styles";
 
 /* =========================================================
-   1. DESIGN TOKENS
+   1. DESIGN TOKENS (Blue-Purple Tech Palette with Indigo Buttons)
 ========================================================= */
 
 :root {
   /* ── Core Palette ────────────────────────────────────────── */
-  --navy: #2F4156;
-  --teal: #567C8D;
-  --sky-blue: #C8D9E6;
-  --beige: #F5EFEB;
+  --deep-navy: #0F172A;
+  --royal-blue: #2563EB;
+  --vibrant-purple: #7C3AED;
+  --indigo-accent: #6366F1;
+  --light-blue: #DBEAFE;
+  --surface-light: #F8FAFC;
   --white: #FFFFFF;
 
   /* ── Semantic Colors ─────────────────────────────────────── */
-  --color-bg-main: var(--beige);
+  --color-bg-main: var(--surface-light);
   --color-bg-surface: var(--white);
-  --color-bg-alt: var(--sky-blue);
+  --color-bg-alt: var(--light-blue);
 
-  --color-text-main: var(--navy);
-  --color-text-muted: #6B7A8A;
+  --color-text-main: var(--deep-navy);
+  --color-text-muted: #64748B;
   --color-text-inverse: var(--white);
-  --color-text-accent: var(--teal);
+  --color-text-accent: var(--royal-blue);
 
-  --color-border-main: var(--sky-blue);
-  --color-border-fallback: #D6DCE3;
+  --color-border-main: #E2E8F0;
+  --color-border-fallback: #CBD5E1;
 
-  --color-action-primary: var(--navy);
-  --color-action-secondary: var(--teal);
+  --color-action-primary: var(--indigo-accent); /* Switched primary buttons to Indigo (#6366F1) */
+  --color-action-secondary: var(--vibrant-purple);
 
   /* ── Status Colors ───────────────────────────────────────── */
-  --color-success: #4C8C6F;
-  --color-warning: #C99452;
-  --color-error: #B85C5C;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
 
   /* ── HeroUI v3 Theme Mapping ─────────────────────────────── */
-  --background: var(--beige);
-  --foreground: var(--navy);
+  --background: var(--surface-light);
+  --foreground: var(--deep-navy);
   --surface: var(--white);
-  --surface-foreground: var(--navy);
-  --accent: var(--navy);
+  --surface-foreground: var(--deep-navy);
+  --accent: var(--royal-blue);
   --accent-foreground: var(--white);
-  --default: var(--sky-blue);
-  --default-foreground: var(--navy);
-  --border: var(--sky-blue);
-  --focus: var(--teal);
+  --default: var(--light-blue);
+  --default-foreground: var(--deep-navy);
+  --border: var(--color-border-main);
+  --focus: var(--indigo-accent);
   --success: var(--color-success);
   --warning: var(--color-warning);
   --danger: var(--color-error);
@@ -66,30 +68,31 @@
 ========================================================= */
 
 @theme inline {
-  /* Core Direct Access (optional utility helpers) */
-  --color-navy: var(--navy);
-  --color-teal: var(--teal);
-  --color-sky-blue: var(--sky-blue);
-  --color-beige: var(--beige);
+  /* Core Direct Access Helpers */
+  --color-deep-navy: var(--deep-navy);
+  --color-royal-blue: var(--royal-blue);
+  --color-vibrant-purple: var(--vibrant-purple);
+  --color-indigo-accent: var(--indigo-accent);
+  --color-light-blue: var(--light-blue);
 
   /* Background */
-  --color-bg-main: var(--beige);
+  --color-bg-main: var(--surface-light);
   --color-bg-surface: var(--white);
-  --color-bg-alt: var(--sky-blue);
+  --color-bg-alt: var(--light-blue);
 
   /* Text */
-  --color-text-main: var(--navy);
+  --color-text-main: var(--deep-navy);
   --color-text-muted: var(--color-text-muted);
   --color-text-inverse: var(--white);
-  --color-text-accent: var(--teal);
+  --color-text-accent: var(--royal-blue);
 
   /* Borders */
-  --color-border-main: var(--sky-blue);
+  --color-border-main: var(--color-border-main);
   --color-border-fallback: var(--color-border-fallback);
 
   /* Actions */
-  --color-action-primary: var(--navy);
-  --color-action-secondary: var(--teal);
+  --color-action-primary: var(--indigo-accent);
+  --color-action-secondary: var(--vibrant-purple);
 
   /* Status */
   --color-success: var(--color-success);
