@@ -2,17 +2,17 @@ import { Spinner } from "@heroui/react";
 
 export default function Loading() {
     return (
-        <div className="min-h-screen bg-[#FFFFFF] flex items-center justify-center">
+        <div className="min-h-screen bg-white flex items-center justify-center">
             <div className="flex flex-col items-center gap-4">
                 {/* Spinner */}
                 <Spinner size="lg"/>
                 
                 {/* Loading Text */}
                 <div className="text-center">
-                    <h2 className="text-xl font-semibold text-[#4B4B5A]">
+                    <h2 className="text-xl font-semibold text-navy">
                         Loading...
                     </h2>
-                    <p className="text-[#4B4B5A]/40 text-sm mt-1">
+                    <p className="text-navy/40 text-sm mt-1">
                         Please wait while we prepare your content
                     </p>
                 </div>

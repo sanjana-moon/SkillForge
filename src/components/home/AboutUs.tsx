@@ -21,22 +21,22 @@ export default function AboutPage() {
         {
             value: "50K+",
             label: "Students Enrolled",
-            icon: <FaUsers className="text-[#0E7CC9]" />,
+            icon: <FaUsers className="text-teal" />,
         },
         {
             value: "200+",
             label: "Courses Available",
-            icon: <FaBookOpen className="text-[#0E7CC9]" />,
+            icon: <FaBookOpen className="text-teal" />,
         },
         {
             value: "98%",
             label: "Satisfaction Rate",
-            icon: <FaAward className="text-[#0E7CC9]" />,
+            icon: <FaAward className="text-teal" />,
         },
         {
             value: "24/7",
             label: "AI Support",
-            icon: <FaRobot className="text-[#0E7CC9]" />,
+            icon: <FaRobot className="text-teal" />,
         },
     ];
 
@@ -107,14 +107,14 @@ export default function AboutPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-[#FFFFFF]">
+        <div className="min-h-screen bg-white">
             {/* ─────────────────────────────
                 HERO
             ───────────────────────────── */}
             <section className="relative overflow-hidden">
-                <div className="absolute inset-0 bg-linear-to-br from-[#0E7CC9]/10 via-transparent to-transparent" />
-                <div className="absolute top-20 left-10 h-64 w-64 rounded-full bg-[#0E7CC9]/5 blur-3xl" />
-                <div className="absolute bottom-20 right-10 h-96 w-96 rounded-full bg-[#7A56CE]/5 blur-3xl" />
+                <div className="absolute inset-0 bg-linear-to-br from-teal/10 via-transparent to-transparent" />
+                <div className="absolute top-20 left-10 h-64 w-64 rounded-full bg-teal/5 blur-3xl" />
+                <div className="absolute bottom-20 right-10 h-96 w-96 rounded-full bg-teal/5 blur-3xl" />
 
                 <div className="container relative mx-auto px-4 py-20 md:py-28">
                     <motion.div
@@ -123,17 +123,17 @@ export default function AboutPage() {
                         transition={{ duration: 0.6 }}
                         className="mx-auto max-w-4xl text-center"
                     >
-                        <Chip className="mb-6 border border-[#0E7CC9]/20 bg-[#0E7CC9]/10 px-4 py-2 text-sm font-medium text-[#0E7CC9]">
+                        <Chip className="mb-6 border border-teal/20 bg-teal/10 px-4 py-2 text-sm font-medium text-teal">
                             About SkillForge
                         </Chip>
-                        <h1 className="text-4xl font-bold leading-tight text-[#4B4B5A] md:text-6xl">
+                        <h1 className="text-4xl font-bold leading-tight text-navy md:text-6xl">
                             Empowering Learners Through
-                            <span className="text-[#0E7CC9]">
+                            <span className="text-teal">
                                 {" "}
                                 AI-Powered Education
                             </span>
                         </h1>
-                        <p className="mx-auto mt-6 max-w-2xl text-lg text-[#4B4B5A]/60">
+                        <p className="mx-auto mt-6 max-w-2xl text-lg text-navy/60">
                             We're on a mission to make quality education
                             accessible to everyone, using artificial
                             intelligence to create personalized, engaging
@@ -141,13 +141,13 @@ export default function AboutPage() {
                         </p>
                         <div className="mt-8 flex flex-wrap justify-center gap-4">
                             <Link href="/courses">
-                                <Button className="bg-[image:var(--brand-gradient)] font-semibold text-[#FFFFFF] hover:opacity-90">
+                                <Button className="bg-[image:var(--brand-gradient)] font-semibold text-white hover:opacity-90">
                                     Explore Courses
                                     <FaArrowRight className="ml-2" />
                                 </Button>
                             </Link>
                             <Link href="/contact">
-                                <Button className="border border-[#0E7CC9]/30 text-[#4B4B5A] hover:bg-[#0E7CC9]/10 bg-transparent">
+                                <Button className="border border-teal/30 text-navy hover:bg-teal/10 bg-transparent">
                                     Get in Touch
                                 </Button>
                             </Link>
@@ -166,13 +166,13 @@ export default function AboutPage() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <Chip className="mb-4 border border-[#0E7CC9]/20 bg-[#0E7CC9]/10 px-4 py-2 text-sm font-medium text-[#0E7CC9]">
+                        <Chip className="mb-4 border border-teal/20 bg-teal/10 px-4 py-2 text-sm font-medium text-teal">
                             Our Mission
                         </Chip>
-                        <h2 className="text-3xl font-bold text-[#4B4B5A] md:text-4xl">
+                        <h2 className="text-3xl font-bold text-navy md:text-4xl">
                             Making Quality Education Accessible
                         </h2>
-                        <p className="mt-4 text-base leading-relaxed text-[#4B4B5A]/60">
+                        <p className="mt-4 text-base leading-relaxed text-navy/60">
                             At SkillForge, we believe that everyone deserves
                             access to high-quality education. Our platform
                             combines expert-led courses with cutting-edge AI
@@ -187,8 +187,8 @@ export default function AboutPage() {
                                 "Supportive community of learners",
                             ].map((item, index) => (
                                 <div key={index} className="flex items-center gap-3">
-                                    <FaCheckCircle className="shrink-0 text-sm text-[#0E7CC9]" />
-                                    <span className="text-sm text-[#4B4B5A]/70">
+                                    <FaCheckCircle className="shrink-0 text-sm text-teal" />
+                                    <span className="text-sm text-navy/70">
                                         {item}
                                     </span>
                                 </div>
@@ -200,11 +200,11 @@ export default function AboutPage() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="rounded-2xl border border-[#0E7CC9]/20 bg-[#FBF8FD] p-8"
+                        className="rounded-2xl border border-teal/20 bg-white p-8"
                     >
                         <div className="mb-4 flex items-center gap-3">
-                            <FaGlobe className="text-2xl text-[#0E7CC9]" />
-                            <h3 className="text-xl font-bold text-[#4B4B5A]">
+                            <FaGlobe className="text-2xl text-teal" />
+                            <h3 className="text-xl font-bold text-navy">
                                 Our Impact
                             </h3>
                         </div>
@@ -228,14 +228,14 @@ export default function AboutPage() {
                             ].map((item) => (
                                 <div key={item.label}>
                                     <div className="mb-1 flex justify-between text-sm">
-                                        <span className="text-[#4B4B5A]/60">
+                                        <span className="text-navy/60">
                                             {item.label}
                                         </span>
-                                        <span className="font-medium text-[#0E7CC9]">
+                                        <span className="font-medium text-teal">
                                             {item.value}
                                         </span>
                                     </div>
-                                    <div className="h-2 w-full overflow-hidden rounded-full bg-[#FFFFFF]">
+                                    <div className="h-2 w-full overflow-hidden rounded-full bg-white">
                                         <div
                                             className="h-full rounded-full bg-[image:var(--brand-gradient)]"
                                             style={{ width: item.width }}
@@ -258,13 +258,13 @@ export default function AboutPage() {
                     transition={{ duration: 0.6 }}
                     className="mb-12 text-center"
                 >
-                    <Chip className="mb-4 border border-[#0E7CC9]/20 bg-[#0E7CC9]/10 px-4 py-2 text-sm font-medium text-[#0E7CC9]">
+                    <Chip className="mb-4 border border-teal/20 bg-teal/10 px-4 py-2 text-sm font-medium text-teal">
                         Core Values
                     </Chip>
-                    <h2 className="text-3xl font-bold text-[#4B4B5A] md:text-4xl">
+                    <h2 className="text-3xl font-bold text-navy md:text-4xl">
                         What Drives Us
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-[#4B4B5A]/60">
+                    <p className="mx-auto mt-4 max-w-2xl text-navy/60">
                         Our values shape everything we do, from the courses we
                         create to the community we build.
                     </p>
@@ -278,7 +278,7 @@ export default function AboutPage() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.6 }}
-                        className="group relative min-h-[420px] overflow-hidden rounded-3xl border border-[#0E7CC9]/20 lg:min-h-full"
+                        className="group relative min-h-[420px] overflow-hidden rounded-3xl border border-teal/20 lg:min-h-full"
                     >
                         <Image
                             src={values[0].image}
@@ -289,10 +289,10 @@ export default function AboutPage() {
                         />
 
                         {/* Dark gradient for text legibility */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#7a56ce]/30 via-[#0E7CC9]/10 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#567C8D]/30 via-teal/10 to-transparent" />
 
                         {/* Corner value badge */}
-                        <div className="absolute left-6 top-6 rounded-full border border-[#0E7CC9]/30 bg-[#FFFFFF]/70 px-3 py-1 font-mono text-xs uppercase tracking-widest text-[#0E7CC9] backdrop-blur-sm">
+                        <div className="absolute left-6 top-6 rounded-full border border-teal/30 bg-white/70 px-3 py-1 font-mono text-xs uppercase tracking-widest text-teal backdrop-blur-sm">
                             Value 01
                         </div>
 
@@ -326,20 +326,20 @@ export default function AboutPage() {
                                         duration: 0.5,
                                         delay: 0.1 + index * 0.08,
                                     }}
-                                    className="group relative flex flex-1 items-start gap-5 overflow-hidden rounded-3xl border border-[#0E7CC9]/20 bg-[#FBF8FD] p-6 transition-colors duration-300 hover:border-[#0E7CC9]/40"
+                                    className="group relative flex flex-1 items-start gap-5 overflow-hidden rounded-3xl border border-teal/20 bg-white p-6 transition-colors duration-300 hover:border-teal/40"
                                 >
                                     {/* brass corner glow */}
-                                    <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-[#0E7CC9]/10 blur-3xl opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
+                                    <div className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-teal/10 blur-3xl opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
 
-                                    <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#0E7CC9]/20 bg-[#0E7CC9]/10 text-[#0E7CC9]">
+                                    <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-teal/20 bg-teal/10 text-teal">
                                         {icons[index]}
                                     </div>
 
                                     <div className="relative">
-                                        <h3 className="text-lg font-semibold text-[#4B4B5A]">
+                                        <h3 className="text-lg font-semibold text-navy">
                                             {value.title}
                                         </h3>
-                                        <p className="mt-2 text-sm leading-relaxed text-[#4B4B5A]/60">
+                                        <p className="mt-2 text-sm leading-relaxed text-navy/60">
                                             {value.description}
                                         </p>
                                     </div>
@@ -360,13 +360,13 @@ export default function AboutPage() {
                     transition={{ duration: 0.6 }}
                     className="mb-12 text-center"
                 >
-                    <Chip className="mb-4 border border-[#0E7CC9]/20 bg-[#0E7CC9]/10 px-4 py-2 text-sm font-medium text-[#0E7CC9]">
+                    <Chip className="mb-4 border border-teal/20 bg-teal/10 px-4 py-2 text-sm font-medium text-teal">
                         Meet the Team
                     </Chip>
-                    <h2 className="text-3xl font-bold text-[#4B4B5A] md:text-4xl">
+                    <h2 className="text-3xl font-bold text-navy md:text-4xl">
                         Passionate People, Powerful Results
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-[#4B4B5A]/60">
+                    <p className="mx-auto mt-4 max-w-2xl text-navy/60">
                         Behind SkillForge is a team of dedicated educators,
                         engineers, and innovators committed to transforming
                         education.
@@ -384,9 +384,9 @@ export default function AboutPage() {
                             className="group flex flex-col items-center text-center"
                         >
                             <div className="relative mb-5">
-                                <div className="pointer-events-none absolute inset-0 rounded-full bg-[#0E7CC9]/25 opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+                                <div className="pointer-events-none absolute inset-0 rounded-full bg-teal/25 opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
 
-                                <div className="relative h-40 w-40 overflow-hidden rounded-full border-2 border-[#0E7CC9]/40 transition-transform duration-500 group-hover:scale-105">
+                                <div className="relative h-40 w-40 overflow-hidden rounded-full border-2 border-teal/40 transition-transform duration-500 group-hover:scale-105">
                                     <Image
                                         src={member.image}
                                         alt={member.name}
@@ -397,13 +397,13 @@ export default function AboutPage() {
                                 </div>
                             </div>
 
-                            <h3 className="text-lg font-semibold text-[#4B4B5A]">
+                            <h3 className="text-lg font-semibold text-navy">
                                 {member.name}
                             </h3>
-                            <p className="text-sm font-medium text-[#0E7CC9]">
+                            <p className="text-sm font-medium text-teal">
                                 {member.role}
                             </p>
-                            <p className="mt-2 max-w-[220px] text-xs leading-relaxed text-[#4B4B5A]/50">
+                            <p className="mt-2 max-w-[220px] text-xs leading-relaxed text-navy/50">
                                 {member.bio}
                             </p>
                         </motion.div>
@@ -423,17 +423,17 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ delay: index * 0.08 }}
-                            className="rounded-2xl border border-[#0E7CC9]/20 bg-[#FBF8FD] p-6 text-center transition-all duration-300 hover:border-[#0E7CC9]/40"
+                            className="rounded-2xl border border-teal/20 bg-white p-6 text-center transition-all duration-300 hover:border-teal/40"
                         >
                             <div className="mb-3 flex justify-center">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0E7CC9]/10">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal/10">
                                     {stat.icon}
                                 </div>
                             </div>
-                            <p className="text-3xl font-bold text-[#4B4B5A]">
+                            <p className="text-3xl font-bold text-navy">
                                 {stat.value}
                             </p>
-                            <p className="mt-1 text-sm text-[#4B4B5A]/50">
+                            <p className="mt-1 text-sm text-navy/50">
                                 {stat.label}
                             </p>
                         </motion.div>
@@ -449,25 +449,25 @@ export default function AboutPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="rounded-3xl border border-[#0E7CC9]/20 bg-linear-to-br from-[#0E7CC9]/10 via-[#7A56CE]/5 to-transparent p-12 text-center"
+                    className="rounded-3xl border border-teal/20 bg-linear-to-br from-teal/10 via-teal/5 to-transparent p-12 text-center"
                 >
-                    <h2 className="text-3xl font-bold text-[#4B4B5A] md:text-4xl">
+                    <h2 className="text-3xl font-bold text-navy md:text-4xl">
                         Ready to Start Learning?
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-[#4B4B5A]/60">
+                    <p className="mx-auto mt-4 max-w-2xl text-navy/60">
                         Join thousands of students who are already advancing
                         their careers with SkillForge. Start your learning
                         journey today.
                     </p>
                     <div className="mt-8 flex flex-wrap justify-center gap-4">
                         <Link href="/courses">
-                            <Button className="rounded-xl bg-[image:var(--brand-gradient)] px-8 py-6 text-lg font-semibold text-[#FFFFFF] hover:opacity-90">
+                            <Button className="rounded-xl bg-[image:var(--brand-gradient)] px-8 py-6 text-lg font-semibold text-white hover:opacity-90">
                                 Explore Courses
                                 <FaArrowRight className="ml-2" />
                             </Button>
                         </Link>
                         <Link href="/contact">
-                            <Button className="rounded-xl border border-[#0E7CC9]/30 px-8 py-6 text-lg text-[#4B4B5A] hover:bg-[#0E7CC9]/10 bg-transparent">
+                            <Button className="rounded-xl border border-teal/30 px-8 py-6 text-lg text-navy hover:bg-teal/10 bg-transparent">
                                 Contact Us
                             </Button>
                         </Link>

@@ -28,7 +28,7 @@ const getStatusText = (progress: number) => {
 const getStatusBadgeColor = (progress: number) => {
     if (progress === 100) return "bg-green-500/20 text-green-400 border-green-500/30";
     if (progress >= 50) return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
-    return "bg-[#0E7CC9]/20 text-[#0E7CC9] border-[#0E7CC9]/30";
+    return "bg-teal/20 text-teal border-teal/30";
 };
 
 const getProgressColor = (progress: number) => {
@@ -48,7 +48,7 @@ export default function MyCoursesClient({
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-[#FFFFFF] flex items-center justify-center">
+            <div className="min-h-screen bg-white flex items-center justify-center">
                 <Spinner size="lg"/>
             </div>
         );
@@ -56,10 +56,10 @@ export default function MyCoursesClient({
 
     if (isError) {
         return (
-            <div className="min-h-screen bg-[#FFFFFF] flex items-center justify-center p-4">
-                <Card className="bg-[#FBF8FD] border border-red-500/20 rounded-2xl p-8 text-center">
+            <div className="min-h-screen bg-white flex items-center justify-center p-4">
+                <Card className="bg-white border border-red-500/20 rounded-2xl p-8 text-center">
                     <p className="text-red-400">Failed to load your courses.</p>
-                    <Button className="mt-4 bg-[image:var(--brand-gradient)] text-[#FFFFFF]" onPress={() => window.location.reload()}>
+                    <Button className="mt-4 bg-[image:var(--brand-gradient)] text-white" onPress={() => window.location.reload()}>
                         Retry
                     </Button>
                 </Card>
@@ -90,8 +90,8 @@ export default function MyCoursesClient({
         {
             label: "Total Enrolled",
             value: totalCourses,
-            icon: <FaBook className="text-[#0E7CC9]" />,
-            color: "bg-[#0E7CC9]/10 border-[#0E7CC9]/20",
+            icon: <FaBook className="text-teal" />,
+            color: "bg-teal/10 border-teal/20",
         },
         {
             label: "In Progress",
@@ -108,20 +108,20 @@ export default function MyCoursesClient({
         {
             label: "Not Started",
             value: notStartedCourses,
-            icon: <FaSearch className="text-[#4B4B5A]/40" />,
-            color: "bg-[#4B4B5A]/10 border-[#4B4B5A]/20",
+            icon: <FaSearch className="text-navy/40" />,
+            color: "bg-navy/10 border-navy/20",
         },
     ];
 
     return (
-        <div className="min-h-screen bg-[#FFFFFF] p-4 md:p-6">
+        <div className="min-h-screen bg-white p-4 md:p-6">
             <div className="mx-auto max-w-7xl">
                 {/* Header */}
                 <div className="mb-8">
-                    <h1 className="text-3xl md:text-4xl font-bold text-[#4B4B5A]">
+                    <h1 className="text-3xl md:text-4xl font-bold text-navy">
                         My Courses
                     </h1>
-                    <p className="text-[#4B4B5A]/60 mt-2">
+                    <p className="text-navy/60 mt-2">
                         Track your learning progress across all enrolled courses.
                     </p>
                 </div>
@@ -131,18 +131,18 @@ export default function MyCoursesClient({
                     {stats.map((stat, index) => (
                         <Card
                             key={index}
-                            className={`bg-[#FBF8FD] border ${stat.color} rounded-2xl p-4 shadow-xl transition-all hover:shadow-[#0E7CC9]/5`}
+                            className={`bg-white border ${stat.color} rounded-2xl p-4 shadow-xl transition-all hover:shadow-teal/5`}
                         >
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-[#4B4B5A]/60 text-xs font-medium uppercase tracking-wider">
+                                    <p className="text-navy/60 text-xs font-medium uppercase tracking-wider">
                                         {stat.label}
                                     </p>
-                                    <p className="text-2xl md:text-3xl font-bold text-[#4B4B5A] mt-1">
+                                    <p className="text-2xl md:text-3xl font-bold text-navy mt-1">
                                         {stat.value}
                                     </p>
                                 </div>
-                                <div className="w-10 h-10 rounded-full bg-[#FFFFFF] flex items-center justify-center">
+                                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                                     {stat.icon}
                                 </div>
                             </div>
@@ -154,13 +154,13 @@ export default function MyCoursesClient({
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
                     <div className="flex-1">
                         <div className="relative">
-                            <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4B4B5A]/40" />
+                            <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-navy/40" />
                             <input
                                 type="text"
                                 placeholder="Search courses..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-3 bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-xl text-[#4B4B5A] placeholder:text-[#4B4B5A]/40 focus:outline-none focus:border-[#0E7CC9] transition-colors"
+                                className="w-full pl-10 pr-4 py-3 bg-white border border-teal/20 rounded-xl text-navy placeholder:text-navy/40 focus:outline-none focus:border-teal transition-colors"
                             />
                         </div>
                     </div>
@@ -170,8 +170,8 @@ export default function MyCoursesClient({
                             onPress={() => setFilterStatus("all")}
                             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                                 filterStatus === "all"
-                                    ? "bg-[image:var(--brand-gradient)] text-[#FFFFFF]"
-                                    : "bg-[#FBF8FD] text-[#4B4B5A]/60 hover:text-[#4B4B5A] border border-[#0E7CC9]/20"
+                                    ? "bg-[image:var(--brand-gradient)] text-white"
+                                    : "bg-white text-navy/60 hover:text-navy border border-teal/20"
                             }`}
                         >
                             All
@@ -180,8 +180,8 @@ export default function MyCoursesClient({
                             onPress={() => setFilterStatus("in-progress")}
                             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                                 filterStatus === "in-progress"
-                                    ? "bg-yellow-500 text-[#FFFFFF]"
-                                    : "bg-[#FBF8FD] text-[#4B4B5A]/60 hover:text-[#4B4B5A] border border-[#0E7CC9]/20"
+                                    ? "bg-yellow-500 text-white"
+                                    : "bg-white text-navy/60 hover:text-navy border border-teal/20"
                             }`}
                         >
                             In Progress
@@ -190,8 +190,8 @@ export default function MyCoursesClient({
                             onPress={() => setFilterStatus("completed")}
                             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                                 filterStatus === "completed"
-                                    ? "bg-green-500 text-[#FFFFFF]"
-                                    : "bg-[#FBF8FD] text-[#4B4B5A]/60 hover:text-[#4B4B5A] border border-[#0E7CC9]/20"
+                                    ? "bg-green-500 text-white"
+                                    : "bg-white text-navy/60 hover:text-navy border border-teal/20"
                             }`}
                         >
                             Completed
@@ -200,8 +200,8 @@ export default function MyCoursesClient({
                             onPress={() => setFilterStatus("not-started")}
                             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                                 filterStatus === "not-started"
-                                    ? "bg-[#4B4B5A]/20 text-[#4B4B5A]"
-                                    : "bg-[#FBF8FD] text-[#4B4B5A]/60 hover:text-[#4B4B5A] border border-[#0E7CC9]/20"
+                                    ? "bg-navy/20 text-navy"
+                                    : "bg-white text-navy/60 hover:text-navy border border-teal/20"
                             }`}
                         >
                             Not Started
@@ -211,19 +211,19 @@ export default function MyCoursesClient({
 
                 {/* Courses Grid */}
                 {filteredEnrollments.length === 0 ? (
-                    <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/10 rounded-2xl p-12 text-center">
-                        <FaBook className="text-5xl text-[#4B4B5A]/20 mx-auto mb-4" />
-                        <h3 className="text-xl font-semibold text-[#4B4B5A] mb-2">
+                    <Card className="bg-white border border-teal/10 rounded-2xl p-12 text-center">
+                        <FaBook className="text-5xl text-navy/20 mx-auto mb-4" />
+                        <h3 className="text-xl font-semibold text-navy mb-2">
                             {totalCourses === 0 ? "No Courses Enrolled" : "No Courses Found"}
                         </h3>
-                        <p className="text-[#4B4B5A]/60 text-sm mb-4">
+                        <p className="text-navy/60 text-sm mb-4">
                             {totalCourses === 0
                                 ? "Start your learning journey by enrolling in your first course."
                                 : "Try adjusting your search or filters to find your courses."}
                         </p>
                         {totalCourses === 0 && (
                             <Link href="/courses">
-                                <Button className="bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold hover:opacity-90">
+                                <Button className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90">
                                     Browse Courses
                                     <FaArrowRight className="ml-2" />
                                 </Button>
@@ -235,7 +235,7 @@ export default function MyCoursesClient({
                         {filteredEnrollments.map((enrollment: Enrollment) => (
                             <Card
                                 key={enrollment._id}
-                                className="bg-[#FBF8FD] border border-[#0E7CC9]/10 hover:border-[#0E7CC9]/30 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-[#0E7CC9]/5 hover:-translate-y-1"
+                                className="bg-white border border-teal/10 hover:border-teal/30 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-teal/5 hover:-translate-y-1"
                             >
                                 <div className="p-5">
                                     <div className="flex items-center justify-between mb-3">
@@ -251,18 +251,18 @@ export default function MyCoursesClient({
                                         )}
                                     </div>
 
-                                    <h3 className="font-semibold text-[#4B4B5A] text-lg line-clamp-2 mb-2">
+                                    <h3 className="font-semibold text-navy text-lg line-clamp-2 mb-2">
                                         {enrollment.courseTitle}
                                     </h3>
 
                                     <div className="mt-4">
                                         <div className="flex items-center justify-between text-sm mb-1.5">
-                                            <span className="text-[#4B4B5A]/50">Progress</span>
+                                            <span className="text-navy/50">Progress</span>
                                             <span className={`font-medium ${getStatusBadgeColor(enrollment.progress)}`}>
                                                 {enrollment.progress}%
                                             </span>
                                         </div>
-                                        <div className="w-full h-2 bg-[#FFFFFF] rounded-full overflow-hidden">
+                                        <div className="w-full h-2 bg-white rounded-full overflow-hidden">
                                             <div
                                                 className={`h-full rounded-full transition-all duration-500 ${getProgressColor(
                                                     enrollment.progress
@@ -272,8 +272,8 @@ export default function MyCoursesClient({
                                         </div>
                                     </div>
 
-                                    <div className="mt-4 pt-4 border-t border-[#0E7CC9]/10">
-                                        <p className="text-[#4B4B5A]/40 text-xs">
+                                    <div className="mt-4 pt-4 border-t border-teal/10">
+                                        <p className="text-navy/40 text-xs">
                                             Enrolled on{" "}
                                             {new Date(enrollment.createdAt).toLocaleDateString("en-US", {
                                                 year: "numeric",
@@ -290,7 +290,7 @@ export default function MyCoursesClient({
                                             className={`mt-4 font-semibold rounded-xl transition-all ${
                                                 enrollment.progress === 100
                                                     ? "bg-green-500/20 text-green-400 hover:bg-green-500/30 border border-green-500/30"
-                                                    : "bg-[image:var(--brand-gradient)] text-[#FFFFFF] hover:opacity-90"
+                                                    : "bg-[image:var(--brand-gradient)] text-white hover:opacity-90"
                                             }`}
                                         >
                                             {enrollment.progress === 100 ? (

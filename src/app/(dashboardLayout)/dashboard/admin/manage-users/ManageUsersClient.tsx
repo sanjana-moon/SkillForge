@@ -19,26 +19,26 @@ interface ManageUsersClientProps {
 const getRoleIcon = (role: string) => {
     switch (role) {
         case "admin":
-            return <FaUserShield className="text-[#0E7CC9]" />;
+            return <FaUserShield className="text-teal" />;
         case "instructor":
-            return <FaChalkboardTeacher className="text-[#7A56CE]" />;
+            return <FaChalkboardTeacher className="text-teal" />;
         case "student":
-            return <FaUserGraduate className="text-[#7A56CE]" />;
+            return <FaUserGraduate className="text-teal" />;
         default:
-            return <FaUserCog className="text-[#4B4B5A]/60" />;
+            return <FaUserCog className="text-navy/60" />;
     }
 };
 
 const getRoleColor = (role: string) => {
     switch (role) {
         case "admin":
-            return "bg-[#0E7CC9]/20 text-[#0E7CC9] border-[#0E7CC9]/30";
+            return "bg-teal/20 text-teal border-teal/30";
         case "instructor":
-            return "bg-[#7A56CE]/20 text-[#7A56CE] border-[#7A56CE]/30";
+            return "bg-teal/20 text-teal border-teal/30";
         case "student":
-            return "bg-[#7A56CE]/20 text-[#7A56CE] border-[#7A56CE]/30";
+            return "bg-teal/20 text-teal border-teal/30";
         default:
-            return "bg-[#4B4B5A]/10 text-[#4B4B5A]/60 border-[#4B4B5A]/20";
+            return "bg-navy/10 text-navy/60 border-navy/20";
     }
 };
 
@@ -47,11 +47,11 @@ const getRoleBadgeColor = (role: string) => {
         case "admin":
             return "bg-[image:var(--brand-gradient)]";
         case "instructor":
-            return "bg-[#7A56CE]";
+            return "bg-teal";
         case "student":
-            return "bg-[#7A56CE]";
+            return "bg-teal";
         default:
-            return "bg-[#4B4B5A]/20";
+            return "bg-navy/20";
     }
 };
 
@@ -122,53 +122,53 @@ export default function ManageUsersClient({
         <div className="space-y-6">
             {/* Header */}
             <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-[#4B4B5A]">
+                <h1 className="text-3xl md:text-4xl font-bold text-navy">
                     Manage Users
                 </h1>
-                <p className="text-[#4B4B5A]/60 mt-2">
+                <p className="text-navy/60 mt-2">
                     Manage student, instructor, and admin accounts. Update roles or remove users.
                 </p>
             </div>
 
             {/* Stats Summary */}
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
-                    <p className="text-[#4B4B5A]/60 text-sm">Total Users</p>
-                    <p className="text-2xl font-bold text-[#4B4B5A]">{totalUsers}</p>
+                <Card className="bg-white border border-teal/20 rounded-2xl p-4">
+                    <p className="text-navy/60 text-sm">Total Users</p>
+                    <p className="text-2xl font-bold text-navy">{totalUsers}</p>
                 </Card>
-                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
-                    <p className="text-[#4B4B5A]/60 text-sm">Admins</p>
-                    <p className="text-2xl font-bold text-[#0E7CC9]">{adminCount}</p>
+                <Card className="bg-white border border-teal/20 rounded-2xl p-4">
+                    <p className="text-navy/60 text-sm">Admins</p>
+                    <p className="text-2xl font-bold text-teal">{adminCount}</p>
                 </Card>
-                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
-                    <p className="text-[#4B4B5A]/60 text-sm">Instructors</p>
-                    <p className="text-2xl font-bold text-[#7A56CE]">{instructorCount}</p>
+                <Card className="bg-white border border-teal/20 rounded-2xl p-4">
+                    <p className="text-navy/60 text-sm">Instructors</p>
+                    <p className="text-2xl font-bold text-teal">{instructorCount}</p>
                 </Card>
-                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
-                    <p className="text-[#4B4B5A]/60 text-sm">Students</p>
-                    <p className="text-2xl font-bold text-[#7A56CE]">{studentCount}</p>
+                <Card className="bg-white border border-teal/20 rounded-2xl p-4">
+                    <p className="text-navy/60 text-sm">Students</p>
+                    <p className="text-2xl font-bold text-teal">{studentCount}</p>
                 </Card>
             </div>
 
             {/* Users Table */}
-            <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl shadow-xl overflow-hidden">
+            <Card className="bg-white border border-teal/20 rounded-2xl shadow-xl overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full">
-                        <thead className="bg-[#FFFFFF] border-b border-[#0E7CC9]/20">
+                        <thead className="bg-white border-b border-teal/20">
                             <tr>
-                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-navy font-semibold text-sm">
                                     User
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-navy font-semibold text-sm">
                                     Email
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-navy font-semibold text-sm">
                                     Role
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-navy font-semibold text-sm">
                                     Status
                                 </th>
-                                <th className="px-6 py-4 text-center text-[#4B4B5A] font-semibold text-sm">
+                                <th className="px-6 py-4 text-center text-navy font-semibold text-sm">
                                     Actions
                                 </th>
                             </tr>
@@ -176,7 +176,7 @@ export default function ManageUsersClient({
                         <tbody>
                             {users.length === 0 ? (
                                 <tr>
-                                    <td colSpan={5} className="px-6 py-12 text-center text-[#4B4B5A]/40">
+                                    <td colSpan={5} className="px-6 py-12 text-center text-navy/40">
                                         No users found.
                                     </td>
                                 </tr>
@@ -184,24 +184,24 @@ export default function ManageUsersClient({
                                 users.map((user) => (
                                     <tr
                                         key={user._id}
-                                        className="border-b border-[#0E7CC9]/10 hover:bg-[#FFFFFF]/50 transition-colors duration-200"
+                                        className="border-b border-teal/10 hover:bg-white/50 transition-colors duration-200"
                                     >
                                         <td className="px-6 py-4">
                                             <div className="flex items-center gap-3">
                                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center ${getRoleColor(user.role)}`}>
                                                     {getRoleIcon(user.role)}
                                                 </div>
-                                                <span className="font-medium text-[#4B4B5A]">
+                                                <span className="font-medium text-navy">
                                                     {user.name}
                                                 </span>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4 text-[#4B4B5A]/70">
+                                        <td className="px-6 py-4 text-navy/70">
                                             {user.email}
                                         </td>
                                         <td className="px-6 py-4">
                                             <select
-                                                className={`px-3 py-2 rounded-lg border outline-none text-sm font-medium cursor-pointer bg-[#FFFFFF]/50 ${getRoleColor(user.role)}`}
+                                                className={`px-3 py-2 rounded-lg border outline-none text-sm font-medium cursor-pointer bg-white/50 ${getRoleColor(user.role)}`}
                                                 value={user.role}
                                                 onChange={(e) =>
                                                     handleRoleChange(
@@ -211,13 +211,13 @@ export default function ManageUsersClient({
                                                 }
                                                 disabled={loading === user._id}
                                             >
-                                                <option value="student" className="bg-[#FBF8FD] text-[#4B4B5A]">
+                                                <option value="student" className="bg-white text-navy">
                                                     Student
                                                 </option>
-                                                <option value="instructor" className="bg-[#FBF8FD] text-[#4B4B5A]">
+                                                <option value="instructor" className="bg-white text-navy">
                                                     Instructor
                                                 </option>
-                                                <option value="admin" className="bg-[#FBF8FD] text-[#4B4B5A]">
+                                                <option value="admin" className="bg-white text-navy">
                                                     Admin
                                                 </option>
                                             </select>
@@ -248,7 +248,7 @@ export default function ManageUsersClient({
             </Card>
 
             {/* Footer Stats */}
-            <div className="flex flex-wrap justify-between items-center text-[#4B4B5A]/40 text-sm gap-4">
+            <div className="flex flex-wrap justify-between items-center text-navy/40 text-sm gap-4">
                 <p>Total Users: {totalUsers}</p>
                 <div className="flex flex-wrap gap-4">
                     <span className="flex items-center gap-2">
@@ -256,11 +256,11 @@ export default function ManageUsersClient({
                         Admin: {adminCount}
                     </span>
                     <span className="flex items-center gap-2">
-                        <span className="w-3 h-3 rounded-full bg-[#7A56CE]"></span>
+                        <span className="w-3 h-3 rounded-full bg-teal"></span>
                         Instructor: {instructorCount}
                     </span>
                     <span className="flex items-center gap-2">
-                        <span className="w-3 h-3 rounded-full bg-[#7A56CE]"></span>
+                        <span className="w-3 h-3 rounded-full bg-teal"></span>
                         Student: {studentCount}
                     </span>
                     <span className="flex items-center gap-2">

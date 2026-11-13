@@ -234,24 +234,24 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
     };
 
     return (
-        <div className="min-h-screen bg-[#FFFFFF] p-4 md:p-6">
+        <div className="min-h-screen bg-white p-4 md:p-6">
             {/* ✅ dvh instead of vh — prevents mobile viewport jumps */}
             <div className="mx-auto max-w-7xl h-[calc(100dvh-120px)]">
                 <div className="flex flex-col h-full">
                     {/* Header */}
                     <div className="flex items-center justify-between mb-4">
                         <div>
-                            <h1 className="text-2xl md:text-3xl font-bold text-[#4B4B5A] flex items-center gap-3">
-                                <FaRobot className="text-[#0E7CC9]" />
+                            <h1 className="text-2xl md:text-3xl font-bold text-navy flex items-center gap-3">
+                                <FaRobot className="text-teal" />
                                 AI Mentor
                             </h1>
-                            <p className="text-[#4B4B5A]/50 text-sm mt-1">
+                            <p className="text-navy/50 text-sm mt-1">
                                 Your personal learning assistant powered by AI
                             </p>
                         </div>
                         <Button
                             onPress={handleCreateSession}
-                            className="bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold hover:opacity-90"
+                            className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90"
                         >
                             <FaPlus />
                             New Conversation
@@ -261,17 +261,17 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                     {/* Main Content */}
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 flex-1 min-h-0">
                         {/* Sidebar - Sessions List */}
-                        <Card className="lg:col-span-1 bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-3 overflow-y-auto max-h-[calc(100dvh-220px)]">
+                        <Card className="lg:col-span-1 bg-white border border-teal/20 rounded-2xl p-3 overflow-y-auto max-h-[calc(100dvh-220px)]">
                             {sessions.length === 0 ? (
                                 <div className="text-center py-8">
-                                    <FaRobot className="text-4xl text-[#4B4B5A]/10 mx-auto mb-3" />
-                                    <p className="text-[#4B4B5A]/40 text-sm">
+                                    <FaRobot className="text-4xl text-navy/10 mx-auto mb-3" />
+                                    <p className="text-navy/40 text-sm">
                                         No conversations yet
                                     </p>
                                     <Button
                                         onPress={handleCreateSession}
                                         size="sm"
-                                        className="mt-3 bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold hover:opacity-90"
+                                        className="mt-3 bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90"
                                     >
                                         Start New
                                     </Button>
@@ -284,18 +284,18 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                             className={`group flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all ${
                                                 currentSession?._id ===
                                                 session._id
-                                                    ? "bg-[#0E7CC9]/15 border border-[#0E7CC9]/30"
-                                                    : "hover:bg-[#FFFFFF] border border-transparent"
+                                                    ? "bg-teal/15 border border-teal/30"
+                                                    : "hover:bg-white border border-transparent"
                                             }`}
                                             onClick={() =>
                                                 handleSelectSession(session)
                                             }
                                         >
                                             <div className="flex-1 min-w-0">
-                                                <p className="text-sm font-medium text-[#4B4B5A] truncate">
+                                                <p className="text-sm font-medium text-navy truncate">
                                                     {session.title}
                                                 </p>
-                                                <p className="text-xs text-[#4B4B5A]/40 flex items-center gap-1 mt-0.5">
+                                                <p className="text-xs text-navy/40 flex items-center gap-1 mt-0.5">
                                                     <FaCalendarAlt className="text-[10px]" />
                                                     {formatDate(
                                                         session.updatedAt ||
@@ -313,7 +313,7 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                 disabled={
                                                     isDeleting === session._id
                                                 }
-                                                className="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg hover:bg-red-500/20 text-[#4B4B5A]/40 hover:text-red-400 transition-all"
+                                                className="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg hover:bg-red-500/20 text-navy/40 hover:text-red-400 transition-all"
                                             >
                                                 {isDeleting === session._id ? (
                                                     <Spinner
@@ -331,21 +331,21 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                         </Card>
 
                         {/* Chat Area */}
-                        <Card className="lg:col-span-3 bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl flex flex-col overflow-hidden">
+                        <Card className="lg:col-span-3 bg-white border border-teal/20 rounded-2xl flex flex-col overflow-hidden">
                             {!currentSession ? (
                                 <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
-                                    <FaRobot className="text-6xl text-[#4B4B5A]/10 mb-4" />
-                                    <h3 className="text-xl font-semibold text-[#4B4B5A] mb-2">
+                                    <FaRobot className="text-6xl text-navy/10 mb-4" />
+                                    <h3 className="text-xl font-semibold text-navy mb-2">
                                         Welcome to AI Mentor
                                     </h3>
-                                    <p className="text-[#4B4B5A]/50 max-w-md">
+                                    <p className="text-navy/50 max-w-md">
                                         Start a new conversation to get
                                         personalized learning guidance, career
                                         advice, and answers to your questions.
                                     </p>
                                     <Button
                                         onPress={handleCreateSession}
-                                        className="mt-6 bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold hover:opacity-90"
+                                        className="mt-6 bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90"
                                     >
                                         <FaPlus />
                                         Start New Conversation
@@ -364,8 +364,8 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                     >
                                         {messages.length === 0 ? (
                                             <div className="flex flex-col items-center justify-center h-full text-center">
-                                                <FaRobot className="text-4xl text-[#4B4B5A]/10 mb-3" />
-                                                <p className="text-[#4B4B5A]/40 text-sm">
+                                                <FaRobot className="text-4xl text-navy/10 mb-3" />
+                                                <p className="text-navy/40 text-sm">
                                                     Ask me anything about
                                                     learning, career, or
                                                     courses!
@@ -399,18 +399,18 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                                 className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                                                                     message.role ===
                                                                     "user"
-                                                                        ? "bg-[image:var(--brand-gradient)] text-[#FFFFFF]"
-                                                                        : "bg-[#FFFFFF] text-[#4B4B5A] border border-[#0E7CC9]/10"
+                                                                        ? "bg-[image:var(--brand-gradient)] text-white"
+                                                                        : "bg-white text-navy border border-teal/10"
                                                                 }`}
                                                             >
                                                                 <div className="flex items-start gap-2">
                                                                     {message.role ===
                                                                         "assistant" && (
-                                                                        <FaRobot className="text-[#0E7CC9] text-sm mt-0.5 shrink-0" />
+                                                                        <FaRobot className="text-teal text-sm mt-0.5 shrink-0" />
                                                                     )}
                                                                     {message.role ===
                                                                         "user" && (
-                                                                        <FaUser className="text-[#FFFFFF]/60 text-sm mt-0.5 shrink-0" />
+                                                                        <FaUser className="text-white/60 text-sm mt-0.5 shrink-0" />
                                                                     )}
                                                                     <div className="whitespace-pre-wrap text-sm leading-relaxed">
                                                                         {
@@ -422,8 +422,8 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                                     className={`text-[10px] mt-1 ${
                                                                         message.role ===
                                                                         "user"
-                                                                            ? "text-[#FFFFFF]/60"
-                                                                            : "text-[#4B4B5A]/30"
+                                                                            ? "text-white/60"
+                                                                            : "text-navy/30"
                                                                     }`}
                                                                 >
                                                                     {formatDate(
@@ -446,9 +446,9 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                 animate={{ opacity: 1, y: 0 }}
                                                 className="flex justify-start"
                                             >
-                                                <div className="bg-[#FFFFFF] border border-[#0E7CC9]/10 rounded-2xl px-4 py-3">
+                                                <div className="bg-white border border-teal/10 rounded-2xl px-4 py-3">
                                                     <div className="flex items-center gap-2">
-                                                        <FaRobot className="text-[#0E7CC9] text-sm" />
+                                                        <FaRobot className="text-teal text-sm" />
                                                         <div className="flex gap-1">
                                                             <span
                                                                 className="w-2 h-2 bg-[image:var(--brand-gradient)] rounded-full animate-bounce"
@@ -479,7 +479,7 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                     </div>
 
                                     {/* Input Area */}
-                                    <div className="p-4 border-t border-[#0E7CC9]/10">
+                                    <div className="p-4 border-t border-teal/10">
                                         <div className="flex gap-3">
                                             <input
                                                 ref={inputRef}
@@ -493,7 +493,7 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                 }
                                                 onKeyDown={handleKeyPress}
                                                 disabled={isLoading}
-                                                className="flex-1 px-4 py-3 bg-[#FFFFFF] border border-[#0E7CC9]/20 rounded-xl text-[#4B4B5A] placeholder:text-[#4B4B5A]/40 focus:outline-none focus:border-[#0E7CC9] transition-colors disabled:opacity-50"
+                                                className="flex-1 px-4 py-3 bg-white border border-teal/20 rounded-xl text-navy placeholder:text-navy/40 focus:outline-none focus:border-teal transition-colors disabled:opacity-50"
                                             />
                                             <Button
                                                 onPress={handleSendMessage}
@@ -501,7 +501,7 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                     !inputMessage.trim() ||
                                                     isLoading
                                                 }
-                                                className="bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold hover:opacity-90 px-6 rounded-xl"
+                                                className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90 px-6 rounded-xl"
                                             >
                                                 <FaPaperPlane />
                                                 Send

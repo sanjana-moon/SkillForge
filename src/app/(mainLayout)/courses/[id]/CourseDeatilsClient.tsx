@@ -37,7 +37,7 @@ const getLevelColor = (level: string) => {
         case "advanced":
             return "text-red-400 bg-red-500/10 border-red-500/30";
         default:
-            return "text-[#0E7CC9] bg-[#0E7CC9]/10 border-[#0E7CC9]/30";
+            return "text-teal bg-teal/10 border-teal/30";
     }
 };
 
@@ -99,12 +99,12 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
     };
 
     return (
-        <div className="min-h-screen bg-[#FFFFFF]">
+        <div className="min-h-screen bg-white">
             {/* Back Button */}
             <div className="container mx-auto px-4 pt-6">
                 <button
                     onClick={() => router.back()}
-                    className="flex items-center gap-2 text-[#4B4B5A]/60 hover:text-[#4B4B5A] transition-colors"
+                    className="flex items-center gap-2 text-navy/60 hover:text-navy transition-colors"
                 >
                     <FaArrowLeft className="text-sm" />
                     <span>Back to Courses</span>
@@ -113,13 +113,13 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
 
             {/* Hero Section */}
             <div className="container mx-auto px-4 py-6">
-                <div className="relative overflow-hidden bg-gradient-to-r from-[#FBF8FD] via-[#FFFFFF] to-[#FBF8FD] border border-[#0E7CC9]/20 rounded-3xl shadow-xl">
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0E7CC9] via-[#7A56CE] to-[#0E7CC9]" />
+                <div className="relative overflow-hidden bg-gradient-to-r from-white via-white to-white border border-teal/20 rounded-3xl shadow-xl">
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal via-teal to-teal" />
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-6 md:p-10">
                         {/* Thumbnail */}
                         <div className="lg:col-span-1">
-                            <div className="relative aspect-video rounded-2xl overflow-hidden bg-[#FFFFFF] border border-[#0E7CC9]/20">
+                            <div className="relative aspect-video rounded-2xl overflow-hidden bg-white border border-teal/20">
                                 {course.thumbnail ? (
                                     <Image
                                         src={course.thumbnail}
@@ -128,11 +128,11 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                         className="object-cover"
                                     />
                                 ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-[#4B4B5A]/10">
+                                    <div className="w-full h-full flex items-center justify-center text-navy/10">
                                         <FaBookmark className="text-6xl" />
                                     </div>
                                 )}
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#FFFFFF]/60 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-white/60 to-transparent" />
 
                                 {/* Status Badge */}
                                 {course.approvalStatus === "approved" && course.publishStatus === "published" ? (
@@ -153,47 +153,47 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                         <div className="lg:col-span-2 flex flex-col justify-between">
                             <div>
                                 <div className="flex items-center gap-3 flex-wrap mb-3">
-                                    <span className="px-3 py-1 bg-[#0E7CC9]/10 border border-[#0E7CC9]/20 rounded-full text-xs font-medium text-[#0E7CC9] uppercase">
+                                    <span className="px-3 py-1 bg-teal/10 border border-teal/20 rounded-full text-xs font-medium text-teal uppercase">
                                         {course.category}
                                     </span>
                                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getLevelColor(course.level)}`}>
                                         {getLevelLabel(course.level)}
                                     </span>
-                                    <span className="px-3 py-1 bg-[#FBF8FD] border border-[#0E7CC9]/10 rounded-full text-xs font-medium text-[#4B4B5A]/60">
+                                    <span className="px-3 py-1 bg-white border border-teal/10 rounded-full text-xs font-medium text-navy/60">
                                         {course.duration}
                                     </span>
                                 </div>
 
-                                <h1 className="text-2xl md:text-4xl font-bold text-[#4B4B5A] leading-tight">
+                                <h1 className="text-2xl md:text-4xl font-bold text-navy leading-tight">
                                     {course.title}
                                 </h1>
 
                                 <div className="flex items-center gap-4 mt-3">
-                                    <div className="flex items-center gap-1.5 text-sm text-[#4B4B5A]/60">
+                                    <div className="flex items-center gap-1.5 text-sm text-navy/60">
                                         <FaStar className="text-yellow-400" />
-                                        <span className="text-[#4B4B5A] font-medium">
+                                        <span className="text-navy font-medium">
                                             {course.avgRating?.toFixed(1) || "0.0"}
                                         </span>
                                         <span>({course.reviewCount || 0} reviews)</span>
                                     </div>
-                                    <div className="flex items-center gap-1.5 text-sm text-[#4B4B5A]/60">
-                                        <FaUserGraduate className="text-[#0E7CC9]" />
+                                    <div className="flex items-center gap-1.5 text-sm text-navy/60">
+                                        <FaUserGraduate className="text-teal" />
                                         <span>{course.enrollmentCount || 0} students</span>
                                     </div>
                                 </div>
 
-                                <p className="text-[#4B4B5A]/70 mt-4 text-base leading-relaxed">
+                                <p className="text-navy/70 mt-4 text-base leading-relaxed">
                                     {course.description}
                                 </p>
                             </div>
 
                             {/* Price & Actions */}
-                            <div className="flex flex-wrap items-center gap-4 mt-6 pt-6 border-t border-[#0E7CC9]/10">
+                            <div className="flex flex-wrap items-center gap-4 mt-6 pt-6 border-t border-teal/10">
                                 <div className="flex items-baseline gap-3">
-                                    <span className="text-3xl font-bold text-[#0E7CC9]">
+                                    <span className="text-3xl font-bold text-teal">
                                         ${course.price.toFixed(2)}
                                     </span>
-                                    <span className="text-sm text-[#4B4B5A]/40 line-through">
+                                    <span className="text-sm text-navy/40 line-through">
                                         ${(course.price * 1.5).toFixed(2)}
                                     </span>
                                 </div>
@@ -203,7 +203,7 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                     {isEnrolled && (
                                         <Button
                                             onPress={handleViewContent}
-                                            className="bg-[#7A56CE] text-[#FFFFFF] font-semibold hover:bg-[#7A56CE]/80"
+                                            className="bg-teal text-white font-semibold hover:bg-teal/80"
                                         >
                                             <FaPlay />
                                             View Content
@@ -212,7 +212,7 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
 
                                     <Button
                                         onPress={handleShare}
-                                        className="bg-[#FBF8FD] border border-[#0E7CC9]/20 text-[#4B4B5A] hover:bg-[#0E7CC9]/10"
+                                        className="bg-white border border-teal/20 text-navy hover:bg-teal/10"
                                     >
                                         <FaShare />
                                         Share
@@ -240,17 +240,17 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                     <div className="lg:col-span-2 space-y-8">
                         {/* What You Will Learn */}
                         {course.whatYouWillLearn && course.whatYouWillLearn.length > 0 && (
-                            <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-6">
-                                <h2 className="text-xl font-bold text-[#4B4B5A] mb-4">
+                            <Card className="bg-white border border-teal/20 rounded-2xl p-6">
+                                <h2 className="text-xl font-bold text-navy mb-4">
                                     What You Will Learn
                                 </h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                     {course.whatYouWillLearn.map((item, index) => (
                                         <div
                                             key={index}
-                                            className="flex items-start gap-3 text-[#4B4B5A]/70"
+                                            className="flex items-start gap-3 text-navy/70"
                                         >
-                                            <FaCheckCircle className="text-[#0E7CC9] text-sm mt-0.5 flex-shrink-0" />
+                                            <FaCheckCircle className="text-teal text-sm mt-0.5 flex-shrink-0" />
                                             <span className="text-sm">{item}</span>
                                         </div>
                                     ))}
@@ -260,14 +260,14 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
 
                         {/* Requirements */}
                         {course.requirements && course.requirements.length > 0 && (
-                            <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-6">
-                                <h2 className="text-xl font-bold text-[#4B4B5A] mb-4">
+                            <Card className="bg-white border border-teal/20 rounded-2xl p-6">
+                                <h2 className="text-xl font-bold text-navy mb-4">
                                     Requirements
                                 </h2>
-                                <ul className="space-y-2 text-[#4B4B5A]/70">
+                                <ul className="space-y-2 text-navy/70">
                                     {course.requirements.map((item, index) => (
                                         <li key={index} className="flex items-start gap-3">
-                                            <span className="text-[#0E7CC9] mt-0.5"></span>
+                                            <span className="text-teal mt-0.5"></span>
                                             <span className="text-sm">{item}</span>
                                         </li>
                                     ))}
@@ -277,14 +277,14 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
 
                         {/* Target Audience */}
                         {course.targetAudience && course.targetAudience.length > 0 && (
-                            <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-6">
-                                <h2 className="text-xl font-bold text-[#4B4B5A] mb-4">
+                            <Card className="bg-white border border-teal/20 rounded-2xl p-6">
+                                <h2 className="text-xl font-bold text-navy mb-4">
                                     Who This Course Is For
                                 </h2>
-                                <ul className="space-y-2 text-[#4B4B5A]/70">
+                                <ul className="space-y-2 text-navy/70">
                                     {course.targetAudience.map((item, index) => (
                                         <li key={index} className="flex items-start gap-3">
-                                            <span className="text-[#0E7CC9] mt-0.5"></span>
+                                            <span className="text-teal mt-0.5"></span>
                                             <span className="text-sm">{item}</span>
                                         </li>
                                     ))}
@@ -293,19 +293,19 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                         )}
 
                         {/* Instructor Info */}
-                        <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-6">
-                            <h2 className="text-xl font-bold text-[#4B4B5A] mb-4">
+                        <Card className="bg-white border border-teal/20 rounded-2xl p-6">
+                            <h2 className="text-xl font-bold text-navy mb-4">
                                 Instructor
                             </h2>
                             <div className="flex items-center gap-4">
-                                <div className="h-16 w-16 rounded-full bg-[#0E7CC9]/10 flex items-center justify-center text-[#0E7CC9] font-bold text-2xl">
+                                <div className="h-16 w-16 rounded-full bg-teal/10 flex items-center justify-center text-teal font-bold text-2xl">
                                     {course.instructorName?.charAt(0) || "U"}
                                 </div>
                                 <div>
-                                    <p className="text-lg font-semibold text-[#4B4B5A]">
+                                    <p className="text-lg font-semibold text-navy">
                                         {course.instructorName}
                                     </p>
-                                    <p className="text-sm text-[#4B4B5A]/50">
+                                    <p className="text-sm text-navy/50">
                                         Instructor {course.category} Expert
                                     </p>
                                 </div>
@@ -316,41 +316,41 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                     {/* Sidebar */}
                     <div className="space-y-6">
                         {/* Quick Info */}
-                        <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-6 sticky top-24">
-                            <h3 className="text-lg font-bold text-[#4B4B5A] mb-4">
+                        <Card className="bg-white border border-teal/20 rounded-2xl p-6 sticky top-24">
+                            <h3 className="text-lg font-bold text-navy mb-4">
                                 Course Overview
                             </h3>
                             <div className="space-y-3">
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-[#4B4B5A]/50">Category</span>
-                                    <span className="text-[#4B4B5A]">{course.category}</span>
+                                    <span className="text-navy/50">Category</span>
+                                    <span className="text-navy">{course.category}</span>
                                 </div>
-                                <div className="border-t border-[#0E7CC9]/10 my-2" />
+                                <div className="border-t border-teal/10 my-2" />
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-[#4B4B5A]/50">Level</span>
-                                    <span className="text-[#4B4B5A]">{getLevelLabel(course.level)}</span>
+                                    <span className="text-navy/50">Level</span>
+                                    <span className="text-navy">{getLevelLabel(course.level)}</span>
                                 </div>
-                                <div className="border-t border-[#0E7CC9]/10 my-2" />
+                                <div className="border-t border-teal/10 my-2" />
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-[#4B4B5A]/50">Duration</span>
-                                    <span className="text-[#4B4B5A]">{course.duration}</span>
+                                    <span className="text-navy/50">Duration</span>
+                                    <span className="text-navy">{course.duration}</span>
                                 </div>
-                                <div className="border-t border-[#0E7CC9]/10 my-2" />
+                                <div className="border-t border-teal/10 my-2" />
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-[#4B4B5A]/50">Students</span>
-                                    <span className="text-[#4B4B5A]">{course.enrollmentCount || 0}</span>
+                                    <span className="text-navy/50">Students</span>
+                                    <span className="text-navy">{course.enrollmentCount || 0}</span>
                                 </div>
-                                <div className="border-t border-[#0E7CC9]/10 my-2" />
+                                <div className="border-t border-teal/10 my-2" />
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-[#4B4B5A]/50">Rating</span>
-                                    <span className="text-[#4B4B5A] flex items-center gap-1">
+                                    <span className="text-navy/50">Rating</span>
+                                    <span className="text-navy flex items-center gap-1">
                                         <FaStar className="text-yellow-400 text-xs" />
                                         {course.avgRating?.toFixed(1) || "0.0"}
                                     </span>
                                 </div>
-                                <div className="border-t border-[#0E7CC9]/10 my-2" />
+                                <div className="border-t border-teal/10 my-2" />
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-[#4B4B5A]/50">Status</span>
+                                    <span className="text-navy/50">Status</span>
                                     <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
                                         course.approvalStatus === "approved" && course.publishStatus === "published"
                                             ? "text-green-400 bg-green-500/10"
@@ -365,11 +365,11 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                 {/* âœ… View Content Button in Sidebar - Shows when enrolled */}
                                 {isEnrolled && (
                                     <>
-                                        <div className="border-t border-[#0E7CC9]/10 my-2" />
+                                        <div className="border-t border-teal/10 my-2" />
                                         <Button
                                             onPress={handleViewContent}
                                             fullWidth
-                                            className="bg-[#7A56CE] text-[#FFFFFF] font-semibold hover:bg-[#7A56CE]/80"
+                                            className="bg-teal text-white font-semibold hover:bg-teal/80"
                                         >
                                             <FaPlay />
                                             View Course Content
@@ -378,7 +378,7 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                                 )}
                             </div>
 
-                            <div className="border-t border-[#0E7CC9]/10 my-4" />
+                            <div className="border-t border-teal/10 my-4" />
 
                             <CourseEnrollmentWidget
                                 courseId={course._id!}
@@ -390,8 +390,8 @@ const CourseDetailsClient = ({ course }: CourseDetailsClientProps) => {
                             />
 
                             {!session && (
-                                <p className="text-[#4B4B5A]/40 text-xs text-center mt-3">
-                                    Please <Link href="/signin" className="text-[#0E7CC9] hover:underline">sign in</Link> to enroll
+                                <p className="text-navy/40 text-xs text-center mt-3">
+                                    Please <Link href="/signin" className="text-teal hover:underline">sign in</Link> to enroll
                                 </p>
                             )}
                         </Card>

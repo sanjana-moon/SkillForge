@@ -12,7 +12,7 @@ import WhyChooseUs from "@/components/home/WhyChooseUs";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#4B4B5A] flex flex-col justify-between">
+    <div className="min-h-screen bg-white text-navy flex flex-col justify-between">
       <Hero />
       <FeaturedCourses />
       <Categories />

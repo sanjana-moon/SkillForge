@@ -69,7 +69,7 @@ const InstructorPage = () => {
 
     if (isPending || loading) {
         return (
-            <div className="flex justify-center items-center h-[60vh] bg-[#FFFFFF]">
+            <div className="flex justify-center items-center h-[60vh] bg-white">
                 <Spinner size="lg" />
             </div>
         );
@@ -77,11 +77,11 @@ const InstructorPage = () => {
 
     if (error) {
         return (
-            <div className="flex flex-col justify-center items-center h-[60vh] bg-[#FFFFFF]">
+            <div className="flex flex-col justify-center items-center h-[60vh] bg-white">
                 <p className="text-red-400 text-lg mb-4">{error}</p>
                 <button
                     onClick={() => window.location.reload()}
-                    className="bg-[image:var(--brand-gradient)] text-[#FFFFFF] px-6 py-2 rounded-xl hover:opacity-90 transition-all"
+                    className="bg-[image:var(--brand-gradient)] text-white px-6 py-2 rounded-xl hover:opacity-90 transition-all"
                 >
                     Retry
                 </button>
@@ -111,10 +111,10 @@ const InstructorPage = () => {
         <div className="space-y-8">
             {/* Header */}
             <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-[#4B4B5A]">
+                <h1 className="text-3xl md:text-4xl font-bold text-navy">
                     Instructor Dashboard
                 </h1>
-                <p className="text-[#4B4B5A]/60 mt-2">
+                <p className="text-navy/60 mt-2">
                     Track your courses, students, and performance metrics.
                 </p>
             </div>
@@ -124,19 +124,19 @@ const InstructorPage = () => {
                 {statCards.map((item, index) => (
                     <Card
                         key={index}
-                        className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#0E7CC9]/10"
+                        className="bg-white border border-teal/20 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-teal/10"
                     >
                         <div className="p-6">
                             <div className="flex justify-between items-center">
                                 <div>
-                                    <p className="text-[#4B4B5A]/60 text-sm">
+                                    <p className="text-navy/60 text-sm">
                                         {item.title}
                                     </p>
-                                    <h2 className="text-3xl font-bold text-[#4B4B5A] mt-2">
+                                    <h2 className="text-3xl font-bold text-navy mt-2">
                                         {item.value}
                                     </h2>
                                 </div>
-                                <div className="bg-[#0E7CC9]/15 p-4 rounded-2xl text-[#0E7CC9]">
+                                <div className="bg-teal/15 p-4 rounded-2xl text-teal">
                                     {item.icon}
                                 </div>
                             </div>
@@ -148,9 +148,9 @@ const InstructorPage = () => {
             {/* Chart + Popular Courses */}
             <div className="grid lg:grid-cols-3 gap-6">
                 {/* Enrollment Chart */}
-                <Card className="lg:col-span-2 bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl shadow-xl">
+                <Card className="lg:col-span-2 bg-white border border-teal/20 rounded-2xl shadow-xl">
                     <div className="p-4 md:p-6">
-                        <h2 className="text-xl font-bold text-[#4B4B5A] mb-6">
+                        <h2 className="text-xl font-bold text-navy mb-6">
                             Enrollment Overview
                         </h2>
                         <div className="h-64 md:h-80">
@@ -158,29 +158,29 @@ const InstructorPage = () => {
                                 <LineChart data={stats?.enrollmentChart ?? []}>
                                     <XAxis
                                         dataKey="month"
-                                        tick={{ fill: "#4B4B5A" }}
+                                        tick={{ fill: "#2F4156" }}
                                         tickLine={false}
                                         axisLine={false}
                                     />
                                     <YAxis
-                                        tick={{ fill: "#4B4B5A" }}
+                                        tick={{ fill: "#2F4156" }}
                                         tickLine={false}
                                         axisLine={false}
                                     />
                                     <Tooltip
-                                        cursor={{ stroke: "#0E7CC9" }}
+                                        cursor={{ stroke: "#567C8D" }}
                                         contentStyle={{
-                                            backgroundColor: "#FBF8FD",
-                                            borderColor: "#0E7CC9/30",
-                                            color: "#4B4B5A",
+                                            backgroundColor: "#FFFFFF",
+                                            borderColor: "#567C8D/30",
+                                            color: "#2F4156",
                                         }}
                                     />
                                     <Line
                                         type="monotone"
                                         dataKey="enrollments"
-                                        stroke="#0E7CC9"
+                                        stroke="#567C8D"
                                         strokeWidth={3}
-                                        dot={{ fill: "#0E7CC9", r: 4 }}
+                                        dot={{ fill: "#567C8D", r: 4 }}
                                     />
                                 </LineChart>
                             </ResponsiveContainer>
@@ -189,14 +189,14 @@ const InstructorPage = () => {
                 </Card>
 
                 {/* Popular Courses */}
-                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl shadow-xl">
+                <Card className="bg-white border border-teal/20 rounded-2xl shadow-xl">
                     <div className="p-6">
-                        <h2 className="text-xl font-bold text-[#4B4B5A] mb-6">
+                        <h2 className="text-xl font-bold text-navy mb-6">
                             Most Popular Courses
                         </h2>
 
                         {!stats?.popularCourses?.length ? (
-                            <p className="text-[#4B4B5A]/40 text-sm">
+                            <p className="text-navy/40 text-sm">
                                 No enrollments yet.
                             </p>
                         ) : (
@@ -204,17 +204,17 @@ const InstructorPage = () => {
                                 {stats.popularCourses.map((course, index) => (
                                     <div
                                         key={index}
-                                        className="flex justify-between items-center border-b border-[#0E7CC9]/20 pb-3 last:border-0"
+                                        className="flex justify-between items-center border-b border-teal/20 pb-3 last:border-0"
                                     >
                                         <div>
-                                            <h3 className="font-semibold text-[#4B4B5A] text-sm">
+                                            <h3 className="font-semibold text-navy text-sm">
                                                 {course.title}
                                             </h3>
-                                            <p className="text-xs text-[#4B4B5A]/50">
+                                            <p className="text-xs text-navy/50">
                                                 Popular course
                                             </p>
                                         </div>
-                                        <div className="bg-[#0E7CC9]/10 text-[#0E7CC9] font-bold px-3 py-1 rounded-xl text-sm">
+                                        <div className="bg-teal/10 text-teal font-bold px-3 py-1 rounded-xl text-sm">
                                             {course.enrollments}
                                         </div>
                                     </div>
@@ -227,34 +227,34 @@ const InstructorPage = () => {
 
             {/* Quick Actions */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl shadow-xl hover:shadow-[#0E7CC9]/10 transition-all duration-300">
+                <Card className="bg-white border border-teal/20 rounded-2xl shadow-xl hover:shadow-teal/10 transition-all duration-300">
                     <div className="p-6">
-                        <h3 className="text-lg font-semibold text-[#4B4B5A] mb-2">
+                        <h3 className="text-lg font-semibold text-navy mb-2">
                             Create New Course
                         </h3>
-                        <p className="text-[#4B4B5A]/60 text-sm mb-4">
+                        <p className="text-navy/60 text-sm mb-4">
                             Share your knowledge with the world. Create a new course today.
                         </p>
                         <a
                             href="/dashboard/instructor/add-course"
-                            className="inline-block bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold px-6 py-2 rounded-xl hover:opacity-90 transition-all"
+                            className="inline-block bg-[image:var(--brand-gradient)] text-white font-semibold px-6 py-2 rounded-xl hover:opacity-90 transition-all"
                         >
                             Create Course
                         </a>
                     </div>
                 </Card>
 
-                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl shadow-xl hover:shadow-[#0E7CC9]/10 transition-all duration-300">
+                <Card className="bg-white border border-teal/20 rounded-2xl shadow-xl hover:shadow-teal/10 transition-all duration-300">
                     <div className="p-6">
-                        <h3 className="text-lg font-semibold text-[#4B4B5A] mb-2">
+                        <h3 className="text-lg font-semibold text-navy mb-2">
                             Manage Your Courses
                         </h3>
-                        <p className="text-[#4B4B5A]/60 text-sm mb-4">
+                        <p className="text-navy/60 text-sm mb-4">
                             View, edit, and manage all your published and draft courses.
                         </p>
                         <a
                             href="/dashboard/instructor/manage-courses"
-                            className="inline-block bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold px-6 py-2 rounded-xl hover:opacity-90 transition-all"
+                            className="inline-block bg-[image:var(--brand-gradient)] text-white font-semibold px-6 py-2 rounded-xl hover:opacity-90 transition-all"
                         >
                             Manage Courses
                         </a>

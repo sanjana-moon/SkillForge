@@ -23,19 +23,19 @@ export default function Newsletter() {
     };
 
     return (
-        <section className="relative border-t border-[#0E7CC9]/10 bg-[#FFFFFF] py-20">
+        <section className="relative border-t border-teal/10 bg-white py-20">
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-                <div className="relative overflow-hidden rounded-3xl border border-[#0E7CC9]/20 bg-[#FBF8FD] shadow-2xl">
+                <div className="relative overflow-hidden rounded-3xl border border-teal/20 bg-white shadow-2xl">
                     {/* Ambient background glows */}
-                    <div className="pointer-events-none absolute top-0 right-0 h-80 w-80 -translate-y-1/2 translate-x-1/2 rounded-full bg-[#0E7CC9]/10 blur-[100px]" />
-                    <div className="pointer-events-none absolute bottom-0 left-0 h-80 w-80 translate-y-1/2 -translate-x-1/2 rounded-full bg-[#7A56CE]/10 blur-[100px]" />
+                    <div className="pointer-events-none absolute top-0 right-0 h-80 w-80 -translate-y-1/2 translate-x-1/2 rounded-full bg-teal/10 blur-[100px]" />
+                    <div className="pointer-events-none absolute bottom-0 left-0 h-80 w-80 translate-y-1/2 -translate-x-1/2 rounded-full bg-teal/10 blur-[100px]" />
 
                     {/* Two-column layout */}
                     <div className="relative z-10 grid grid-cols-1 items-center gap-10 px-8 py-12 sm:px-12 sm:py-16 lg:grid-cols-2 lg:gap-16 lg:px-16">
                         {/* Image side */}
                         <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
                             {/* Accent glow behind image */}
-                            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-[#0E7CC9]/20 blur-3xl" />
+                            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-teal/20 blur-3xl" />
 
                             {/* Slightly rounded frame with side fade */}
                             <div className="relative mx-auto aspect-[4/3] w-full max-w-[420px] overflow-hidden rounded-2xl">
@@ -62,7 +62,7 @@ export default function Newsletter() {
                                     className="pointer-events-none absolute inset-y-0 right-0 w-1/2"
                                     style={{
                                         background:
-                                            "linear-gradient(to right, transparent, #0E7CC9 90%)",
+                                            "linear-gradient(to right, transparent, #567C8D 90%)",
                                     }}
                                 />
                             </div>
@@ -70,11 +70,11 @@ export default function Newsletter() {
 
                         {/* Content side */}
                         <div className="text-center lg:text-left">
-                            <h2 className="font-heading text-3xl font-bold tracking-tight text-[#4B4B5A] sm:text-4xl">
+                            <h2 className="font-heading text-3xl font-bold tracking-tight text-navy sm:text-4xl">
                                 Stay Updated on Tech &amp; AI
                             </h2>
 
-                            <p className="mx-auto mt-4 max-w-xl font-body text-base leading-relaxed text-[#4B4B5A]/70 lg:mx-0">
+                            <p className="mx-auto mt-4 max-w-xl font-body text-base leading-relaxed text-navy/70 lg:mx-0">
                                 Subscribe to our newsletter to receive the
                                 latest roadmap templates, new course
                                 announcements, and expert AI tutorial links
@@ -99,7 +99,7 @@ export default function Newsletter() {
                                                     "Please enter a valid email address",
                                             },
                                         })}
-                                        className="w-full rounded-xl border border-[#0E7CC9]/20 bg-[#FFFFFF]/60 px-4 py-3 text-sm text-[#4B4B5A] placeholder-[#4B4B5A]/40 outline-none transition duration-200 focus:border-[#0E7CC9]"
+                                        className="w-full rounded-xl border border-teal/20 bg-white/60 px-4 py-3 text-sm text-navy placeholder-navy/40 outline-none transition duration-200 focus:border-teal"
                                     />
 
                                     {errors.email && (
@@ -111,7 +111,7 @@ export default function Newsletter() {
 
                                 <button
                                     type="submit"
-                                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[image:var(--brand-gradient)] px-6 py-3.5 text-sm shadow-md shadow-[#0E7CC9]/20 transition duration-200 hover:opacity-95 sm:py-3 self-stretch sm:self-start"
+                                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[image:var(--brand-gradient)] px-6 py-3.5 text-sm shadow-md shadow-teal/20 transition duration-200 hover:opacity-95 sm:py-3 self-stretch sm:self-start"
                                 >
                                     <FaPaperPlane className="text-xs" />
                                     Subscribe

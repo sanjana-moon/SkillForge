@@ -27,7 +27,7 @@ const getStatusColor = (status: string) => {
         case "rejected":
             return "bg-red-500/20 text-red-400 border-red-500/30";
         default:
-            return "bg-[#4B4B5A]/10 text-[#4B4B5A]/60 border-[#4B4B5A]/20";
+            return "bg-navy/10 text-navy/60 border-navy/20";
     }
 };
 
@@ -38,7 +38,7 @@ const getPublishStatusColor = (status: string) => {
         case "unpublished":
             return "bg-gray-500/20 text-gray-400 border-gray-500/30";
         default:
-            return "bg-[#4B4B5A]/10 text-[#4B4B5A]/60 border-[#4B4B5A]/20";
+            return "bg-navy/10 text-navy/60 border-navy/20";
     }
 };
 
@@ -184,34 +184,34 @@ const ManageCoursesClient = ({
         <div className="space-y-6">
             {/* Header */}
             <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-[#4B4B5A]">
+                <h1 className="text-3xl md:text-4xl font-bold text-navy">
                     Manage Courses
                 </h1>
-                <p className="text-[#4B4B5A]/60 mt-2">
+                <p className="text-navy/60 mt-2">
                     Review course submissions, approve or reject listings, and manage course content.
                 </p>
             </div>
 
             {/* Stats Summary */}
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
-                    <p className="text-[#4B4B5A]/60 text-sm">Total Courses</p>
-                    <p className="text-2xl font-bold text-[#4B4B5A]">{courses.length}</p>
+                <Card className="bg-white border border-teal/20 rounded-2xl p-4">
+                    <p className="text-navy/60 text-sm">Total Courses</p>
+                    <p className="text-2xl font-bold text-navy">{courses.length}</p>
                 </Card>
-                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
-                    <p className="text-[#4B4B5A]/60 text-sm">Pending Approval</p>
+                <Card className="bg-white border border-teal/20 rounded-2xl p-4">
+                    <p className="text-navy/60 text-sm">Pending Approval</p>
                     <p className="text-2xl font-bold text-yellow-400">
                         {courses.filter(c => c.approvalStatus === "pending").length}
                     </p>
                 </Card>
-                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
-                    <p className="text-[#4B4B5A]/60 text-sm">Approved</p>
+                <Card className="bg-white border border-teal/20 rounded-2xl p-4">
+                    <p className="text-navy/60 text-sm">Approved</p>
                     <p className="text-2xl font-bold text-green-400">
                         {courses.filter(c => c.approvalStatus === "approved").length}
                     </p>
                 </Card>
-                <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl p-4">
-                    <p className="text-[#4B4B5A]/60 text-sm">Published</p>
+                <Card className="bg-white border border-teal/20 rounded-2xl p-4">
+                    <p className="text-navy/60 text-sm">Published</p>
                     <p className="text-2xl font-bold text-blue-400">
                         {courses.filter(c => c.publishStatus === "published").length}
                     </p>
@@ -219,33 +219,33 @@ const ManageCoursesClient = ({
             </div>
 
             {/* Table */}
-            <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/20 rounded-2xl shadow-xl overflow-hidden">
+            <Card className="bg-white border border-teal/20 rounded-2xl shadow-xl overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full">
-                        <thead className="bg-[#FFFFFF] border-b border-[#0E7CC9]/20">
+                        <thead className="bg-white border-b border-teal/20">
                             <tr>
-                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-navy font-semibold text-sm">
                                     Course
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-navy font-semibold text-sm">
                                     Category
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-navy font-semibold text-sm">
                                     Level
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-navy font-semibold text-sm">
                                     Price
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-navy font-semibold text-sm">
                                     Instructor
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-navy font-semibold text-sm">
                                     Approval
                                 </th>
-                                <th className="px-6 py-4 text-left text-[#4B4B5A] font-semibold text-sm">
+                                <th className="px-6 py-4 text-left text-navy font-semibold text-sm">
                                     Publish
                                 </th>
-                                <th className="px-6 py-4 text-center text-[#4B4B5A] font-semibold text-sm">
+                                <th className="px-6 py-4 text-center text-navy font-semibold text-sm">
                                     Actions
                                 </th>
                             </tr>
@@ -256,39 +256,39 @@ const ManageCoursesClient = ({
                                 return (
                                     <tr
                                         key={courseId || Math.random().toString()}
-                                        className="border-b border-[#0E7CC9]/10 hover:bg-[#FFFFFF]/50 transition-colors duration-200"
+                                        className="border-b border-teal/10 hover:bg-white/50 transition-colors duration-200"
                                     >
                                         <td className="px-6 py-4">
                                             <div>
-                                                <h3 className="font-semibold text-[#4B4B5A]">
+                                                <h3 className="font-semibold text-navy">
                                                     {course.title}
                                                 </h3>
-                                                <p className="text-xs text-[#4B4B5A]/40 mt-1">
+                                                <p className="text-xs text-navy/40 mt-1">
                                                     {new Date(course.createdAt).toLocaleDateString()}
                                                 </p>
                                             </div>
                                         </td>
 
-                                        <td className="px-6 py-4 text-[#4B4B5A]/70">
+                                        <td className="px-6 py-4 text-navy/70">
                                             {course.category}
                                         </td>
 
                                         <td className="px-6 py-4">
-                                            <span className="capitalize text-[#4B4B5A]/70">
+                                            <span className="capitalize text-navy/70">
                                                 {course.level}
                                             </span>
                                         </td>
 
-                                        <td className="px-6 py-4 font-bold text-[#0E7CC9]">
+                                        <td className="px-6 py-4 font-bold text-teal">
                                             ${course.price.toLocaleString()}
                                         </td>
 
                                         <td className="px-6 py-4">
                                             <div>
-                                                <p className="text-[#4B4B5A] text-sm">
+                                                <p className="text-navy text-sm">
                                                     {course.instructorName}
                                                 </p>
-                                                <p className="text-xs text-[#4B4B5A]/40">
+                                                <p className="text-xs text-navy/40">
                                                     {course.instructorEmail}
                                                 </p>
                                             </div>
@@ -334,7 +334,7 @@ const ManageCoursesClient = ({
                                                 )}
                                             </button>
                                             {course.approvalStatus !== "approved" && (
-                                                <p className="text-[10px] text-[#4B4B5A]/30 mt-1">
+                                                <p className="text-[10px] text-navy/30 mt-1">
                                                     Approve first
                                                 </p>
                                             )}
@@ -346,7 +346,7 @@ const ManageCoursesClient = ({
                                                 <Button
                                                     size="sm"
                                                     onPress={() => handleViewCourse(courseId)}
-                                                    className="bg-[#0E7CC9]/10 hover:bg-[#0E7CC9]/20 text-[#0E7CC9] min-w-0 w-9 h-9 rounded-lg"
+                                                    className="bg-teal/10 hover:bg-teal/20 text-teal min-w-0 w-9 h-9 rounded-lg"
                                                 >
                                                     <FaEye className="text-xs" />
                                                 </Button>
@@ -365,7 +365,7 @@ const ManageCoursesClient = ({
                             })}
                             {courses.length === 0 && (
                                 <tr>
-                                    <td colSpan={8} className="text-center py-12 text-[#4B4B5A]/40">
+                                    <td colSpan={8} className="text-center py-12 text-navy/40">
                                         No courses found.
                                     </td>
                                 </tr>
@@ -376,7 +376,7 @@ const ManageCoursesClient = ({
             </Card>
 
             {/* Footer Stats */}
-            <div className="flex flex-wrap justify-between items-center text-[#4B4B5A]/40 text-sm gap-4">
+            <div className="flex flex-wrap justify-between items-center text-navy/40 text-sm gap-4">
                 <p>Total Courses: {courses.length}</p>
                 <div className="flex flex-wrap gap-4">
                     <span className="flex items-center gap-2">

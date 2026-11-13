@@ -80,18 +80,18 @@ const DashboardSidebar = () => {
 
     if (!mounted) {
         return (
-            <div className="fixed left-0 top-0 z-40 h-full w-70 bg-[#FFFFFF] border-r border-[#FBF8FD] flex flex-col p-4 animate-pulse">
-                <div className="h-10 bg-[#FBF8FD] rounded-lg mb-8 w-1/2" />
+            <div className="fixed left-0 top-0 z-40 h-full w-70 bg-white border-r border-white flex flex-col p-4 animate-pulse">
+                <div className="h-10 bg-white rounded-lg mb-8 w-1/2" />
                 <div className="flex items-center gap-3 mb-8">
-                    <div className="h-10 w-10 rounded-full bg-[#FBF8FD]" />
+                    <div className="h-10 w-10 rounded-full bg-white" />
                     <div className="flex-1 space-y-2">
-                        <div className="h-3 bg-[#FBF8FD] rounded w-1/2" />
-                        <div className="h-3 bg-[#FBF8FD] rounded w-3/4" />
+                        <div className="h-3 bg-white rounded w-1/2" />
+                        <div className="h-3 bg-white rounded w-3/4" />
                     </div>
                 </div>
                 <div className="space-y-3 flex-1">
                     {[1, 2, 3, 4].map((n) => (
-                        <div key={n} className="h-12 bg-[#FBF8FD] rounded-xl" />
+                        <div key={n} className="h-12 bg-white rounded-xl" />
                     ))}
                 </div>
             </div>
@@ -114,7 +114,7 @@ const DashboardSidebar = () => {
             {/* Mobile Toggle Button */}
             <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
-                className="lg:hidden fixed top-4 left-4 z-50 p-2.5 rounded-xl bg-[#FFFFFF]/90 backdrop-blur-md border border-[#0E7CC9] text-[#4B4B5A] hover:text-white transition-all shadow-lg active:scale-95"
+                className="lg:hidden fixed top-4 left-4 z-50 p-2.5 rounded-xl bg-white/90 backdrop-blur-md border border-teal text-navy hover:text-white transition-all shadow-lg active:scale-95"
             >
                 {isMobileOpen ? <IoMdClose className="text-xl" /> : <IoMdMenu className="text-xl" />}
             </button>
@@ -145,10 +145,10 @@ const DashboardSidebar = () => {
                             : 0,
                 }}
                 transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
-                className="fixed left-0 top-0 z-40 h-full w-70 bg-[#FFFFFF] border-r border-[#FBF8FD] shadow-2xl flex flex-col overflow-hidden"
+                className="fixed left-0 top-0 z-40 h-full w-70 bg-white border-r border-white shadow-2xl flex flex-col overflow-hidden"
             >
                 {/* Header Section (Logo Only) */}
-                <div className="flex items-center justify-between px-5 py-4 border-b border-[#FBF8FD] min-h-18">
+                <div className="flex items-center justify-between px-5 py-4 border-b border-white min-h-18">
                     <Link href="/" className="flex items-center shrink-0">
                         <Image
                             src={logo}
@@ -161,7 +161,7 @@ const DashboardSidebar = () => {
                 </div>
 
                 {/* User Profile Area */}
-                <div className="p-4 border-b border-[#FBF8FD] bg-linear-to-b from-transparent to-[#FBF8FD]/20">
+                <div className="p-4 border-b border-white bg-linear-to-b from-transparent to-white/20">
                     <div className="flex items-center gap-3">
                         <div className="relative shrink-0">
                             <Image
@@ -169,16 +169,16 @@ const DashboardSidebar = () => {
                                 alt={user?.name ?? "User"}
                                 height={80}
                                 width={80}
-                                className="border border-[#0E7CC9]/30 ring-4 ring-[#0E7CC9]/5 transition-transform duration-200 rounded-full"
+                                className="border border-teal/30 ring-4 ring-teal/5 transition-transform duration-200 rounded-full"
                             />
-                            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-[#FFFFFF] rounded-full" />
+                            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full" />
                         </div>
 
                         <div className="flex-1 min-w-0">
-                            <p className="text-[#4B4B5A] text-sm font-semibold truncate leading-tight">
+                            <p className="text-navy text-sm font-semibold truncate leading-tight">
                                 {user?.name}
                             </p>
-                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-medium bg-[#0E7CC9]/10 text-[#7A56CE] border border-[#0E7CC9]/20 capitalize mt-1.5 tracking-wider">
+                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-medium bg-teal/10 text-teal border border-teal/20 capitalize mt-1.5 tracking-wider">
                                 {role}
                             </span>
                         </div>
@@ -200,8 +200,8 @@ const DashboardSidebar = () => {
                                     relative flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 group
                                     ${
                                         active
-                                            ? "bg-linear-to-r from-[#7A56CE]/15 to-[#7A56CE]/5 text-[#7A56CE] font-medium border border-[#0E7CC9]/20"
-                                            : "text-[#4B4B5A] hover:text-[#4B4B5A] hover:bg-[#FBF8FD]/60 border border-transparent"
+                                            ? "bg-linear-to-r from-teal/15 to-teal/5 text-teal font-medium border border-teal/20"
+                                            : "text-navy hover:text-navy hover:bg-white/60 border border-transparent"
                                     }
                                 `}
                             >
@@ -220,8 +220,8 @@ const DashboardSidebar = () => {
                                 <Icon
                                     className={`text-xl shrink-0 transition-transform group-hover:scale-105 duration-200 ${
                                         active
-                                            ? "text-[#7A56CE]"
-                                            : "text-[#4B4B5A] group-hover:text-[#4B4B5A]"
+                                            ? "text-teal"
+                                            : "text-navy group-hover:text-navy"
                                     }`}
                                 />
 
@@ -234,13 +234,13 @@ const DashboardSidebar = () => {
                 </nav>
 
                 {/* Footer Utilities Area */}
-                <div className="p-3 border-t border-[#FBF8FD] space-y-1.5">
+                <div className="p-3 border-t border-white space-y-1.5">
                     {/* Back to Home */}
                     <Link
                         href="/"
-                        className="flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 group text-[#4B4B5A] hover:text-[#4B4B5A] hover:bg-[#FBF8FD]/60 border border-transparent"
+                        className="flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 group text-navy hover:text-navy hover:bg-white/60 border border-transparent"
                     >
-                        <IoMdHome className="text-xl text-[#4B4B5A] group-hover:text-[#4B4B5A] shrink-0 transition-transform group-hover:scale-105" />
+                        <IoMdHome className="text-xl text-navy group-hover:text-navy shrink-0 transition-transform group-hover:scale-105" />
                         <span className="text-sm tracking-wide">
                             Back to Home
                         </span>
@@ -249,9 +249,9 @@ const DashboardSidebar = () => {
                     {/* Sign Out */}
                     <button
                         onClick={handleSignOut}
-                        className="w-full flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 text-[#4B4B5A] hover:text-red-400 hover:bg-red-500/5 border border-transparent hover:border-red-500/10 group"
+                        className="w-full flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 text-navy hover:text-red-400 hover:bg-red-500/5 border border-transparent hover:border-red-500/10 group"
                     >
-                        <MdLogout className="text-xl text-[#4B4B5A] group-hover:text-red-400 shrink-0 transition-transform group-hover:-translate-x-0.5" />
+                        <MdLogout className="text-xl text-navy group-hover:text-red-400 shrink-0 transition-transform group-hover:-translate-x-0.5" />
                         <span className="text-sm font-medium tracking-wide">
                             Logout
                         </span>

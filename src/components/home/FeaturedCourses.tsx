@@ -52,18 +52,18 @@ export default function FeaturedCourses() {
     }, [activeCategory, reloadKey]);
 
     return (
-        <section className="py-20 bg-[#FFFFFF] relative border-t border-[#0E7CC9]/10">
+        <section className="py-20 bg-white relative border-t border-teal/10">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
                     <div className="max-w-xl text-center md:text-left mb-6 md:mb-0">
-                        <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#4B4B5A]">
+                        <h2 className="text-3xl sm:text-4xl font-bold font-heading text-navy">
                             Featured{" "}
-                            <span className="bg-gradient-to-r from-[#0E7CC9] to-[#7A56CE] bg-clip-text text-transparent">
+                            <span className="bg-gradient-to-r from-teal to-teal bg-clip-text text-transparent">
                                 Courses
                             </span>
                         </h2>
-                        <p className="mt-3 text-[#4B4B5A]/70 font-body">
+                        <p className="mt-3 text-navy/70 font-body">
                             Explore outstanding technical curricula designed in tandem with industrial milestones.
                         </p>
                     </div>
@@ -76,8 +76,8 @@ export default function FeaturedCourses() {
                                 onClick={() => setActiveCategory(cat.value)}
                                 className={`px-4 py-2 rounded-xl text-xs font-semibold font-mono border transition-all duration-300 ${
                                     activeCategory === cat.value
-                                        ? "bg-[image:var(--brand-gradient)] border-[#0E7CC9] text-[#FFFFFF] shadow-md shadow-[#0E7CC9]/10"
-                                        : "border-[#0E7CC9]/20 text-[#4B4B5A]/75 hover:border-[#0E7CC9] hover:text-[#4B4B5A]"
+                                        ? "bg-[image:var(--brand-gradient)] border-teal text-white shadow-md shadow-teal/10"
+                                        : "border-teal/20 text-navy/75 hover:border-teal hover:text-navy"
                                 }`}
                             >
                                 {cat.label}
@@ -90,25 +90,25 @@ export default function FeaturedCourses() {
                 {loading ? (
                     <div className="flex flex-col items-center justify-center min-h-[400px]">
                         <Spinner size="lg" />
-                        <p className="text-[#4B4B5A]/60 mt-4">Loading featured courses...</p>
+                        <p className="text-navy/60 mt-4">Loading featured courses...</p>
                     </div>
                 ) : error ? (
-                    <Card className="bg-[#FBF8FD] border border-red-500/20 rounded-2xl p-12 text-center">
+                    <Card className="bg-white border border-red-500/20 rounded-2xl p-12 text-center">
                         <p className="text-red-400 text-lg">{error}</p>
                         <Button
-                            className="mt-4 bg-[image:var(--brand-gradient)] text-[#FFFFFF]"
+                            className="mt-4 bg-[image:var(--brand-gradient)] text-white"
                             onPress={() => setReloadKey((k) => k + 1)}
                         >
                             Retry
                         </Button>
                     </Card>
                 ) : courses.length === 0 ? (
-                    <Card className="bg-[#FBF8FD] border border-[#0E7CC9]/10 rounded-2xl p-12 text-center">
-                        <FaBook className="text-5xl text-[#4B4B5A]/20 mx-auto mb-4" />
-                        <h3 className="text-xl font-semibold text-[#4B4B5A] mb-2">
+                    <Card className="bg-white border border-teal/10 rounded-2xl p-12 text-center">
+                        <FaBook className="text-5xl text-navy/20 mx-auto mb-4" />
+                        <h3 className="text-xl font-semibold text-navy mb-2">
                             No Courses Found
                         </h3>
-                        <p className="text-[#4B4B5A]/60 text-sm mb-4">
+                        <p className="text-navy/60 text-sm mb-4">
                             No courses available in this category yet.
                         </p>
                     </Card>
@@ -123,7 +123,7 @@ export default function FeaturedCourses() {
                 {/* View All Button */}
                 <div className="flex justify-center mt-12">
                     <Link href="/courses">
-                        <Button className="bg-[image:var(--brand-gradient)] text-[#FFFFFF] font-semibold hover:opacity-90 px-8 py-6 text-base">
+                        <Button className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90 px-8 py-6 text-base">
                             View All Courses
                             <FaArrowRight className="ml-2" />
                         </Button>

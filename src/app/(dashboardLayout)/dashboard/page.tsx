@@ -32,15 +32,15 @@ const DashboardPage = () => {
     }, [session, isPending, router]);
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-[#FFFFFF]">
-            <div className="rounded-3xl border border-[#0E7CC9]/20 bg-[#FBF8FD] px-10 py-8 shadow-2xl">
+        <div className="flex min-h-screen items-center justify-center bg-white">
+            <div className="rounded-3xl border border-teal/20 bg-white px-10 py-8 shadow-2xl">
                 <div className="flex flex-col items-center gap-4">
                     {/* Loading Spinner */}
-                    <div className="h-12 w-12 animate-spin rounded-full border-4 border-[#0E7CC9]/30 border-t-[#0E7CC9]" />
-                    <h2 className="text-2xl font-bold text-[#4B4B5A]">
+                    <div className="h-12 w-12 animate-spin rounded-full border-4 border-teal/30 border-t-teal" />
+                    <h2 className="text-2xl font-bold text-navy">
                         Welcome to SkillForge
                     </h2>
-                    <p className="text-sm text-[#4B4B5A]/60">
+                    <p className="text-sm text-navy/60">
                         Preparing your dashboard...
                     </p>
                 </div>
