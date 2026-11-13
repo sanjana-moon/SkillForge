@@ -1,4 +1,3 @@
-
 @import "tailwindcss";
 @import "@heroui/styles";
 
@@ -7,14 +6,14 @@
 ========================================================= */
 
 :root {
-  /* Core Palette */
+  /* ── Core Palette ────────────────────────────────────────── */
   --navy: #2F4156;
   --teal: #567C8D;
   --sky-blue: #C8D9E6;
   --beige: #F5EFEB;
   --white: #FFFFFF;
 
-  /* Semantic Colors */
+  /* ── Semantic Colors ─────────────────────────────────────── */
   --color-bg-main: var(--beige);
   --color-bg-surface: var(--white);
   --color-bg-alt: var(--sky-blue);
@@ -25,18 +24,39 @@
   --color-text-accent: var(--teal);
 
   --color-border-main: var(--sky-blue);
+  --color-border-fallback: #D6DCE3;
 
   --color-action-primary: var(--navy);
   --color-action-secondary: var(--teal);
 
-  /* Typography */
-  --font-heading: var(--font-plus-jakarta-sans);
-  --font-body: var(--font-plus-jakarta-sans);
+  /* ── Status Colors ───────────────────────────────────────── */
+  --color-success: #4C8C6F;
+  --color-warning: #C99452;
+  --color-error: #B85C5C;
 
-  /* Border Radius */
+  /* ── HeroUI v3 Theme Mapping ─────────────────────────────── */
+  --background: var(--beige);
+  --foreground: var(--navy);
+  --surface: var(--white);
+  --surface-foreground: var(--navy);
+  --accent: var(--navy);
+  --accent-foreground: var(--white);
+  --default: var(--sky-blue);
+  --default-foreground: var(--navy);
+  --border: var(--sky-blue);
+  --focus: var(--teal);
+  --success: var(--color-success);
+  --warning: var(--color-warning);
+  --danger: var(--color-error);
+
+  /* ── Typography ──────────────────────────────────────────── */
+  --font-heading: var(--font-plus-jakarta-sans), system-ui, sans-serif;
+  --font-body: var(--font-plus-jakarta-sans), system-ui, sans-serif;
+
+  /* ── Border Radius ───────────────────────────────────────── */
   --radius: 16px;
 
-  /* Transitions */
+  /* ── Transitions ─────────────────────────────────────────── */
   --transition-fast: 150ms ease;
   --transition-normal: 250ms ease;
 }
@@ -46,23 +66,35 @@
 ========================================================= */
 
 @theme inline {
+  /* Core Direct Access (optional utility helpers) */
+  --color-navy: var(--navy);
+  --color-teal: var(--teal);
+  --color-sky-blue: var(--sky-blue);
+  --color-beige: var(--beige);
+
   /* Background */
-  --color-bg-main: var(--color-bg-main);
-  --color-bg-surface: var(--color-bg-surface);
-  --color-bg-alt: var(--color-bg-alt);
+  --color-bg-main: var(--beige);
+  --color-bg-surface: var(--white);
+  --color-bg-alt: var(--sky-blue);
 
   /* Text */
-  --color-text-main: var(--color-text-main);
+  --color-text-main: var(--navy);
   --color-text-muted: var(--color-text-muted);
-  --color-text-inverse: var(--color-text-inverse);
-  --color-text-accent: var(--color-text-accent);
+  --color-text-inverse: var(--white);
+  --color-text-accent: var(--teal);
 
   /* Borders */
-  --color-border-main: var(--color-border-main);
+  --color-border-main: var(--sky-blue);
+  --color-border-fallback: var(--color-border-fallback);
 
   /* Actions */
-  --color-action-primary: var(--color-action-primary);
-  --color-action-secondary: var(--color-action-secondary);
+  --color-action-primary: var(--navy);
+  --color-action-secondary: var(--teal);
+
+  /* Status */
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
 
   /* Typography */
   --font-heading: var(--font-heading);
@@ -73,82 +105,67 @@
 }
 
 /* =========================================================
-   3. GLOBAL RESET
+   3. BASE RESET, TYPOGRAPHY & ACCESSIBILITY
 ========================================================= */
 
-* {
-  @apply box-border;
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+    font-family: var(--font-heading);
+    color: var(--color-text-main);
+    line-height: 1.2;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-action-secondary);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background-color: var(--color-bg-alt);
+    color: var(--color-text-main);
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-}
-
-body {
-  margin: 0;
-  background-color: var(--color-bg-main);
-  color: var(--color-text-main);
-  font-family: var(--font-body);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* =========================================================
-   4. GLOBAL TYPOGRAPHY
-========================================================= */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 0;
-  font-family: var(--font-heading);
-  color: var(--color-text-main);
-  line-height: 1.2;
-}
-
-p,
-span,
-li,
-button,
-input,
-textarea,
-select,
-a {
-  color: inherit;
-}
-
-a {
-  text-decoration: none;
-}
-
-/* =========================================================
-   5. GLOBAL INTERACTIONS & ACCESSIBILITY
-========================================================= */
-
-button {
-  cursor: pointer;
-}
-
-button:disabled {
-  cursor: not-allowed;
-}
-
-:focus-visible {
-  outline: 2px solid var(--color-action-secondary);
-  outline-offset: 3px;
-}
-
-::selection {
-  background-color: var(--color-bg-alt);
-  color: var(--color-text-main);
-}
-
-/* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -161,39 +178,28 @@ button:disabled {
 }
 
 /* =========================================================
-   6. REUSABLE LAYOUT COMPONENTS
+   4. REUSABLE LAYOUT COMPONENTS
 ========================================================= */
 
 @layer components {
-  /* Standard Section Container */
-  .section-container {
-    @apply w-full max-w-7xl mx-auto px-4 py-16 md:px-8 lg:py-24;
-  }
-
-  /* Backward Compatibility */
+  .section-container,
   .global-pos {
-    @apply w-full mx-auto px-4 py-16 md:px-8 lg:py-24;
-    max-width: 1280px;
+    @apply container mx-auto w-full px-4 py-16 md:px-8 lg:py-24;
   }
 
-  /* Full Width Section */
   .section-fullwidth {
     @apply w-full;
   }
 }
 
 /* =========================================================
-   7. HEROUI COMPONENT OVERRIDES
+   5. HEROUI COMPONENT OVERRIDES
 ========================================================= */
 
-/* Ensure readable text inside primary action backgrounds */
 .bg-action-primary,
-.bg-action-primary * {
+.bg-action-primary *,
+.bg-action-primary svg,
+.bg-action-primary [data-slot="label"] {
   color: #FFFFFF !important;
-}
-
-/* SVG icon color */
-.bg-action-primary svg {
-  fill: #FFFFFF;
-  stroke: #FFFFFF;
+  fill: #FFFFFF !important;
 }
