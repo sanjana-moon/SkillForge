@@ -17,8 +17,8 @@ export default function Home() {
       <FeaturedCourses />
       <Categories />
       <AIFeatures />
-      <AboutPage />
       <WhyChooseUs />
+      <AboutPage />
       <Testimonials />
       <Newsletter />
     </div>
