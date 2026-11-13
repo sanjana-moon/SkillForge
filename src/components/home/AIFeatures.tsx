@@ -23,11 +23,8 @@ type FeatureCard = {
     description: string;
     highlights: string[];
     icon: typeof FaBrain;
-    accent: "#567C8D" | "#567C8D" | "#567C8D";
     ctaLabel: string;
-    /** Search query sent to /api/courses?search=... */
     searchQuery: string;
-    /** Where the CTA link goes */
     href: string;
 };
 
@@ -42,7 +39,6 @@ const FEATURES: FeatureCard[] = [
             "Dynamic timeline recalculation",
         ],
         icon: FaBrain,
-        accent: "#567C8D",
         ctaLabel: "Launch Roadmap Builder",
         searchQuery: "roadmap",
         href: "/ai-mentor",
@@ -57,7 +53,6 @@ const FEATURES: FeatureCard[] = [
             "Code optimization suggestions",
         ],
         icon: FaMessage,
-        accent: "#567C8D",
         ctaLabel: "Chat with AI Mentor",
         searchQuery: "programming",
         href: "/ai-mentor",
@@ -72,7 +67,6 @@ const FEATURES: FeatureCard[] = [
             "Relevance-ranked results",
         ],
         icon: FaMagnifyingGlass,
-        accent: "#567C8D",
         ctaLabel: "Search Courses",
         searchQuery: "api",
         href: "/courses?search=api",
@@ -87,7 +81,6 @@ const FEATURES: FeatureCard[] = [
             "Gap detection after each module",
         ],
         icon: HiSparkles,
-        accent: "#567C8D",
         ctaLabel: "View Roadmaps",
         searchQuery: "advanced",
         href: "/courses?search=advanced",
@@ -96,33 +89,30 @@ const FEATURES: FeatureCard[] = [
 
 export default function AIFeatures() {
     return (
-        <section className="relative overflow-hidden border-t border-teal/10 bg-white py-20">
+        <section className="relative overflow-hidden border-t border-main bg-main">
             {/* Background glow */}
-            <div className="pointer-events-none absolute top-1/2 left-1/2 h-75 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-linear-to-r from-teal/10 to-teal/10 blur-[120px]" />
+            <div className="pointer-events-none absolute top-1/2 left-1/2 h-75 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[120px]" />
 
-            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="section-container relative z-10">
                 {/* Header */}
                 <div className="mx-auto mb-16 max-w-3xl text-center">
-                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-teal/30 bg-teal/15 px-3 py-1 font-mono text-xs font-bold text-teal">
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-xs font-bold text-accent">
                         <HiSparkles className="text-sm" />
                         Empower Your Study Engine
                     </div>
 
-                    <h2 className="font-heading text-3xl font-bold text-navy sm:text-4xl">
-                        Custom Built{" "}
-                        <span className="bg-linear-to-r from-teal to-teal bg-clip-text text-transparent">
-                            AI Tools
-                        </span>
+                    <h2 className="font-heading text-3xl font-bold text-main sm:text-4xl">
+                        Custom Built <span className="text-accent">AI Tools</span>
                     </h2>
 
-                    <p className="mt-4 font-body text-navy/70">
+                    <p className="mt-4 font-body text-main/70">
                         Harness generative intelligence built to accelerate
                         comprehension, solve blocks, and personalize mapping.
                     </p>
                 </div>
 
-                {/* Grid */}
-                <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
+                {/* Grid — now uses the full width of the section-container */}
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                     {FEATURES.map((feature) => (
                         <FeatureCardItem
                             key={feature.id}
@@ -140,7 +130,6 @@ function FeatureCardItem({ feature }: { feature: FeatureCard }) {
     const [preview, setPreview] = useState<CoursePreview[] | null>(null);
     const [loading, setLoading] = useState(false);
 
-    // Fetch a live preview of matching courses for this card
     useEffect(() => {
         let cancelled = false;
 
@@ -179,51 +168,29 @@ function FeatureCardItem({ feature }: { feature: FeatureCard }) {
     }, [feature.searchQuery]);
 
     return (
-        <div
-            className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-teal/10 bg-linear-to-b from-white to-white p-8 shadow-xl transition duration-300"
-            style={{
-                // use accent color for border on hover, kept inline for dynamic color
-                borderColor: "rgba(197,160,89,0.1)",
-            }}
-        >
+        <div className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-main bg-surface p-8 shadow-xl transition duration-300 hover:border-accent/30">
             {/* Inner glow */}
-            <div
-                className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full opacity-60 blur-3xl transition duration-500 group-hover:scale-125"
-                style={{ background: `${feature.accent}1A` }}
-            />
+            <div className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full bg-accent/10 opacity-60 blur-3xl transition duration-500 group-hover:scale-125" />
 
             <div>
                 {/* Icon */}
-                <div
-                    className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border"
-                    style={{
-                        backgroundColor: `${feature.accent}26`,
-                        borderColor: `${feature.accent}33`,
-                        color: feature.accent,
-                    }}
-                >
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/10 border border-accent/20 text-accent">
                     <Icon className="text-xl" />
                 </div>
 
-                <h3
-                    className="font-heading text-2xl font-bold text-navy transition"
-                    style={{ transition: "color 200ms ease" }}
-                >
+                <h3 className="font-heading text-2xl font-bold text-main transition-colors group-hover:text-accent">
                     {feature.title}
                 </h3>
 
-                <p className="mt-3 font-body text-sm leading-relaxed text-navy/70">
+                <p className="mt-3 font-body text-sm leading-relaxed text-main/70">
                     {feature.description}
                 </p>
 
                 {/* Highlights */}
-                <ul className="mt-6 space-y-2 font-mono text-xs text-navy/60">
+                <ul className="mt-6 space-y-2 font-mono text-xs text-main/60">
                     {feature.highlights.map((line) => (
                         <li key={line} className="flex items-center gap-2">
-                            <span
-                                className="h-1.5 w-1.5 rounded-full"
-                                style={{ backgroundColor: feature.accent }}
-                            />
+                            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                             {line}
                         </li>
                     ))}
@@ -231,18 +198,18 @@ function FeatureCardItem({ feature }: { feature: FeatureCard }) {
 
                 {/* Live preview of matching courses */}
                 <div className="mt-6">
-                    <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-navy/40">
+                    <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-main/40">
                         Matching courses
                     </p>
 
                     {loading && (
-                        <p className="text-xs text-navy/50">
+                        <p className="text-xs text-main/50">
                             Searching…
                         </p>
                     )}
 
                     {!loading && preview && preview.length === 0 && (
-                        <p className="text-xs text-navy/50">
+                        <p className="text-xs text-main/50">
                             No matches yet for “{feature.searchQuery}”.
                         </p>
                     )}
@@ -253,12 +220,12 @@ function FeatureCardItem({ feature }: { feature: FeatureCard }) {
                                 <li key={c._id}>
                                     <Link
                                         href={`/courses/${c._id}`}
-                                        className="flex items-center justify-between gap-3 rounded-lg border border-teal/10 bg-white/50 px-3 py-2 text-xs text-navy/80 transition hover:border-teal/40 hover:text-navy"
+                                        className="flex items-center justify-between gap-3 rounded-lg border border-main bg-main/50 px-3 py-2 text-xs text-main/80 transition hover:border-accent/40 hover:text-main"
                                     >
                                         <span className="truncate">
                                             {c.title}
                                         </span>
-                                        <span className="shrink-0 font-mono text-[10px] text-teal">
+                                        <span className="shrink-0 font-mono text-[10px] text-accent">
                                             ${c.price}
                                         </span>
                                     </Link>
@@ -273,8 +240,7 @@ function FeatureCardItem({ feature }: { feature: FeatureCard }) {
             <div className="mt-8">
                 <Link
                     href={feature.href}
-                    className="inline-flex items-center gap-2 text-sm font-semibold transition duration-200"
-                    style={{ color: feature.accent }}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-accent transition duration-200"
                 >
                     {feature.ctaLabel}
                     <FaArrowRight className="text-xs transition duration-200 group-hover:translate-x-1.5" />
