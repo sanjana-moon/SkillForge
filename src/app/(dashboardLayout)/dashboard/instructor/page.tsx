@@ -158,29 +158,29 @@ const InstructorPage = () => {
                                 <LineChart data={stats?.enrollmentChart ?? []}>
                                     <XAxis
                                         dataKey="month"
-                                        tick={{ fill: "#2F4156" }}
+                                        tick={{ fill: "var(--navy)" }}
                                         tickLine={false}
                                         axisLine={false}
                                     />
                                     <YAxis
-                                        tick={{ fill: "#2F4156" }}
+                                        tick={{ fill: "var(--navy)" }}
                                         tickLine={false}
                                         axisLine={false}
                                     />
                                     <Tooltip
-                                        cursor={{ stroke: "#567C8D" }}
+                                        cursor={{ stroke: "var(--teal)" }}
                                         contentStyle={{
-                                            backgroundColor: "#FFFFFF",
-                                            borderColor: "#567C8D/30",
-                                            color: "#2F4156",
+                                            backgroundColor: "var(--white)",
+                                            borderColor: "rgba(86, 124, 141, 0.3)",
+                                            color: "var(--navy)",
                                         }}
                                     />
                                     <Line
                                         type="monotone"
                                         dataKey="enrollments"
-                                        stroke="#567C8D"
+                                        stroke="var(--teal)"
                                         strokeWidth={3}
-                                        dot={{ fill: "#567C8D", r: 4 }}
+                                        dot={{ fill: "var(--teal)", r: 4 }}
                                     />
                                 </LineChart>
                             </ResponsiveContainer>
