@@ -26,15 +26,15 @@ const getStatusText = (progress: number) => {
 };
 
 const getStatusBadgeColor = (progress: number) => {
-    if (progress === 100) return "bg-green-500/20 text-green-400 border-green-500/30";
-    if (progress >= 50) return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
-    return "bg-teal/20 text-teal border-teal/30";
+    if (progress === 100) return "bg-success/10 text-success border-success/30";
+    if (progress >= 50) return "bg-warning/10 text-warning border-warning/30";
+    return "bg-accent/10 text-accent border-accent/30";
 };
 
 const getProgressColor = (progress: number) => {
-    if (progress === 100) return "bg-green-400";
-    if (progress >= 50) return "bg-yellow-400";
-    return "bg-[image:var(--brand-gradient)]";
+    if (progress === 100) return "bg-success";
+    if (progress >= 50) return "bg-warning";
+    return "bg-action-primary";
 };
 
 export default function MyCoursesClient({
@@ -43,12 +43,11 @@ export default function MyCoursesClient({
     const [searchTerm, setSearchTerm] = useState("");
     const [filterStatus, setFilterStatus] = useState<"all" | "completed" | "in-progress" | "not-started">("all");
 
-    // Ã¢Å“â€¦ Use React Query for student enrollments
     const { data: enrollments, isLoading, isError } = useStudentEnrollments(userEmail);
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-white flex items-center justify-center">
+            <div className="min-h-screen bg-main flex items-center justify-center">
                 <Spinner size="lg"/>
             </div>
         );
@@ -56,10 +55,10 @@ export default function MyCoursesClient({
 
     if (isError) {
         return (
-            <div className="min-h-screen bg-white flex items-center justify-center p-4">
-                <Card className="bg-white border border-red-500/20 rounded-2xl p-8 text-center">
-                    <p className="text-red-400">Failed to load your courses.</p>
-                    <Button className="mt-4 bg-[image:var(--brand-gradient)] text-white" onPress={() => window.location.reload()}>
+            <div className="min-h-screen bg-main flex items-center justify-center p-4">
+                <Card className="bg-surface border border-error/20 rounded-2xl p-8 text-center">
+                    <p className="text-error">Failed to load your courses.</p>
+                    <Button className="mt-4 bg-action-primary" onPress={() => window.location.reload()}>
                         Retry
                     </Button>
                 </Card>
@@ -90,38 +89,38 @@ export default function MyCoursesClient({
         {
             label: "Total Enrolled",
             value: totalCourses,
-            icon: <FaBook className="text-teal" />,
-            color: "bg-teal/10 border-teal/20",
+            icon: <FaBook className="text-accent" />,
+            color: "bg-accent/10 border-accent/20",
         },
         {
             label: "In Progress",
             value: inProgressCourses,
-            icon: <FaClock className="text-yellow-400" />,
-            color: "bg-yellow-500/10 border-yellow-500/20",
+            icon: <FaClock className="text-warning" />,
+            color: "bg-warning/10 border-warning/20",
         },
         {
             label: "Completed",
             value: completedCourses,
-            icon: <FaGraduationCap className="text-green-400" />,
-            color: "bg-green-500/10 border-green-500/20",
+            icon: <FaGraduationCap className="text-success" />,
+            color: "bg-success/10 border-success/20",
         },
         {
             label: "Not Started",
             value: notStartedCourses,
-            icon: <FaSearch className="text-navy/40" />,
-            color: "bg-navy/10 border-navy/20",
+            icon: <FaSearch className="text-main/40" />,
+            color: "bg-main border-main",
         },
     ];
 
     return (
-        <div className="min-h-screen bg-white p-4 md:p-6">
-            <div className="mx-auto max-w-7xl">
+        <div className="min-h-screen bg-main">
+            <div className="section-container">
                 {/* Header */}
                 <div className="mb-8">
-                    <h1 className="text-3xl md:text-4xl font-bold text-navy">
+                    <h1 className="text-3xl md:text-4xl font-bold text-main">
                         My Courses
                     </h1>
-                    <p className="text-navy/60 mt-2">
+                    <p className="text-main/60 mt-2">
                         Track your learning progress across all enrolled courses.
                     </p>
                 </div>
@@ -131,18 +130,18 @@ export default function MyCoursesClient({
                     {stats.map((stat, index) => (
                         <Card
                             key={index}
-                            className={`bg-white border ${stat.color} rounded-2xl p-4 shadow-xl transition-all hover:shadow-teal/5`}
+                            className={`bg-surface border ${stat.color} rounded-2xl p-4 shadow-xl transition-all hover:shadow-accent/5`}
                         >
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-navy/60 text-xs font-medium uppercase tracking-wider">
+                                    <p className="text-main/60 text-xs font-medium uppercase tracking-wider">
                                         {stat.label}
                                     </p>
-                                    <p className="text-2xl md:text-3xl font-bold text-navy mt-1">
+                                    <p className="text-2xl md:text-3xl font-bold text-main mt-1">
                                         {stat.value}
                                     </p>
                                 </div>
-                                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                                <div className="w-10 h-10 rounded-full bg-main flex items-center justify-center">
                                     {stat.icon}
                                 </div>
                             </div>
@@ -154,13 +153,13 @@ export default function MyCoursesClient({
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
                     <div className="flex-1">
                         <div className="relative">
-                            <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-navy/40" />
+                            <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-main/40" />
                             <input
                                 type="text"
                                 placeholder="Search courses..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-3 bg-white border border-teal/20 rounded-xl text-navy placeholder:text-navy/40 focus:outline-none focus:border-teal transition-colors"
+                                className="w-full pl-10 pr-4 py-3 bg-surface border border-main rounded-xl text-main placeholder:text-main/40 focus:outline-none focus:border-accent transition-colors"
                             />
                         </div>
                     </div>
@@ -170,8 +169,8 @@ export default function MyCoursesClient({
                             onPress={() => setFilterStatus("all")}
                             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                                 filterStatus === "all"
-                                    ? "bg-[image:var(--brand-gradient)] text-white"
-                                    : "bg-white text-navy/60 hover:text-navy border border-teal/20"
+                                    ? "bg-action-primary"
+                                    : "bg-surface border border-accent text-accent *:text-accent hover:bg-accent/10"
                             }`}
                         >
                             All
@@ -180,8 +179,8 @@ export default function MyCoursesClient({
                             onPress={() => setFilterStatus("in-progress")}
                             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                                 filterStatus === "in-progress"
-                                    ? "bg-yellow-500 text-white"
-                                    : "bg-white text-navy/60 hover:text-navy border border-teal/20"
+                                    ? "bg-warning *:text-inverse"
+                                    : "bg-surface border border-accent text-accent *:text-accent hover:bg-accent/10"
                             }`}
                         >
                             In Progress
@@ -190,8 +189,8 @@ export default function MyCoursesClient({
                             onPress={() => setFilterStatus("completed")}
                             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                                 filterStatus === "completed"
-                                    ? "bg-green-500 text-white"
-                                    : "bg-white text-navy/60 hover:text-navy border border-teal/20"
+                                    ? "bg-success *:text-inverse"
+                                    : "bg-surface border border-accent text-accent *:text-accent hover:bg-accent/10"
                             }`}
                         >
                             Completed
@@ -200,8 +199,8 @@ export default function MyCoursesClient({
                             onPress={() => setFilterStatus("not-started")}
                             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
                                 filterStatus === "not-started"
-                                    ? "bg-navy/20 text-navy"
-                                    : "bg-white text-navy/60 hover:text-navy border border-teal/20"
+                                    ? "bg-action-primary"
+                                    : "bg-surface border border-accent text-accent *:text-accent hover:bg-accent/10"
                             }`}
                         >
                             Not Started
@@ -211,19 +210,19 @@ export default function MyCoursesClient({
 
                 {/* Courses Grid */}
                 {filteredEnrollments.length === 0 ? (
-                    <Card className="bg-white border border-teal/10 rounded-2xl p-12 text-center">
-                        <FaBook className="text-5xl text-navy/20 mx-auto mb-4" />
-                        <h3 className="text-xl font-semibold text-navy mb-2">
+                    <Card className="bg-surface border border-main rounded-2xl p-12 text-center">
+                        <FaBook className="text-5xl text-main/20 mx-auto mb-4" />
+                        <h3 className="text-xl font-semibold text-main mb-2">
                             {totalCourses === 0 ? "No Courses Enrolled" : "No Courses Found"}
                         </h3>
-                        <p className="text-navy/60 text-sm mb-4">
+                        <p className="text-main/60 text-sm mb-4">
                             {totalCourses === 0
                                 ? "Start your learning journey by enrolling in your first course."
                                 : "Try adjusting your search or filters to find your courses."}
                         </p>
                         {totalCourses === 0 && (
                             <Link href="/courses">
-                                <Button className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90">
+                                <Button className="bg-action-primary font-semibold hover:opacity-90">
                                     Browse Courses
                                     <FaArrowRight className="ml-2" />
                                 </Button>
@@ -235,7 +234,7 @@ export default function MyCoursesClient({
                         {filteredEnrollments.map((enrollment: Enrollment) => (
                             <Card
                                 key={enrollment._id}
-                                className="bg-white border border-teal/10 hover:border-teal/30 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-teal/5 hover:-translate-y-1"
+                                className="bg-surface border border-main hover:border-accent/30 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-accent/5 hover:-translate-y-1"
                             >
                                 <div className="p-5">
                                     <div className="flex items-center justify-between mb-3">
@@ -247,22 +246,28 @@ export default function MyCoursesClient({
                                             {getStatusText(enrollment.progress)}
                                         </span>
                                         {enrollment.progress === 100 && (
-                                            <FaCheckCircle className="text-green-400" />
+                                            <FaCheckCircle className="text-success" />
                                         )}
                                     </div>
 
-                                    <h3 className="font-semibold text-navy text-lg line-clamp-2 mb-2">
+                                    <h3 className="font-semibold text-main text-lg line-clamp-2 mb-2">
                                         {enrollment.courseTitle}
                                     </h3>
 
                                     <div className="mt-4">
                                         <div className="flex items-center justify-between text-sm mb-1.5">
-                                            <span className="text-navy/50">Progress</span>
-                                            <span className={`font-medium ${getStatusBadgeColor(enrollment.progress)}`}>
+                                            <span className="text-main/50">Progress</span>
+                                            <span className={`font-medium ${
+                                                enrollment.progress === 100
+                                                    ? "text-success"
+                                                    : enrollment.progress >= 50
+                                                        ? "text-warning"
+                                                        : "text-accent"
+                                            }`}>
                                                 {enrollment.progress}%
                                             </span>
                                         </div>
-                                        <div className="w-full h-2 bg-white rounded-full overflow-hidden">
+                                        <div className="w-full h-2 bg-main rounded-full overflow-hidden">
                                             <div
                                                 className={`h-full rounded-full transition-all duration-500 ${getProgressColor(
                                                     enrollment.progress
@@ -272,8 +277,8 @@ export default function MyCoursesClient({
                                         </div>
                                     </div>
 
-                                    <div className="mt-4 pt-4 border-t border-teal/10">
-                                        <p className="text-navy/40 text-xs">
+                                    <div className="mt-4 pt-4 border-t border-main">
+                                        <p className="text-main/40 text-xs">
                                             Enrolled on{" "}
                                             {new Date(enrollment.createdAt).toLocaleDateString("en-US", {
                                                 year: "numeric",
@@ -283,14 +288,13 @@ export default function MyCoursesClient({
                                         </p>
                                     </div>
 
-                                    {/* Ã¢Å“â€¦ Updated Link to go to content page */}
                                     <Link href={`/courses/${enrollment.courseId}/content`}>
                                         <Button
                                             fullWidth
                                             className={`mt-4 font-semibold rounded-xl transition-all ${
                                                 enrollment.progress === 100
-                                                    ? "bg-green-500/20 text-green-400 hover:bg-green-500/30 border border-green-500/30"
-                                                    : "bg-[image:var(--brand-gradient)] text-white hover:opacity-90"
+                                                    ? "bg-success/10 border border-success/30 text-success *:text-success hover:bg-success/20"
+                                                    : "bg-action-primary hover:opacity-90"
                                             }`}
                                         >
                                             {enrollment.progress === 100 ? (
