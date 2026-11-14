@@ -30,7 +30,9 @@ export default function Hero() {
 
             {/* Description */}
             <p className="mt-6 text-base sm:text-lg text-main/70 max-w-xl mx-auto lg:mx-0 leading-relaxed font-body">
-              SkillForge AI builds personalized learning roadmaps, delivers smart course recommendations, and supports your growth with 24/7 AI mentorship.
+              SkillForge AI builds personalized learning roadmaps, delivers
+              smart course recommendations, and supports your growth with 24/7
+              AI mentorship.
             </p>
 
             {/* Call to Actions */}
@@ -45,7 +47,7 @@ export default function Hero() {
 
               <Link
                 href="/ai-mentor"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-accent text-accent px-8 py-4 text-base font-semibold hover:bg-accent hover:text-inverse transition duration-300 group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-accent text-accent px-8 py-4 text-base font-semibold hover:bg-action-primary hover:border-action-primary hover:text-white transition duration-300 group"
               >
                 Get AI Recommendation
                 <FaArrowRight className="text-sm group-hover:translate-x-1 transition duration-300" />
@@ -55,16 +57,28 @@ export default function Hero() {
             {/* Metrics quick glance */}
             <div className="mt-12 pt-8 border-t border-main grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
               <div>
-                <p className="text-2xl sm:text-3xl font-extrabold text-main">15k+</p>
-                <p className="text-xs sm:text-sm text-muted mt-1">Active Learners</p>
+                <p className="text-2xl sm:text-3xl font-extrabold text-main">
+                  15k+
+                </p>
+                <p className="text-xs sm:text-sm text-muted mt-1">
+                  Active Learners
+                </p>
               </div>
               <div>
-                <p className="text-2xl sm:text-3xl font-extrabold text-accent">120+</p>
-                <p className="text-xs sm:text-sm text-muted mt-1">Tech Tracks</p>
+                <p className="text-2xl sm:text-3xl font-extrabold text-accent">
+                  120+
+                </p>
+                <p className="text-xs sm:text-sm text-muted mt-1">
+                  Tech Tracks
+                </p>
               </div>
               <div>
-                <p className="text-2xl sm:text-3xl font-extrabold text-accent">98%</p>
-                <p className="text-xs sm:text-sm text-muted mt-1">Success Rate</p>
+                <p className="text-2xl sm:text-3xl font-extrabold text-accent">
+                  98%
+                </p>
+                <p className="text-xs sm:text-sm text-muted mt-1">
+                  Success Rate
+                </p>
               </div>
             </div>
           </div>
