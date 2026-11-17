@@ -6,8 +6,8 @@
 
 ## 🌐 Live Demo
 
-* **Client:** *Coming Soon*
-* **Server:** *Coming Soon*
+* **Client:** https://skillforge-ai-eta.vercel.app
+* **Server:** https://github.com/sanjana-moon/skillforge-server.git
 
 ---
 
