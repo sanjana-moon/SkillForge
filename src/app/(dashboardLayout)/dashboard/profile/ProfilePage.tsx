@@ -37,20 +37,21 @@ export default function ProfilePage() {
     }, []);
 
     const loadProfile = async () => {
-        try {
-            setLoading(true);
-            setError(null);
+    try {
+        setLoading(true);
+        setError(null);
 
-            const data = await getProfile();
-            setProfile(data);
-            setImageError(false);
-        } catch (err) {
-            console.error("Error loading profile:", err);
-            setError(err instanceof Error ? err.message : "Failed to load profile");
-        } finally {
-            setLoading(false);
-        }
-    };
+        const data = await getProfile();
+
+        setProfile(data);
+        setImageError(false);
+    } catch (err) {
+        console.error("Error loading profile:", err);
+        setError(err instanceof Error ? err.message : "Failed to load profile");
+    } finally {
+        setLoading(false);
+    }
+};
 
     const startEditing = () => {
         if (profile) {
@@ -58,6 +59,7 @@ export default function ProfilePage() {
                 name: profile.name,
                 profileImage: profile.profileImage || "",
             });
+            setImageError(false);
             setIsEditing(true);
             setError(null);
             setSuccessMessage(null);
@@ -74,7 +76,6 @@ export default function ProfilePage() {
         setSuccessMessage(null);
     };
 
-    // Ã¢Å“â€¦ Fix: Use a regular async function without event parameter
     const handleUpdateProfile = async () => {
         try {
             setSaving(true);
@@ -113,7 +114,7 @@ export default function ProfilePage() {
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center min-h-[60vh]">
-                <Spinner size="lg"/>
+                <Spinner size="lg" />
                 <p className="mt-4 text-navy/60">Loading profile...</p>
             </div>
         );
@@ -123,14 +124,14 @@ export default function ProfilePage() {
         return (
             <div className="max-w-4xl mx-auto p-8">
                 <Card className="bg-white border border-red-500/20 rounded-2xl p-8 text-center">
-                    <div className="text-5xl mb-4">Ã¢Å¡Â Ã¯Â¸Â</div>
+                    <div className="text-5xl mb-4">⚠️</div>
                     <h3 className="text-xl font-semibold text-red-400 mb-2">
                         Unable to Load Profile
                     </h3>
                     <p className="text-navy/60 mb-4">{error}</p>
                     <Button
                         onPress={loadProfile}
-                        className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90"
+                        className="bg-(image:--brand-gradient) text-white font-semibold hover:opacity-90"
                     >
                         Try Again
                     </Button>
@@ -143,7 +144,7 @@ export default function ProfilePage() {
         return (
             <div className="max-w-4xl mx-auto p-8">
                 <Card className="bg-white border border-yellow-500/20 rounded-2xl p-8 text-center">
-                    <div className="text-5xl mb-4">Ã°Å¸â€˜Â¤</div>
+                    <div className="text-5xl mb-4">👤</div>
                     <h3 className="text-xl font-semibold text-yellow-400 mb-2">
                         Profile Not Found
                     </h3>
@@ -152,7 +153,7 @@ export default function ProfilePage() {
                     </p>
                     <Button
                         onPress={loadProfile}
-                        className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90"
+                        className="bg-(image:--brand-gradient) text-white font-semibold hover:opacity-90"
                     >
                         Try Again
                     </Button>
@@ -172,19 +173,24 @@ export default function ProfilePage() {
         <div className="max-w-4xl mx-auto">
             <Card className="bg-white border border-teal/20 rounded-2xl shadow-xl overflow-hidden">
                 {/* Header */}
-                <div className="bg-linear-to-r from-white to-white p-10 text-center relative border-b border-teal/20">
+                <div className="bg-action-primary p-10 text-center relative border-b border-teal/20">
                     <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-teal to-teal" />
 
                     {/* Avatar */}
-                    <div className="relative inline-">
-                        <div className="w-28 h-28 rounded-full mx-auto shadow-lg relative overflow-hidden border-4 border-teal">
+                    <div className="relative inline-block">
+                        <div className="relative w-28 h-28 rounded-full mx-auto shadow-lg overflow-hidden border-4 border-teal bg-white">
                             {profile.profileImage && !imageError ? (
                                 <Image
                                     src={profile.profileImage}
                                     alt={profile.name}
                                     fill
+                                    sizes="112px"
                                     className="object-cover"
-                                    onError={() => setImageError(true)}
+                                    onError={() => {
+                                        console.log("next/image onError fired for:", profile.profileImage);
+                                        setImageError(true);
+                                    }}
+                                    unoptimized
                                     priority
                                 />
                             ) : (
@@ -195,7 +201,7 @@ export default function ProfilePage() {
                         </div>
 
                         <button
-                            className="absolute bottom-0 right-0 bg-[image:var(--brand-gradient)] p-2 rounded-full shadow-lg hover:opacity-90 transition-colors border-2 border-white"
+                            className="absolute bottom-0 right-0 bg-(image:--brand-gradient) p-2 rounded-full shadow-lg hover:opacity-90 transition-colors border-2 border-white"
                             onClick={startEditing}
                             title="Change profile picture"
                             disabled={isEditing}
@@ -216,7 +222,7 @@ export default function ProfilePage() {
 
                             <Button
                                 onPress={startEditing}
-                                className="mt-4 bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90"
+                                className="mt-4 bg-(image:--brand-gradient) text-white font-semibold hover:opacity-90"
                             >
                                 <FaEdit className="mr-2" />
                                 Edit Profile
@@ -227,15 +233,25 @@ export default function ProfilePage() {
                             <div className="flex flex-wrap items-center justify-center gap-3">
                                 <Button
                                     onPress={handleUpdateProfile}
-
-                                    className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90"
+                                    isDisabled={saving}
+                                    className="bg-(image:--brand-gradient) text-white font-semibold hover:opacity-90"
                                 >
-                                    <FaSave className="mr-2" />
-                                    Save Changes
+                                    {saving ? (
+                                        <>
+                                            <Spinner size="sm" className="mr-2 text-white" />
+                                            Saving...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <FaSave className="mr-2" />
+                                            Save Changes
+                                        </>
+                                    )}
                                 </Button>
                                 <Button
                                     onPress={cancelEditing}
-                                    className="bg-white border border-teal/30 text-navy hover:bg-white/80 font-semibold"
+                                    isDisabled={saving}
+                                    className="text-red border border-accent font-semibold"
                                 >
                                     <FaTimes className="mr-2" />
                                     Cancel
@@ -263,10 +279,9 @@ export default function ProfilePage() {
                 {/* Profile Details */}
                 <div className="p-8 space-y-6">
                     {!isEditing ? (
-                        // View Mode
                         <>
                             <div className="space-y-2">
-                                <label className=" font-semibold text-navy text-sm flex items-center gap-2">
+                                <label className="font-semibold text-navy text-sm flex items-center gap-2">
                                     <FaUser className="text-teal" />
                                     Full Name
                                 </label>
@@ -276,7 +291,7 @@ export default function ProfilePage() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className=" font-semibold text-navy text-sm flex items-center gap-2">
+                                <label className="font-semibold text-navy text-sm flex items-center gap-2">
                                     <FaEnvelope className="text-teal" />
                                     Email
                                 </label>
@@ -286,7 +301,7 @@ export default function ProfilePage() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className=" font-semibold text-navy text-sm flex items-center gap-2">
+                                <label className="font-semibold text-navy text-sm flex items-center gap-2">
                                     <FaUserTag className="text-teal" />
                                     Role
                                 </label>
@@ -297,7 +312,7 @@ export default function ProfilePage() {
 
                             {profile.profileImage && (
                                 <div className="space-y-2">
-                                    <label className=" font-semibold text-navy text-sm flex items-center gap-2">
+                                    <label className="font-semibold text-navy text-sm flex items-center gap-2">
                                         <FaCamera className="text-teal" />
                                         Profile Image
                                     </label>
@@ -308,10 +323,9 @@ export default function ProfilePage() {
                             )}
                         </>
                     ) : (
-                        // Edit Mode - Ã¢Å“â€¦ Removed form, using div instead
                         <div className="space-y-6">
                             <div className="space-y-2">
-                                <label className=" font-semibold text-navy text-sm flex items-center gap-2">
+                                <label className="font-semibold text-navy text-sm flex items-center gap-2">
                                     <FaUser className="text-teal" />
                                     Full Name *
                                 </label>
@@ -326,7 +340,7 @@ export default function ProfilePage() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className=" font-semibold text-navy text-sm flex items-center gap-2">
+                                <label className="font-semibold text-navy text-sm flex items-center gap-2">
                                     <FaEnvelope className="text-teal" />
                                     Email
                                 </label>
@@ -339,7 +353,7 @@ export default function ProfilePage() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className=" font-semibold text-navy text-sm flex items-center gap-2">
+                                <label className="font-semibold text-navy text-sm flex items-center gap-2">
                                     <FaUserTag className="text-teal" />
                                     Role
                                 </label>
@@ -352,7 +366,7 @@ export default function ProfilePage() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className=" font-semibold text-navy text-sm flex items-center gap-2">
+                                <label className="font-semibold text-navy text-sm flex items-center gap-2">
                                     <FaCamera className="text-teal" />
                                     Profile Image URL
                                 </label>
@@ -371,15 +385,25 @@ export default function ProfilePage() {
                             <div className="flex flex-wrap gap-3 pt-4">
                                 <Button
                                     onPress={handleUpdateProfile}
-
-                                    className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90"
+                                    isDisabled={saving}
+                                    className="bg-(image:--brand-gradient) text-white font-semibold hover:opacity-90"
                                 >
-                                    <FaSave className="mr-2" />
-                                    Save Changes
+                                    {saving ? (
+                                        <>
+                                            <Spinner size="sm" className="mr-2 text-white" />
+                                            Saving...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <FaSave className="mr-2" />
+                                            Save Changes
+                                        </>
+                                    )}
                                 </Button>
                                 <Button
                                     onPress={cancelEditing}
-                                    className="bg-white border border-teal/30 text-navy hover:bg-white/80 font-semibold"
+                                    isDisabled={saving}
+                                    className="border border-accent font-semibold"
                                 >
                                     <FaTimes className="mr-2" />
                                     Cancel
