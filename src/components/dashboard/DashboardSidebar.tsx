@@ -5,15 +5,15 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-    IoMdSpeedometer,
-    IoMdPeople,
-    IoMdBook,
-    IoMdPerson,
-    IoMdAdd,
-    IoMdList,
-    IoMdMenu,
-    IoMdClose,
-    IoMdHome,
+  IoMdSpeedometer,
+  IoMdPeople,
+  IoMdBook,
+  IoMdPerson,
+  IoMdAdd,
+  IoMdList,
+  IoMdMenu,
+  IoMdClose,
+  IoMdHome,
 } from "react-icons/io";
 import { FaRobot } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
@@ -22,244 +22,296 @@ import Image from "next/image";
 import logo from "@/components/assets/images/Logooo.png";
 
 interface DashboardLink {
-    key: string;
-    label: string;
-    href: string;
-    icon?: React.ComponentType<{ className?: string }>;
+  key: string;
+  label: string;
+  href: string;
+  icon?: React.ComponentType<{ className?: string }>;
 }
 
 const getLinksForRole = (role?: string): DashboardLink[] => {
-    if (role === "admin") {
-        return [
-            { key: "overview", label: "Overview", href: "/dashboard/admin", icon: IoMdSpeedometer },
-            { key: "users", label: "Manage Users", href: "/dashboard/admin/manage-users", icon: IoMdPeople },
-            { key: "courses", label: "Manage Courses", href: "/dashboard/admin/manage-courses", icon: IoMdBook },
-            { key: "profile", label: "Profile", href: "/dashboard/profile", icon: IoMdPerson },
-        ];
-    }
-    if (role === "instructor") {
-        return [
-            { key: "overview", label: "Overview", href: "/dashboard/instructor", icon: IoMdSpeedometer },
-            { key: "addCourse", label: "Add Course", href: "/dashboard/instructor/add-course", icon: IoMdAdd },
-            { key: "manageCourse", label: "Manage Courses", href: "/dashboard/instructor/manage-courses", icon: IoMdList },
-            { key: "profile", label: "Profile", href: "/dashboard/profile", icon: IoMdPerson },
-        ];
-    }
-    if (role === "student") {
-        return [
-            { key: "overview", label: "Overview", href: "/dashboard/student", icon: IoMdSpeedometer },
-            { key: "mentor", label: "AI Mentor", href: "/ai-mentor", icon: FaRobot },
-            { key: "myCourses", label: "My Courses", href: "/dashboard/student/my-courses", icon: IoMdBook },
-            { key: "profile", label: "Profile", href: "/dashboard/profile", icon: IoMdPerson },
-        ];
-    }
-    return [];
+  if (role === "admin") {
+    return [
+      {
+        key: "overview",
+        label: "Overview",
+        href: "/dashboard/admin",
+        icon: IoMdSpeedometer,
+      },
+      {
+        key: "users",
+        label: "Manage Users",
+        href: "/dashboard/admin/manage-users",
+        icon: IoMdPeople,
+      },
+      {
+        key: "courses",
+        label: "Manage Courses",
+        href: "/dashboard/admin/manage-courses",
+        icon: IoMdBook,
+      },
+      {
+        key: "profile",
+        label: "Profile",
+        href: "/dashboard/profile",
+        icon: IoMdPerson,
+      },
+    ];
+  }
+  if (role === "instructor") {
+    return [
+      {
+        key: "overview",
+        label: "Overview",
+        href: "/dashboard/instructor",
+        icon: IoMdSpeedometer,
+      },
+      {
+        key: "addCourse",
+        label: "Add Course",
+        href: "/dashboard/instructor/add-course",
+        icon: IoMdAdd,
+      },
+      {
+        key: "manageCourse",
+        label: "Manage Courses",
+        href: "/dashboard/instructor/manage-courses",
+        icon: IoMdList,
+      },
+      {
+        key: "profile",
+        label: "Profile",
+        href: "/dashboard/profile",
+        icon: IoMdPerson,
+      },
+    ];
+  }
+  if (role === "student") {
+    return [
+      {
+        key: "overview",
+        label: "Overview",
+        href: "/dashboard/student",
+        icon: IoMdSpeedometer,
+      },
+      { key: "mentor", label: "AI Mentor", href: "/ai-mentor", icon: FaRobot },
+      {
+        key: "myCourses",
+        label: "My Courses",
+        href: "/dashboard/student/my-courses",
+        icon: IoMdBook,
+      },
+      {
+        key: "profile",
+        label: "Profile",
+        href: "/dashboard/profile",
+        icon: IoMdPerson,
+      },
+    ];
+  }
+  return [];
 };
 
 const DashboardSidebar = () => {
-    const pathname = usePathname();
-    const router = useRouter();
-    const [isMobileOpen, setIsMobileOpen] = useState(false);
-    const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-    const { data: session } = authClient.useSession();
+  const { data: session } = authClient.useSession();
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth >= 1024) {
-                setIsMobileOpen(false);
-            }
-        };
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-    if (!mounted) {
-        return (
-            <div className="fixed left-0 top-0 z-40 h-full w-70 bg-white border-r border-white flex flex-col p-4 animate-pulse">
-                <div className="h-10 bg-white rounded-lg mb-8 w-1/2" />
-                <div className="flex items-center gap-3 mb-8">
-                    <div className="h-10 w-10 rounded-full bg-white" />
-                    <div className="flex-1 space-y-2">
-                        <div className="h-3 bg-white rounded w-1/2" />
-                        <div className="h-3 bg-white rounded w-3/4" />
-                    </div>
-                </div>
-                <div className="space-y-3 flex-1">
-                    {[1, 2, 3, 4].map((n) => (
-                        <div key={n} className="h-12 bg-white rounded-xl" />
-                    ))}
-                </div>
-            </div>
-        );
-    }
-
-    const user = session?.user ?? undefined;
-    const role = user?.role;
-    const dashboardLinks = session?.user ? getLinksForRole(role) : [];
-
-    const handleSignOut = async () => {
-        await authClient.signOut();
-        router.push("/");
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsMobileOpen(false);
+      }
     };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-    const isActive = (href: string) => pathname === href;
-
+  if (!mounted) {
     return (
-        <>
-            {/* Mobile Toggle Button */}
-            <button
-                onClick={() => setIsMobileOpen(!isMobileOpen)}
-                className="lg:hidden fixed top-4 left-4 z-50 p-2.5 rounded-xl bg-white/90 backdrop-blur-md border border-teal text-navy hover:text-white transition-all shadow-lg active:scale-95"
-            >
-                {isMobileOpen ? <IoMdClose className="text-xl" /> : <IoMdMenu className="text-xl" />}
-            </button>
+      <div className="fixed left-0 top-0 z-40 h-full w-70 bg-white border-r border-white flex flex-col p-4 animate-pulse">
+        <div className="h-10 bg-white rounded-lg mb-8 w-1/2" />
+        <div className="flex items-center gap-3 mb-8">
+          <div className="h-10 w-10 rounded-full bg-white" />
+          <div className="flex-1 space-y-2">
+            <div className="h-3 bg-white rounded w-1/2" />
+            <div className="h-3 bg-white rounded w-3/4" />
+          </div>
+        </div>
+        <div className="space-y-3 flex-1">
+          {[1, 2, 3, 4].map((n) => (
+            <div key={n} className="h-12 bg-white rounded-xl" />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
-            {/* Mobile Sidebar Overlay */}
-            <AnimatePresence>
-                {isMobileOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
-                        onClick={() => setIsMobileOpen(false)}
-                    />
-                )}
-            </AnimatePresence>
+  const user = session?.user ?? undefined;
+  const role = user?.role;
+  const dashboardLinks = session?.user ? getLinksForRole(role) : [];
 
-            {/* Main Sidebar Component */}
-            <motion.aside
-                initial={false}
-                animate={{
-                    x:
-                        typeof window !== "undefined" &&
-                        window.innerWidth < 1024
-                            ? isMobileOpen
-                                ? 0
-                                : -280
-                            : 0,
-                }}
-                transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
-                className="fixed left-0 top-0 z-40 h-full w-70 bg-white border-r border-white shadow-2xl flex flex-col overflow-hidden"
-            >
-                {/* Header Section (Logo Only) */}
-                <div className="flex items-center justify-between px-5 py-4 border-b border-white min-h-18">
-                    <Link href="/" className="flex items-center shrink-0">
-                        <Image
-                            src={logo}
-                            alt="SkillForge"
-                            width={150}
-                            height={150}
-                            className="h-auto object-contain rounded-lg"
-                        />
-                    </Link>
-                </div>
+  const handleSignOut = async () => {
+    await authClient.signOut();
+    router.push("/");
+  };
 
-                {/* User Profile Area */}
-                <div className="p-4 border-b border-white bg-linear-to-b from-transparent to-white/20">
-                    <div className="flex items-center gap-3">
-                        <div className="relative shrink-0">
-                            <Image
-                                src={user?.image ?? "/default-avatar.png"}
-                                alt={user?.name ?? "User"}
-                                height={80}
-                                width={80}
-                                className="border border-teal/30 ring-4 ring-teal/5 transition-transform duration-200 rounded-full"
-                            />
-                            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full" />
-                        </div>
+  const isActive = (href: string) => pathname === href;
 
-                        <div className="flex-1 min-w-0">
-                            <p className="text-navy text-sm font-semibold truncate leading-tight">
-                                {user?.name}
-                            </p>
-                            <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-medium bg-teal/10 text-teal border border-teal/20 capitalize mt-1.5 tracking-wider">
-                                {role}
-                            </span>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <>
+      {/* Mobile Toggle Button */}
+      <button
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+        className="lg:hidden fixed top-4 left-4 z-50 p-2.5 rounded-xl bg-white/90 backdrop-blur-md border border-teal text-navy hover:text-white transition-all shadow-lg active:scale-95"
+      >
+        {isMobileOpen ? (
+          <IoMdClose className="text-xl" />
+        ) : (
+          <IoMdMenu className="text-xl" />
+        )}
+      </button>
 
-                {/* Navigation Links */}
-                <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-1.5 custom-scrollbar">
-                    {dashboardLinks.map((link) => {
-                        const Icon = link.icon || IoMdSpeedometer;
-                        const active = isActive(link.href);
+      {/* Mobile Sidebar Overlay */}
+      <AnimatePresence>
+        {isMobileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+            onClick={() => setIsMobileOpen(false)}
+          />
+        )}
+      </AnimatePresence>
 
-                        return (
-                            <Link
-                                key={link.key}
-                                href={link.href}
-                                onClick={() => setIsMobileOpen(false)}
-                                className={`
+      {/* Main Sidebar Component */}
+      <motion.aside
+        initial={false}
+        animate={{
+          x:
+            typeof window !== "undefined" && window.innerWidth < 1024
+              ? isMobileOpen
+                ? 0
+                : -280
+              : 0,
+        }}
+        transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+        className="fixed left-0 top-0 z-40 h-full w-70 bg-white border-r border-white shadow-2xl flex flex-col overflow-hidden"
+      >
+        {/* Header Section (Logo Only) */}
+        <div className="flex items-center justify-between px-5 py-4 border-b border-white min-h-18">
+          <Link href="/" className="flex items-center shrink-0">
+            <Image
+              src={logo}
+              alt="SkillForge"
+              width={150}
+              height={150}
+              className="h-auto object-contain rounded-lg"
+            />
+          </Link>
+        </div>
+
+        {/* User Profile Area */}
+        <div className="p-4 border-b border-white bg-linear-to-b from-transparent to-white/20">
+          <div className="flex items-center gap-3">
+            <div className="relative shrink-0">
+              <Image
+                src={user?.image ?? "/default-avatar.png"}
+                alt={user?.name ?? "User"}
+                height={80}
+                width={80}
+                className="border border-teal/30 ring-4 ring-teal/5 transition-transform duration-200 rounded-full"
+              />
+              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full" />
+            </div>
+
+            <div className="flex-1 min-w-0">
+              <p className="text-navy text-sm font-semibold truncate leading-tight">
+                {user?.name}
+              </p>
+              <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-medium bg-teal/10 text-teal border border-teal/20 capitalize mt-1.5 tracking-wider">
+                {role}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation Links */}
+        <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-1.5 custom-scrollbar">
+          {dashboardLinks.map((link) => {
+            const Icon = link.icon || IoMdSpeedometer;
+            const active = isActive(link.href);
+
+            return (
+              <Link
+                key={link.key}
+                href={link.href}
+                onClick={() => setIsMobileOpen(false)}
+                className={`
                                     relative flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 group
                                     ${
-                                        active
-                                            ? "bg-linear-to-r from-teal/15 to-teal/5 text-teal font-medium border border-teal/20"
-                                            : "text-navy hover:text-navy hover:bg-white/60 border border-transparent"
+                                      active
+                                        ? "bg-action-primary text-base text-white font-medium"
+                                        : "text-navy hover:text-accent border border-transparent"
                                     }
                                 `}
-                            >
-                                {active && (
-                                    <motion.div
-                                        layoutId="activeIndicator"
-                                        className="absolute left-0 top-3.5 bottom-3.5 w-1 bg-[image:var(--brand-gradient)] rounded-r-md"
-                                        transition={{
-                                            type: "spring",
-                                            stiffness: 300,
-                                            damping: 30,
-                                        }}
-                                    />
-                                )}
+              >
+                {active && (
+                  <motion.div
+                    layoutId="activeIndicator"
+                    className="absolute left-0 top-3.5 bottom-3.5 w-1 bg-white rounded-r-md"
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  />
+                )}
 
-                                <Icon
-                                    className={`text-xl shrink-0 transition-transform group-hover:scale-105 duration-200 ${
-                                        active
-                                            ? "text-teal"
-                                            : "text-navy group-hover:text-navy"
-                                    }`}
-                                />
+                <Icon
+                  className={`text-xl shrink-0 transition-transform group-hover:scale-105 duration-200 ${
+                    active ? "text-white" : "text-navy group-hover:text-accent"
+                  }`}
+                />
 
-                                <span className="text-sm tracking-wide whitespace-nowrap">
-                                    {link.label}
-                                </span>
-                            </Link>
-                        );
-                    })}
-                </nav>
+                <span className="text-sm tracking-wide whitespace-nowrap">
+                  {link.label}
+                </span>
+              </Link>
+            );
+          })}
+        </nav>
 
-                {/* Footer Utilities Area */}
-                <div className="p-3 border-t border-white space-y-1.5">
-                    {/* Back to Home */}
-                    <Link
-                        href="/"
-                        className="flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 group text-navy hover:text-navy hover:bg-white/60 border border-transparent"
-                    >
-                        <IoMdHome className="text-xl text-navy group-hover:text-navy shrink-0 transition-transform group-hover:scale-105" />
-                        <span className="text-sm tracking-wide">
-                            Back to Home
-                        </span>
-                    </Link>
+        {/* Footer Utilities Area */}
+        <div className="p-3 border-t border-white space-y-1.5">
+          {/* Back to Home */}
+          <Link
+            href="/"
+            className="flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 group text-navy hover:text-accent border border-transparent"
+          >
+            <IoMdHome className="text-xl text-navy group-hover:text-accent shrink-0 transition-transform group-hover:scale-105" />
+            <span className="text-sm tracking-wide">Back to Home</span>
+          </Link>
 
-                    {/* Sign Out */}
-                    <button
-                        onClick={handleSignOut}
-                        className="w-full flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 text-navy hover:text-red-400 hover:bg-red-500/5 border border-transparent hover:border-red-500/10 group"
-                    >
-                        <MdLogout className="text-xl text-navy group-hover:text-red-400 shrink-0 transition-transform group-hover:-translate-x-0.5" />
-                        <span className="text-sm font-medium tracking-wide">
-                            Logout
-                        </span>
-                    </button>
-                </div>
-            </motion.aside>
-        </>
-    );
+          {/* Sign Out */}
+          <button
+            onClick={handleSignOut}
+            className="w-full flex items-center gap-3 px-3.5 py-3.5 rounded-xl transition-all duration-200 text-navy hover:text-red-400 hover:bg-red-500/5 border border-transparent hover:border-red-500/10 group"
+          >
+            <MdLogout className="text-xl text-navy group-hover:text-red-400 shrink-0 transition-transform group-hover:-translate-x-0.5" />
+            <span className="text-sm font-medium tracking-wide">Logout</span>
+          </button>
+        </div>
+      </motion.aside>
+    </>
+  );
 };
 
 export default DashboardSidebar;
