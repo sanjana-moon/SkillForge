@@ -38,11 +38,13 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
     const [isDeleting, setIsDeleting] = useState<string | null>(null);
     const [isLoadingSession, setIsLoadingSession] = useState(false);
 
-    // ✅ Ref for the scrollable messages list (was messagesEndRef)
     const messagesContainerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    // Load session messages when current session changes
+    // Brand gradient built from defined CSS tokens
+    const brandGradient =
+        "linear-gradient(135deg, var(--royal-blue) 0%, var(--vibrant-purple) 100%)";
+
     useEffect(() => {
         if (currentSession) {
             setMessages(currentSession.messages || []);
@@ -51,7 +53,6 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
         }
     }, [currentSession]);
 
-    // ✅ Scroll only the messages container, never the page
     useEffect(() => {
         const container = messagesContainerRef.current;
         if (!container) return;
@@ -70,7 +71,6 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
         }
     }, [messages]);
 
-    // Focus input on load
     useEffect(() => {
         if (currentSession) {
             setTimeout(() => inputRef.current?.focus(), 100);
@@ -122,9 +122,7 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
     };
 
     const handleDeleteSession = async (sessionId: string) => {
-        if (
-            !confirm("Are you sure you want to delete this conversation?")
-        )
+        if (!confirm("Are you sure you want to delete this conversation?"))
             return;
 
         try {
@@ -170,7 +168,6 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
             createdAt: new Date(),
         };
 
-        // Optimistically add user message
         setMessages((prev) => [...prev, userMessage]);
         setInputMessage("");
         setIsLoading(true);
@@ -190,7 +187,6 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
 
                 setMessages((prev) => [...prev, assistantMessage]);
 
-                // Update session list title if needed
                 const updatedSessions = sessions.map((s) =>
                     s._id === currentSession._id
                         ? {
@@ -235,7 +231,6 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
 
     return (
         <div className="min-h-screen bg-white p-4 md:p-6">
-            {/* ✅ dvh instead of vh — prevents mobile viewport jumps */}
             <div className="mx-auto max-w-7xl h-[calc(100dvh-120px)]">
                 <div className="flex flex-col h-full">
                     {/* Header */}
@@ -251,7 +246,8 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                         </div>
                         <Button
                             onPress={handleCreateSession}
-                            className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90"
+                            className="text-white font-semibold hover:opacity-90"
+                            style={{ background: brandGradient }}
                         >
                             <FaPlus />
                             New Conversation
@@ -271,7 +267,8 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                     <Button
                                         onPress={handleCreateSession}
                                         size="sm"
-                                        className="mt-3 bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90"
+                                        className="mt-3 text-white font-semibold hover:opacity-90"
+                                        style={{ background: brandGradient }}
                                     >
                                         Start New
                                     </Button>
@@ -285,7 +282,7 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                 currentSession?._id ===
                                                 session._id
                                                     ? "bg-teal/15 border border-teal/30"
-                                                    : "hover:bg-white border border-transparent"
+                                                    : "hover:bg-teal/5 border border-transparent"
                                             }`}
                                             onClick={() =>
                                                 handleSelectSession(session)
@@ -345,7 +342,8 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                     </p>
                                     <Button
                                         onPress={handleCreateSession}
-                                        className="mt-6 bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90"
+                                        className="mt-6 text-white font-semibold hover:opacity-90"
+                                        style={{ background: brandGradient }}
                                     >
                                         <FaPlus />
                                         Start New Conversation
@@ -357,7 +355,7 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                 </div>
                             ) : (
                                 <>
-                                    {/* ✅ Messages — ref attached here for scoped scroll */}
+                                    {/* Messages */}
                                     <div
                                         ref={messagesContainerRef}
                                         className="flex-1 overflow-y-auto p-4 space-y-4"
@@ -395,42 +393,46 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                                     : "justify-start"
                                                             }`}
                                                         >
-                                                            <div
-                                                                className={`max-w-[80%] rounded-2xl px-4 py-3 ${
-                                                                    message.role ===
-                                                                    "user"
-                                                                        ? "bg-[image:var(--brand-gradient)] text-white"
-                                                                        : "bg-white text-navy border border-teal/10"
-                                                                }`}
-                                                            >
-                                                                <div className="flex items-start gap-2">
-                                                                    {message.role ===
-                                                                        "assistant" && (
-                                                                        <FaRobot className="text-teal text-sm mt-0.5 shrink-0" />
-                                                                    )}
-                                                                    {message.role ===
-                                                                        "user" && (
-                                                                        <FaUser className="text-white/60 text-sm mt-0.5 shrink-0" />
-                                                                    )}
-                                                                    <div className="whitespace-pre-wrap text-sm leading-relaxed">
-                                                                        {
-                                                                            message.content
-                                                                        }
-                                                                    </div>
-                                                                </div>
-                                                                <p
-                                                                    className={`text-[10px] mt-1 ${
-                                                                        message.role ===
-                                                                        "user"
-                                                                            ? "text-white/60"
-                                                                            : "text-navy/30"
-                                                                    }`}
+                                                            {message.role ===
+                                                            "user" ? (
+                                                                <div
+                                                                    className="max-w-[80%] rounded-2xl px-4 py-3 text-white"
+                                                                    style={{
+                                                                        background:
+                                                                            brandGradient,
+                                                                    }}
                                                                 >
-                                                                    {formatDate(
-                                                                        message.createdAt
-                                                                    )}
-                                                                </p>
-                                                            </div>
+                                                                    <div className="flex items-start gap-2">
+                                                                        <FaUser className="text-white/80 text-sm mt-0.5 shrink-0" />
+                                                                        <div className="whitespace-pre-wrap text-sm leading-relaxed text-white">
+                                                                            {
+                                                                                message.content
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                    <p className="text-[10px] mt-1 text-white/70">
+                                                                        {formatDate(
+                                                                            message.createdAt
+                                                                        )}
+                                                                    </p>
+                                                                </div>
+                                                            ) : (
+                                                                <div className="max-w-[80%] rounded-2xl px-4 py-3 bg-white border border-teal/10 text-navy">
+                                                                    <div className="flex items-start gap-2">
+                                                                        <FaRobot className="text-teal text-sm mt-0.5 shrink-0" />
+                                                                        <div className="whitespace-pre-wrap text-sm leading-relaxed text-navy">
+                                                                            {
+                                                                                message.content
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                    <p className="text-[10px] mt-1 text-navy/50">
+                                                                        {formatDate(
+                                                                            message.createdAt
+                                                                        )}
+                                                                    </p>
+                                                                </div>
+                                                            )}
                                                         </motion.div>
                                                     )
                                                 )}
@@ -451,21 +453,21 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                         <FaRobot className="text-teal text-sm" />
                                                         <div className="flex gap-1">
                                                             <span
-                                                                className="w-2 h-2 bg-[image:var(--brand-gradient)] rounded-full animate-bounce"
+                                                                className="w-2 h-2 bg-teal rounded-full animate-bounce"
                                                                 style={{
                                                                     animationDelay:
                                                                         "0ms",
                                                                 }}
                                                             />
                                                             <span
-                                                                className="w-2 h-2 bg-[image:var(--brand-gradient)] rounded-full animate-bounce"
+                                                                className="w-2 h-2 bg-teal rounded-full animate-bounce"
                                                                 style={{
                                                                     animationDelay:
                                                                         "150ms",
                                                                 }}
                                                             />
                                                             <span
-                                                                className="w-2 h-2 bg-[image:var(--brand-gradient)] rounded-full animate-bounce"
+                                                                className="w-2 h-2 bg-teal rounded-full animate-bounce"
                                                                 style={{
                                                                     animationDelay:
                                                                         "300ms",
@@ -501,7 +503,10 @@ const AIMentorClient = ({ initialSessions }: AIMentorClientProps) => {
                                                     !inputMessage.trim() ||
                                                     isLoading
                                                 }
-                                                className="bg-[image:var(--brand-gradient)] text-white font-semibold hover:opacity-90 px-6 rounded-xl"
+                                                className="text-white font-semibold hover:opacity-90 px-6 rounded-xl"
+                                                style={{
+                                                    background: brandGradient,
+                                                }}
                                             >
                                                 <FaPaperPlane />
                                                 Send
