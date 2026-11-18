@@ -1,21 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-    Button,
-    Input,
-    Label,
-    Modal,
-    TextArea,
-    TextField,
-} from "@heroui/react";
+import { Button, Input, Label, Modal, TextArea, TextField } from "@heroui/react";
 
-import {
-    FaLock,
-    FaUserGraduate,
-    FaClock,
-    FaCheckCircle,
-} from "react-icons/fa";
+import { FaLock, FaUserGraduate, FaClock, FaCheckCircle } from "react-icons/fa";
 import { useSession } from "@/lib/auth-client";
 import { checkEnrollment } from "@/lib/api/courses/data";
 import { toast } from "react-toastify";
