@@ -63,6 +63,11 @@ const BrowseCoursesClient = () => {
     const [minPrice, setMinPrice] = useState(urlMinPrice);
     const [maxPrice, setMaxPrice] = useState(urlMaxPrice);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const filters = {
         search: urlSearch || undefined,
@@ -78,8 +83,10 @@ const BrowseCoursesClient = () => {
     const { data, isLoading, isError, refetch } = useCourses(filters);
 
     // Debounced sync of text inputs -> URL. Skips when nothing changed,
-    // so it never pushes on mount or resets the page needlessly.
+    // and skips until mounted, so it never pushes during hydration.
     useEffect(() => {
+        if (!mounted) return;
+
         if (search === urlSearch && minPrice === urlMinPrice && maxPrice === urlMaxPrice) {
             return;
         }
@@ -102,7 +109,7 @@ const BrowseCoursesClient = () => {
 
         return () => clearTimeout(timer);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [search, minPrice, maxPrice]);
+    }, [search, minPrice, maxPrice, mounted]);
 
     const updateQueryParams = (key: string, value: string | number) => {
         const params = new URLSearchParams(searchParams.toString());
@@ -128,6 +135,15 @@ const BrowseCoursesClient = () => {
         setIsFilterOpen(false);
     };
 
+    // True when any filter differs from its default
+    const hasActiveFilters =
+        !!urlSearch ||
+        currentCategory !== "all" ||
+        currentLevel !== "all" ||
+        currentSort !== "newest" ||
+        !!urlMinPrice ||
+        !!urlMaxPrice;
+
     const courses = data?.courses || [];
     const totalCourses = data?.totalCourses || 0;
     const totalPages = data?.totalPages || 0;
@@ -139,10 +155,8 @@ const BrowseCoursesClient = () => {
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="relative overflow-hidden bg-linear-to-r from-white via-white to-white border border-teal/20 rounded-2xl md:rounded-3xl py-10 md:py-16 px-6 md:px-8 text-center shadow-xl mb-6 md:mb-10"
+                    className="relative overflow-hidden py-4 md:py-6 px-3 md:px-4 text-center"
                 >
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-teal via-teal to-teal" />
-                    <FaBook className="text-4xl md:text-5xl text-teal mx-auto mb-3 md:mb-4" />
                     <h1 className="text-3xl md:text-5xl font-bold text-navy">
                         Discover Your Next Course
                     </h1>
@@ -157,9 +171,9 @@ const BrowseCoursesClient = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="hidden lg:block bg-white rounded-3xl shadow-xl border border-teal/20 p-6 mb-8"
+                    className="hidden lg:block bg-white rounded-md shadow-xl border border-teal/20 p-6 mb-8"
                 >
-                    <div className="grid grid-cols-7 gap-4">
+                    <div className="grid grid-cols-8 gap-4">
                         <div className="col-span-2 flex items-center gap-3 bg-white border border-teal/30 rounded-xl px-4 focus-within:border-teal transition-colors">
                             <FaSearch className="text-teal" />
                             <input
@@ -222,6 +236,20 @@ const BrowseCoursesClient = () => {
                             onChange={(e) => setMaxPrice(e.target.value)}
                             className="bg-white border border-teal/30 rounded-xl px-4 py-3 outline-none focus:border-teal text-navy placeholder:text-navy/40 transition-colors"
                         />
+
+                        {/* Clear Filters */}
+                        <Button
+                            onPress={clearFilters}
+                            isDisabled={!hasActiveFilters}
+                            className={`rounded-xl font-medium transition-colors my-auto ${
+                                hasActiveFilters
+                                    ? "bg-teal/10 hover:bg-teal/20 text-teal"
+                                    : "bg-teal/5 text-navy/30 cursor-not-allowed"
+                            }`}
+                        >
+                            <FaTimes className="mr-2" />
+                            Clear Filters
+                        </Button>
                     </div>
                 </motion.div>
 
@@ -320,7 +348,12 @@ const BrowseCoursesClient = () => {
 
                             <Button
                                 onPress={clearFilters}
-                                className="w-full bg-teal/10 hover:bg-teal/20 text-teal font-medium rounded-xl py-2.5 text-sm"
+                                isDisabled={!hasActiveFilters}
+                                className={`w-full font-medium rounded-xl py-2.5 text-sm transition-colors ${
+                                    hasActiveFilters
+                                        ? "bg-teal/10 hover:bg-teal/20 text-teal"
+                                        : "bg-teal/5 text-navy/30 cursor-not-allowed"
+                                }`}
                             >
                                 Clear Filters
                             </Button>
