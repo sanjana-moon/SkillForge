@@ -145,7 +145,7 @@ export default function AboutPage() {
                                 </Button>
                             </Link>
                             <Link href="/contact">
-                                <Button className="border border-accent text-accent hover:bg-accent hover:text-inverse bg-transparent font-semibold">
+                                <Button className="border border-accent text-accent hover:bg-accent hover:text-white bg-transparent font-semibold">
                                     Get in Touch
                                 </Button>
                             </Link>
@@ -457,7 +457,7 @@ export default function AboutPage() {
                             </Button>
                         </Link>
                         <Link href="/contact">
-                            <Button className="rounded-xl border border-accent px-8 py-6 text-lg text-accent hover:bg-accent hover:text-inverse bg-transparent font-semibold">
+                            <Button className="rounded-xl border border-accent px-8 py-6 text-lg text-accent hover:bg-accent hover:text-white bg-transparent font-semibold">
                                 Contact Us
                             </Button>
                         </Link>
